@@ -1,0 +1,72 @@
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+/coverage
+/test-results
+/playwright-report
+/qa
+/__screenshots__
+/screenshots
+
+# Node
+/node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+/logs
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/
+.history/
+*.swp
+*.swo
+*.bak
+*.tmp
+*.temp
+
+# Environment and credentials
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+.npmrc
+.netrc
+credentials*.json
+service-account*.json
+secrets.*
+
+# Local caches and miscellaneous output
+/.angular
+.cache/
+.parcel-cache/
+.sass-cache/
+.eslintcache
+.codex/
+/connect.lock
+/libpeerconnection.log
+testem.log
+/typings
+
+# Local QA and unoptimized working assets
+/design-qa.md
+/public/images/technology-progress-hero.png
+
+# System files
+.DS_Store
+Thumbs.db

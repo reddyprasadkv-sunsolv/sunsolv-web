@@ -1,0 +1,19 @@
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { heroArrowRight } from '@ng-icons/heroicons/outline';
+import { PageData, services } from '../../core/site-data';
+
+@Component({
+  selector: 'app-content-page',
+  imports: [RouterLink, NgIcon],
+  providers: [provideIcons({ heroArrowRight })],
+  templateUrl: './content-page.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './content-page.component.scss',
+})
+export class ContentPageComponent {
+  readonly data = inject(ActivatedRoute).snapshot.data as PageData;
+  readonly services = services;
+  readonly industries = ['Healthcare', 'Education', 'E-commerce', 'Real Estate'] as const;
+}

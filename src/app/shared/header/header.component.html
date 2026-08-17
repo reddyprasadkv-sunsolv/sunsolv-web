@@ -1,0 +1,102 @@
+<header class="site-header">
+  <div class="shell header-inner">
+    <a routerLink="/" class="brand" aria-label="SunSolv Technologies home" (click)="closeMobile()">
+      <img src="/images/sunsolv-logo.webp" width="178" height="62" alt="SunSolv Technologies" />
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+        >Home</a
+      >
+      <div class="services-menu">
+        <button
+          type="button"
+          (click)="toggleServices()"
+          [attr.aria-expanded]="servicesOpen()"
+          aria-controls="services-mega-menu"
+        >
+          Services <ng-icon name="heroChevronDown" aria-hidden="true" />
+        </button>
+        @if (servicesOpen()) {
+          <div id="services-mega-menu" class="mega-menu">
+            <p>Services</p>
+            <div class="mega-links">
+              @for (service of services; track service.slug) {
+                <a [routerLink]="['/services', service.slug]" (click)="servicesOpen.set(false)">
+                  <span>{{ service.title }}</span>
+                  <small>{{ service.positioning }}</small>
+                </a>
+              }
+            </div>
+          </div>
+        }
+      </div>
+      <a routerLink="/industries" routerLinkActive="active">Industries</a>
+      <a routerLink="/case-studies" routerLinkActive="active">Case Studies</a>
+      <a routerLink="/about-us" routerLinkActive="active">About Us</a>
+      <a routerLink="/partnerships" routerLinkActive="active">Partnerships</a>
+      <a routerLink="/contact-us" routerLinkActive="active">Contact Us</a>
+    </nav>
+
+    <a class="button header-cta" routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }">
+      Start a Project <ng-icon name="heroArrowRight" aria-hidden="true" />
+    </a>
+
+    <button
+      #menuButton
+      class="mobile-toggle"
+      type="button"
+      (click)="toggleMobile()"
+      [attr.aria-expanded]="mobileOpen()"
+      [attr.aria-hidden]="mobileOpen()"
+      [attr.tabindex]="mobileOpen() ? -1 : 0"
+      aria-controls="mobile-navigation"
+      aria-label="Open navigation"
+    >
+      <ng-icon name="heroBars3" aria-hidden="true" />
+    </button>
+  </div>
+
+  @if (mobileOpen()) {
+    <div
+      #mobilePanel
+      id="mobile-navigation"
+      class="mobile-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Navigation"
+    >
+      <button
+        class="mobile-close"
+        type="button"
+        (click)="closeMobile(true)"
+        aria-label="Close navigation"
+      >
+        <ng-icon name="heroXMark" aria-hidden="true" />
+      </button>
+      <nav aria-label="Mobile navigation">
+        <a routerLink="/" (click)="closeMobile()">Home</a>
+        <details>
+          <summary>Services</summary>
+          @for (service of services; track service.slug) {
+            <a [routerLink]="['/services', service.slug]" (click)="closeMobile()">{{
+              service.title
+            }}</a>
+          }
+        </details>
+        <a routerLink="/industries" (click)="closeMobile()">Industries</a>
+        <a routerLink="/case-studies" (click)="closeMobile()">Case Studies</a>
+        <a routerLink="/about-us" (click)="closeMobile()">About Us</a>
+        <a routerLink="/partnerships" (click)="closeMobile()">Partnerships</a>
+        <a routerLink="/contact-us" (click)="closeMobile()">Contact Us</a>
+      </nav>
+      <a
+        class="button"
+        routerLink="/contact-us"
+        [queryParams]="{ enquiry: 'project' }"
+        (click)="closeMobile()"
+        >Start a Project</a
+      >
+    </div>
+  }
+</header>

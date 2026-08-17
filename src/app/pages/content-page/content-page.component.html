@@ -1,0 +1,56 @@
+<section class="page-hero">
+  <div class="shell page-hero-inner">
+    <p class="eyebrow">{{ data.eyebrow }}</p>
+    <h1>{{ data.title }}</h1>
+    @if (data.positioning) {
+      <p class="lede">{{ data.positioning }}</p>
+    }
+  </div>
+</section>
+
+@if (data.seo.path === 'services') {
+  <section class="section">
+    <div class="shell services-overview">
+      @for (service of services; track service.slug) {
+        <a [routerLink]="['/services', service.slug]">
+          <span>{{ service.title }}</span
+          ><small>{{ service.positioning }}</small
+          ><ng-icon name="heroArrowRight" aria-hidden="true" />
+        </a>
+      }
+    </div>
+  </section>
+}
+
+@if (data.seo.path === 'industries') {
+  <section class="section">
+    <div class="shell industry-overview">
+      @for (industry of industries; track industry) {
+        <article>
+          <h2>{{ industry }}</h2>
+        </article>
+      }
+    </div>
+  </section>
+}
+
+<section class="section page-sections" aria-label="Page content structure">
+  <div class="shell">
+    @for (section of data.sections; track section) {
+      <article>
+        <p class="eyebrow">Section</p>
+        <h2>{{ section }}</h2>
+        <p class="content-gate">Approved production content is required before publication.</p>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="final-band">
+  <div class="shell final-band-inner">
+    <h2>Technology that turns complexity into progress.</h2>
+    <a class="button" routerLink="/contact-us"
+      >Start a Project <ng-icon name="heroArrowRight" aria-hidden="true"
+    /></a>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+<nav class="breadcrumbs shell" aria-label="Breadcrumb">
+  <ol>
+    <li><a routerLink="/">Home</a></li>
+    <li><a routerLink="/services">Services</a></li>
+    <li aria-current="page">{{ data.title }}</li>
+  </ol>
+</nav>
+<section class="service-hero">
+  <div class="shell service-hero-inner">
+    <div>
+      <p class="eyebrow">{{ data.eyebrow }}</p>
+      <h1>{{ data.title }}</h1>
+      <p class="lede">{{ data.positioning }}</p>
+      <a
+        class="button"
+        routerLink="/contact-us"
+        [queryParams]="{ enquiry: 'project', service: data.title }"
+        >Start a Project <ng-icon name="heroArrowRight" aria-hidden="true"
+      /></a>
+    </div>
+    <img
+      src="/images/technology-progress-hero.webp"
+      width="1672"
+      height="941"
+      alt="Abstract blue technology infrastructure"
+      loading="lazy"
+    />
+  </div>
+</section>
+<section class="section service-sections" aria-label="Service content structure">
+  <div class="shell">
+    @for (section of data.sections; track section; let index = $index) {
+      <article>
+        <span>0{{ index + 1 }}</span>
+        <h2>{{ section }}</h2>
+        <p class="content-gate">Approved production content is required before publication.</p>
+      </article>
+    }
+  </div>
+</section>
+<section class="final-band">
+  <div class="shell">
+    <h2>{{ data.positioning }}</h2>
+    <a
+      class="button"
+      routerLink="/contact-us"
+      [queryParams]="{ enquiry: 'project', service: data.title }"
+      >Start a Project <ng-icon name="heroArrowRight" aria-hidden="true"
+    /></a>
+  </div>
+</section>

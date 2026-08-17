@@ -1,0 +1,17 @@
+/
+/about-us
+/services
+/services/it-consulting
+/services/digital-transformation
+/services/cloud-solutions
+/services/web-mobile-development
+/services/custom-software-development
+/services/ai-machine-learning
+/services/digital-marketing
+/industries
+/case-studies
+/partnerships
+/careers
+/contact-us
+/privacy-policy
+/terms-and-conditions

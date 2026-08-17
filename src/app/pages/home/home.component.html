@@ -1,0 +1,164 @@
+<section class="hero" aria-labelledby="home-title">
+  <img
+    class="hero-art"
+    src="/images/technology-progress-hero.webp"
+    width="1672"
+    height="941"
+    alt="Abstract blue technology pathways becoming structured and clear"
+    fetchpriority="high"
+  />
+  <div class="shell hero-inner">
+    <div class="hero-copy">
+      <h1 id="home-title">Technology that turns complexity into <span>progress.</span></h1>
+      <p class="hero-lede">
+        We help organizations design, build, and scale technology solutions that simplify
+        operations, accelerate growth, and create lasting impact.
+      </p>
+      <div class="hero-actions">
+        <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }"
+          >Start a Project <ng-icon name="heroArrowRight" aria-hidden="true"
+        /></a>
+        <a class="button button-secondary" routerLink="/services">Explore Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="evidence section-tight" aria-labelledby="evidence-title">
+  <div class="shell">
+    <p class="eyebrow">Our approach</p>
+    <h2 id="evidence-title">Clarity first. Impact always.</h2>
+    <div class="evidence-grid">
+      @for (item of outcomes; track item.title) {
+        <article>
+          <ng-icon [name]="item.icon" aria-hidden="true" />
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="services section" aria-labelledby="services-title">
+  <div class="shell">
+    <p class="eyebrow">What we do</p>
+    <h2 id="services-title">End-to-end technology services for modern businesses.</h2>
+    <div class="services-grid">
+      @for (service of services; track service.slug) {
+        <a class="service" [routerLink]="['/services', service.slug]">
+          <ng-icon [name]="service.icon" aria-hidden="true" />
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.positioning }}</p>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="why section" aria-labelledby="why-title">
+  <div class="shell why-grid">
+    <div>
+      <p class="eyebrow">Why partner with us</p>
+      <h2 id="why-title">A partner who builds for what matters next.</h2>
+    </div>
+    <div class="why-points">
+      <article>
+        <ng-icon name="heroSparkles" aria-hidden="true" />
+        <h3>Deep Technical Expertise</h3>
+        <p>Strong engineering foundations and cross-domain thinking for real-world problems.</p>
+      </article>
+      <article>
+        <ng-icon name="heroSquare3Stack3d" aria-hidden="true" />
+        <h3>Tailored Engagements</h3>
+        <p>Flexible delivery shaped around your priorities, team structure, and preferences.</p>
+      </article>
+      <article>
+        <ng-icon name="heroUsers" aria-hidden="true" />
+        <h3>Long-term Commitment</h3>
+        <p>Relationships designed to support your success beyond the first release.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="approach-title">
+  <div class="shell">
+    <p class="eyebrow">Delivery approach</p>
+    <h2 id="approach-title">From direction to continuous value.</h2>
+    <ol class="approach-list">
+      @for (step of approach; track step; let index = $index) {
+        <li>
+          <span>0{{ index + 1 }}</span
+          ><strong>{{ step }}</strong>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<section class="industries section" aria-labelledby="industries-title">
+  <div class="shell">
+    <p class="eyebrow">Industries</p>
+    <h2 id="industries-title">Technology solutions by industry.</h2>
+    <div class="industry-list">
+      @for (industry of industries; track industry) {
+        <span>{{ industry }}</span>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="content-hold-section section" aria-labelledby="cases-title">
+  <div class="shell hold-grid">
+    <div>
+      <p class="eyebrow">Selected case studies</p>
+      <h2 id="cases-title">Verified work belongs here.</h2>
+    </div>
+    <p class="content-gate">
+      Case-study content will remain unpublished until client identity, outcomes, technologies and
+      testimonials are approved.
+    </p>
+  </div>
+</section>
+
+<section class="content-hold-section section" aria-labelledby="partners-title">
+  <div class="shell hold-grid">
+    <div>
+      <p class="eyebrow">Partnerships</p>
+      <h2 id="partners-title">Approved partner information.</h2>
+    </div>
+    <p class="content-gate">
+      Partner claims, badges and logos will remain unpublished until authorization is confirmed.
+    </p>
+  </div>
+</section>
+
+<section class="content-hold-section section" aria-labelledby="testimonials-title">
+  <div class="shell hold-grid">
+    <div>
+      <p class="eyebrow">Testimonials</p>
+      <h2 id="testimonials-title">Verified client perspectives.</h2>
+    </div>
+    <p class="content-gate">
+      Testimonials will remain unpublished until the source, wording and permission are confirmed.
+    </p>
+  </div>
+</section>
+
+<section class="final-cta section" aria-labelledby="cta-title">
+  <div class="shell cta-grid">
+    <div>
+      <p class="eyebrow">Start a conversation</p>
+      <h2 id="cta-title">Ready to turn your technology vision into results?</h2>
+    </div>
+    <ol>
+      <li><ng-icon name="heroChatBubbleLeftRight" aria-hidden="true" />Share your goals</li>
+      <li><ng-icon name="heroShieldCheck" aria-hidden="true" />Get tailored recommendations</li>
+      <li><ng-icon name="heroPaperAirplane" aria-hidden="true" />Kick off with confidence</li>
+    </ol>
+    <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }"
+      >Start a Project <ng-icon name="heroArrowRight" aria-hidden="true"
+    /></a>
+  </div>
+</section>

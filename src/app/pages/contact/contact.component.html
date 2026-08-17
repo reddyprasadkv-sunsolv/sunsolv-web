@@ -1,0 +1,150 @@
+<section class="contact-hero">
+  <div class="shell">
+    <p class="eyebrow">Contact SunSolv Technologies</p>
+    <h1>Start your technology project.</h1>
+  </div>
+</section>
+<section class="section contact-section">
+  <div class="shell contact-grid">
+    <aside>
+      <p class="eyebrow">One enquiry form</p>
+      <h2>Tell us what you need.</h2>
+      <dl>
+        <div>
+          <dt>Email</dt>
+          <dd><a href="mailto:info@sunsolv.in">info&#64;sunsolv.in</a></dd>
+        </div>
+        <div>
+          <dt>Privacy</dt>
+          <dd>Your information is used only to respond to this enquiry.</dd>
+        </div>
+      </dl>
+    </aside>
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <p class="required-note">All fields marked * are required.</p>
+      <div class="field full">
+        <label for="enquiryType">Enquiry type *</label
+        ><select
+          id="enquiryType"
+          formControlName="enquiryType"
+          [attr.aria-invalid]="invalid(form.controls.enquiryType)"
+        >
+          <option value="project">Project enquiry</option>
+          <option value="partnership">Partnership enquiry</option>
+          <option value="career">Career enquiry</option>
+          <option value="general">General enquiry</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="fullName">Full name *</label
+        ><input
+          id="fullName"
+          formControlName="fullName"
+          autocomplete="name"
+          maxlength="80"
+          [attr.aria-invalid]="invalid(form.controls.fullName)"
+        />
+        @if (invalid(form.controls.fullName)) {
+          <small>Required; 2–80 characters.</small>
+        }
+      </div>
+      <div class="field">
+        <label for="workEmail">Work email *</label
+        ><input
+          id="workEmail"
+          type="email"
+          formControlName="workEmail"
+          autocomplete="email"
+          [attr.aria-invalid]="invalid(form.controls.workEmail)"
+        />
+        @if (invalid(form.controls.workEmail)) {
+          <small>Enter a valid email address.</small>
+        }
+      </div>
+      <div class="field">
+        <label for="phone">Phone number</label
+        ><input
+          id="phone"
+          type="tel"
+          formControlName="phone"
+          autocomplete="tel"
+          [attr.aria-invalid]="invalid(form.controls.phone)"
+        />
+        @if (invalid(form.controls.phone)) {
+          <small>Use a valid international phone number.</small>
+        }
+      </div>
+      <div class="field">
+        <label for="company">Company</label
+        ><input
+          id="company"
+          formControlName="company"
+          autocomplete="organization"
+          maxlength="120"
+        />
+      </div>
+      <div class="field full">
+        <label for="service"
+          >Service interested in
+          @if (form.controls.enquiryType.value === 'project') {
+            *
+          }</label
+        ><select
+          id="service"
+          formControlName="service"
+          [attr.aria-invalid]="invalid(form.controls.service)"
+        >
+          <option value="">Select a service</option>
+          @for (service of services; track service.slug) {
+            <option [value]="service.title">{{ service.title }}</option>
+          }
+          <option value="Other">Other</option>
+        </select>
+        @if (invalid(form.controls.service)) {
+          <small>Required for project enquiries.</small>
+        }
+      </div>
+      <div class="field full">
+        <label for="message">Project brief or message *</label
+        ><textarea
+          id="message"
+          formControlName="message"
+          rows="7"
+          minlength="20"
+          maxlength="2000"
+          [attr.aria-invalid]="invalid(form.controls.message)"
+        ></textarea
+        ><span class="counter">{{ form.controls.message.value.length }} / 2,000</span>
+        @if (invalid(form.controls.message)) {
+          <small>Required; 20–2,000 characters.</small>
+        }
+      </div>
+      <div class="field full consent">
+        <input
+          id="privacyConsent"
+          type="checkbox"
+          formControlName="privacyConsent"
+          [attr.aria-invalid]="invalid(form.controls.privacyConsent)"
+        /><label for="privacyConsent"
+          >I consent to SunSolv Technologies using this information to respond to my enquiry.
+          *</label
+        >
+      </div>
+      <div class="honeypot" aria-hidden="true">
+        <label for="website">Website</label
+        ><input id="website" formControlName="website" tabindex="-1" autocomplete="off" />
+      </div>
+      <div class="form-actions full">
+        <button class="button" type="submit" [disabled]="state() === 'submitting'">
+          {{ state() === 'submitting' ? 'Submitting…' : 'Submit enquiry' }}
+        </button>
+      </div>
+      <div class="status full" aria-live="polite" role="status">
+        {{ statusMessage() }}
+        @if (state() === 'success') {
+          <strong> {{ reference() }}</strong>
+        }
+      </div>
+    </form>
+  </div>
+</section>
