@@ -90,11 +90,11 @@ export const pageRouteData = {
   home: {
     ...page(
       '',
-      'Strategic technology partner',
+      'Strategy · Engineering · Transformation',
       'Technology that turns complexity into progress.',
       'IT, Cloud, AI & Software Solutions | SunSolv',
       [],
-      'Technology that turns complexity into progress.',
+      'SunSolv Technologies delivers IT consulting, cloud, custom software, web and mobile development, AI and digital transformation solutions.',
     ),
     schemaType: 'WebPage',
   },
@@ -161,12 +161,7 @@ export const pageRouteData = {
     'Partnerships',
     'Partnerships',
     'Technology Partnerships | SunSolv Technologies',
-    [
-      'Partnership philosophy',
-      'Approved partner information',
-      'Capabilities enabled by each partnership',
-      'Client benefits',
-    ],
+    ['Partnership philosophy', 'Capabilities enabled by each partnership', 'Client benefits'],
   ),
   careers: page('careers', 'Careers', 'Careers', 'Careers at SunSolv Technologies', [
     'Culture',

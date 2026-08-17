@@ -64,7 +64,6 @@ testem.log
 /typings
 
 # Local QA and unoptimized working assets
-/design-qa.md
 /public/images/technology-progress-hero.png
 
 # System files

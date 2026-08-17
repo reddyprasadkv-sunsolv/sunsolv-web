@@ -3,11 +3,12 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { App } from './app';
 import { routes } from './app.routes';
+import { HomeComponent } from './pages/home/home.component';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [App],
+      imports: [App, HomeComponent],
       providers: [provideRouter(routes), provideHttpClient()],
     }).compileComponents();
   });
@@ -25,5 +26,20 @@ describe('App', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('[aria-label="Primary navigation"]')).toBeTruthy();
     expect(compiled.querySelector('footer')).toBeTruthy();
+  });
+
+  it('should render the approved Homepage without unpublished sections', async () => {
+    const fixture = TestBed.createComponent(HomeComponent);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'Technology that turns complexity into progress.',
+    );
+    expect(compiled.querySelector('.content-hold-section')).toBeNull();
+    expect(compiled.textContent).not.toContain(
+      'Case-study content will remain unpublished until client identity',
+    );
   });
 });

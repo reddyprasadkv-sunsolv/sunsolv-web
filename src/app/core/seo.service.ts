@@ -41,14 +41,14 @@ export class SeoService {
     this.meta.updateTag({ property: 'og:url', content: canonical });
     this.meta.updateTag({
       property: 'og:image',
-      content: `${canonicalOrigin}/images/technology-progress-hero.webp`,
+      content: `${canonicalOrigin}/images/sunsolv-technology-progress-hero.webp`,
     });
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.meta.updateTag({ name: 'twitter:title', content: seo.title });
     this.meta.updateTag({ name: 'twitter:description', content: seo.description });
     this.meta.updateTag({
       name: 'twitter:image',
-      content: `${canonicalOrigin}/images/technology-progress-hero.webp`,
+      content: `${canonicalOrigin}/images/sunsolv-technology-progress-hero.webp`,
     });
     this.meta.updateTag({
       name: 'robots',
