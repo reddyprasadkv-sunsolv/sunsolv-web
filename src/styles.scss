@@ -97,6 +97,25 @@ p {
   max-width: 64ch;
   color: var(--slate);
 }
+.breadcrumbs {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  color: var(--slate);
+  font-size: 0.85rem;
+  list-style: none;
+}
+.breadcrumbs li:not(:last-child)::after {
+  content: '/';
+  margin-left: 9px;
+  color: #94a3b8;
+}
 .button {
   display: inline-flex;
   align-items: center;
@@ -127,6 +146,29 @@ p {
 }
 .button-secondary:hover {
   color: white;
+}
+.final-cta-surface {
+  color: var(--navy);
+  background: linear-gradient(135deg, #ddf7f2 0%, #e7f0ff 100%);
+  border-bottom: 1px solid rgba(7, 26, 51, 0.08);
+}
+.final-cta-surface .eyebrow {
+  color: #0b7086;
+}
+.final-cta-surface h2 {
+  color: #071a33;
+}
+.final-cta-surface p:not(.eyebrow) {
+  color: #35506b;
+}
+.final-cta-surface .button {
+  color: #fff;
+  background: #2563eb;
+  border-color: #2563eb;
+}
+.final-cta-surface .button:hover {
+  background: #174bc4;
+  border-color: #174bc4;
 }
 .content-gate {
   color: #64748b;

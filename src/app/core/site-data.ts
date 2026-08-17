@@ -2,6 +2,7 @@ export interface SeoData {
   title: string;
   description: string;
   path: string;
+  image?: string;
   type?: 'website' | 'article';
   noIndex?: boolean;
 }
@@ -77,13 +78,14 @@ const page = (
   sections: readonly string[] = [],
   positioning = '',
   schemaType = 'WebPage',
+  image?: string,
 ): PageData => ({
   eyebrow,
   title,
   positioning,
   sections,
   schemaType,
-  seo: { title: seoTitle, description: positioning || title, path },
+  seo: { title: seoTitle, description: positioning || title, path, image },
 });
 
 export const pageRouteData = {
@@ -101,20 +103,12 @@ export const pageRouteData = {
   about: page(
     'about-us',
     'About SunSolv Technologies',
-    'About Us',
-    'About SunSolv Technologies',
-    [
-      'Company story',
-      'Purpose and positioning',
-      'Founder and leadership',
-      'Mission',
-      'Vision',
-      'Values',
-      'Delivery philosophy',
-      'Global capabilities',
-    ],
-    '',
+    'Technology built around business outcomes.',
+    'About SunSolv | Technology Consulting & Engineering',
+    [],
+    'Learn how SunSolv combines strategic thinking, engineering expertise and practical delivery to build technology around meaningful business outcomes.',
     'AboutPage',
+    '/images/about/sunsolv-about-purpose-driven-technology.webp',
   ),
   services: page(
     'services',

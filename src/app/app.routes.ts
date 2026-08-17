@@ -8,10 +8,14 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent),
     data: pageRouteData.home,
   },
+  {
+    path: 'about-us',
+    loadComponent: () => import('./pages/about/about.component').then((m) => m.AboutComponent),
+    data: pageRouteData.about,
+  },
   { path: 'partnership', pathMatch: 'full', redirectTo: 'partnerships' },
   { path: 'terms-and-condition', pathMatch: 'full', redirectTo: 'terms-and-conditions' },
   ...[
-    ['about-us', 'about'],
     ['services', 'services'],
     ['industries', 'industries'],
     ['case-studies', 'caseStudies'],

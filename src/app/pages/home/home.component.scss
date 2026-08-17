@@ -318,11 +318,6 @@
   font-size: 20px;
 }
 
-.final-cta {
-  color: white;
-  background: var(--navy);
-}
-
 .cta-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
@@ -330,19 +325,13 @@
   align-items: end;
 }
 
-.final-cta .eyebrow {
-  color: var(--cyan);
-}
-
 .cta-grid h2 {
   max-width: 760px;
-  color: white;
 }
 
 .cta-copy p {
   max-width: 570px;
   margin-bottom: 28px;
-  color: rgba(255, 255, 255, 0.76);
   font-size: 1.03rem;
   line-height: 1.72;
 }

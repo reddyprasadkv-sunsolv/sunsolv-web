@@ -33,6 +33,9 @@ export class SeoService {
     if (!data?.seo) return;
     const seo: SeoData = data.seo;
     const canonical = seo.path ? `${canonicalOrigin}/${seo.path}` : `${canonicalOrigin}/`;
+    const socialImage = seo.image
+      ? `${canonicalOrigin}${seo.image}`
+      : `${canonicalOrigin}/images/sunsolv-technology-progress-hero.webp`;
     this.title.setTitle(seo.title);
     this.meta.updateTag({ name: 'description', content: seo.description });
     this.meta.updateTag({ property: 'og:title', content: seo.title });
@@ -41,14 +44,14 @@ export class SeoService {
     this.meta.updateTag({ property: 'og:url', content: canonical });
     this.meta.updateTag({
       property: 'og:image',
-      content: `${canonicalOrigin}/images/sunsolv-technology-progress-hero.webp`,
+      content: socialImage,
     });
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.meta.updateTag({ name: 'twitter:title', content: seo.title });
     this.meta.updateTag({ name: 'twitter:description', content: seo.description });
     this.meta.updateTag({
       name: 'twitter:image',
-      content: `${canonicalOrigin}/images/sunsolv-technology-progress-hero.webp`,
+      content: socialImage,
     });
     this.meta.updateTag({
       name: 'robots',
@@ -83,6 +86,45 @@ export class SeoService {
       return {
         ...base,
         provider: { '@type': 'Organization', name: 'SunSolv Technologies', url: canonicalOrigin },
+      };
+    }
+    if (data.schemaType === 'AboutPage') {
+      const organizationId = `${canonicalOrigin}/#organization`;
+      return {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            ...base,
+            description: data.seo.description,
+            about: { '@id': organizationId },
+          },
+          {
+            '@type': 'Organization',
+            '@id': organizationId,
+            name: 'SunSolv Technologies',
+            url: canonicalOrigin,
+            logo: `${canonicalOrigin}/images/sunsolv-logo.webp`,
+          },
+          {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: `${canonicalOrigin}/`,
+              },
+              { '@type': 'ListItem', position: 2, name: 'About Us', item: canonical },
+            ],
+          },
+          {
+            '@type': 'Person',
+            name: 'Reddy Prasad K V',
+            jobTitle: 'Founder & CEO',
+            affiliation: { '@id': organizationId },
+            image: `${canonicalOrigin}/images/about/prasad-founder.webp`,
+          },
+        ],
       };
     }
     if (canonical === `${canonicalOrigin}/`) {
