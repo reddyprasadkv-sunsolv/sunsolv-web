@@ -1,0 +1,226 @@
+<nav class="breadcrumbs shell" aria-label="Breadcrumb">
+  <ol>
+    <li><a routerLink="/">Home</a></li>
+    <li aria-current="page">Services</li>
+  </ol>
+</nav>
+
+<section class="services-hero" aria-labelledby="services-title">
+  <div class="shell services-hero-grid">
+    <div class="services-hero-copy">
+      <p class="eyebrow">SunSolv Services</p>
+      <h1 id="services-title">Technology services built around business outcomes.</h1>
+      <p class="hero-lede">
+        From strategic direction to implementation and continuous improvement, SunSolv brings
+        together the capabilities organizations need to modernize operations, build better digital
+        experiences and grow with confidence.
+      </p>
+      <div class="hero-actions">
+        <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }">
+          Start a Project <ng-icon name="heroArrowRight" aria-hidden="true" />
+        </a>
+        <a
+          class="button button-secondary"
+          routerLink="/contact-us"
+          [queryParams]="{ enquiry: 'general' }"
+        >
+          Talk to a Consultant
+        </a>
+      </div>
+    </div>
+    <picture class="services-hero-image">
+      <source
+        media="(max-width: 820px)"
+        type="image/avif"
+        srcset="
+          /images/services/sunsolv-services-technology-consulting-mobile.avif?v=services-overview-1 900w
+        "
+        sizes="100vw"
+      />
+      <source
+        media="(max-width: 820px)"
+        type="image/webp"
+        srcset="
+          /images/services/sunsolv-services-technology-consulting-mobile.webp?v=services-overview-1 900w
+        "
+        sizes="100vw"
+      />
+      <source
+        type="image/avif"
+        srcset="
+          /images/services/sunsolv-services-technology-consulting.avif?v=services-overview-1 1200w
+        "
+        sizes="(max-width: 1080px) 100vw, (max-width: 1440px) 60vw, 1100px"
+      />
+      <img
+        src="/images/services/sunsolv-services-technology-consulting.webp?v=services-overview-1"
+        srcset="
+          /images/services/sunsolv-services-technology-consulting.webp?v=services-overview-1 1200w
+        "
+        sizes="(max-width: 1080px) 100vw, (max-width: 1440px) 60vw, 1100px"
+        width="1200"
+        height="1000"
+        alt="Technology consultants reviewing a digital solution architecture."
+        fetchpriority="high"
+      />
+    </picture>
+  </div>
+</section>
+
+<section class="section services-intro" aria-labelledby="services-intro-title">
+  <div class="shell editorial-grid">
+    <header>
+      <p class="eyebrow">What we do</p>
+      <h2 id="services-intro-title">One technology partner across your digital journey.</h2>
+    </header>
+    <div class="prose">
+      <p>
+        Technology challenges rarely exist in isolation. A new digital product may require cloud
+        infrastructure, system integration, security, user-experience design and a clear strategy
+        for adoption.
+      </p>
+      <p>
+        SunSolv connects these capabilities through one practical delivery approach. Whether you
+        need specialist guidance, a complete solution or long-term technology support, we shape our
+        engagement around your priorities, internal capabilities and stage of growth.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section core-services" aria-labelledby="core-services-title">
+  <div class="shell">
+    <header class="section-heading">
+      <p class="eyebrow">Core services</p>
+      <h2 id="core-services-title">Connected capabilities. One practical delivery approach.</h2>
+    </header>
+    <div class="services-grid">
+      @for (service of coreServices; track service.slug) {
+        <article>
+          <ng-icon [name]="service.icon" aria-hidden="true" />
+          <p class="service-label">{{ service.title }}</p>
+          <h3>{{ service.positioning }}</h3>
+          <p>{{ service.description }}</p>
+          <a [routerLink]="['/services', service.slug]">
+            Explore {{ service.title }} <ng-icon name="heroArrowRight" aria-hidden="true" />
+          </a>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section outcomes" aria-labelledby="outcomes-title">
+  <div class="shell">
+    <header class="section-heading">
+      <p class="eyebrow">What our services enable</p>
+      <h2 id="outcomes-title">Technology that creates value beyond implementation.</h2>
+    </header>
+    <div class="outcomes-grid">
+      @for (outcome of outcomes; track outcome.title) {
+        <article>
+          <ng-icon [name]="outcome.icon" aria-hidden="true" />
+          <h3>{{ outcome.title }}</h3>
+          <p>{{ outcome.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section engagements" aria-labelledby="engagements-title">
+  <div class="shell">
+    <header class="engagement-heading">
+      <p class="eyebrow">Working with SunSolv</p>
+      <h2 id="engagements-title">Flexible engagement. Consistent accountability.</h2>
+    </header>
+    <div class="engagement-grid">
+      @for (engagement of engagements; track engagement.title) {
+        <article>
+          <ng-icon [name]="engagement.icon" aria-hidden="true" />
+          <h3>{{ engagement.title }}</h3>
+          <p>{{ engagement.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section industries" aria-labelledby="industries-title">
+  <div class="shell industry-grid">
+    <div>
+      <p class="eyebrow">Industry perspective</p>
+      <h2 id="industries-title">Technology shaped around how your business operates.</h2>
+      <p>
+        Our services are adapted to the workflows, users and priorities of each business
+        environment. We initially focus on four industries where technology can create meaningful
+        operational and customer value.
+      </p>
+      <a class="button" routerLink="/industries">
+        Explore Industries <ng-icon name="heroArrowRight" aria-hidden="true" />
+      </a>
+    </div>
+    <div class="industry-list">
+      @for (industry of industries; track industry.title; let index = $index) {
+        <article>
+          <span>0{{ index + 1 }}</span>
+          <ng-icon [name]="industry.icon" aria-hidden="true" />
+          <h3>{{ industry.title }}</h3>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section delivery" aria-labelledby="delivery-title">
+  <div class="shell">
+    <header class="section-heading">
+      <p class="eyebrow">How we deliver</p>
+      <h2 id="delivery-title">A clear path from opportunity to continuous value.</h2>
+    </header>
+    <ol class="delivery-grid">
+      @for (step of delivery; track step.title; let index = $index) {
+        <li>
+          <span>0{{ index + 1 }}</span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<section class="section faqs" aria-labelledby="faqs-title">
+  <div class="shell faq-grid">
+    <header>
+      <p class="eyebrow">Frequently asked questions</p>
+      <h2 id="faqs-title">Useful context before the first conversation.</h2>
+    </header>
+    <div class="faq-list">
+      @for (faq of faqs; track faq.question) {
+        <details>
+          <summary>{{ faq.question }}</summary>
+          <p>{{ faq.answer }}</p>
+        </details>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="final-cta-surface section" aria-labelledby="services-cta-title">
+  <div class="shell final-cta-grid">
+    <div>
+      <p class="eyebrow">Start a conversation</p>
+      <h2 id="services-cta-title">Not sure where to begin? Start with the business challenge.</h2>
+    </div>
+    <div>
+      <p>
+        Tell us what you want to improve, build or simplify. We will help you identify the right
+        technology direction and a practical way forward.
+      </p>
+      <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }">
+        Start a Project <ng-icon name="heroArrowRight" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+</section>

@@ -13,10 +13,17 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/about/about.component').then((m) => m.AboutComponent),
     data: pageRouteData.about,
   },
+  {
+    path: 'services',
+    loadComponent: () =>
+      import('./pages/services-overview/services-overview.component').then(
+        (m) => m.ServicesOverviewComponent,
+      ),
+    data: pageRouteData.services,
+  },
   { path: 'partnership', pathMatch: 'full', redirectTo: 'partnerships' },
   { path: 'terms-and-condition', pathMatch: 'full', redirectTo: 'terms-and-conditions' },
   ...[
-    ['services', 'services'],
     ['industries', 'industries'],
     ['case-studies', 'caseStudies'],
     ['partnerships', 'partnerships'],

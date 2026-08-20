@@ -112,18 +112,13 @@ export const pageRouteData = {
   ),
   services: page(
     'services',
-    'Services',
+    'SunSolv Services',
     'Technology services built around business outcomes.',
     'IT Services & Digital Solutions | SunSolv Technologies',
-    [
-      'Services introduction',
-      'Business outcomes',
-      'Engagement approach',
-      'Industries served',
-      'Related case studies',
-    ],
-    '',
+    [],
+    'Explore SunSolv’s IT consulting, cloud, custom software, web and mobile, AI, digital transformation and marketing services.',
     'CollectionPage',
+    '/images/services/sunsolv-services-technology-consulting.webp',
   ),
   industries: page(
     'industries',
