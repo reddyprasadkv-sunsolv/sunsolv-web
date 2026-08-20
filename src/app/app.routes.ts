@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { pageRouteData, serviceRouteData } from './core/site-data';
+import { itConsultingPageData } from './pages/service-detail/service-detail-data';
 
 export const routes: Routes = [
   {
@@ -36,12 +37,22 @@ export const routes: Routes = [
       import('./pages/content-page/content-page.component').then((m) => m.ContentPageComponent),
     data: pageRouteData[key as keyof typeof pageRouteData],
   })),
-  ...Object.entries(serviceRouteData).map(([path, data]) => ({
-    path: `services/${path}`,
+  {
+    path: 'services/it-consulting',
     loadComponent: () =>
-      import('./pages/service-page/service-page.component').then((m) => m.ServicePageComponent),
-    data,
-  })),
+      import('./pages/service-detail/service-detail.component').then(
+        (m) => m.ServiceDetailComponent,
+      ),
+    data: itConsultingPageData,
+  },
+  ...Object.entries(serviceRouteData)
+    .filter(([path]) => path !== 'it-consulting')
+    .map(([path, data]) => ({
+      path: `services/${path}`,
+      loadComponent: () =>
+        import('./pages/service-page/service-page.component').then((m) => m.ServicePageComponent),
+      data,
+    })),
   {
     path: 'contact-us',
     loadComponent: () =>

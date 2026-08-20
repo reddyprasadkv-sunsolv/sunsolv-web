@@ -1,0 +1,242 @@
+<section class="service-detail-hero" aria-labelledby="service-detail-title">
+  <div class="shell service-detail-hero-grid">
+    <div class="service-detail-hero-copy">
+      <nav class="breadcrumbs service-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/services">Services</a></li>
+          <li aria-current="page">IT Consulting</li>
+        </ol>
+      </nav>
+      <p class="eyebrow">{{ data.eyebrow }}</p>
+      <h1 id="service-detail-title">{{ data.title }}</h1>
+      <p class="hero-lede">{{ data.hero.supportingContent }}</p>
+      <div class="hero-actions">
+        <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }">
+          {{ data.hero.primaryCta }} <ng-icon name="heroArrowRight" aria-hidden="true" />
+        </a>
+        <a class="button button-secondary" routerLink="/services">
+          {{ data.hero.secondaryCta }}
+        </a>
+      </div>
+    </div>
+    <picture class="service-detail-hero-image">
+      <source
+        media="(max-width: 820px)"
+        type="image/avif"
+        srcset="/images/services/it-consulting/sunsolv-it-consulting-strategy-mobile.avif 1000w"
+        sizes="100vw"
+        width="1000"
+        height="750"
+      />
+      <source
+        media="(max-width: 820px)"
+        type="image/webp"
+        srcset="/images/services/it-consulting/sunsolv-it-consulting-strategy-mobile.webp 1000w"
+        sizes="100vw"
+        width="1000"
+        height="750"
+      />
+      <source
+        type="image/avif"
+        srcset="/images/services/it-consulting/sunsolv-it-consulting-strategy.avif 1400w"
+        sizes="(max-width: 1024px) 100vw, calc(100vw - 520px)"
+        width="1400"
+        height="900"
+      />
+      <img
+        src="/images/services/it-consulting/sunsolv-it-consulting-strategy.webp"
+        srcset="/images/services/it-consulting/sunsolv-it-consulting-strategy.webp 1400w"
+        sizes="(max-width: 1024px) 100vw, calc(100vw - 520px)"
+        width="1400"
+        height="900"
+        alt="Technology consultant discussing a digital strategy with business leaders."
+        fetchpriority="high"
+      />
+    </picture>
+  </div>
+</section>
+
+<section class="section introduction" aria-labelledby="introduction-title">
+  <div class="shell editorial-grid two-column-layout">
+    <header>
+      <p class="eyebrow">{{ data.introduction.eyebrow }}</p>
+      <h2 class="detail-section-title" id="introduction-title">
+        {{ data.introduction.heading }}
+      </h2>
+    </header>
+    <div class="editorial-copy">
+      @for (paragraph of data.introduction.paragraphs; track paragraph) {
+        <p>{{ paragraph }}</p>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section challenges" aria-labelledby="challenges-title">
+  <div class="shell">
+    <header class="section-heading">
+      <p class="eyebrow">{{ data.challenges.eyebrow }}</p>
+      <h2 class="detail-section-title" id="challenges-title">{{ data.challenges.heading }}</h2>
+    </header>
+    <div class="challenge-grid">
+      @for (challenge of data.challenges.items; track challenge.title; let index = $index) {
+        <article class="detail-card">
+          <span class="item-number">0{{ index + 1 }}</span>
+          <h3>{{ challenge.title }}</h3>
+          <p>{{ challenge.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section capabilities" aria-labelledby="capabilities-title">
+  <div class="shell">
+    <header class="section-heading split-heading">
+      <p class="eyebrow">{{ data.capabilities.eyebrow }}</p>
+      <h2 class="detail-section-title" id="capabilities-title">
+        {{ data.capabilities.heading }}
+      </h2>
+    </header>
+    <div class="capability-grid">
+      @for (capability of data.capabilities.items; track capability.title; let index = $index) {
+        <article class="detail-card">
+          <span class="item-number">0{{ index + 1 }}</span>
+          <div>
+            <h3>{{ capability.title }}</h3>
+            <p>{{ capability.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section outcomes" aria-labelledby="outcomes-title">
+  <div class="shell">
+    <header class="section-heading">
+      <p class="eyebrow">{{ data.outcomes.eyebrow }}</p>
+      <h2 class="detail-section-title" id="outcomes-title">{{ data.outcomes.heading }}</h2>
+    </header>
+    <div class="outcome-grid">
+      @for (outcome of data.outcomes.items; track outcome.title; let index = $index) {
+        <article class="detail-card">
+          <span class="item-number">0{{ index + 1 }}</span>
+          <h3>{{ outcome.title }}</h3>
+          <p>{{ outcome.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section approach" aria-labelledby="approach-title">
+  <div class="shell">
+    <header class="section-heading">
+      <p class="eyebrow">{{ data.approach.eyebrow }}</p>
+      <h2 class="detail-section-title" id="approach-title">{{ data.approach.heading }}</h2>
+    </header>
+    <ol class="approach-grid">
+      @for (step of data.approach.items; track step.title; let index = $index) {
+        <li class="detail-card">
+          <span class="item-number">0{{ index + 1 }}</span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+        </li>
+      }
+    </ol>
+    <p class="approach-statement">{{ data.approach.supportingStatement }}</p>
+  </div>
+</section>
+
+<section class="section engagement-options" aria-labelledby="engagement-options-title">
+  <div class="shell engagement-layout two-column-layout">
+    <header>
+      <p class="eyebrow">{{ data.engagementOptions.eyebrow }}</p>
+      <h2 class="detail-section-title" id="engagement-options-title">
+        {{ data.engagementOptions.heading }}
+      </h2>
+    </header>
+    <div class="engagement-list">
+      @for (option of data.engagementOptions.items; track option.title; let index = $index) {
+        <article class="detail-card">
+          <span class="item-number">0{{ index + 1 }}</span>
+          <div>
+            <h3>{{ option.title }}</h3>
+            <p>{{ option.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section industry-context" aria-labelledby="industry-context-title">
+  <div class="shell industry-layout two-column-layout">
+    <div>
+      <p class="eyebrow">{{ data.industryContext.eyebrow }}</p>
+      <h2 class="detail-section-title" id="industry-context-title">
+        {{ data.industryContext.heading }}
+      </h2>
+      <p>{{ data.industryContext.content }}</p>
+      <a class="button" routerLink="/industries">
+        Explore Industries <ng-icon name="heroArrowRight" aria-hidden="true" />
+      </a>
+    </div>
+    <ul class="industry-list" aria-label="Industries">
+      @for (industry of data.industryContext.industries; track industry; let index = $index) {
+        <li>
+          <span class="item-number">0{{ index + 1 }}</span
+          >{{ industry }}
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="section faq-section" aria-labelledby="faq-title">
+  <div class="shell faq-layout two-column-layout">
+    <header>
+      <p class="eyebrow">{{ data.faqSection.eyebrow }}</p>
+      <h2 class="detail-section-title" id="faq-title">{{ data.faqSection.heading }}</h2>
+    </header>
+    <div class="faq-list">
+      @for (faq of data.faqSection.items; track faq.question; let index = $index) {
+        <article>
+          <h3>
+            <button
+              type="button"
+              [attr.aria-expanded]="openFaqIndex() === index"
+              [attr.aria-controls]="'faq-answer-' + index"
+              (click)="toggleFaq(index)"
+            >
+              <span>{{ faq.question }}</span>
+              <ng-icon name="heroChevronDown" aria-hidden="true" />
+            </button>
+          </h3>
+          <div class="faq-answer" [id]="'faq-answer-' + index" [hidden]="openFaqIndex() !== index">
+            <p>{{ faq.answer }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="final-cta-surface section" aria-labelledby="service-final-cta-title">
+  <div class="shell final-cta-layout two-column-layout">
+    <div>
+      <p class="eyebrow">{{ data.finalCta.eyebrow }}</p>
+      <h2 class="detail-section-title" id="service-final-cta-title">
+        {{ data.finalCta.heading }}
+      </h2>
+    </div>
+    <div>
+      <p>{{ data.finalCta.supportingContent }}</p>
+      <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }">
+        {{ data.finalCta.button }} <ng-icon name="heroArrowRight" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+</section>

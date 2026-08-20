@@ -70,3 +70,83 @@ The source mock establishes the navigation density, typography, blue/cyan icon l
 - No blocking follow-up. Any future motion or additional imagery should be introduced only after a separately approved visual and accessibility pass.
 
 final result: passed
+
+---
+
+# SunSolv IT Consulting service page — design QA
+
+## Evidence
+
+- Source visual truth: `/Users/reddyprasadkv/Downloads/IT_Consulting.png` (user-supplied approved photograph, intentionally not committed).
+- Source dimensions: 1672 × 941 pixels.
+- Desktop hero captures: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/it-consulting-qa/it-consulting-hero-1920.png` and `it-consulting-hero-1440.png`.
+- Tablet and mobile hero captures: `it-consulting-hero-1024.png` and `it-consulting-hero-430.png` in the same external QA directory.
+- Focused section captures: `it-consulting-capabilities-desktop.png`, `it-consulting-engagement-approach-desktop.png`, `it-consulting-faq-desktop.png` and `it-consulting-final-cta-footer-desktop.png`.
+- Full mobile capture: `it-consulting-full-mobile-430.png`.
+- Combined source/implementation comparison: `it-consulting-hero-comparison.png`.
+- Primary desktop comparison viewport: 1440 × 1000 CSS pixels at device pixel ratio 1. The captured page content is 1425 pixels wide after scrollbar allocation.
+- State: public IT Consulting route, production SSR build, default FAQ state, signed-out/default navigation state.
+
+The approved photograph establishes the natural executive-consulting tone, with a deep navy negative-space region at left and four visible participants plus the consultant's hand gesture at right. The implementation preserves that composition while integrating the existing SunSolv navigation, typography, colors, CTA patterns and footer.
+
+## Findings
+
+- No actionable P0, P1 or P2 differences remain.
+- Hero composition: desktop copy occupies the naturally dark left region; all four visible faces and the consultant's hand gesture remain unobscured. Tablet and mobile switch to a stacked composition with a dedicated 4:3 crop that keeps every face in frame.
+- Image quality: desktop assets are 1400 × 900 and mobile assets are 1000 × 750, with AVIF plus WebP fallbacks. Intrinsic dimensions, responsive sources, `sizes` and high fetch priority prevent distortion and layout shift.
+- Typography and hierarchy: the existing Manrope/Inter system, eyebrow treatment, headline scale, CTA hierarchy and section rhythm are preserved. Approved copy is complete and readable at every target width.
+- Layout and color: white, ice-blue and warm-neutral section surfaces alternate clearly; navy is reserved for the hero and existing footer. Cards, borders and radii remain restrained and consistent with the approved SunSolv language.
+- Icons: existing Heroicons are used for directional controls. No handwritten SVG, CSS-art, emoji or placeholder assets were introduced.
+- Accessibility: one H1 is present; the FAQ uses native buttons with `aria-expanded` and linked answer regions; keyboard focus remains visible; reduced-motion preferences are respected; the mobile navigation restores focus after Escape.
+- Responsiveness: 320, 375, 430, 768, 1024, 1440 and 1920 pixel checks report no horizontal overflow. CTAs remain visible and copy does not overlap detailed image content.
+- Content integrity: only the IT Consulting route was published through the new reusable service-detail framework. Other service-detail routes continue to use their existing implementation; Homepage, About, Services Overview, navigation, contact flow and footer content were not changed.
+
+## Comparison history
+
+### Pass 1
+
+- [P2] A split-column hero constrained the photograph to an 835 × 640 region, cropping the far-right participant and leaving an unintended navy strip because the copy column was taller.
+- Fix: changed the desktop hero to a full-height image layer behind the hero shell so its crop could follow the supplied composition.
+
+### Pass 2
+
+- [P2] The full image layer initially began at the viewport edge, placing the consultant and light photographic detail behind the hero copy.
+- Fix: shifted the desktop image layer right with a responsive inset, retaining a deep navy text field at left while preserving the people and gesture at right.
+
+### Pass 3
+
+- [P2] A grouped `width: 100%` rule on the positioned picture caused its right edge to extend beyond the viewport at 1440 pixels.
+- Fix: removed the conflicting width so the explicit left and right insets determine the image layer. The final 1440-pixel check reports equal document client and scroll widths.
+
+### Final pass
+
+- The combined comparison confirms the source photograph's executive tone, subject grouping, navy transition and focal detail are retained.
+- Desktop, tablet and mobile captures confirm correct crop selection, no face cropping, no image distortion, no content overlap and no horizontal overflow.
+- Focused section captures confirm consistent capability grids, process presentation, FAQ behavior, light final CTA and unchanged navy footer.
+- No remaining P0/P1/P2 findings.
+
+## Primary interactions tested
+
+- Mobile navigation opens with focus on the close control; Escape closes it and restores focus to the trigger.
+- Hero and final project CTAs reach `/contact-us?enquiry=project`; the contact form preselects the project enquiry.
+- FAQ buttons toggle their answers and `aria-expanded` state correctly.
+- SSR HTML includes the page H1 and structured data; hydration completes with zero browser-console warnings or errors.
+
+## Automated and route checks
+
+- Formatting: pass.
+- TypeScript application and SSR checks: pass.
+- Unit tests: 17/17 pass.
+- Browser production build: pass.
+- SSR and Express server builds: pass.
+- Prerender: 17/17 routes pass.
+- Direct routes: 17/17 return HTTP 200.
+- Legacy redirects: expected HTTP 301 responses pass.
+- Unknown route: real HTTP 404 pass.
+- Production dependency audit: zero vulnerabilities.
+
+## Follow-up polish
+
+- No blocking follow-up. The remaining six service-detail pages should be populated only after their individual content and imagery are approved.
+
+final result: passed

@@ -83,9 +83,45 @@ export class SeoService {
       url: canonical,
     };
     if (data.schemaType === 'Service') {
-      return {
+      const service = {
         ...base,
+        description: data.seo.description,
         provider: { '@type': 'Organization', name: 'SunSolv Technologies', url: canonicalOrigin },
+      };
+      if (!data.structuredBreadcrumbs?.length && !data.structuredFaqs?.length) return service;
+
+      return {
+        '@context': 'https://schema.org',
+        '@graph': [
+          service,
+          ...(data.structuredBreadcrumbs?.length
+            ? [
+                {
+                  '@type': 'BreadcrumbList',
+                  itemListElement: data.structuredBreadcrumbs.map((breadcrumb, index) => ({
+                    '@type': 'ListItem',
+                    position: index + 1,
+                    name: breadcrumb.name,
+                    item: breadcrumb.path
+                      ? `${canonicalOrigin}/${breadcrumb.path}`
+                      : `${canonicalOrigin}/`,
+                  })),
+                },
+              ]
+            : []),
+          ...(data.structuredFaqs?.length
+            ? [
+                {
+                  '@type': 'FAQPage',
+                  mainEntity: data.structuredFaqs.map((faq) => ({
+                    '@type': 'Question',
+                    name: faq.question,
+                    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+                  })),
+                },
+              ]
+            : []),
+        ],
       };
     }
     if (data.schemaType === 'AboutPage') {
