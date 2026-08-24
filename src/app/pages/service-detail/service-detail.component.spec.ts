@@ -23,6 +23,15 @@ describe('ServiceDetailComponent', () => {
     return { fixture, compiled: fixture.nativeElement as HTMLElement };
   }
 
+  async function renderDigitalTransformation() {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    await TestBed.inject(Router).navigateByUrl('/services/digital-transformation');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    return { fixture, compiled: fixture.nativeElement as HTMLElement };
+  }
+
   it('renders the approved IT Consulting page without placeholder content', async () => {
     const { compiled } = await renderItConsulting();
 
@@ -123,15 +132,138 @@ describe('ServiceDetailComponent', () => {
     expect(answer?.hidden).toBe(false);
   });
 
-  it('keeps the other six individual service routes on their existing definitions', () => {
+  it('renders the approved Digital Transformation page without placeholder content', async () => {
+    const { compiled } = await renderDigitalTransformation();
+
+    expect(compiled.querySelectorAll('h1')).toHaveLength(1);
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'Modernize how your business works—without losing sight of what already works.',
+    );
+    expect(compiled.textContent).toContain(
+      'Digital transformation begins with the business—not the technology.',
+    );
+    expect(compiled.querySelectorAll('.challenge-grid article')).toHaveLength(6);
+    expect(compiled.querySelectorAll('.capability-grid article')).toHaveLength(8);
+    expect(compiled.querySelectorAll('.outcome-grid article')).toHaveLength(6);
+    expect(compiled.querySelectorAll('.approach-grid li')).toHaveLength(4);
+    expect(compiled.querySelectorAll('.engagement-list article')).toHaveLength(4);
+    expect(compiled.querySelectorAll('.faq-list article')).toHaveLength(6);
+    expect(compiled.textContent).not.toContain(
+      'Approved production content is required before publication',
+    );
+  });
+
+  it('uses the approved responsive Digital Transformation hero sources and semantics', async () => {
+    const { compiled } = await renderDigitalTransformation();
+    const picture = compiled.querySelector('.service-detail-hero-image');
+    const sources = picture?.querySelectorAll('source');
+    const image = picture?.querySelector('img');
+
+    expect(sources).toHaveLength(3);
+    expect(picture?.querySelectorAll('source[type="image/avif"]')).toHaveLength(2);
+    expect(picture?.querySelectorAll('source[type="image/webp"]')).toHaveLength(1);
+    expect(sources?.[0]?.getAttribute('srcset')).toContain(
+      'sunsolv-digital-transformation-workflow-mobile.avif 1000w',
+    );
+    expect(sources?.[2]?.getAttribute('srcset')).toContain(
+      'sunsolv-digital-transformation-workflow.avif 1400w',
+    );
+    expect(image?.getAttribute('src')).toContain('sunsolv-digital-transformation-workflow.webp');
+    expect(image?.getAttribute('alt')).toBe(
+      'Business and technology professionals redesigning a digital workflow.',
+    );
+    expect(image?.getAttribute('fetchpriority')).toBe('high');
+    expect(image?.hasAttribute('loading')).toBe(false);
+    expect(image?.getAttribute('width')).toBe('1400');
+    expect(image?.getAttribute('height')).toBe('900');
+  });
+
+  it('preserves the approved Digital Transformation CTA destinations', async () => {
+    const { compiled } = await renderDigitalTransformation();
+    const projectLinks = compiled.querySelectorAll<HTMLAnchorElement>(
+      'main a[href="/contact-us?enquiry=project"]',
+    );
+
+    expect(projectLinks).toHaveLength(2);
+    expect(projectLinks[0]?.textContent).toContain('Plan Your Transformation');
+    expect(projectLinks[1]?.textContent).toContain('Start Your Transformation');
+    expect(compiled.querySelector('.hero-actions a[href="/services"]')?.textContent).toContain(
+      'Explore All Services',
+    );
+    expect(
+      compiled.querySelector('.industry-context a[href="/industries"]')?.textContent,
+    ).toContain('Explore Industries');
+  });
+
+  it('applies the approved Digital Transformation SEO and structured-data graph', async () => {
+    await renderDigitalTransformation();
+    const document = TestBed.inject(DOCUMENT);
+    const structuredData = JSON.parse(
+      document.querySelector<HTMLScriptElement>('#structured-data')?.textContent ?? '{}',
+    ) as {
+      '@graph'?: Array<{
+        '@type'?: string;
+        itemListElement?: unknown[];
+        mainEntity?: unknown[];
+      }>;
+    };
+    const graph = structuredData['@graph'] ?? [];
+
+    expect(document.title).toBe('Digital Transformation Services | SunSolv Technologies');
+    expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toBe(
+      'Modernize processes, connect systems and introduce practical automation with SunSolv’s digital transformation services.',
+    );
+    expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
+      'https://www.sunsolv.in/services/digital-transformation',
+    );
+    expect(graph.map((item) => item['@type'])).toEqual(['Service', 'BreadcrumbList', 'FAQPage']);
+    expect(graph.find((item) => item['@type'] === 'BreadcrumbList')?.itemListElement).toHaveLength(
+      3,
+    );
+    expect(graph.find((item) => item['@type'] === 'FAQPage')?.mainEntity).toHaveLength(6);
+  });
+
+  it('uses accessible Digital Transformation FAQ controls', async () => {
+    const { fixture, compiled } = await renderDigitalTransformation();
+    const button = compiled.querySelector<HTMLButtonElement>('.faq-list button');
+    const answer = compiled.querySelector<HTMLElement>('.faq-answer');
+
+    expect(button?.getAttribute('aria-expanded')).toBe('false');
+    expect(button?.getAttribute('aria-controls')).toBe(answer?.id);
+    expect(answer?.hidden).toBe(true);
+
+    button?.click();
+    fixture.detectChanges();
+
+    expect(button?.getAttribute('aria-expanded')).toBe('true');
+    expect(answer?.hidden).toBe(false);
+  });
+
+  it('preserves the approved IT Consulting content and hero after framework reuse', async () => {
+    const { compiled } = await renderItConsulting();
+    const image = compiled.querySelector<HTMLImageElement>('.service-detail-hero-image img');
+
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'Make technology decisions with greater clarity and confidence.',
+    );
+    expect(image?.getAttribute('src')).toContain('sunsolv-it-consulting-strategy.webp');
+    expect(image?.getAttribute('alt')).toBe(
+      'Technology consultant discussing a digital strategy with business leaders.',
+    );
+    expect(compiled.querySelector('.approach-statement')?.textContent).toContain(
+      'The engagement can conclude with an assessment and roadmap',
+    );
+  });
+
+  it('keeps the other five individual service routes on their existing definitions', () => {
     const remainingServiceSlugs = Object.keys(serviceRouteData).filter(
-      (slug) => slug !== 'it-consulting',
+      (slug) => slug !== 'it-consulting' && slug !== 'digital-transformation',
     );
     const routedServicePaths = routes
       .map((route) => route.path)
       .filter((path): path is string => path?.startsWith('services/') === true);
 
-    expect(remainingServiceSlugs).toHaveLength(6);
+    expect(remainingServiceSlugs).toHaveLength(5);
     for (const slug of remainingServiceSlugs) {
       expect(routedServicePaths).toContain(`services/${slug}`);
     }

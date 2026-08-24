@@ -73,6 +73,78 @@ final result: passed
 
 ---
 
+# SunSolv Digital Transformation service page — design QA
+
+## Evidence
+
+- Source visual truth: `/Users/reddyprasadkv/Downloads/digital_transformation.png` (user-supplied approved photograph, intentionally not committed).
+- Source dimensions: 1672 × 941 pixels.
+- Desktop hero captures: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/digital-transformation-qa/digital-transformation-hero-1920.png` and `digital-transformation-hero-1440.png`.
+- Tablet and mobile hero captures: `digital-transformation-hero-1024.png` and `digital-transformation-hero-430.png` in the same external QA directory.
+- Focused section captures: `digital-transformation-capabilities-desktop.png`, `digital-transformation-delivery-approach-desktop.png`, `digital-transformation-faq-desktop.png` and `digital-transformation-cta-footer-desktop.png`.
+- Full mobile capture: `digital-transformation-full-mobile-430.png`.
+- Combined source/implementation comparison: `digital-transformation-hero-comparison.png`.
+- Primary desktop comparison viewport: 1440 × 1000 CSS pixels at device pixel ratio 1. The captured page content is 1425 pixels wide after scrollbar allocation.
+- State: public Digital Transformation route, production SSR build, default FAQ state, signed-out/default navigation state.
+
+The approved photograph establishes the transformation-workshop tone: three professionals, visible process cards and laptop, meaningful hand activity, a workflow wall and a deep navy transition at left. The implementation preserves that composition while applying the approved reusable service-page system.
+
+## Findings
+
+- No actionable P0, P1 or P2 differences remain.
+- Hero composition: desktop copy remains inside the naturally dark left field and does not overlap faces, hands, process cards or the laptop. The mobile layout stacks the copy and a dedicated 4:3 crop, retaining all three faces and recognizable workflow activity.
+- Image quality: desktop assets are 1400 × 900 and mobile assets are 1000 × 750, with AVIF preferred and WebP fallback. Explicit intrinsic dimensions, responsive sources, `sizes` and high fetch priority prevent distortion, layout shift and an unnecessary lazy-loading delay.
+- Typography and hierarchy: the approved Manrope/Inter system, eyebrow treatment, headline scale, CTA hierarchy and editorial section rhythm are preserved. The exact approved content is complete, coherent and readable without truncation.
+- Spacing and layout: the hero reaches the viewport edge; editorial columns, card matrices, process steps, FAQ and CTA align to the existing shell. White, soft ice-blue and warm-neutral surfaces alternate clearly before the light aqua CTA and unchanged navy footer.
+- Colors and contrast: deep navy, enterprise blue, cyan accents, quiet neutral fills and restrained borders stay within the existing SunSolv token language. Text, navigation and CTA contrast remain strong in desktop and mobile states.
+- Icons: existing Heroicons are retained for navigation, CTA and disclosure controls. No handcrafted SVG, CSS-art, emoji, artificial overlays, logos or placeholder visuals were introduced.
+- Accessibility: the route has one H1, a logical heading structure, descriptive approved alt text, keyboard-accessible links and native FAQ buttons, correct `aria-expanded` relationships, visible focus treatment and reduced-motion support.
+- Responsiveness: 320, 375, 430, 768, 1024, 1440 and 1920 pixel checks report equal document client and scroll widths, visible CTAs, clean stacking at and below 1024 pixels, no content/image overlap and no distorted or cropped faces.
+- Content integrity: only `/services/digital-transformation` was published through the shared framework. IT Consulting content and imagery remain intact; unfinished service routes, Homepage, About Us, Services Overview, navigation, contact backend, dependencies, global styling and footer remain unchanged.
+
+## Comparison history
+
+### First rendered pass
+
+- The combined source/implementation comparison preserved the approved subject grouping, workflow detail, dark transition and natural working expressions without actionable visual drift.
+- The desktop and dedicated mobile crops fit their measured slots on the first rendered pass, so no corrective P0/P1/P2 visual change was required after comparison.
+
+### Final pass
+
+- Desktop comparison confirms the copy remains in the protected dark field while all three faces, hand activity, laptop and process cards stay visible.
+- Tablet and mobile captures confirm the intended stacked composition, full-width CTAs, adequate image contrast and no horizontal overflow.
+- Focused captures confirm consistent capability density, four-step delivery approach, six accessible FAQ controls, light final CTA and unchanged navy footer.
+- No remaining P0/P1/P2 findings.
+
+## Primary interactions tested
+
+- Mobile navigation opens with focus on the close control; Escape closes it and restores focus to the trigger.
+- Hero and final project CTAs preserve `/contact-us?enquiry=project`, and the contact form preselects the project enquiry.
+- The secondary hero CTA reaches `/services`; the industry CTA reaches `/industries`.
+- FAQ buttons toggle linked answer regions and `aria-expanded` correctly.
+- SSR HTML includes the approved H1 and Service, BreadcrumbList and FAQPage structured data; hydration completes without browser-console errors.
+
+## Automated and route checks
+
+- Formatting: pass.
+- TypeScript application and SSR checks: pass.
+- Unit tests: 23/23 pass.
+- Browser production build: pass.
+- SSR and Express server builds: pass.
+- Prerender: 17/17 routes pass.
+- Direct routes: 17/17 return HTTP 200.
+- Legacy redirects: expected HTTP 301 responses pass.
+- Unknown route: real HTTP 404 pass.
+- Production dependency audit: zero vulnerabilities.
+
+## Follow-up polish
+
+- No blocking follow-up. The remaining five unpublished service-detail pages should be populated only after their individual content and imagery are approved.
+
+final result: passed
+
+---
+
 # SunSolv IT Consulting service page — design QA
 
 ## Evidence

@@ -184,6 +184,10 @@
   border-top: 1px solid #d9d0c2;
 }
 
+.outcome-grid--six {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .outcome-grid article {
   padding: 34px 24px 24px 0;
 }

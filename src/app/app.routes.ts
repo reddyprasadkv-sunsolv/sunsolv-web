@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
 import { pageRouteData, serviceRouteData } from './core/site-data';
-import { itConsultingPageData } from './pages/service-detail/service-detail-data';
+import {
+  digitalTransformationPageData,
+  itConsultingPageData,
+} from './pages/service-detail/service-detail-data';
 
 export const routes: Routes = [
   {
@@ -45,8 +48,16 @@ export const routes: Routes = [
       ),
     data: itConsultingPageData,
   },
+  {
+    path: 'services/digital-transformation',
+    loadComponent: () =>
+      import('./pages/service-detail/service-detail.component').then(
+        (m) => m.ServiceDetailComponent,
+      ),
+    data: digitalTransformationPageData,
+  },
   ...Object.entries(serviceRouteData)
-    .filter(([path]) => path !== 'it-consulting')
+    .filter(([path]) => path !== 'it-consulting' && path !== 'digital-transformation')
     .map(([path, data]) => ({
       path: `services/${path}`,
       loadComponent: () =>
