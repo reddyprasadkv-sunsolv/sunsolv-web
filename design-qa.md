@@ -73,6 +73,77 @@ final result: passed
 
 ---
 
+# SunSolv Cloud Solutions service page — design QA
+
+## Evidence
+
+- Source visual truth: `/Users/reddyprasadkv/Downloads/cloud_solutions.png` (user-supplied approved photograph, intentionally not committed).
+- Source dimensions: 1672 × 941 pixels.
+- Desktop hero captures: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/cloud-solutions-qa/cloud-solutions-hero-1920.png` and `cloud-solutions-hero-1440.png`.
+- Tablet and mobile hero captures: `cloud-solutions-hero-1024.png` and `cloud-solutions-hero-430.png` in the same external QA directory.
+- Focused section captures: `cloud-solutions-capabilities-desktop.png`, `cloud-solutions-delivery-approach-desktop.png`, `cloud-solutions-faq-desktop.png` and `cloud-solutions-cta-footer-desktop.png`.
+- Full mobile capture: `cloud-solutions-full-mobile-430.png`.
+- Combined source/implementation comparison: `cloud-solutions-hero-comparison.png`.
+- Primary desktop comparison viewport: 1440 × 1080 CSS pixels at device pixel ratio 1. The implementation capture is 1425 pixels wide after scrollbar allocation; the source and implementation were normalized into equal 1440 × 1080 comparison panels.
+- State: public Cloud Solutions route, production SSR build, default FAQ state, signed-out/default navigation state.
+
+The approved photograph establishes a realistic cloud-operations setting, dark left-side transition, two visible professionals, a pointing gesture, infrastructure and monitoring context. The implementation preserves those visual priorities while using the approved reusable service-detail framework and existing SunSolv design system.
+
+## Findings
+
+- No actionable P0, P1 or P2 differences remain.
+- Hero composition: desktop copy remains readable in the protected dark field while both faces, the architect's pointing gesture, monitoring displays, laptop and data-centre context remain visible. Tablet and mobile use the dedicated 4:3 crop and stack the image below the copy.
+- Image quality: desktop assets are 1400 × 900 and mobile assets are 1000 × 750, with AVIF plus WebP fallbacks. Intrinsic dimensions, responsive sources, `sizes` and high fetch priority prevent distortion and layout shift.
+- Typography and hierarchy: the existing SunSolv display/body system, eyebrow treatment, headline scale, CTA hierarchy and section rhythm are preserved. The complete approved content remains legible from 320 through 1920 pixels.
+- Spacing and layout: the service-detail grid, section margins, restrained borders and transition from page content to light aqua CTA to navy footer remain consistent with the previously approved pages.
+- Colors and tokens: the existing navy, white, ice-blue, warm-neutral, teal-eyebrow and blue-action tokens are reused without introducing route-specific global styling.
+- Icons: only the existing shared directional and navigation icons are present. No custom SVG, CSS art, emoji or placeholder imagery was introduced.
+- Accessibility: one H1 is present; FAQ controls use native buttons and update `aria-expanded`; keyboard focus is visible; reduced-motion rules are present; mobile navigation closes with Escape and returns focus to its trigger.
+- Responsiveness: checks at 320, 375, 430, 768, 1024, 1440 and 1920 pixels show no horizontal overflow, hidden CTAs, subject distortion or text overlap with detailed image content.
+- Copy and content: the supplied Cloud Solutions copy is complete, internally coherent and free of placeholder claims. Previously published service content remains covered by preservation tests.
+
+## Comparison history
+
+### First rendered pass
+
+- The combined source/implementation comparison preserved the approved subjects, pointing gesture, monitoring context, dark transition and image quality without actionable visual drift.
+- Desktop and mobile crops fit the existing measured hero slots on the first rendered pass, so no corrective P0/P1/P2 visual change was required after comparison.
+
+### Final pass
+
+- Desktop comparison confirms the headline and CTAs stay within the naturally dark region while both professionals and the technical context remain unobscured.
+- Tablet and mobile evidence confirms the intended stacked structure, correct mobile source selection, full-width small-screen CTAs and no horizontal overflow.
+- Focused captures confirm consistent capability density, four-step delivery approach, six accessible FAQ controls, light final CTA and unchanged navy footer.
+- No remaining P0/P1/P2 findings.
+
+## Primary interactions tested
+
+- Mobile navigation opens as a labelled dialog with focus on the close control; Escape closes it and restores focus to the trigger.
+- The hero project CTA reaches `/contact-us?enquiry=project`, and the contact form preselects the project enquiry.
+- FAQ buttons toggle linked answer content and `aria-expanded` correctly.
+- Canonical metadata and Service, BreadcrumbList and FAQPage structured data are present; hydration completes without browser-console warnings or errors.
+
+## Automated and route checks
+
+- Formatting: pass.
+- TypeScript application and SSR checks: pass.
+- Unit tests: 29/29 pass.
+- Browser production build: pass.
+- SSR and Express server builds: pass.
+- Prerender: 17/17 routes pass.
+- Direct routes: 17/17 return HTTP 200.
+- Legacy redirects: expected HTTP 301 responses pass.
+- Unknown route: real HTTP 404 pass.
+- Production dependency audit: zero vulnerabilities.
+
+## Follow-up polish
+
+- No blocking follow-up. The remaining four unpublished service-detail pages should be populated only after their individual content and imagery are approved.
+
+final result: passed
+
+---
+
 # SunSolv Digital Transformation service page — design QA
 
 ## Evidence

@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { pageRouteData, serviceRouteData } from './core/site-data';
 import {
+  cloudSolutionsPageData,
   digitalTransformationPageData,
   itConsultingPageData,
 } from './pages/service-detail/service-detail-data';
@@ -56,8 +57,19 @@ export const routes: Routes = [
       ),
     data: digitalTransformationPageData,
   },
+  {
+    path: 'services/cloud-solutions',
+    loadComponent: () =>
+      import('./pages/service-detail/service-detail.component').then(
+        (m) => m.ServiceDetailComponent,
+      ),
+    data: cloudSolutionsPageData,
+  },
   ...Object.entries(serviceRouteData)
-    .filter(([path]) => path !== 'it-consulting' && path !== 'digital-transformation')
+    .filter(
+      ([path]) =>
+        path !== 'it-consulting' && path !== 'digital-transformation' && path !== 'cloud-solutions',
+    )
     .map(([path, data]) => ({
       path: `services/${path}`,
       loadComponent: () =>
