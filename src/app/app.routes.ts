@@ -1,10 +1,5 @@
 import { Routes } from '@angular/router';
 import { pageRouteData, serviceRouteData } from './core/site-data';
-import {
-  cloudSolutionsPageData,
-  digitalTransformationPageData,
-  itConsultingPageData,
-} from './pages/service-detail/service-detail-data';
 
 export const routes: Routes = [
   {
@@ -47,7 +42,10 @@ export const routes: Routes = [
       import('./pages/service-detail/service-detail.component').then(
         (m) => m.ServiceDetailComponent,
       ),
-    data: itConsultingPageData,
+    resolve: {
+      serviceData: () =>
+        import('./pages/service-detail/it-consulting.data').then((m) => m.itConsultingPageData),
+    },
   },
   {
     path: 'services/digital-transformation',
@@ -55,7 +53,12 @@ export const routes: Routes = [
       import('./pages/service-detail/service-detail.component').then(
         (m) => m.ServiceDetailComponent,
       ),
-    data: digitalTransformationPageData,
+    resolve: {
+      serviceData: () =>
+        import('./pages/service-detail/digital-transformation.data').then(
+          (m) => m.digitalTransformationPageData,
+        ),
+    },
   },
   {
     path: 'services/cloud-solutions',
@@ -63,12 +66,31 @@ export const routes: Routes = [
       import('./pages/service-detail/service-detail.component').then(
         (m) => m.ServiceDetailComponent,
       ),
-    data: cloudSolutionsPageData,
+    resolve: {
+      serviceData: () =>
+        import('./pages/service-detail/cloud-solutions.data').then((m) => m.cloudSolutionsPageData),
+    },
+  },
+  {
+    path: 'services/web-mobile-development',
+    loadComponent: () =>
+      import('./pages/service-detail/service-detail.component').then(
+        (m) => m.ServiceDetailComponent,
+      ),
+    resolve: {
+      serviceData: () =>
+        import('./pages/service-detail/web-mobile-development.data').then(
+          (m) => m.webMobileDevelopmentPageData,
+        ),
+    },
   },
   ...Object.entries(serviceRouteData)
     .filter(
       ([path]) =>
-        path !== 'it-consulting' && path !== 'digital-transformation' && path !== 'cloud-solutions',
+        path !== 'it-consulting' &&
+        path !== 'digital-transformation' &&
+        path !== 'cloud-solutions' &&
+        path !== 'web-mobile-development',
     )
     .map(([path, data]) => ({
       path: `services/${path}`,

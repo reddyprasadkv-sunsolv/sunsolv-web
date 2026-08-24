@@ -73,6 +73,81 @@ final result: passed
 
 ---
 
+# SunSolv Web & Mobile Development service page — design QA
+
+## Evidence
+
+- Source visual truth: `/Users/reddyprasadkv/Downloads/webdevelopment.png` (user-supplied approved photograph, intentionally not committed).
+- Source dimensions: 1672 × 941 pixels.
+- Desktop hero captures: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/web-mobile-development-qa/web-mobile-hero-1920.png` and `web-mobile-hero-1440.png`.
+- Tablet and mobile hero captures: `web-mobile-hero-1024.png` and `web-mobile-hero-430.png` in the same external QA directory.
+- Focused section captures: `web-mobile-capabilities-desktop.png`, `web-mobile-delivery-approach-desktop.png`, `web-mobile-faq-desktop.png` and `web-mobile-cta-footer-desktop.png`.
+- Full mobile capture: `web-mobile-full-mobile-430.png`.
+- Combined source/implementation comparison: `web-mobile-hero-comparison.png`.
+- Primary desktop comparison viewport: 1440 × 1000 CSS pixels at device pixel ratio 1. The captured page content is 1425 pixels wide after scrollbar allocation.
+- State: public Web & Mobile Development route, production SSR build, default FAQ state, signed-out/default navigation state.
+
+The source is an approved hero photograph rather than a complete page mockup. The combined comparison therefore evaluates the hero asset, crop, subject grouping and dark-left art direction directly. Full-page and focused implementation captures evaluate the responsive service-page system, content hierarchy, section rhythm, interactions and accessibility.
+
+## Findings
+
+- No actionable P0, P1 or P2 differences remain.
+- Hero composition: desktop copy stays in the naturally dark left field without covering faces, the pointing gesture, monitor, laptop, phone or tablet. Tablet and mobile use a dedicated 4:3 crop that retains all three professionals and the multi-device work context.
+- Image quality: desktop assets are 1400 × 900 and mobile assets are 1000 × 750, with AVIF preferred and WebP fallback. The rendered image is sharp, undistorted and free of visible compression artifacts. Explicit intrinsic dimensions, responsive sources, `sizes` and high fetch priority prevent layout shift and an unnecessary lazy-loading delay.
+- Fonts and typography: the approved Manrope/Inter system, uppercase eyebrow treatment, large editorial headline, body-copy measure and CTA hierarchy remain consistent with the previously approved service pages. Exact approved copy is complete, coherent and readable without truncation.
+- Spacing and layout rhythm: the hero reaches the viewport edge, editorial columns align to the established shell, capability and outcome matrices keep consistent density, and the process, FAQ, CTA and footer maintain the approved vertical rhythm. No generic cards, decorative blobs or unapproved surface treatments were introduced.
+- Colors and visual tokens: deep navy, enterprise blue, cyan accents, quiet white and warm-neutral surfaces remain within the approved SunSolv palette. Text, navigation, buttons and disclosure controls retain clear contrast.
+- Icons: existing Heroicons remain in use for navigation, CTA and disclosure controls. No handcrafted SVG, CSS art, emoji, placeholder imagery or artificial overlays were added.
+- Copy and content: approved Web & Mobile Development copy, SEO metadata, breadcrumb labels and six FAQs are present. No placeholder language, fabricated claims, invented statistics or internal-review phrases appear publicly.
+- Accessibility: the page has one H1, logical heading order, the approved descriptive alt text, native FAQ buttons with linked answer regions, correct `aria-expanded` behavior, visible keyboard focus and reduced-motion support. The mobile menu closes with Escape and restores focus to its trigger.
+- Responsiveness: 320, 375, 430, 768, 1024, 1440 and 1920 pixel checks report equal client and scroll widths, visible CTAs, clean stacking at and below 1024 pixels, no content/image overlap and no cropped faces.
+- Content integrity: only `/services/web-mobile-development` was published through the reusable service-detail framework. Homepage, About Us, Services Overview, IT Consulting, Digital Transformation, Cloud Solutions, unfinished service routes, navigation, footer, contact backend, dependencies and approved global styling remain unchanged.
+
+## Comparison history
+
+### First rendered pass
+
+- The combined source/implementation comparison preserves the approved subject grouping, multi-device product context, pointing gesture and dark transition without actionable visual drift.
+- Desktop, tablet and dedicated mobile crops fit their measured slots on the first rendered pass, so no corrective P0/P1/P2 visual change was required after comparison.
+
+### Final pass
+
+- Desktop comparison confirms the copy remains in the protected dark field while all three faces and the relevant device details stay visible.
+- Tablet and mobile captures confirm the intended stacked composition, full-width mobile CTAs, adequate image contrast and no horizontal overflow.
+- Focused captures confirm consistent capability density, four-step delivery approach, six accessible FAQ controls, light final CTA and unchanged navy footer.
+- No remaining P0/P1/P2 findings.
+
+## Primary interactions tested
+
+- Mobile navigation opens, Escape closes it and focus returns to the labelled trigger.
+- The hero project CTA reaches `/contact-us?enquiry=project`, and the contact form preselects the project enquiry.
+- FAQ controls toggle linked answers and `aria-expanded` from `false` to `true` correctly.
+- Canonical metadata and Service, BreadcrumbList and FAQPage structured data are present; hydration completes with Angular 22.1.2 and no browser-console warnings or errors.
+
+## Automated and route checks
+
+- Formatting: pass.
+- TypeScript application and SSR checks: pass.
+- Unit tests: 36/36 pass across five test files.
+- Browser production build: pass.
+- SSR and Express server builds: pass.
+- Prerender: 17/17 routes pass.
+- Direct routes: 17/17 return HTTP 200.
+- Legacy redirects: expected HTTP 301 responses pass.
+- Unknown route: real HTTP 404 pass.
+- Production dependency audit: zero vulnerabilities.
+- Existing non-blocking warnings: Angular's Webpack browser/server builders are deprecated, and the unit-test builder warns about the deferred application-builder migration.
+- Bundle comparison: base commit `760f30e3d4951b164e5046caaeed90f058b6972f` produced a 499,192-byte initial bundle (499.19 kB). Before optimization, this implementation produced 509,263 bytes (509.26 kB) and crossed the warning threshold by 9,263 bytes. Route-specific service-data resolvers reduce the final initial bundle to 469,556 bytes (469.56 kB) and 131,033 bytes Brotli-compressed—39,707 raw bytes and 8,467 Brotli bytes below the pre-optimization build, with no budget warning.
+- Lazy service data: IT Consulting `607.4914ca482bf207fe.js` is 10,448 bytes, Digital Transformation `217.939d4215f814ea71.js` is 10,235 bytes, Web & Mobile Development `754.be8b80999b232fad.js` is 10,014 bytes and Cloud Solutions `815.c6dfa8e7c5be8ee4.js` is 9,903 bytes. Browser asset inspection confirms the Web & Mobile route initially downloads only its data chunk and the reusable service-detail component; client navigation loads another service-data chunk only when that service is opened.
+
+## Follow-up polish
+
+- No blocking follow-up. The remaining three unpublished service-detail pages should be populated only after their individual content and imagery are approved.
+
+final result: passed
+
+---
+
 # SunSolv Cloud Solutions service page — design QA
 
 ## Evidence

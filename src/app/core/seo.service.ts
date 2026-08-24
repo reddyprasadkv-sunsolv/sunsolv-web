@@ -20,9 +20,10 @@ export class SeoService {
         filter((event): event is NavigationEnd => event instanceof NavigationEnd),
         takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe(() =>
-        this.apply(this.deepest(this.router.routerState.snapshot.root).data as PageData),
-      );
+      .subscribe(() => {
+        const routeData = this.deepest(this.router.routerState.snapshot.root).data;
+        this.apply((routeData['serviceData'] ?? routeData) as PageData);
+      });
   }
 
   private deepest(route: ActivatedRouteSnapshot): ActivatedRouteSnapshot {

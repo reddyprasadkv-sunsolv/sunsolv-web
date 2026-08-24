@@ -13,7 +13,7 @@ import { ServiceDetailPageData } from './service-detail-data';
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class ServiceDetailComponent {
-  readonly data = inject(ActivatedRoute).snapshot.data as ServiceDetailPageData;
+  readonly data = inject(ActivatedRoute).snapshot.data['serviceData'] as ServiceDetailPageData;
   readonly openFaqIndex = signal<number | null>(null);
 
   toggleFaq(index: number): void {
