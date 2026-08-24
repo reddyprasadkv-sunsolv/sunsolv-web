@@ -550,6 +550,31 @@ describe('ServiceDetailComponent', () => {
     }
   });
 
+  it('uses the authoritative six-industry list on every published service page', async () => {
+    const expectedIndustries = [
+      'Healthcare',
+      'Education',
+      'Retail & E-Commerce',
+      'Real Estate',
+      'SaaS',
+      'Logistics & Supply Chain',
+    ];
+    const renderedPages = [];
+    renderedPages.push(await renderItConsulting());
+    renderedPages.push(await renderDigitalTransformation());
+    renderedPages.push(await renderCloudSolutions());
+    renderedPages.push(await renderWebMobileDevelopment());
+
+    for (const { compiled } of renderedPages) {
+      const visibleIndustries = [...compiled.querySelectorAll('.industry-context li')].map((item) =>
+        item.textContent?.replace(/^\s*\d+\s*/, '').trim(),
+      );
+      expect(visibleIndustries).toEqual(expectedIndustries);
+      expect(visibleIndustries).not.toContain('E-Commerce');
+      expect(visibleIndustries).not.toContain('E-commerce');
+    }
+  });
+
   it('keeps the other three individual service routes on their existing definitions', () => {
     const remainingServiceSlugs = Object.keys(serviceRouteData).filter(
       (slug) =>

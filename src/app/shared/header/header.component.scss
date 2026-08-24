@@ -52,7 +52,7 @@
 }
 .mega-menu {
   position: absolute;
-  top: calc(100% + 16px);
+  top: 100%;
   left: 50%;
   width: min(760px, 75vw);
   transform: translateX(-22%);

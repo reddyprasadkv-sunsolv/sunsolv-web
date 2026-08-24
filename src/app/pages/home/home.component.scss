@@ -284,14 +284,14 @@
 
 .industry-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   margin-top: 48px;
   border-top: 1px solid #cbdff4;
   border-left: 1px solid #cbdff4;
 }
 
 .industry-list a {
-  min-height: 112px;
+  min-height: 116px;
   display: flex;
   align-items: center;
   justify-content: space-between;

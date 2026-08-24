@@ -17,14 +17,16 @@ import {
   heroLightBulb,
   heroMegaphone,
   heroRocketLaunch,
+  heroServerStack,
   heroShare,
   heroShoppingCart,
   heroSquare3Stack3d,
+  heroTruck,
   heroUserGroup,
   heroUsers,
   heroWrenchScrewdriver,
 } from '@ng-icons/heroicons/outline';
-import { services } from '../../core/site-data';
+import { industries, services } from '../../core/site-data';
 
 const serviceDescriptions: Record<string, string> = {
   'it-consulting':
@@ -63,9 +65,11 @@ const serviceDescriptions: Record<string, string> = {
       heroLightBulb,
       heroMegaphone,
       heroRocketLaunch,
+      heroServerStack,
       heroShare,
       heroShoppingCart,
       heroSquare3Stack3d,
+      heroTruck,
       heroUserGroup,
       heroUsers,
       heroWrenchScrewdriver,
@@ -140,12 +144,7 @@ export class ServicesOverviewComponent {
     },
   ] as const;
 
-  readonly industries = [
-    { icon: 'heroHeart', title: 'Healthcare' },
-    { icon: 'heroAcademicCap', title: 'Education' },
-    { icon: 'heroShoppingCart', title: 'E-commerce' },
-    { icon: 'heroBuildingOffice2', title: 'Real Estate' },
-  ] as const;
+  readonly industries = industries;
 
   readonly delivery = [
     {

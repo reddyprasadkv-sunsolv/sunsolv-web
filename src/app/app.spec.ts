@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
-import { provideRouter } from '@angular/router';
+import { Router, provideRouter } from '@angular/router';
 import { App } from './app';
 import { routes } from './app.routes';
 import { HomeComponent } from './pages/home/home.component';
@@ -41,5 +41,39 @@ describe('App', () => {
     expect(compiled.textContent).not.toContain(
       'Case-study content will remain unpublished until client identity',
     );
+    expect(
+      [...compiled.querySelectorAll('.industries .industry-list span')].map((item) =>
+        item.textContent?.trim(),
+      ),
+    ).toEqual([
+      'Healthcare',
+      'Education',
+      'Retail & E-Commerce',
+      'Real Estate',
+      'SaaS',
+      'Logistics & Supply Chain',
+    ]);
+  });
+
+  it('renders the authoritative six-industry list on the Industries overview', async () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    await TestBed.inject(Router).navigateByUrl('/industries');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    expect(
+      [...compiled.querySelectorAll('.industry-overview h2')].map((item) =>
+        item.textContent?.trim(),
+      ),
+    ).toEqual([
+      'Healthcare',
+      'Education',
+      'Retail & E-Commerce',
+      'Real Estate',
+      'SaaS',
+      'Logistics & Supply Chain',
+    ]);
   });
 });

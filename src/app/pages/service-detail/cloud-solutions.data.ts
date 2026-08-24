@@ -1,4 +1,4 @@
-import type { StructuredFaq } from '../../core/site-data';
+import { industryNames, type StructuredFaq } from '../../core/site-data';
 import type { ServiceDetailPageData } from './service-detail-data';
 
 const cloudSolutionsFaqs: readonly StructuredFaq[] = [
@@ -257,7 +257,7 @@ export const cloudSolutionsPageData: ServiceDetailPageData = {
     heading: 'Cloud architecture shaped around operational and information requirements.',
     content:
       'Cloud priorities differ according to the sensitivity of information, availability requirements, user demand and operating environment. SunSolv adapts its approach to the needs of each business.',
-    industries: ['Healthcare', 'Education', 'E-commerce', 'Real Estate'],
+    industries: industryNames,
   },
   faqSection: {
     eyebrow: 'Frequently asked questions',

@@ -1,4 +1,4 @@
-import type { StructuredFaq } from '../../core/site-data';
+import { industryNames, type StructuredFaq } from '../../core/site-data';
 import type { ServiceDetailPageData } from './service-detail-data';
 
 const digitalTransformationFaqs: readonly StructuredFaq[] = [
@@ -261,7 +261,7 @@ export const digitalTransformationPageData: ServiceDetailPageData = {
     heading: 'Modernization shaped around how your organization operates.',
     content:
       'Transformation priorities differ across industries. SunSolv considers the workflows, information requirements, users and service expectations specific to each operating environment.',
-    industries: ['Healthcare', 'Education', 'E-commerce', 'Real Estate'],
+    industries: industryNames,
   },
   faqSection: {
     eyebrow: 'Frequently asked questions',

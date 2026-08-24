@@ -25,6 +25,18 @@ describe('ServicesOverviewComponent', () => {
       'Technology services built around business outcomes.',
     );
     expect(compiled.querySelectorAll('.services-grid article')).toHaveLength(7);
+    expect(
+      [...compiled.querySelectorAll('.industry-list h3')].map((heading) =>
+        heading.textContent?.trim(),
+      ),
+    ).toEqual([
+      'Healthcare',
+      'Education',
+      'Retail & E-Commerce',
+      'Real Estate',
+      'SaaS',
+      'Logistics & Supply Chain',
+    ]);
     expect(compiled.querySelectorAll('.faq-list details')).toHaveLength(5);
     expect(compiled.textContent).not.toContain(
       'Approved production content is required before publication',

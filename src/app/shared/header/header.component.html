@@ -8,21 +8,30 @@
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         >Home</a
       >
-      <div class="services-menu">
+      <div
+        class="services-menu"
+        (pointerenter)="onServicesPointerEnter($event)"
+        (pointerleave)="onServicesPointerLeave($event)"
+        (focusout)="onServicesFocusOut($event)"
+      >
         <button
+          #servicesButton
           type="button"
           (click)="toggleServices()"
+          (keydown.enter)="toggleServicesFromKeyboard($event)"
+          (keydown.space)="toggleServicesFromKeyboard($event)"
           [attr.aria-expanded]="servicesOpen()"
           aria-controls="services-mega-menu"
+          aria-haspopup="true"
         >
           Services <ng-icon name="heroChevronDown" aria-hidden="true" />
         </button>
         @if (servicesOpen()) {
-          <div id="services-mega-menu" class="mega-menu">
+          <div id="services-mega-menu" class="mega-menu" role="group" aria-label="Services">
             <p>Services</p>
             <div class="mega-links">
               @for (service of services; track service.slug) {
-                <a [routerLink]="['/services', service.slug]" (click)="servicesOpen.set(false)">
+                <a [routerLink]="['/services', service.slug]" (click)="closeServices()">
                   <span>{{ service.title }}</span>
                   <small>{{ service.positioning }}</small>
                 </a>
@@ -76,13 +85,20 @@
       </button>
       <nav aria-label="Mobile navigation">
         <a routerLink="/" (click)="closeMobile()">Home</a>
-        <details>
-          <summary>Services</summary>
-          @for (service of services; track service.slug) {
-            <a [routerLink]="['/services', service.slug]" (click)="closeMobile()">{{
-              service.title
-            }}</a>
-          }
+        <details #mobileServices (toggle)="onMobileServicesToggle(mobileServices.open)">
+          <summary
+            aria-controls="mobile-services-links"
+            [attr.aria-expanded]="mobileServicesOpen()"
+          >
+            Services
+          </summary>
+          <div id="mobile-services-links">
+            @for (service of services; track service.slug) {
+              <a [routerLink]="['/services', service.slug]" (click)="closeMobile()">{{
+                service.title
+              }}</a>
+            }
+          </div>
         </details>
         <a routerLink="/industries" (click)="closeMobile()">Industries</a>
         <a routerLink="/case-studies" (click)="closeMobile()">Case Studies</a>

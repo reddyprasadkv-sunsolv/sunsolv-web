@@ -1,4 +1,4 @@
-import type { StructuredFaq } from '../../core/site-data';
+import { industryNames, type StructuredFaq } from '../../core/site-data';
 import type { ServiceDetailPageData } from './service-detail-data';
 
 const itConsultingFaqs: readonly StructuredFaq[] = [
@@ -253,7 +253,7 @@ export const itConsultingPageData: ServiceDetailPageData = {
     heading: 'Technology advice shaped around operational reality.',
     content:
       'The right technology direction depends on how an organization serves customers, manages information and operates day to day. SunSolv adapts its consulting approach to the workflows, users and priorities of each environment.',
-    industries: ['Healthcare', 'Education', 'E-commerce', 'Real Estate'],
+    industries: industryNames,
   },
   faqSection: {
     eyebrow: 'Frequently asked questions',

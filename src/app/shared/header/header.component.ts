@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   HostListener,
+  OnDestroy,
   ViewChild,
   inject,
   signal,
@@ -21,33 +22,79 @@ import { services } from '../../core/site-data';
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnDestroy {
+  @ViewChild('servicesButton') private servicesButton?: ElementRef<HTMLButtonElement>;
   @ViewChild('menuButton') private menuButton?: ElementRef<HTMLButtonElement>;
   @ViewChild('mobilePanel') private mobilePanel?: ElementRef<HTMLElement>;
+  @ViewChild('mobileServices') private mobileServices?: ElementRef<HTMLDetailsElement>;
   readonly services = services;
   readonly mobileOpen = signal(false);
   readonly servicesOpen = signal(false);
+  readonly mobileServicesOpen = signal(false);
   private readonly document = inject(DOCUMENT);
+  private servicesCloseTimer?: ReturnType<typeof setTimeout>;
 
   toggleMobile(): void {
     this.setMobile(!this.mobileOpen());
   }
 
   closeMobile(returnFocus = false): void {
+    this.resetMobileServices();
     if (!this.mobileOpen()) return;
     this.setMobile(false);
     if (returnFocus) queueMicrotask(() => this.menuButton?.nativeElement.focus());
   }
 
   toggleServices(): void {
+    this.cancelServicesClose();
     this.servicesOpen.update((open) => !open);
+  }
+
+  toggleServicesFromKeyboard(event: Event): void {
+    event.preventDefault();
+    this.toggleServices();
+  }
+
+  closeServices(returnFocus = false): void {
+    this.cancelServicesClose();
+    this.servicesOpen.set(false);
+    if (returnFocus) queueMicrotask(() => this.servicesButton?.nativeElement.focus());
+  }
+
+  onServicesPointerEnter(event: PointerEvent): void {
+    if (event.pointerType !== 'mouse') return;
+    this.cancelServicesClose();
+    this.servicesOpen.set(true);
+  }
+
+  onServicesPointerLeave(event: PointerEvent): void {
+    if (event.pointerType !== 'mouse') return;
+    this.cancelServicesClose();
+    this.servicesCloseTimer = setTimeout(() => this.servicesOpen.set(false), 200);
+  }
+
+  onServicesFocusOut(event: FocusEvent): void {
+    const nextTarget = event.relatedTarget;
+    if (nextTarget instanceof Node && event.currentTarget instanceof HTMLElement) {
+      if (event.currentTarget.contains(nextTarget)) return;
+    }
+    this.closeServices();
+  }
+
+  onMobileServicesToggle(open: boolean): void {
+    this.mobileServicesOpen.set(open);
   }
 
   @HostListener('document:keydown', ['$event'])
   onKeydown(event: KeyboardEvent): void {
     if (event.key === 'Escape') {
-      this.servicesOpen.set(false);
-      this.closeMobile(true);
+      if (this.mobileOpen()) {
+        this.closeServices();
+        this.closeMobile(true);
+      } else if (this.servicesOpen()) {
+        event.preventDefault();
+        this.closeServices(true);
+      }
       return;
     }
     if (event.key !== 'Tab' || !this.mobileOpen()) return;
@@ -67,6 +114,8 @@ export class HeaderComponent {
   }
 
   private setMobile(open: boolean): void {
+    if (open) this.closeServices();
+    else this.resetMobileServices();
     this.mobileOpen.set(open);
     this.document.body.classList.toggle('nav-open', open);
     if (open)
@@ -74,5 +123,21 @@ export class HeaderComponent {
         () => this.mobilePanel?.nativeElement.querySelector<HTMLElement>('button')?.focus(),
         0,
       );
+  }
+
+  private cancelServicesClose(): void {
+    if (this.servicesCloseTimer === undefined) return;
+    clearTimeout(this.servicesCloseTimer);
+    this.servicesCloseTimer = undefined;
+  }
+
+  private resetMobileServices(): void {
+    this.mobileServicesOpen.set(false);
+    if (this.mobileServices) this.mobileServices.nativeElement.open = false;
+  }
+
+  ngOnDestroy(): void {
+    this.cancelServicesClose();
+    this.document.body.classList.remove('nav-open');
   }
 }

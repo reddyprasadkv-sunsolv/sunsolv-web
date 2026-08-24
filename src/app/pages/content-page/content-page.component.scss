@@ -52,12 +52,13 @@
 }
 .industry-overview {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 .industry-overview article {
   min-height: 180px;
   padding: 28px;
   border-left: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 .page-sections {
   background: white;
@@ -87,6 +88,12 @@
   max-width: 620px;
   margin: 0;
 }
+@media (max-width: 1000px) {
+  .industry-overview {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 760px) {
   .services-overview,
   .industry-overview {

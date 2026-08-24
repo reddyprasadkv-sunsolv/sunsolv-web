@@ -35,6 +35,11 @@ export interface ServiceDefinition {
   icon: string;
 }
 
+export interface IndustryDefinition {
+  title: string;
+  icon: string;
+}
+
 export const canonicalOrigin = 'https://www.sunsolv.in';
 
 export const services: readonly ServiceDefinition[] = [
@@ -81,6 +86,17 @@ export const services: readonly ServiceDefinition[] = [
     icon: 'heroMegaphone',
   },
 ] as const;
+
+export const industries: readonly IndustryDefinition[] = [
+  { title: 'Healthcare', icon: 'heroHeart' },
+  { title: 'Education', icon: 'heroAcademicCap' },
+  { title: 'Retail & E-Commerce', icon: 'heroShoppingCart' },
+  { title: 'Real Estate', icon: 'heroBuildingOffice2' },
+  { title: 'SaaS', icon: 'heroServerStack' },
+  { title: 'Logistics & Supply Chain', icon: 'heroTruck' },
+] as const;
+
+export const industryNames: readonly string[] = industries.map(({ title }) => title);
 
 const page = (
   path: string,

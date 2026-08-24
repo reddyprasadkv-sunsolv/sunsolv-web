@@ -1,3 +1,59 @@
+# SunSolv Industries and Services navigation refinement — design QA
+
+## Evidence
+
+- Verified base: `f31a6e1cee74427411552ecc4aa70f766de42b3c` on `feature/web-mobile-development`.
+- Review branch: `feature/industries-navigation-refinement`.
+- Desktop Services dropdown: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/industries-navigation-review/01-services-dropdown-desktop-1440.png`.
+- Desktop six-industry overview: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/industries-navigation-review/02-six-industries-desktop-1440.png`.
+- Mobile six-industry overview: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/industries-navigation-review/03-six-industries-mobile-430.png`.
+- Mobile Services submenu: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/industries-navigation-review/04-mobile-services-submenu-open-430.png`.
+- Responsive browser matrix: 28 checks across the Homepage, Services Overview, Industries Overview and IT Consulting industry surfaces at 320, 375, 430, 768, 1024, 1440 and 1920 CSS pixels.
+
+## Findings
+
+- No actionable P0, P1 or P2 differences remain.
+- One authoritative six-industry definition now lives in `src/app/core/site-data.ts`: Healthcare, Education, Retail & E-Commerce, Real Estate, SaaS and Logistics & Supply Chain.
+- The Homepage, Services Overview, Industries Overview, IT Consulting, Digital Transformation, Cloud Solutions and Web & Mobile Development consume that shared definition. About Us and the footer do not contain industry lists and therefore required no content change.
+- Every relevant browser surface renders all six approved labels with exact spelling. No obsolete standalone E-Commerce-only industry label is visible.
+- The Homepage and Industries Overview use a balanced three-column desktop, two-column tablet and single-column mobile grid. Existing two-column industry treatments on Services Overview and published service pages remain balanced with six equal-height items; all cards stack evenly on mobile.
+- The complete 28-check responsive matrix reports six labels, zero horizontal overflow, no viewport-edge clipping and zero card-height spread at every target width.
+- Existing hero images, approved service-page copy, CTAs, contact behavior, footer design, brand tokens and global styling outside the requested industry layouts remain unchanged.
+
+## Navigation and accessibility
+
+- Desktop Services opens on mouse `pointerenter`, stays open while the pointer enters the child panel and closes 200 ms after the pointer leaves both trigger and panel. Re-entry cancels the pending close, and the panel begins at the trigger boundary with no physical hover gap.
+- The native trigger remains focusable. Enter and Space toggle the panel, `aria-expanded` mirrors state, Tab can move through normal links, focus movement within the menu keeps it open, focus leaving the menu closes it, and Escape closes and restores focus to the trigger.
+- At the existing 1060-pixel breakpoint, the desktop navigation is hidden and the established mobile dialog is used. The native Services disclosure remains tap-driven, exposes synchronized `aria-expanded`, and resets when a destination or the mobile menu is closed.
+- Live browser checks confirm navigation reset after selecting IT Consulting, body scroll-lock cleanup, Escape focus restoration and no browser-console warnings or errors.
+
+## Routes, SSR and preservation
+
+- No individual industry pages or new industry slugs were introduced. Every industry label continues to link safely to `/industries`.
+- All 17 canonical routes remain unchanged and return HTTP 200 directly.
+- `/partnership` and `/terms-and-condition` retain their HTTP 301 redirects; an unknown path returns a real HTTP 404.
+- Angular 22.1.2 SSR and hydration pass. All four published service pages retain their route-specific lazy resolver and render the shared six-industry list.
+- The initial browser bundle is 473.50 kB raw and 131.82 kB estimated transfer size, below the existing 500 kB warning threshold. No bundle budget or builder configuration changed.
+
+## Automated checks
+
+- `npm run format:check`: pass.
+- `npm run typecheck`: pass.
+- `npm test -- --watch=false`: 45/45 tests pass across six test files.
+- `npm run build`: browser production, SSR, 17-route prerender and Express server builds pass.
+- `npm audit --omit=dev --audit-level=high`: zero vulnerabilities.
+- Existing non-blocking warnings remain limited to the intentionally deferred Angular application-builder migration and its related unit-test compatibility notice.
+
+## Checkpoint state
+
+- The approved Web & Mobile Development commit was pushed before this work and the remote hash was verified.
+- All Industries and Services navigation refinement files remain uncommitted and unstaged for review.
+- No refinement branch push, merge, deployment or sharing action occurred.
+
+final result: passed
+
+---
+
 # SunSolv Homepage redesign — design QA
 
 ## Evidence
