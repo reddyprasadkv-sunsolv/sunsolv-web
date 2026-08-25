@@ -39,6 +39,16 @@ export interface ServiceDetailPageData extends PageData {
     heading: string;
     items: readonly ServiceDetailItem[];
   };
+  solutionExamples?: {
+    eyebrow: string;
+    heading: string;
+    items: readonly ServiceDetailItem[];
+  };
+  principles?: {
+    eyebrow: string;
+    heading: string;
+    items: readonly ServiceDetailItem[];
+  };
   outcomes: {
     eyebrow: string;
     heading: string;
@@ -50,7 +60,7 @@ export interface ServiceDetailPageData extends PageData {
     items: readonly ServiceDetailItem[];
     supportingStatement?: string;
   };
-  engagementOptions: {
+  engagementOptions?: {
     eyebrow: string;
     heading: string;
     items: readonly ServiceDetailItem[];

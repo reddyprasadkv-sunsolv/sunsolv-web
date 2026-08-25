@@ -1,3 +1,107 @@
+# SunSolv AI & Machine Learning service page — design QA
+
+## Evidence
+
+- Source visual truth: `/Users/reddyprasadkv/Downloads/AI.png` (user-supplied glass-data sculpture, intentionally not committed).
+- Source dimensions: 1536 × 1024 pixels. The image contains no people, screens, workstations, robots, brains or holograms.
+- Optimized desktop assets: 1400 × 900 pixels, preserving the source's dark left field and the complete cyan, blue and violet glass-data sculpture.
+- Optimized mobile assets: 1000 × 750 pixels, using a deliberate right-weighted 4:3 crop from the approved source. The crop retains the main illuminated clusters, platform, connecting nodes and enough dark-left context; it is not stretched or blindly centred.
+- Hero captures: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/ai-machine-learning-review/ai-hero-1920.png`, `ai-hero-1440.png`, `ai-hero-1024.png` and `ai-hero-430.png`.
+- Required full mobile evidence: `ai-full-430.png` in the same external QA directory. Additional full-page breakpoint evidence is recorded at 320, 375, 768, 1024, 1440 and 1920 pixels.
+- Focused section captures: `ai-capabilities.png`, `ai-practical-applications.png`, `ai-responsible-ai.png`, `ai-business-outcomes.png`, `ai-delivery-approach.png`, `ai-industries.png`, `ai-faq-keyboard-expanded.png` and `ai-final-cta-footer.png`.
+- Combined source/implementation comparison: `ai-source-implementation-comparison.png`.
+- Desktop/mobile crop comparison: `ai-desktop-mobile-source-comparison.png`.
+- Visual-distinction comparison: `ai-vs-custom-software-hero.png`, comparing the human-free glass-data sculpture with the approved Custom Software Development workstation hero.
+- Primary desktop viewport: 1920 × 1080 CSS pixels. Scrollbar allocation leaves a 1905-pixel content width; the sticky header occupies the first 89 pixels and the hero extends cleanly to 810 pixels.
+- Primary mobile viewport: 430 × 932 CSS pixels. Scrollbar allocation leaves a 415-pixel content width; the mobile hero stacks copy, full-width CTAs and the dedicated crop without overlap.
+- State: public AI & Machine Learning route, production SSR build, default navigation state and collapsed FAQs unless the interaction capture is named.
+
+The supplied image is the hero visual rather than a complete page mockup. The combined comparisons therefore evaluate source fidelity, subject accuracy, crop, negative-space use, image integration and visual distinction. Focused captures evaluate the established SunSolv service-detail system, the approved AI content, responsive behavior, accessibility and interactions.
+
+## Findings
+
+- No actionable P0, P1 or P2 differences remain.
+- Hero fidelity: the screen-free glass-data sculpture remains recognizable and sharp. Desktop preserves the dark-left text field and the full illuminated structure; mobile preserves the main cyan, blue and violet clusters, platform and connecting nodes. The image is not distorted and no synthetic overlay, dashboard, person, workstation, robot, brain or hologram was added.
+- Visual distinction: the AI hero is materially different from every earlier service hero. In particular, the side-by-side comparison with Custom Software Development shows an abstract glass-data installation rather than monitors, laptops, tablets, desks or development diagrams.
+- Fonts and typography: the established Manrope Variable heading and Inter Variable body system is unchanged. The exact eyebrow, H1, supporting text, CTA hierarchy and long section headings remain readable and naturally wrapped at all required widths.
+- Spacing and layout rhythm: the page reuses the approved service-detail shell, editorial introduction, challenge matrix, capability matrix, split application list, responsible-AI grid, warm-neutral outcomes and industries, FAQ, light final CTA and navy footer. Card heights and section transitions remain balanced.
+- Colors and visual tokens: existing navy, enterprise blue, cyan, ice-blue and warm-neutral tokens are preserved. White hero copy remains legible against the dark source field without obscuring the sculpture.
+- Copy and content: the exact approved hero, introduction, five challenges, six capabilities, six practical applications, five responsible-AI principles, five outcomes, four delivery steps, centralized six-industry list, six FAQs and final CTA are present. No placeholder, content-gate phrase, fabricated statistic, invented location or unsupported guarantee appears.
+- Responsible AI: Human oversight, Data privacy and security, Transparency and traceability, Performance monitoring and Purpose limitation are all visible and retain the approved descriptions.
+- Icons: only the existing shared Heroicons are used for navigation, CTA and FAQ disclosure. No handcrafted SVG, CSS art, emoji or placeholder visual was introduced.
+- Accessibility: one H1 and a logical H1/H2/H3 hierarchy are present. The hero uses the exact approved alt text. FAQ buttons expose synchronized `aria-expanded`, Enter and Space support, visible focus and linked answers. Existing reduced-motion and global focus rules remain active; mobile controls retain practical touch-target sizes.
+- Responsiveness: 320, 375, 430, 768, 1024, 1440 and 1920 pixel checks report no horizontal overflow. The eyebrow remains below the header, there is no strip above the header, CTAs remain unobstructed and the source selection changes from the mobile AVIF below 820 pixels to the desktop AVIF at wider viewports.
+- Content integrity: only `/services/ai-machine-learning` was published through the reusable route-specific lazy resolver. Homepage, About Us, Services Overview, IT Consulting, Digital Transformation, Cloud Solutions, Web & Mobile Development, Custom Software Development, Digital Marketing, navigation, footer, Contact flow, dependencies and approved global styling remain unchanged.
+
+## Comparison history
+
+### First rendered pass
+
+- The source/implementation comparison confirmed that the approved glass-data sculpture, dark negative space, illuminated color clusters and platform remain faithful to the source.
+- The 1920-, 1440-, 1024- and 430-pixel hero passes found no overlap, hidden eyebrow, empty strip, distortion or visual collision. The 430-pixel review confirmed full-width CTAs and a recognizable mobile sculpture crop.
+- Focused section passes confirmed balanced capability and principle cards, readable long headings, centralized industries, keyboard FAQ focus and clear CTA/footer separation.
+- No application-file correction was required after the first rendered pass.
+
+### Final pass
+
+- The mandatory combined comparison confirms source fidelity and correct desktop integration.
+- The desktop/mobile comparison confirms that both responsive crops preserve the sculpture's important structure and that the mobile variant is intentional rather than a stretched desktop image.
+- The AI-versus-Custom-Software comparison demonstrates clear visual differentiation from the previous workstation hero.
+- Browser-console review after hydration and interactive testing contains zero warnings or errors.
+- No remaining P0/P1/P2 findings.
+
+## Primary interactions tested
+
+- Desktop Services opens on pointer hover and exposes the complete service list including AI & Machine Learning.
+- Mobile navigation opens correctly; the tap-driven Services disclosure synchronizes `aria-expanded` and exposes all seven service destinations.
+- Enter expands the first FAQ while retaining a visible keyboard-focus outline. Unit coverage also verifies deterministic Space activation.
+- The hero project CTA reaches `/contact-us?enquiry=project`, and the Contact form preselects `Project enquiry`.
+- Angular 22 hydration completes with the approved H1 and structured data present and no browser-console warnings or errors.
+
+## SEO and structured data
+
+- Title: `AI & Machine Learning Services | SunSolv Technologies`.
+- Meta description: `Apply AI and machine learning to practical business opportunities with SunSolv, including predictive analytics, automation, knowledge solutions and integration.`
+- Canonical: `https://www.sunsolv.in/services/ai-machine-learning`.
+- Open Graph, Twitter metadata and `index, follow` robots metadata match the approved SEO specification.
+- Server-rendered JSON-LD contains one graph with `Service`, `BreadcrumbList` and `FAQPage`.
+- The Service description matches the visible positioning text, breadcrumbs are Home, Services and AI & Machine Learning, and all six visible FAQs match the FAQPage entities exactly.
+
+## Assets and performance
+
+- Desktop AVIF: 103,483 bytes (1400 × 900).
+- Desktop WebP: 164,132 bytes (1400 × 900).
+- Mobile AVIF: 79,100 bytes (1000 × 750).
+- Mobile WebP: 126,270 bytes (1000 × 750).
+- Approved base at `75b208c3d00cb02661392010fe54c17acc4d742f`: approximately 473.83 kB raw and 131.85 kB estimated transfer.
+- Current initial bundle: 474.12 kB raw and 132.02 kB estimated transfer, an increase of approximately 0.29 kB raw and 0.17 kB transfer. It remains below the 500 kB warning threshold, and no budget was raised or disabled.
+- AI page data remains a separate lazy chunk: 12.21 kB raw and 3.14 kB estimated transfer.
+
+## Automated and route checks
+
+- `npm run format:check`: pass.
+- `npm run typecheck`: pass for application and SSR configurations.
+- `npm test -- --watch=false`: 59/59 tests pass across eight test files.
+- `npm run build`: browser production, SSR, 17-route prerender and Express server builds pass.
+- All 17 canonical direct routes return HTTP 200.
+- `/partnership` and `/terms-and-condition` return the expected HTTP 301 redirects.
+- An unknown route returns a real HTTP 404.
+- SSR contains the approved H1, canonical URL and `Service`, `BreadcrumbList` and `FAQPage` JSON-LD.
+- `npm audit --omit=dev --audit-level=high`: zero vulnerabilities.
+- Existing non-blocking warnings remain limited to the intentionally deferred Angular Webpack/application-builder migration and its related unit-test compatibility notice.
+
+## Checkpoint state
+
+- Branch: `feature/ai-machine-learning` at the verified base `75b208c3d00cb02661392010fe54c17acc4d742f`.
+- All implementation, tests, optimized assets and this QA record remain uncommitted and unstaged for visual approval.
+- The source PNG and all screenshots remain outside Git.
+- No dependency, secret, environment, build-output, cache or temporary QA file was added.
+- No commit, push, merge, pull request, deployment or public sharing occurred.
+
+final result: passed
+
+---
+
 # SunSolv Custom Software Development service page — design QA
 
 ## Evidence

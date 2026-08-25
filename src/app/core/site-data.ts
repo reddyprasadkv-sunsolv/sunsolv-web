@@ -15,6 +15,7 @@ export interface PageData {
   seo: SeoData;
   schemaType?: string;
   structuredServiceName?: string;
+  structuredServiceDescription?: string;
   structuredBreadcrumbs?: readonly StructuredBreadcrumb[];
   structuredFaqs?: readonly StructuredFaq[];
 }

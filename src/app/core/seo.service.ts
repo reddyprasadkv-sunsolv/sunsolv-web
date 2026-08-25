@@ -87,7 +87,7 @@ export class SeoService {
       const service = {
         ...base,
         name: data.structuredServiceName ?? data.title,
-        description: data.seo.description,
+        description: data.structuredServiceDescription ?? data.seo.description,
         provider: { '@type': 'Organization', name: 'SunSolv Technologies', url: canonicalOrigin },
       };
       if (!data.structuredBreadcrumbs?.length && !data.structuredFaqs?.length) return service;

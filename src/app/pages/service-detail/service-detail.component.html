@@ -113,6 +113,50 @@
   </div>
 </section>
 
+@if (data.solutionExamples; as solutionExamples) {
+  <section class="section engagement-options" aria-labelledby="solution-examples-title">
+    <div class="shell engagement-layout two-column-layout">
+      <header>
+        <p class="eyebrow">{{ solutionExamples.eyebrow }}</p>
+        <h2 class="detail-section-title" id="solution-examples-title">
+          {{ solutionExamples.heading }}
+        </h2>
+      </header>
+      <div class="engagement-list">
+        @for (example of solutionExamples.items; track example.title; let index = $index) {
+          <article class="detail-card">
+            <span class="item-number">0{{ index + 1 }}</span>
+            <div>
+              <h3>{{ example.title }}</h3>
+              <p>{{ example.description }}</p>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+}
+
+@if (data.principles; as principles) {
+  <section class="section capabilities" aria-labelledby="principles-title">
+    <div class="shell">
+      <header class="section-heading split-heading">
+        <p class="eyebrow">{{ principles.eyebrow }}</p>
+        <h2 class="detail-section-title" id="principles-title">{{ principles.heading }}</h2>
+      </header>
+      <div class="outcome-grid">
+        @for (principle of principles.items; track principle.title; let index = $index) {
+          <article class="detail-card">
+            <span class="item-number">0{{ index + 1 }}</span>
+            <h3>{{ principle.title }}</h3>
+            <p>{{ principle.description }}</p>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+}
+
 <section class="section outcomes" aria-labelledby="outcomes-title">
   <div class="shell">
     <header class="section-heading">
@@ -152,27 +196,29 @@
   </div>
 </section>
 
-<section class="section engagement-options" aria-labelledby="engagement-options-title">
-  <div class="shell engagement-layout two-column-layout">
-    <header>
-      <p class="eyebrow">{{ data.engagementOptions.eyebrow }}</p>
-      <h2 class="detail-section-title" id="engagement-options-title">
-        {{ data.engagementOptions.heading }}
-      </h2>
-    </header>
-    <div class="engagement-list">
-      @for (option of data.engagementOptions.items; track option.title; let index = $index) {
-        <article class="detail-card">
-          <span class="item-number">0{{ index + 1 }}</span>
-          <div>
-            <h3>{{ option.title }}</h3>
-            <p>{{ option.description }}</p>
-          </div>
-        </article>
-      }
+@if (data.engagementOptions; as engagementOptions) {
+  <section class="section engagement-options" aria-labelledby="engagement-options-title">
+    <div class="shell engagement-layout two-column-layout">
+      <header>
+        <p class="eyebrow">{{ engagementOptions.eyebrow }}</p>
+        <h2 class="detail-section-title" id="engagement-options-title">
+          {{ engagementOptions.heading }}
+        </h2>
+      </header>
+      <div class="engagement-list">
+        @for (option of engagementOptions.items; track option.title; let index = $index) {
+          <article class="detail-card">
+            <span class="item-number">0{{ index + 1 }}</span>
+            <div>
+              <h3>{{ option.title }}</h3>
+              <p>{{ option.description }}</p>
+            </div>
+          </article>
+        }
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+}
 
 <section class="section industry-context" aria-labelledby="industry-context-title">
   <div class="shell industry-layout two-column-layout">

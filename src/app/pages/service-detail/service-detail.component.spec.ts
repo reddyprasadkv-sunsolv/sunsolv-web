@@ -59,6 +59,15 @@ describe('ServiceDetailComponent', () => {
     return { fixture, compiled: fixture.nativeElement as HTMLElement };
   }
 
+  async function renderAiMachineLearning() {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    await TestBed.inject(Router).navigateByUrl('/services/ai-machine-learning');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    return { fixture, compiled: fixture.nativeElement as HTMLElement };
+  }
+
   it('renders the approved IT Consulting page without placeholder content', async () => {
     const { compiled } = await renderItConsulting();
 
@@ -550,6 +559,7 @@ describe('ServiceDetailComponent', () => {
       'services/cloud-solutions',
       'services/web-mobile-development',
       'services/custom-software-development',
+      'services/ai-machine-learning',
     ];
 
     for (const path of publishedServicePaths) {
@@ -575,6 +585,7 @@ describe('ServiceDetailComponent', () => {
     renderedPages.push(await renderCloudSolutions());
     renderedPages.push(await renderWebMobileDevelopment());
     renderedPages.push(await renderCustomSoftwareDevelopment());
+    renderedPages.push(await renderAiMachineLearning());
 
     for (const { compiled } of renderedPages) {
       const visibleIndustries = [...compiled.querySelectorAll('.industry-context li')].map((item) =>
@@ -593,13 +604,14 @@ describe('ServiceDetailComponent', () => {
         slug !== 'digital-transformation' &&
         slug !== 'cloud-solutions' &&
         slug !== 'web-mobile-development' &&
-        slug !== 'custom-software-development',
+        slug !== 'custom-software-development' &&
+        slug !== 'ai-machine-learning',
     );
     const routedServicePaths = routes
       .map((route) => route.path)
       .filter((path): path is string => path?.startsWith('services/') === true);
 
-    expect(remainingServiceSlugs).toHaveLength(2);
+    expect(remainingServiceSlugs).toHaveLength(1);
     for (const slug of remainingServiceSlugs) {
       expect(routedServicePaths).toContain(`services/${slug}`);
     }
