@@ -1,3 +1,78 @@
+# SunSolv Digital Marketing service page — design QA
+
+## Evidence
+
+- Source visual truth: `/Users/reddyprasadkv/Downloads/digitalmarketing.png` (user-supplied sculptural customer-journey artwork, intentionally not committed).
+- Source dimensions: 1536 × 1024 pixels.
+- Optimized desktop assets: 1400 × 900 pixels. The crop removes only a small amount of vertical source area, preserving the dark-left transition, all principal illuminated paths, the full arch progression and the bright destination portal.
+- Optimized mobile assets: 1000 × 750 pixels. The dedicated 4:3 crop is shifted to the source’s centre-right rather than blindly centred, retaining multiple blue, cyan, violet, pink and orange paths, several architectural arches and the illuminated destination.
+- Desktop hero captures: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/digital-marketing-review/01-hero-1920.png`, `02-hero-1440.png` and `03-hero-1024.png`.
+- Mobile hero and full-page captures: `04-hero-430.png` and `05-full-page-430-normalized.png` in the same external QA directory.
+- Focused section captures: `07-capabilities.png`, `08-marketing-principles.png`, `09-faq-keyboard-expanded.png` and `10-final-cta-footer.png` in the same external QA directory.
+- Visual-distinction captures: `14-digital-marketing-custom-software-comparison.png` and `15-digital-marketing-ai-comparison.png`.
+- Mandatory source/implementation comparison: `13-source-implemented-crop-comparison.png`.
+- Required responsive checks: 320, 375, 430, 768, 1024, 1440 and 1920 CSS pixels against the production SSR build.
+- State: public Digital Marketing route, default navigation state and collapsed FAQs except where the keyboard interaction is explicitly captured.
+
+The attached visual is hero artwork rather than a complete page mockup. The combined comparison therefore evaluates source fidelity, responsive cropping, image integration and the dark-left transition. The remaining captures evaluate the established SunSolv service-detail system, approved content, accessibility states and responsive behavior.
+
+## Findings
+
+- No actionable P0, P1 or P2 differences remain.
+- Hero fidelity: the approved illuminated pathways, architectural arches and destination portal remain recognizable and undistorted. Desktop preserves the dark-left transition behind the copy; mobile deliberately retains the journey concept instead of reducing the image to a circular light.
+- Visual distinction: side-by-side comparisons confirm that Digital Marketing uses a colorful architectural journey rather than the devices and engineering interfaces used for Custom Software Development or the glass-bead data sculpture used for AI & Machine Learning.
+- Image integrity: the artwork contains no people, workstations, devices, dashboards, text, logos, charts, arrows, robots, brains, neural structures, cloud servers or social-media icons. No synthetic overlay or CSS illustration was introduced.
+- Typography and layout: the existing Manrope Variable heading and Inter Variable body system is preserved. The eyebrow, exact H1, supporting content and both CTAs remain readable and unobstructed at every required width.
+- Responsive behavior: all seven breakpoint checks report zero horizontal overflow. Desktop uses the 1400 × 900 AVIF; 320, 375, 430 and 768 pixel widths use the dedicated 1000 × 750 AVIF; 1024 pixels and wider use the desktop source. The 1024-pixel layout stacks cleanly with no empty image strip or header overlap.
+- Content structure: the exact approved introduction, four challenges, six capabilities, five outcomes, four delivery steps, five marketing principles, six shared industries, six FAQs and final CTA are present in the requested sequence. Capability and principle cards remain balanced, and long headings wrap naturally.
+- Accessibility: one H1 and a logical heading hierarchy are present. The exact approved image alt text is used. FAQ controls expose synchronized `aria-expanded`, linked answer regions, deterministic Enter and Space activation and a visible browser focus outline. Existing reduced-motion and global focus rules remain active.
+- Navigation and conversion: desktop Services opens on hover and exposes Digital Marketing; the mobile navigation and tap-driven Services disclosure expose all seven service routes. Both page CTAs retain `/contact-us?enquiry=project`, and the Contact form preselects Project enquiry.
+- Hydration and console: Angular 22.1.2 hydrates the production SSR output with the approved H1 and structured data present. Browser-console review contains zero warnings or errors.
+- Preservation: the shared detail template gained only an optional data-controlled principles placement. Existing services retain their prior default order; their route-specific lazy resolvers, content and preservation tests pass. Homepage, About Us, Services Overview, Industries, navigation, footer and Contact behavior are unchanged.
+
+## SEO and structured data
+
+- Title: `Digital Marketing Services | SunSolv Technologies`.
+- Meta description: `Grow visibility and conversion with SunSolv digital marketing services spanning SEO, content, paid media, social campaigns and performance analytics.`
+- Canonical: `https://www.sunsolv.in/services/digital-marketing`.
+- Open Graph, Twitter and `index, follow` robots metadata match the approved specification.
+- Server-rendered JSON-LD contains one graph with `Service`, `BreadcrumbList` and `FAQPage`.
+- Service name: `Digital Marketing Services`; breadcrumbs are Home, Services and Digital Marketing; all six visible questions and answers match the FAQPage entities exactly.
+
+## Assets and performance
+
+- Desktop AVIF: 46,738 bytes (1400 × 900).
+- Desktop WebP: 78,352 bytes (1400 × 900).
+- Mobile AVIF: 33,111 bytes (1000 × 750).
+- Mobile WebP: 55,434 bytes (1000 × 750).
+- Approved base at `f835df2e5455a285ce04957a5ca831f531bba9de`: 474.12 kB raw and 132.02 kB estimated transfer.
+- Current initial bundle: 474.41 kB raw and 132.02 kB estimated transfer, an increase of approximately 0.29 kB raw and no reported transfer-size increase. It remains below the 500 kB warning threshold; no budget was raised or disabled.
+- Digital Marketing data remains isolated in a dedicated lazy chunk: 10.40 kB raw and 2.69 kB estimated transfer.
+
+## Automated and route checks
+
+- `npm run format:check`: pass.
+- `npm run typecheck`: pass for application and SSR configurations.
+- `npm test -- --watch=false`: 66/66 tests pass across nine test files.
+- `npm run build`: browser production, Angular SSR, 17-route prerender and Express server builds pass.
+- All 17 canonical direct routes return HTTP 200.
+- `/partnership` and `/terms-and-condition` return the expected HTTP 301 redirects.
+- An unknown route returns a real HTTP 404.
+- `npm audit --omit=dev --audit-level=high`: zero vulnerabilities.
+- Existing non-blocking warnings remain limited to the intentionally deferred Angular Webpack/application-builder migration and its related unit-test compatibility notice.
+
+## Checkpoint state
+
+- Branch: `feature/digital-marketing` at the verified base `f835df2e5455a285ce04957a5ca831f531bba9de`.
+- All implementation, test, optimized-asset and QA-document changes remain uncommitted and unstaged for visual approval.
+- The source PNG and all screenshots remain outside Git.
+- No dependency, build budget, secret, environment file, build output, cache or temporary QA file was added.
+- No commit, push, merge, pull request, deployment or public sharing occurred.
+
+final result: passed
+
+---
+
 # SunSolv AI & Machine Learning service page — design QA
 
 ## Evidence

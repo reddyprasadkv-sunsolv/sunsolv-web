@@ -49,6 +49,7 @@ export interface ServiceDetailPageData extends PageData {
     heading: string;
     items: readonly ServiceDetailItem[];
   };
+  principlesAfterApproach?: boolean;
   outcomes: {
     eyebrow: string;
     heading: string;

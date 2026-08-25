@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -6,7 +7,7 @@ import { ServiceDetailPageData } from './service-detail-data';
 
 @Component({
   selector: 'app-service-detail',
-  imports: [RouterLink, NgIcon],
+  imports: [RouterLink, NgIcon, NgTemplateOutlet],
   providers: [provideIcons({ heroArrowRight, heroChevronDown })],
   templateUrl: './service-detail.component.html',
   styleUrl: './service-detail.component.scss',

@@ -110,6 +110,19 @@ export const routes: Routes = [
         ),
     },
   },
+  {
+    path: 'services/digital-marketing',
+    loadComponent: () =>
+      import('./pages/service-detail/service-detail.component').then(
+        (m) => m.ServiceDetailComponent,
+      ),
+    resolve: {
+      serviceData: () =>
+        import('./pages/service-detail/digital-marketing.data').then(
+          (m) => m.digitalMarketingPageData,
+        ),
+    },
+  },
   ...Object.entries(serviceRouteData)
     .filter(
       ([path]) =>
@@ -118,7 +131,8 @@ export const routes: Routes = [
         path !== 'cloud-solutions' &&
         path !== 'web-mobile-development' &&
         path !== 'custom-software-development' &&
-        path !== 'ai-machine-learning',
+        path !== 'ai-machine-learning' &&
+        path !== 'digital-marketing',
     )
     .map(([path, data]) => ({
       path: `services/${path}`,

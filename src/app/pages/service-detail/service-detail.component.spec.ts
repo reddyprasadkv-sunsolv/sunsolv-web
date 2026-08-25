@@ -68,6 +68,15 @@ describe('ServiceDetailComponent', () => {
     return { fixture, compiled: fixture.nativeElement as HTMLElement };
   }
 
+  async function renderDigitalMarketing() {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    await TestBed.inject(Router).navigateByUrl('/services/digital-marketing');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    return { fixture, compiled: fixture.nativeElement as HTMLElement };
+  }
+
   it('renders the approved IT Consulting page without placeholder content', async () => {
     const { compiled } = await renderItConsulting();
 
@@ -560,6 +569,7 @@ describe('ServiceDetailComponent', () => {
       'services/web-mobile-development',
       'services/custom-software-development',
       'services/ai-machine-learning',
+      'services/digital-marketing',
     ];
 
     for (const path of publishedServicePaths) {
@@ -586,6 +596,7 @@ describe('ServiceDetailComponent', () => {
     renderedPages.push(await renderWebMobileDevelopment());
     renderedPages.push(await renderCustomSoftwareDevelopment());
     renderedPages.push(await renderAiMachineLearning());
+    renderedPages.push(await renderDigitalMarketing());
 
     for (const { compiled } of renderedPages) {
       const visibleIndustries = [...compiled.querySelectorAll('.industry-context li')].map((item) =>
@@ -597,7 +608,7 @@ describe('ServiceDetailComponent', () => {
     }
   });
 
-  it('keeps the remaining unfinished individual service routes on their existing definitions', () => {
+  it('publishes every service route through the approved reusable detail framework', () => {
     const remainingServiceSlugs = Object.keys(serviceRouteData).filter(
       (slug) =>
         slug !== 'it-consulting' &&
@@ -605,13 +616,14 @@ describe('ServiceDetailComponent', () => {
         slug !== 'cloud-solutions' &&
         slug !== 'web-mobile-development' &&
         slug !== 'custom-software-development' &&
-        slug !== 'ai-machine-learning',
+        slug !== 'ai-machine-learning' &&
+        slug !== 'digital-marketing',
     );
     const routedServicePaths = routes
       .map((route) => route.path)
       .filter((path): path is string => path?.startsWith('services/') === true);
 
-    expect(remainingServiceSlugs).toHaveLength(1);
+    expect(remainingServiceSlugs).toHaveLength(0);
     for (const slug of remainingServiceSlugs) {
       expect(routedServicePaths).toContain(`services/${slug}`);
     }
