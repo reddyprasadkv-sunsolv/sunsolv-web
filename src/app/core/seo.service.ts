@@ -22,7 +22,7 @@ export class SeoService {
       )
       .subscribe(() => {
         const routeData = this.deepest(this.router.routerState.snapshot.root).data;
-        this.apply((routeData['serviceData'] ?? routeData) as PageData);
+        this.apply((routeData['serviceData'] ?? routeData['pageData'] ?? routeData) as PageData);
       });
   }
 
@@ -96,6 +96,60 @@ export class SeoService {
         '@context': 'https://schema.org',
         '@graph': [
           service,
+          ...(data.structuredBreadcrumbs?.length
+            ? [
+                {
+                  '@type': 'BreadcrumbList',
+                  itemListElement: data.structuredBreadcrumbs.map((breadcrumb, index) => ({
+                    '@type': 'ListItem',
+                    position: index + 1,
+                    name: breadcrumb.name,
+                    item: breadcrumb.path
+                      ? `${canonicalOrigin}/${breadcrumb.path}`
+                      : `${canonicalOrigin}/`,
+                  })),
+                },
+              ]
+            : []),
+          ...(data.structuredFaqs?.length
+            ? [
+                {
+                  '@type': 'FAQPage',
+                  mainEntity: data.structuredFaqs.map((faq) => ({
+                    '@type': 'Question',
+                    name: faq.question,
+                    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+                  })),
+                },
+              ]
+            : []),
+        ],
+      };
+    }
+    if (
+      data.schemaType === 'CollectionPage' &&
+      (data.structuredItems?.length ||
+        data.structuredBreadcrumbs?.length ||
+        data.structuredFaqs?.length)
+    ) {
+      return {
+        '@context': 'https://schema.org',
+        '@graph': [
+          { ...base, description: data.seo.description },
+          ...(data.structuredItems?.length
+            ? [
+                {
+                  '@type': 'ItemList',
+                  name: 'Industries served by SunSolv Technologies',
+                  numberOfItems: data.structuredItems.length,
+                  itemListElement: data.structuredItems.map((item, index) => ({
+                    '@type': 'ListItem',
+                    position: index + 1,
+                    name: item.name,
+                  })),
+                },
+              ]
+            : []),
           ...(data.structuredBreadcrumbs?.length
             ? [
                 {

@@ -18,6 +18,7 @@ export interface PageData {
   structuredServiceDescription?: string;
   structuredBreadcrumbs?: readonly StructuredBreadcrumb[];
   structuredFaqs?: readonly StructuredFaq[];
+  structuredItems?: readonly StructuredItem[];
 }
 
 export interface StructuredBreadcrumb {
@@ -28,6 +29,10 @@ export interface StructuredBreadcrumb {
 export interface StructuredFaq {
   question: string;
   answer: string;
+}
+
+export interface StructuredItem {
+  name: string;
 }
 
 export interface ServiceDefinition {
@@ -89,14 +94,14 @@ export const services: readonly ServiceDefinition[] = [
   },
 ] as const;
 
-export const industries: readonly IndustryDefinition[] = [
+export const industries = [
   { title: 'Healthcare', icon: 'heroHeart' },
   { title: 'Education', icon: 'heroAcademicCap' },
   { title: 'Retail & E-Commerce', icon: 'heroShoppingCart' },
   { title: 'Real Estate', icon: 'heroBuildingOffice2' },
   { title: 'SaaS', icon: 'heroServerStack' },
   { title: 'Logistics & Supply Chain', icon: 'heroTruck' },
-] as const;
+] as const satisfies readonly IndustryDefinition[];
 
 export const industryNames: readonly string[] = industries.map(({ title }) => title);
 
@@ -153,18 +158,12 @@ export const pageRouteData = {
   industries: page(
     'industries',
     'Industries',
-    'Technology solutions by industry.',
-    'Technology Solutions by Industry | SunSolv',
-    [
-      'Industry overview',
-      'Industry cards',
-      'Common business challenges',
-      'Relevant SunSolv capabilities',
-      'Delivery approach',
-      'Case-study links',
-    ],
-    '',
+    'Technology shaped around how your industry works.',
+    'Industry Technology Solutions | SunSolv Technologies',
+    [],
+    'Explore SunSolv technology solutions for healthcare, education, retail and e-commerce, real estate, SaaS, and logistics and supply chain.',
     'CollectionPage',
+    '/images/industries/sunsolv-industries-connected-economy.webp',
   ),
   caseStudies: page(
     'case-studies',

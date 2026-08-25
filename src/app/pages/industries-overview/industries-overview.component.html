@@ -1,0 +1,243 @@
+<section class="industries-hero" aria-labelledby="industries-title">
+  <div class="shell industries-hero-inner">
+    <div class="industries-hero-copy">
+      <nav class="breadcrumbs industries-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a routerLink="/">Home</a></li>
+          <li aria-current="page">Industries</li>
+        </ol>
+      </nav>
+      <p class="eyebrow">Industries</p>
+      <h1 id="industries-title">Technology shaped around how your industry works.</h1>
+      <p class="hero-lede">
+        SunSolv helps organizations modernize operations, improve customer experiences and build
+        scalable digital capabilities with an understanding of their users, workflows and industry
+        realities.
+      </p>
+      <div class="hero-actions">
+        <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }">
+          Start a Project <ng-icon name="heroArrowRight" aria-hidden="true" />
+        </a>
+        <a class="button button-secondary" href="#industries-we-serve">Explore Industries</a>
+      </div>
+    </div>
+    <picture class="industries-hero-image">
+      <source
+        media="(max-width: 820px)"
+        type="image/avif"
+        srcset="/images/industries/sunsolv-industries-connected-economy-mobile.avif 1000w"
+        sizes="100vw"
+        width="1000"
+        height="750"
+      />
+      <source
+        media="(max-width: 820px)"
+        type="image/webp"
+        srcset="/images/industries/sunsolv-industries-connected-economy-mobile.webp 1000w"
+        sizes="100vw"
+        width="1000"
+        height="750"
+      />
+      <source
+        type="image/avif"
+        srcset="/images/industries/sunsolv-industries-connected-economy.avif 1600w"
+        sizes="100vw"
+        width="1600"
+        height="900"
+      />
+      <img
+        src="/images/industries/sunsolv-industries-connected-economy.webp"
+        srcset="/images/industries/sunsolv-industries-connected-economy.webp 1600w"
+        sizes="100vw"
+        width="1600"
+        height="900"
+        alt="Modern city districts connected by transport and digital infrastructure at dusk."
+        fetchpriority="high"
+      />
+    </picture>
+  </div>
+</section>
+
+<section class="section introduction" aria-labelledby="industry-context-title">
+  <div class="shell two-column-layout">
+    <header>
+      <p class="eyebrow">Industry context</p>
+      <h2 id="industry-context-title">
+        Industry understanding turns technology into practical progress.
+      </h2>
+    </header>
+    <div class="editorial-copy">
+      <p>
+        Technology cannot be separated from the environment in which it operates. Every industry has
+        its own users, workflows, service expectations, operational pressures and approach to risk.
+      </p>
+      <p>
+        SunSolv begins by understanding that context. We then combine strategy, engineering, cloud,
+        data, automation and digital experience capabilities around the outcomes that matter to the
+        organization.
+      </p>
+      <p>
+        Our initial industry focus reflects areas where connected systems, thoughtful digital
+        experiences and operational improvement can create meaningful value.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section
+  class="section industries-served"
+  id="industries-we-serve"
+  tabindex="-1"
+  aria-labelledby="industries-served-title"
+>
+  <div class="shell">
+    <header class="section-heading">
+      <p class="eyebrow">Industries we serve</p>
+      <h2 id="industries-served-title">
+        Focused solutions for six evolving business environments.
+      </h2>
+    </header>
+    <div class="industry-card-grid">
+      @for (industry of industryCards; track industry.title; let index = $index) {
+        <article>
+          <span class="item-number">0{{ index + 1 }}</span>
+          <p class="industry-name">{{ industry.title }}</p>
+          <h3>{{ industry.subheading }}</h3>
+          <p>{{ industry.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section common-priorities" aria-labelledby="common-priorities-title">
+  <div class="shell">
+    <header class="section-heading">
+      <p class="eyebrow">Common priorities</p>
+      <h2 id="common-priorities-title">Different industries. Connected technology challenges.</h2>
+    </header>
+    <div class="four-card-grid">
+      @for (challenge of challenges; track challenge.title; let index = $index) {
+        <article>
+          <span class="item-number">0{{ index + 1 }}</span>
+          <h3>{{ challenge.title }}</h3>
+          <p>{{ challenge.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section approach" aria-labelledby="approach-title">
+  <div class="shell">
+    <header class="section-heading split-heading">
+      <p class="eyebrow">Our approach</p>
+      <h2 id="approach-title">Start with the operating reality—not a predetermined solution.</h2>
+    </header>
+    <ol class="approach-grid">
+      @for (item of adaptations; track item.title; let index = $index) {
+        <li>
+          <span class="item-number">0{{ index + 1 }}</span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<section class="section capabilities" aria-labelledby="capabilities-title">
+  <div class="shell capability-layout">
+    <div>
+      <p class="eyebrow">Connected capabilities</p>
+      <h2 id="capabilities-title">One technology partner across strategy, delivery and growth.</h2>
+    </div>
+    <div>
+      <p>
+        Industry requirements often cross traditional service boundaries. A digital platform may
+        require consulting, cloud infrastructure, custom software, data integration, automation,
+        customer-experience design and ongoing marketing support.
+      </p>
+      <p>
+        SunSolv brings these capabilities together through one accountable delivery approach while
+        keeping the engagement focused on the organization’s real priorities.
+      </p>
+      <a class="button" routerLink="/services">
+        Explore Our Services <ng-icon name="heroArrowRight" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section delivery" aria-labelledby="delivery-title">
+  <div class="shell">
+    <header class="section-heading">
+      <p class="eyebrow">How we work</p>
+      <h2 id="delivery-title">A clear path from industry context to continuous value.</h2>
+    </header>
+    <ol class="approach-grid">
+      @for (step of delivery; track step.title; let index = $index) {
+        <li>
+          <span class="item-number">0{{ index + 1 }}</span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<section class="section faq-section" aria-labelledby="faq-title">
+  <div class="shell two-column-layout">
+    <header>
+      <p class="eyebrow">Frequently asked questions</p>
+      <h2 id="faq-title">Questions about our industry approach.</h2>
+    </header>
+    <div class="faq-list">
+      @for (faq of faqs; track faq.question; let index = $index) {
+        <article>
+          <h3>
+            <button
+              type="button"
+              [attr.aria-expanded]="openFaqIndex() === index"
+              [attr.aria-controls]="'industry-faq-answer-' + index"
+              (click)="toggleFaq(index)"
+              (keydown.enter)="toggleFaqFromKeyboard(index, $event)"
+              (keydown.space)="toggleFaqFromKeyboard(index, $event)"
+            >
+              <span>{{ faq.question }}</span>
+              <ng-icon name="heroChevronDown" aria-hidden="true" />
+            </button>
+          </h3>
+          <div
+            class="faq-answer"
+            [id]="'industry-faq-answer-' + index"
+            [hidden]="openFaqIndex() !== index"
+          >
+            <p>{{ faq.answer }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="final-cta-surface section" aria-labelledby="industries-cta-title">
+  <div class="shell two-column-layout final-cta-layout">
+    <div>
+      <p class="eyebrow">Start with your business</p>
+      <h2 id="industries-cta-title">
+        Ready to explore what technology could improve in your industry?
+      </h2>
+    </div>
+    <div>
+      <p>
+        Tell us about your organization, current challenges and the outcomes you want to create. We
+        will help you identify a practical technology direction and the right next step.
+      </p>
+      <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }">
+        Start a Project <ng-icon name="heroArrowRight" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+</section>

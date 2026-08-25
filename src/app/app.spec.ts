@@ -64,7 +64,7 @@ describe('App', () => {
     const compiled = fixture.nativeElement as HTMLElement;
 
     expect(
-      [...compiled.querySelectorAll('.industry-overview h2')].map((item) =>
+      [...compiled.querySelectorAll('.industry-card-grid .industry-name')].map((item) =>
         item.textContent?.trim(),
       ),
     ).toEqual([

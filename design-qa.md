@@ -73,6 +73,79 @@ final result: passed
 
 ---
 
+# SunSolv Industries Overview — design QA
+
+## Evidence
+
+- Source visual truth: `/Users/reddyprasadkv/Downloads/Industries.png` (1778 × 885 pixels, user-supplied and intentionally not committed).
+- Implementation screenshot: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/industries-review/01-hero-1920.png`.
+- Combined source/implementation comparison: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/industries-review/13-source-and-rendered-hero-comparison.png`.
+- Focused crop comparison: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/industries-review/12-source-and-implemented-crop-comparison.png`.
+- Primary comparison viewport: 1920 × 1080 CSS pixels at device pixel ratio 1. Source pixels: 1778 × 885. Implementation screenshot: 1920 × 1080.
+- State: public Industries Overview route, production SSR build, default desktop navigation and FAQ state.
+
+The source image establishes the connected-economy concept: a darker left transition and a detailed centre-right city containing institutional, commercial, transport and logistics infrastructure. The rendered hero preserves that hierarchy while applying SunSolv's existing navy panel, typography, spacing and CTA system.
+
+## Findings
+
+- No actionable P0, P1 or P2 visual differences remain.
+- Image composition: the desktop 16:9 crop retains the dark-left transition, city districts, transport routes and logistics hub. The dedicated 4:3 mobile crop keeps multiple connected districts and avoids reducing the concept to one building or warehouse.
+- Typography: the existing Manrope/Inter system, eyebrow style, headline scale and CTA hierarchy remain consistent with approved pages. Long headings wrap without collisions.
+- Layout and spacing: the hero, introduction, six-card industry grid, priorities, approach, capabilities, delivery, FAQ and final CTA follow the existing page rhythm. Six cards balance at desktop sizes and stack cleanly on mobile.
+- Color: restrained warm-neutral, ice-blue, white and navy surfaces remain within the approved SunSolv language. The final light CTA and unchanged navy footer remain visually distinct.
+- Copy: the approved H1, supporting copy, exact six-industry list and CTA labels are preserved. Cards are informative articles without false link affordance.
+- Assets: AVIF is preferred with WebP fallback, explicit intrinsic dimensions and deliberate desktop/mobile art direction. No image distortion, empty strip or visible layout shift was found.
+- Accessibility: one H1 is present; FAQ controls are native buttons with Enter/Space activation, visible focus, accurate `aria-expanded` and linked answer regions. Focus order is logical and reduced-motion preferences are respected.
+- Responsiveness: 320, 375, 430, 768, 1024, 1440 and 1920 pixel checks found no horizontal overflow, header overlap or obstructed CTA.
+
+## Comparison history
+
+### Initial rendered pass
+
+- The source/implementation comparison retained the approved connected-city narrative, dark transition, major districts, routes and logistics detail.
+- Desktop and dedicated mobile crops fit their measured hero slots on the first rendered pass; no P0/P1/P2 visual correction was required.
+
+### Final pass
+
+- Desktop captures confirm the copy remains in the protected navy field while important city detail stays visible at centre and right.
+- Tablet and mobile captures confirm natural image proportions, multiple visible districts, clean CTA stacking and no horizontal overflow.
+- Focused captures confirm balanced six-industry cards, readable shared challenges and delivery sections, visible keyboard focus, and clean CTA/footer separation.
+- Residual note: screenshots cannot independently prove screen-reader output or exact contrast ratios; semantic, keyboard, responsive and automated checks cover the implementation behavior.
+- No remaining P0/P1/P2 findings.
+
+## Primary interactions tested
+
+- Desktop Services hover navigation exposes all seven approved service links.
+- Mobile navigation opens and closes correctly.
+- Hero fragment navigation reaches `#industries-we-serve`.
+- Hero and final project CTAs preserve `/contact-us?enquiry=project`, and the contact form preselects the project enquiry.
+- FAQ buttons toggle linked answer regions and `aria-expanded` correctly with Enter and Space.
+- SSR output includes the approved H1 and `CollectionPage`, six-item `ItemList`, `BreadcrumbList` and six-question `FAQPage` data; hydration completes without browser-console errors or warnings.
+
+## Automated and route checks
+
+- Formatting: pass.
+- TypeScript application and SSR checks: pass.
+- Unit tests: 74/74 pass across 10 files.
+- Browser production build: pass.
+- SSR and Express server builds: pass.
+- Prerender: 17/17 routes pass.
+- Direct routes: 17/17 return HTTP 200.
+- Legacy redirects: expected HTTP 301 responses pass.
+- Unknown route: real HTTP 404 pass.
+- Production dependency audit: zero vulnerabilities.
+- Initial browser bundle versus approved base: +1.18 kB raw / +0.15 kB estimated transfer; total 475.59 kB raw / 132.17 kB estimated transfer and below the 500 kB warning threshold.
+
+## Scope preservation
+
+- Homepage, About Us, Services Overview, all seven approved service pages, navigation, footer, contact backend and enquiry behavior remain unchanged.
+- No individual industry-detail routes, dependency changes, build-budget changes, server changes, credentials or secrets were introduced.
+- The source image and QA screenshots remain outside Git.
+
+final result: passed
+
+---
+
 # SunSolv AI & Machine Learning service page — design QA
 
 ## Evidence

@@ -23,8 +23,21 @@ export const routes: Routes = [
   },
   { path: 'partnership', pathMatch: 'full', redirectTo: 'partnerships' },
   { path: 'terms-and-condition', pathMatch: 'full', redirectTo: 'terms-and-conditions' },
+  {
+    path: 'industries',
+    loadComponent: () =>
+      import('./pages/industries-overview/industries-overview.component').then(
+        (m) => m.IndustriesOverviewComponent,
+      ),
+    data: pageRouteData.industries,
+    resolve: {
+      pageData: () =>
+        import('./pages/industries-overview/industries-overview.data').then(
+          (m) => m.industriesOverviewPageData,
+        ),
+    },
+  },
   ...[
-    ['industries', 'industries'],
     ['case-studies', 'caseStudies'],
     ['partnerships', 'partnerships'],
     ['careers', 'careers'],
