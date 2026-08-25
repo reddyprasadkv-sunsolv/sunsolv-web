@@ -50,6 +50,15 @@ describe('ServiceDetailComponent', () => {
     return { fixture, compiled: fixture.nativeElement as HTMLElement };
   }
 
+  async function renderCustomSoftwareDevelopment() {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    await TestBed.inject(Router).navigateByUrl('/services/custom-software-development');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    return { fixture, compiled: fixture.nativeElement as HTMLElement };
+  }
+
   it('renders the approved IT Consulting page without placeholder content', async () => {
     const { compiled } = await renderItConsulting();
 
@@ -540,6 +549,7 @@ describe('ServiceDetailComponent', () => {
       'services/digital-transformation',
       'services/cloud-solutions',
       'services/web-mobile-development',
+      'services/custom-software-development',
     ];
 
     for (const path of publishedServicePaths) {
@@ -564,6 +574,7 @@ describe('ServiceDetailComponent', () => {
     renderedPages.push(await renderDigitalTransformation());
     renderedPages.push(await renderCloudSolutions());
     renderedPages.push(await renderWebMobileDevelopment());
+    renderedPages.push(await renderCustomSoftwareDevelopment());
 
     for (const { compiled } of renderedPages) {
       const visibleIndustries = [...compiled.querySelectorAll('.industry-context li')].map((item) =>
@@ -575,19 +586,20 @@ describe('ServiceDetailComponent', () => {
     }
   });
 
-  it('keeps the other three individual service routes on their existing definitions', () => {
+  it('keeps the remaining unfinished individual service routes on their existing definitions', () => {
     const remainingServiceSlugs = Object.keys(serviceRouteData).filter(
       (slug) =>
         slug !== 'it-consulting' &&
         slug !== 'digital-transformation' &&
         slug !== 'cloud-solutions' &&
-        slug !== 'web-mobile-development',
+        slug !== 'web-mobile-development' &&
+        slug !== 'custom-software-development',
     );
     const routedServicePaths = routes
       .map((route) => route.path)
       .filter((path): path is string => path?.startsWith('services/') === true);
 
-    expect(remainingServiceSlugs).toHaveLength(3);
+    expect(remainingServiceSlugs).toHaveLength(2);
     for (const slug of remainingServiceSlugs) {
       expect(routedServicePaths).toContain(`services/${slug}`);
     }

@@ -1,3 +1,103 @@
+# SunSolv Custom Software Development service page — design QA
+
+## Evidence
+
+- Source visual truth: `/Users/reddyprasadkv/Downloads/customsoftwaredevelopment.png` (user-supplied human-free workstation image, intentionally not committed).
+- Source dimensions: 1717 × 916 pixels.
+- Optimized desktop assets: 1400 × 900 pixels, using a right-weighted crop that retains the dark transition, primary monitor, laptop and tablet.
+- Optimized mobile assets: 1000 × 750 pixels, using a deliberate right-weighted 4:3 crop from the supplied source. Only one source PNG was attached, so this crop was created from that approved source rather than from the separate 4:3 source described in the brief; it is not a blind centre crop.
+- Approved desktop hero capture: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/custom-software-development-review/13-hero-1920-refreshed.png`. Earlier breakpoint evidence remains in `01-hero-1920-normalized.png`, `02-hero-1440-normalized.png` and `03-hero-1024-normalized.png` in the same external QA directory.
+- Mobile hero and full-page captures: `04-hero-430-normalized.png` and `05-full-page-430-normalized.png` in the same external QA directory.
+- Focused section captures: `06-capabilities.png`, `07-business-outcomes.png`, `08-delivery-approach.png`, `09-industries.png`, `10-faq.png`, `10-faq-keyboard-expanded.png` and `11-final-cta-footer.png` in the same external QA directory.
+- Desktop/mobile crop comparison: `12-desktop-mobile-source-comparison.png`.
+- Combined source/implementation hero comparison: `13-hero-1920-comparison.png`.
+- Primary desktop viewport: 1920 × 1080 CSS pixels at device pixel ratio 1. The direct Playwright capture is 1920 × 1080 pixels; the header occupies the first 88 pixels and the corrected hero extends cleanly to 810 pixels.
+- Primary mobile viewport: 430 × 932 CSS pixels at device pixel ratio 1; scrollbar allocation leaves a 415-pixel content width. The hero capture is 415 × 1010 pixels and the full page is 415 × 14,264 pixels.
+- Capture normalization: the final 1920-pixel approval capture was recorded directly by the existing Playwright CLI at device pixel ratio 1 and required no density normalization. Earlier in-app review images were normalized from their 0.5-density capture surface; DOM measurements, breakpoint decisions and overflow checks were collected independently at device pixel ratio 1.
+- State: public Custom Software Development route, production SSR build, default navigation state and collapsed FAQs unless the interaction test is named.
+
+The supplied visual is the hero artwork rather than a complete page mockup. The combined comparison therefore evaluates subject accuracy, crop, dark-left transition and image integration. Full-page and focused captures evaluate the established SunSolv service-detail layout, approved content, responsive behavior and interactions.
+
+## Findings
+
+- No actionable P0, P1 or P2 differences remain.
+- Fonts and typography: the established Manrope Variable heading and Inter Variable body system is unchanged. The approved H1, eyebrow treatment, body measure, CTA hierarchy and section headings remain clear without truncation at all required widths.
+- Spacing and layout rhythm: the page reuses the approved service-detail shell, editorial columns, bordered capability matrix, warm-neutral outcome and industry surfaces, light final CTA and navy footer. Card heights, section spacing and long-heading wraps remain balanced.
+- Colors and visual tokens: the existing navy, white, enterprise blue, cyan, ice-blue and warm-neutral tokens are preserved. The dark source field provides clear white-copy contrast on desktop, while mobile stacks copy above the dedicated crop.
+- Image quality and asset fidelity: the supplied workstation, monitor, laptop, tablet, architecture diagrams and dark transition are preserved without added text, logos, people, hands, silhouettes, holograms or floating interfaces. AVIF is preferred with WebP fallbacks; explicit intrinsic dimensions, `srcset`, `sizes`, `object-fit: cover` and `fetchpriority="high"` are present, with no lazy loading or layout shift.
+- Copy and content: all approved hero, introduction, challenge, capability, solution-example, outcome, delivery, industry, FAQ and final-CTA content is present. No placeholder, internal-review phrase, invented claim, unsupported guarantee, statistic or location claim is visible.
+- Icons: only the existing shared Heroicons are used for navigation, CTA and FAQ disclosure. No handcrafted SVG, CSS art, emoji or temporary visual substitute was introduced.
+- Accessibility: one H1 and a logical H1/H2/H3 hierarchy are present. The hero uses the exact approved alt text. FAQ buttons expose linked answer regions and synchronized `aria-expanded`; explicit Enter and Space handlers make keyboard activation deterministic and preserve focus. Global visible-focus and reduced-motion rules remain active.
+- Responsiveness: 320, 375, 430, 768, 1024, 1440 and 1920 pixel checks report no horizontal overflow. CTAs remain visible and unobstructed; the mobile AVIF is selected below 820 pixels; the desktop AVIF is selected at 1024 pixels and above. The monitor, laptop and tablet remain recognizable without distortion.
+- Content integrity: only `/services/custom-software-development` was published through the reusable, route-specific lazy resolver. Existing service data, Homepage, About Us, Services Overview, navigation, footer, contact backend, dependencies and global styling remain unchanged.
+
+## Comparison history
+
+### First rendered pass
+
+- Full-view and focused comparisons found no visual P0/P1/P2 mismatch. The dark source field protects the copy, all key devices remain visible, mobile stacks cleanly, card matrices align and the final CTA remains visually distinct from the footer.
+- [P2] Browser keyboard verification showed that the FAQ native buttons did not activate reliably from Enter or Space in the in-app test surface even though their ARIA state and click behavior were correct.
+- Fix: added explicit Enter and Space handlers to the shared FAQ button, prevented the default action to avoid double toggling and added regression coverage.
+- Post-fix evidence: live browser input changes `aria-expanded` from `false` to `true` with Enter and back to `false` with Space while focus stays on the disclosure control.
+
+### Final pass
+
+- The combined source/implementation hero comparison confirms the approved human-free workstation, dark-left transition, monitor, laptop and tablet remain faithful to the source and integrate cleanly with the existing hero.
+- The desktop/mobile crop comparison confirms that the 4:3 crop intentionally favors the device cluster and does not distort or badly crop any important device.
+- Focused captures confirm balanced capability and outcome cards, a clear four-step delivery sequence, six linked industries, six FAQ controls, the approved light CTA and unchanged navy footer.
+- The 1920-pixel approval pass found that the original wide-desktop capture placed the eyebrow beneath the sticky header. The hero now grows from 640 to 720 pixels across wide desktop widths, restoring the `Custom Software Development` eyebrow below the header without changing the approved mobile stack. The refreshed capture confirms the header starts at the viewport edge with no empty navy strip, the eyebrow is visible, the copy and CTAs do not overlap the artwork and no horizontal overflow is visible.
+- No remaining P0/P1/P2 findings.
+
+## Primary interactions tested
+
+- Desktop Services opens on hover and closes after the Custom Software Development link is selected.
+- Mobile navigation and the tap-driven Services disclosure open correctly, expose synchronized state and reset after the Custom Software Development link is selected.
+- Enter and Space toggle the first FAQ while retaining keyboard focus.
+- The hero project CTA reaches `/contact-us?enquiry=project`; the Contact form preselects the Project enquiry.
+- Angular 22.1.2 hydration completes with the approved H1 and structured data present and no browser-console warnings or errors.
+
+## SEO and structured data
+
+- Exact title, meta description, self-referencing canonical, Open Graph title/description/image, Twitter metadata and `index, follow` robots metadata pass.
+- Server-rendered JSON-LD contains one graph with `Service`, `BreadcrumbList` and `FAQPage`.
+- The Service name is Custom Software Development, the provider is SunSolv Technologies and the canonical service URL is exact.
+- Breadcrumbs are Home, Services and Custom Software Development.
+- All six visible FAQ questions and answers match the server-rendered FAQPage entities exactly.
+
+## Assets and performance
+
+- Desktop AVIF: 35,342 bytes (1400 × 900).
+- Desktop WebP: 64,068 bytes (1400 × 900).
+- Mobile AVIF: 27,924 bytes (1000 × 750).
+- Mobile WebP: 50,782 bytes (1000 × 750).
+- Base initial bundle at `9d69ad214ebb40954221ceb01fa5e9fb2027da00`: approximately 473.50 kB raw and 131.82 kB estimated transfer.
+- Current initial bundle: 473.83 kB raw and 131.85 kB estimated transfer, an increase of approximately 0.33 kB raw and 0.03 kB transfer; it remains below the 500 kB warning threshold.
+- Custom Software Development data remains a separate lazy chunk: 10.53 kB raw and 2.77 kB estimated transfer. No budget or builder setting changed, and the initially observed shared-style warning was removed without raising a budget.
+
+## Automated and route checks
+
+- `npm run format:check`: pass.
+- `npm run typecheck`: pass for application and SSR configurations.
+- `npm test -- --watch=false`: 52/52 tests pass across seven test files.
+- `npm run build`: browser production, SSR, 17-route prerender and Express server builds pass.
+- All 17 canonical direct routes return HTTP 200.
+- `/partnership` and `/terms-and-condition` return the expected HTTP 301 redirects.
+- An unknown route returns a real HTTP 404.
+- `npm audit --omit=dev --audit-level=high`: zero vulnerabilities.
+- Existing non-blocking warnings remain limited to the intentionally deferred Angular Webpack/application-builder migration and its related unit-test compatibility notice.
+
+## Checkpoint state
+
+- Branch: `feature/custom-software-development` at the verified base `9d69ad214ebb40954221ceb01fa5e9fb2027da00`.
+- The approved implementation and QA evidence are ready for the dedicated Custom Software Development checkpoint.
+- The supplied oversized PNG and all screenshots remain outside Git.
+- No dependency, secret, environment, build-output or cache file was added.
+- No merge, pull request, deployment or public sharing is part of this checkpoint.
+
+final result: passed
+
+---
+
 # SunSolv Industries and Services navigation refinement — design QA
 
 ## Evidence

@@ -84,13 +84,27 @@ export const routes: Routes = [
         ),
     },
   },
+  {
+    path: 'services/custom-software-development',
+    loadComponent: () =>
+      import('./pages/service-detail/service-detail.component').then(
+        (m) => m.ServiceDetailComponent,
+      ),
+    resolve: {
+      serviceData: () =>
+        import('./pages/service-detail/custom-software-development.data').then(
+          (m) => m.customSoftwareDevelopmentPageData,
+        ),
+    },
+  },
   ...Object.entries(serviceRouteData)
     .filter(
       ([path]) =>
         path !== 'it-consulting' &&
         path !== 'digital-transformation' &&
         path !== 'cloud-solutions' &&
-        path !== 'web-mobile-development',
+        path !== 'web-mobile-development' &&
+        path !== 'custom-software-development',
     )
     .map(([path, data]) => ({
       path: `services/${path}`,

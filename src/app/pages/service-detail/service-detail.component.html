@@ -189,8 +189,10 @@
     <ul class="industry-list" aria-label="Industries">
       @for (industry of data.industryContext.industries; track industry; let index = $index) {
         <li>
-          <span class="item-number">0{{ index + 1 }}</span
-          >{{ industry }}
+          <a routerLink="/industries">
+            <span class="item-number">0{{ index + 1 }}</span>
+            {{ industry }}
+          </a>
         </li>
       }
     </ul>
@@ -212,6 +214,8 @@
               [attr.aria-expanded]="openFaqIndex() === index"
               [attr.aria-controls]="'faq-answer-' + index"
               (click)="toggleFaq(index)"
+              (keydown.enter)="toggleFaqFromKeyboard(index, $event)"
+              (keydown.space)="toggleFaqFromKeyboard(index, $event)"
             >
               <span>{{ faq.question }}</span>
               <ng-icon name="heroChevronDown" aria-hidden="true" />

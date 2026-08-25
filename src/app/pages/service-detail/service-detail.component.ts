@@ -19,4 +19,9 @@ export class ServiceDetailComponent {
   toggleFaq(index: number): void {
     this.openFaqIndex.update((openIndex) => (openIndex === index ? null : index));
   }
+
+  toggleFaqFromKeyboard(index: number, event: Event): void {
+    event.preventDefault();
+    this.toggleFaq(index);
+  }
 }

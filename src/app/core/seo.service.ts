@@ -86,6 +86,7 @@ export class SeoService {
     if (data.schemaType === 'Service') {
       const service = {
         ...base,
+        name: data.structuredServiceName ?? data.title,
         description: data.seo.description,
         provider: { '@type': 'Organization', name: 'SunSolv Technologies', url: canonicalOrigin },
       };
