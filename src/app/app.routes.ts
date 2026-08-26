@@ -24,6 +24,17 @@ export const routes: Routes = [
   { path: 'partnership', pathMatch: 'full', redirectTo: 'partnerships' },
   { path: 'terms-and-condition', pathMatch: 'full', redirectTo: 'terms-and-conditions' },
   {
+    path: 'industries/healthcare',
+    loadComponent: () =>
+      import('./pages/industry-detail/industry-detail.component').then(
+        (m) => m.IndustryDetailComponent,
+      ),
+    resolve: {
+      industryData: () =>
+        import('./pages/industry-detail/healthcare.data').then((m) => m.healthcarePageData),
+    },
+  },
+  {
     path: 'industries',
     loadComponent: () =>
       import('./pages/industries-overview/industries-overview.component').then(

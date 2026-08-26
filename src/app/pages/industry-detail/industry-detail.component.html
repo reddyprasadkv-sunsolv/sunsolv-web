@@ -1,0 +1,234 @@
+<section class="industry-detail-hero" aria-labelledby="industry-detail-title">
+  <picture class="industry-detail-hero-image">
+    <source
+      media="(max-width: 820px)"
+      type="image/avif"
+      [attr.srcset]="data.hero.image.mobileAvif + ' ' + data.hero.image.mobileWidth + 'w'"
+      [attr.sizes]="data.hero.image.mobileSizes"
+      [attr.width]="data.hero.image.mobileWidth"
+      [attr.height]="data.hero.image.mobileHeight"
+    />
+    <source
+      media="(max-width: 820px)"
+      type="image/webp"
+      [attr.srcset]="data.hero.image.mobileWebp + ' ' + data.hero.image.mobileWidth + 'w'"
+      [attr.sizes]="data.hero.image.mobileSizes"
+      [attr.width]="data.hero.image.mobileWidth"
+      [attr.height]="data.hero.image.mobileHeight"
+    />
+    <source
+      type="image/avif"
+      [attr.srcset]="data.hero.image.desktopAvif + ' ' + data.hero.image.desktopWidth + 'w'"
+      [attr.sizes]="data.hero.image.desktopSizes"
+      [attr.width]="data.hero.image.desktopWidth"
+      [attr.height]="data.hero.image.desktopHeight"
+    />
+    <img
+      [src]="data.hero.image.desktopWebp"
+      [attr.srcset]="data.hero.image.desktopWebp + ' ' + data.hero.image.desktopWidth + 'w'"
+      [attr.sizes]="data.hero.image.desktopSizes"
+      [attr.width]="data.hero.image.desktopWidth"
+      [attr.height]="data.hero.image.desktopHeight"
+      [alt]="data.hero.imageAlt"
+      fetchpriority="high"
+    />
+  </picture>
+  <div class="shell industry-detail-hero-inner">
+    <div class="industry-detail-hero-copy">
+      <nav class="breadcrumbs industry-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/industries">Industries</a></li>
+          <li aria-current="page">{{ data.breadcrumbLabel }}</li>
+        </ol>
+      </nav>
+      <p class="eyebrow">{{ data.eyebrow }}</p>
+      <h1 id="industry-detail-title">{{ data.title }}</h1>
+      <p class="hero-lede">{{ data.hero.supportingContent }}</p>
+      <div class="hero-actions">
+        <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }">
+          {{ data.hero.primaryCta }} <ng-icon name="heroArrowRight" aria-hidden="true" />
+        </a>
+        <a class="button button-secondary" routerLink="/services">
+          {{ data.hero.secondaryCta }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section introduction" aria-labelledby="healthcare-context-title">
+  <div class="shell editorial-layout">
+    <header>
+      <p class="eyebrow">{{ data.introduction.eyebrow }}</p>
+      <h2 id="healthcare-context-title">{{ data.introduction.heading }}</h2>
+    </header>
+    <div class="editorial-copy">
+      @for (paragraph of data.introduction.paragraphs; track paragraph) {
+        <p>{{ paragraph }}</p>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section challenges" aria-labelledby="healthcare-challenges-title">
+  <div class="shell">
+    <header class="section-heading">
+      <p class="eyebrow">{{ data.challenges.eyebrow }}</p>
+      <h2 id="healthcare-challenges-title">{{ data.challenges.heading }}</h2>
+    </header>
+    <div class="three-column-grid">
+      @for (item of data.challenges.items; track item.title; let index = $index) {
+        <article class="detail-card">
+          <span class="item-number">0{{ index + 1 }}</span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section capabilities" aria-labelledby="healthcare-capabilities-title">
+  <div class="shell">
+    <header class="section-heading split-heading">
+      <p class="eyebrow">{{ data.capabilities.eyebrow }}</p>
+      <h2 id="healthcare-capabilities-title">{{ data.capabilities.heading }}</h2>
+    </header>
+    <div class="capability-grid">
+      @for (item of data.capabilities.items; track item.title; let index = $index) {
+        <article class="detail-card">
+          <span class="item-number">0{{ index + 1 }}</span>
+          <div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section environments" aria-labelledby="healthcare-environments-title">
+  <div class="shell editorial-layout">
+    <header>
+      <p class="eyebrow">{{ data.environments.eyebrow }}</p>
+      <h2 id="healthcare-environments-title">{{ data.environments.heading }}</h2>
+    </header>
+    <div class="environment-list">
+      @for (item of data.environments.items; track item.title; let index = $index) {
+        <article>
+          <span class="item-number">0{{ index + 1 }}</span>
+          <div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section outcomes" aria-labelledby="healthcare-outcomes-title">
+  <div class="shell">
+    <header class="section-heading">
+      <p class="eyebrow">{{ data.outcomes.eyebrow }}</p>
+      <h2 id="healthcare-outcomes-title">{{ data.outcomes.heading }}</h2>
+    </header>
+    <div class="outcome-grid">
+      @for (item of data.outcomes.items; track item.title; let index = $index) {
+        <article class="detail-card">
+          <span class="item-number">0{{ index + 1 }}</span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section relevant-services" aria-labelledby="healthcare-services-title">
+  <div class="shell">
+    <header class="section-heading split-heading">
+      <p class="eyebrow">{{ data.relevantServices.eyebrow }}</p>
+      <h2 id="healthcare-services-title">{{ data.relevantServices.heading }}</h2>
+    </header>
+    <div class="service-link-grid">
+      @for (service of data.relevantServices.items; track service.path; let index = $index) {
+        <a [routerLink]="service.path">
+          <span class="item-number">0{{ index + 1 }}</span>
+          <strong>{{ service.title }}</strong>
+          <ng-icon name="heroArrowRight" aria-hidden="true" />
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section approach" aria-labelledby="healthcare-approach-title">
+  <div class="shell">
+    <header class="section-heading">
+      <p class="eyebrow">{{ data.approach.eyebrow }}</p>
+      <h2 id="healthcare-approach-title">{{ data.approach.heading }}</h2>
+    </header>
+    <ol class="approach-grid">
+      @for (item of data.approach.items; track item.title; let index = $index) {
+        <li class="detail-card">
+          <span class="item-number">0{{ index + 1 }}</span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<section class="section faq-section" aria-labelledby="healthcare-faq-title">
+  <div class="shell faq-layout">
+    <header>
+      <p class="eyebrow">{{ data.faqSection.eyebrow }}</p>
+      <h2 id="healthcare-faq-title">{{ data.faqSection.heading }}</h2>
+    </header>
+    <div class="faq-list">
+      @for (faq of data.faqSection.items; track faq.question; let index = $index) {
+        <article>
+          <h3>
+            <button
+              type="button"
+              [attr.aria-expanded]="openFaqIndex() === index"
+              [attr.aria-controls]="'healthcare-faq-answer-' + index"
+              (click)="toggleFaq(index)"
+              (keydown.enter)="toggleFaqFromKeyboard(index, $event)"
+              (keydown.space)="toggleFaqFromKeyboard(index, $event)"
+            >
+              <span>{{ faq.question }}</span>
+              <ng-icon name="heroChevronDown" aria-hidden="true" />
+            </button>
+          </h3>
+          <div
+            class="faq-answer"
+            [id]="'healthcare-faq-answer-' + index"
+            [hidden]="openFaqIndex() !== index"
+          >
+            <p>{{ faq.answer }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section final-cta-surface" aria-labelledby="healthcare-final-cta-title">
+  <div class="shell final-cta-layout">
+    <div>
+      <p class="eyebrow">{{ data.finalCta.eyebrow }}</p>
+      <h2 id="healthcare-final-cta-title">{{ data.finalCta.heading }}</h2>
+    </div>
+    <div>
+      <p>{{ data.finalCta.supportingContent }}</p>
+      <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }">
+        {{ data.finalCta.button }} <ng-icon name="heroArrowRight" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+</section>

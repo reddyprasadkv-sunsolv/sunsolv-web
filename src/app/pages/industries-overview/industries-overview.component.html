@@ -99,12 +99,28 @@
     </header>
     <div class="industry-card-grid">
       @for (industry of industryCards; track industry.title; let index = $index) {
-        <article>
-          <span class="item-number">0{{ index + 1 }}</span>
-          <p class="industry-name">{{ industry.title }}</p>
-          <h3>{{ industry.subheading }}</h3>
-          <p>{{ industry.description }}</p>
-        </article>
+        @if (industry.route) {
+          <a
+            class="industry-card industry-card--linked"
+            [routerLink]="industry.route"
+            [attr.aria-label]="'Explore ' + industry.title + ' technology solutions'"
+          >
+            <span class="item-number">0{{ index + 1 }}</span>
+            <p class="industry-name">{{ industry.title }}</p>
+            <h3>{{ industry.subheading }}</h3>
+            <p>{{ industry.description }}</p>
+            <span class="industry-card-action">
+              Explore Healthcare <ng-icon name="heroArrowRight" aria-hidden="true" />
+            </span>
+          </a>
+        } @else {
+          <article class="industry-card">
+            <span class="item-number">0{{ index + 1 }}</span>
+            <p class="industry-name">{{ industry.title }}</p>
+            <h3>{{ industry.subheading }}</h3>
+            <p>{{ industry.description }}</p>
+          </article>
+        }
       }
     </div>
   </div>

@@ -25,13 +25,17 @@ describe('IndustriesOverviewComponent', () => {
     return { fixture, compiled: fixture.nativeElement as HTMLElement };
   }
 
-  it('registers a dedicated lazy Industries Overview route without detail routes', () => {
+  it('registers the dedicated overview plus only the approved Healthcare detail route', () => {
     const route = routes.find((candidate) => candidate.path === 'industries');
 
     expect(route?.loadComponent).toBeTypeOf('function');
     expect(route?.data?.['title']).toBe('Technology shaped around how your industry works.');
     expect(route?.resolve?.['pageData']).toBeTypeOf('function');
-    expect(routes.some((candidate) => candidate.path?.startsWith('industries/'))).toBe(false);
+    expect(
+      routes
+        .filter((candidate) => candidate.path?.startsWith('industries/'))
+        .map(({ path }) => path),
+    ).toEqual(['industries/healthcare']);
   });
 
   it('renders the exact approved page structure without generic placeholder content', async () => {
@@ -41,7 +45,7 @@ describe('IndustriesOverviewComponent', () => {
     expect(compiled.querySelector('h1')?.textContent?.trim()).toBe(
       'Technology shaped around how your industry works.',
     );
-    expect(compiled.querySelectorAll('.industry-card-grid article')).toHaveLength(6);
+    expect(compiled.querySelectorAll('.industry-card-grid .industry-card')).toHaveLength(6);
     expect(compiled.querySelectorAll('.four-card-grid article')).toHaveLength(4);
     expect(compiled.querySelectorAll('.delivery .approach-grid li')).toHaveLength(4);
     expect(compiled.querySelectorAll('.faq-list article')).toHaveLength(6);
@@ -80,9 +84,9 @@ describe('IndustriesOverviewComponent', () => {
     expect(sources?.[0]?.getAttribute('height')).toBe('750');
   });
 
-  it('renders the centralized industry list in order without fake detail links', async () => {
+  it('renders the centralized industry list in order with only Healthcare linked', async () => {
     const { compiled } = await renderPage();
-    const cards = [...compiled.querySelectorAll<HTMLElement>('.industry-card-grid article')];
+    const cards = [...compiled.querySelectorAll<HTMLElement>('.industry-card-grid .industry-card')];
 
     expect(industries.map(({ title }) => title)).toEqual(industryNames);
     expect(cards.map((card) => card.querySelector('.industry-name')?.textContent?.trim())).toEqual([
@@ -93,7 +97,11 @@ describe('IndustriesOverviewComponent', () => {
       'SaaS',
       'Logistics & Supply Chain',
     ]);
-    expect(compiled.querySelectorAll('.industry-card-grid a')).toHaveLength(0);
+    expect(
+      [...compiled.querySelectorAll<HTMLAnchorElement>('.industry-card-grid a')].map((link) =>
+        link.getAttribute('href'),
+      ),
+    ).toEqual(['/industries/healthcare']);
     expect(compiled.textContent).not.toMatch(/>E-Commerce</);
   });
 
@@ -196,7 +204,7 @@ describe('IndustriesOverviewComponent', () => {
     expect(firstAnswer?.hidden).toBe(true);
   });
 
-  it('preserves every approved service route and all 17 canonical paths', () => {
+  it('preserves every approved service route and all 18 canonical paths', () => {
     const approvedServicePaths = [
       'services/it-consulting',
       'services/digital-transformation',

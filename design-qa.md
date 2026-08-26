@@ -73,6 +73,100 @@ final result: passed
 
 ---
 
+# SunSolv Healthcare industry page — design QA
+
+## Evidence and scope
+
+- Branch: `feature/healthcare-industry`.
+- Verified base: `1a85e986496f77bee84d0f4a83d7f38bec0c26da`.
+- Route and state: `/industries/healthcare`, production SSR build, signed-out/default navigation state, first FAQ expanded and keyboard-focused for the interaction capture.
+- Source visual truth: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/healthcare-industry-review/sunsolv-healthcare-connected-care-source.png`, 1672 × 941 pixels at 1× density.
+- Browser-rendered implementation: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/healthcare-industry-review/01-healthcare-hero-1920.png`, captured with a 1920 × 1080 CSS viewport at device pixel ratio 1. The captured content is 1857 × 1072 pixels after browser chrome and scrollbar allocation.
+- Full-view combined comparison: `11-healthcare-source-crop-comparison.png` in the same external QA directory. The source and rendered hero were normalized to adjacent 960 × 600 panels before comparison.
+- Focused comparison evidence: `04-healthcare-hero-430.png`, `05-healthcare-capabilities-desktop.png`, `06-healthcare-environments-desktop.png`, `07-healthcare-delivery-desktop.png`, `08-healthcare-keyboard-faq.png`, and `09-healthcare-final-cta-footer.png`.
+- Cross-page distinction evidence: `12-healthcare-visual-comparison.png` compares Industries Overview, Custom Software Development, and Healthcare at a common 640 × 360 panel size.
+
+The user explicitly replaced the original people-based photography direction with a no-human visual. The final source is therefore an empty, calm care-coordination environment with a tablet and a protected dark-left copy field. It contains no person, patient information, readable records, logos, or embedded text.
+
+## Files created and modified
+
+- Modified: `design-qa.md`, `routes.txt`, `src/app/app.routes.ts`, `src/app/core/seo.service.ts`, `src/app/core/site-data.ts`, `src/app/core/site-data.spec.ts`, and the four `src/app/pages/industries-overview/industries-overview.component.*` files.
+- Created: `src/app/pages/industry-detail/industry-detail-data.ts`, `healthcare.data.ts`, `industry-detail.component.ts`, `industry-detail.component.html`, `industry-detail.component.scss`, and `industry-detail.component.spec.ts`.
+- Created: the four responsive image files under `public/images/industries/healthcare/` listed below.
+- Not changed: dependencies, lockfile, Angular/build configuration, custom Express server, global styles, header, footer, contact backend, Homepage, About Us, Services Overview, and approved service-detail files.
+
+## Responsive image assets
+
+| Asset | Dimensions | Size |
+| --- | ---: | ---: |
+| `sunsolv-healthcare-connected-care.avif` | 1600 × 900 | 35,956 bytes |
+| `sunsolv-healthcare-connected-care.webp` | 1600 × 900 | 55,492 bytes |
+| `sunsolv-healthcare-connected-care-mobile.avif` | 1000 × 750 | 22,166 bytes |
+| `sunsolv-healthcare-connected-care-mobile.webp` | 1000 × 750 | 32,470 bytes |
+
+The desktop output preserves the full clinical environment and the naturally dark left field. The dedicated 4:3 mobile crop uses the source's right-hand consultation zone so the tablet and healthcare context remain recognizable below the mobile copy. The responsive `<picture>` prefers AVIF, retains WebP fallback, declares intrinsic dimensions and `sizes`, sets `fetchpriority="high"`, and does not lazy-load the LCP image.
+
+## Findings
+
+- No actionable P0, P1 or P2 differences remain.
+- Fonts and typography: the existing SunSolv display/body families, optical weights, eyebrow treatment, line height and hierarchy remain consistent. Long healthcare headings wrap naturally at every required width without truncation.
+- Spacing and layout rhythm: the desktop overlay, tablet stack, mobile stack, editorial sections, bordered grids, accordion and final CTA maintain clear grouping and even vertical rhythm. No header overlap, empty hero strip or horizontal overflow was observed.
+- Colors and tokens: warm clinical photography, deep charcoal-green hero treatment, restrained teal accents, white and ice-blue editorial surfaces, blue CTAs and the existing navy footer remain coherent with the established brand system.
+- Image quality and asset fidelity: the source and optimized outputs remain sharp and undistorted. The tablet, examination space, window and cabinetry remain natural; the source has no people, distorted anatomy, sensitive medical information, logos or readable patient data.
+- Copy and content: the approved Healthcare copy, one H1, six challenges, six capabilities, five environments, five potential outcomes, six completed-service links, four delivery steps, six FAQs and final CTA are present. No placeholder copy, fabricated performance claims, guaranteed clinical outcomes or automatic compliance claims were introduced.
+- Icons and controls: existing Heroicons remain aligned with the established header, CTA and accordion system. No handcrafted SVG, CSS-art, emoji or placeholder graphic was introduced.
+- Accessibility and behavior: the FAQ uses native buttons with linked answer regions, accurate `aria-expanded`, Enter activation and visible browser focus. The mobile navigation remains tap-driven; desktop Services hover exposes all seven approved service links. The global reduced-motion treatment remains in place.
+- Responsiveness: 320, 375, 430, 768, 1024, 1440 and 1920 pixel checks report no horizontal overflow. Both hero CTAs remain visible, the mobile AVIF source is selected through 768 pixels, and the desktop AVIF source is selected from 1024 pixels.
+- Visual distinction: Healthcare uses a warm, quiet clinical consultation space; Industries Overview uses an aerial connected-city scene; Custom Software Development uses a dark engineering workstation. The page is recognizably part of the shared SunSolv system without resembling an existing service hero.
+
+## Comparison history
+
+### First rendered pass
+
+- The combined source/implementation comparison preserved the intentionally empty healthcare setting, dark-left copy field, tablet focal point, warm daylight and calm operational tone.
+- The 1600 × 900 desktop source and dedicated 1000 × 750 mobile crop fit their measured slots without distortion, overlap or actionable P0/P1/P2 drift.
+- No corrective visual change was required after the rendered comparison.
+
+### Final pass
+
+- Desktop and mobile captures confirm readable copy, unobstructed CTAs, stable intrinsic image space, recognizable healthcare context and no horizontal overflow.
+- Focused captures confirm balanced capability and environment treatments, the four-step delivery approach, visible FAQ keyboard focus, the light final CTA and unchanged navy footer.
+- No remaining P0/P1/P2 findings.
+
+## SEO, schema and interaction verification
+
+- Title: `Healthcare Technology Solutions | SunSolv Technologies`.
+- Description: `Modernize healthcare experiences and operations with SunSolv solutions for digital platforms, connected workflows, cloud, integration, automation and analytics.`
+- Canonical: `https://www.sunsolv.in/industries/healthcare`.
+- SSR JSON-LD contains `WebPage`, `Service`, `BreadcrumbList` and `FAQPage`, references the existing Organization `@id`, and does not identify SunSolv as a `MedicalOrganization`.
+- Hero and final CTAs preserve `/contact-us?enquiry=project`; the contact form preselects `Project enquiry`.
+- Hydration completes under Angular 22.1.2 with the transfer-state marker present and zero browser-console warnings or errors.
+
+## Automated, route and performance checks
+
+- Formatting: pass.
+- TypeScript application and SSR checks: pass.
+- Unit tests: 82/82 pass across 11 files.
+- Browser production build: pass.
+- SSR and Express server builds: pass.
+- Prerender: 18/18 routes pass.
+- Direct routes: 18/18 return HTTP 200, including a direct Healthcare refresh.
+- Legacy redirects: `/partnership` and `/terms-and-condition` return HTTP 301 to their approved destinations.
+- Invalid route: real HTTP 404.
+- Production dependency audit: zero vulnerabilities.
+- Base initial browser bundle: 475.59 kB raw / 132.17 kB estimated transfer.
+- Healthcare checkpoint bundle: 476.60 kB raw / 132.38 kB estimated transfer.
+- Difference: +1.01 kB raw / +0.21 kB estimated transfer; the initial bundle remains below the 500 kB budget.
+- Existing Webpack/application-builder deprecation warning remains non-blocking. Dependencies, builders and build budgets were not changed.
+
+## Scope preservation
+
+Only the Healthcare card on Industries Overview links to a published industry-detail route. Education, Retail & E-Commerce, Real Estate, SaaS, and Logistics & Supply Chain remain non-links with no public detail routes. Homepage, About Us, Services Overview, approved service pages, shared navigation behavior, footer, contact backend, dependencies, build configuration, global brand styling and existing image assets remain unchanged. The QA captures and oversized source remain outside Git.
+
+final result: passed
+
+---
+
 # SunSolv Industries Overview — design QA
 
 ## Evidence

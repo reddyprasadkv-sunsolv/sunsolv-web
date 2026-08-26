@@ -22,7 +22,12 @@ export class SeoService {
       )
       .subscribe(() => {
         const routeData = this.deepest(this.router.routerState.snapshot.root).data;
-        this.apply((routeData['serviceData'] ?? routeData['pageData'] ?? routeData) as PageData);
+        this.apply(
+          (routeData['serviceData'] ??
+            routeData['industryData'] ??
+            routeData['pageData'] ??
+            routeData) as PageData,
+        );
       });
   }
 
@@ -83,6 +88,48 @@ export class SeoService {
       name: data.title,
       url: canonical,
     };
+    if (data.schemaType === 'WebPage' && data.structuredServiceName) {
+      return {
+        '@context': 'https://schema.org',
+        '@graph': [
+          { ...base, description: data.seo.description },
+          {
+            '@type': 'Service',
+            name: data.structuredServiceName,
+            serviceType: data.structuredServiceType,
+            description: data.structuredServiceDescription ?? data.seo.description,
+            provider: { '@id': `${canonicalOrigin}/#organization` },
+          },
+          ...(data.structuredBreadcrumbs?.length
+            ? [
+                {
+                  '@type': 'BreadcrumbList',
+                  itemListElement: data.structuredBreadcrumbs.map((breadcrumb, index) => ({
+                    '@type': 'ListItem',
+                    position: index + 1,
+                    name: breadcrumb.name,
+                    item: breadcrumb.path
+                      ? `${canonicalOrigin}/${breadcrumb.path}`
+                      : `${canonicalOrigin}/`,
+                  })),
+                },
+              ]
+            : []),
+          ...(data.structuredFaqs?.length
+            ? [
+                {
+                  '@type': 'FAQPage',
+                  mainEntity: data.structuredFaqs.map((faq) => ({
+                    '@type': 'Question',
+                    name: faq.question,
+                    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+                  })),
+                },
+              ]
+            : []),
+        ],
+      };
+    }
     if (data.schemaType === 'Service') {
       const service = {
         ...base,

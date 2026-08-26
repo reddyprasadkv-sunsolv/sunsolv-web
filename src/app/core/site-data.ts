@@ -16,6 +16,7 @@ export interface PageData {
   schemaType?: string;
   structuredServiceName?: string;
   structuredServiceDescription?: string;
+  structuredServiceType?: string;
   structuredBreadcrumbs?: readonly StructuredBreadcrumb[];
   structuredFaqs?: readonly StructuredFaq[];
   structuredItems?: readonly StructuredItem[];
@@ -45,6 +46,7 @@ export interface ServiceDefinition {
 export interface IndustryDefinition {
   title: string;
   icon: string;
+  route?: string;
 }
 
 export const canonicalOrigin = 'https://www.sunsolv.in';
@@ -95,7 +97,7 @@ export const services: readonly ServiceDefinition[] = [
 ] as const;
 
 export const industries = [
-  { title: 'Healthcare', icon: 'heroHeart' },
+  { title: 'Healthcare', icon: 'heroHeart', route: '/industries/healthcare' },
   { title: 'Education', icon: 'heroAcademicCap' },
   { title: 'Retail & E-Commerce', icon: 'heroShoppingCart' },
   { title: 'Real Estate', icon: 'heroBuildingOffice2' },
@@ -268,6 +270,7 @@ export const publicPaths = [
   '/services',
   ...services.map((service) => `/services/${service.slug}`),
   '/industries',
+  '/industries/healthcare',
   '/case-studies',
   '/partnerships',
   '/careers',

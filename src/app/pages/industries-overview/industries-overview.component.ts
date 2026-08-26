@@ -2,9 +2,10 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroArrowRight, heroChevronDown } from '@ng-icons/heroicons/outline';
-import { industries, PageData } from '../../core/site-data';
+import { industries, IndustryDefinition, PageData } from '../../core/site-data';
 
 type IndustryTitle = (typeof industries)[number]['title'];
+type IndustryCard = IndustryDefinition & { subheading: string; description: string };
 
 const industryCopy: Record<IndustryTitle, { subheading: string; description: string }> = {
   Healthcare: {
@@ -49,7 +50,7 @@ const industryCopy: Record<IndustryTitle, { subheading: string; description: str
 })
 export class IndustriesOverviewComponent {
   readonly data = inject(ActivatedRoute).snapshot.data['pageData'] as PageData;
-  readonly industryCards = industries.map((industry) => ({
+  readonly industryCards: readonly IndustryCard[] = industries.map((industry) => ({
     ...industry,
     ...industryCopy[industry.title],
   }));

@@ -9,6 +9,7 @@
 /services/ai-machine-learning
 /services/digital-marketing
 /industries
+/industries/healthcare
 /case-studies
 /partnerships
 /careers
