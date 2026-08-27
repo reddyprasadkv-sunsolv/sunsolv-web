@@ -6,7 +6,7 @@ import { App } from '../../app';
 import { routes } from '../../app.routes';
 import { publicPaths } from '../../core/site-data';
 
-describe('IndustryDetailComponent', () => {
+describe('Education industry page', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
@@ -14,39 +14,39 @@ describe('IndustryDetailComponent', () => {
     }).compileComponents();
   });
 
-  async function renderHealthcare() {
+  async function renderEducation() {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    await TestBed.inject(Router).navigateByUrl('/industries/healthcare');
+    await TestBed.inject(Router).navigateByUrl('/industries/education');
     fixture.detectChanges();
     await fixture.whenStable();
     fixture.detectChanges();
     return { fixture, compiled: fixture.nativeElement as HTMLElement };
   }
 
-  it('preserves Healthcare through lazy industry data without unfinished industry routes', () => {
-    const healthcareRoute = routes.find((candidate) => candidate.path === 'industries/healthcare');
-    const industryDetailPaths = routes
+  it('registers Education with lazy component and data while leaving unfinished routes unpublished', () => {
+    const route = routes.find((candidate) => candidate.path === 'industries/education');
+    const industryPaths = routes
       .filter((candidate) => candidate.path?.startsWith('industries/'))
       .map(({ path }) => path);
-
-    expect(healthcareRoute?.loadComponent).toBeTypeOf('function');
-    expect(healthcareRoute?.resolve?.['industryData']).toBeTypeOf('function');
-    expect(healthcareRoute?.data).toBeUndefined();
-    expect(industryDetailPaths).toEqual(['industries/healthcare', 'industries/education']);
+    expect(route?.loadComponent).toBeTypeOf('function');
+    expect(route?.resolve?.['industryData']).toBeTypeOf('function');
+    expect(route?.data).toBeUndefined();
+    expect(industryPaths).toEqual(['industries/healthcare', 'industries/education']);
     expect(publicPaths).toHaveLength(19);
-    expect(publicPaths).toContain('/industries/healthcare');
+    expect(publicPaths).toContain('/industries/education');
+    expect(industryPaths.join(' ')).not.toMatch(/retail|real-estate|saas|logistics/);
   });
 
-  it('renders the exact approved Healthcare content and section totals', async () => {
-    const { compiled } = await renderHealthcare();
+  it('renders the exact approved Education content and section totals', async () => {
+    const { compiled } = await renderEducation();
 
     expect(compiled.querySelectorAll('h1')).toHaveLength(1);
     expect(compiled.querySelector('h1')?.textContent?.trim()).toBe(
-      'Connected technology for better care and stronger operations.',
+      'Connected digital experiences for learning and administration.',
     );
     expect(compiled.textContent).toContain(
-      'Technology must work for every person involved in care.',
+      'Technology should make education easier to access and manage.',
     );
     expect(compiled.querySelectorAll('.challenges article')).toHaveLength(6);
     expect(compiled.querySelectorAll('.capabilities article')).toHaveLength(6);
@@ -55,12 +55,12 @@ describe('IndustryDetailComponent', () => {
     expect(compiled.querySelectorAll('.approach li')).toHaveLength(4);
     expect(compiled.querySelectorAll('.faq-list article')).toHaveLength(6);
     expect(compiled.textContent).not.toMatch(
-      /placeholder|coming soon|guaranteed compliance|clinical advice|medical advice/i,
+      /placeholder|coming soon|guaranteed academic|guaranteed enrollment|accreditation advice|legal advice/i,
     );
   });
 
-  it('uses the exclusive no-human AVIF and WebP hero sources with intrinsic dimensions', async () => {
-    const { compiled } = await renderHealthcare();
+  it('uses the exclusive human-free responsive AVIF and WebP hero assets', async () => {
+    const { compiled } = await renderEducation();
     const picture = compiled.querySelector('.industry-detail-hero-image');
     const sources = picture?.querySelectorAll('source');
     const image = picture?.querySelector('img');
@@ -69,17 +69,17 @@ describe('IndustryDetailComponent', () => {
     expect(picture?.querySelectorAll('source[type="image/avif"]')).toHaveLength(2);
     expect(picture?.querySelectorAll('source[type="image/webp"]')).toHaveLength(1);
     expect(sources?.[0]?.getAttribute('srcset')).toContain(
-      'sunsolv-healthcare-connected-care-mobile.avif 1000w',
+      'sunsolv-education-connected-learning-mobile.avif 1000w',
     );
     expect(sources?.[1]?.getAttribute('srcset')).toContain(
-      'sunsolv-healthcare-connected-care-mobile.webp 1000w',
+      'sunsolv-education-connected-learning-mobile.webp 1000w',
     );
     expect(sources?.[2]?.getAttribute('srcset')).toContain(
-      'sunsolv-healthcare-connected-care.avif 1600w',
+      'sunsolv-education-connected-learning.avif 1600w',
     );
-    expect(image?.getAttribute('src')).toContain('sunsolv-healthcare-connected-care.webp');
+    expect(image?.getAttribute('src')).toContain('sunsolv-education-connected-learning.webp');
     expect(image?.getAttribute('alt')).toBe(
-      'Calm healthcare consultation space with a tablet prepared for digital care coordination.',
+      'Modern education space with digital and traditional learning tools.',
     );
     expect(image?.getAttribute('fetchpriority')).toBe('high');
     expect(image?.hasAttribute('loading')).toBe(false);
@@ -89,18 +89,10 @@ describe('IndustryDetailComponent', () => {
     expect(sources?.[0]?.getAttribute('height')).toBe('750');
   });
 
-  it('links only the six approved completed services and excludes Digital Marketing', async () => {
-    const { compiled } = await renderHealthcare();
+  it('links all seven approved services with their centralized descriptions', async () => {
+    const { compiled } = await renderEducation();
     const links = [...compiled.querySelectorAll<HTMLAnchorElement>('.service-link-grid a')];
 
-    expect(links.map((link) => link.textContent?.trim().replace(/^\d+\s*/, ''))).toEqual([
-      'IT Consulting',
-      'Digital Transformation',
-      'Cloud Solutions',
-      'Web & Mobile Development',
-      'Custom Software Development',
-      'AI & Machine Learning',
-    ]);
     expect(links.map((link) => link.getAttribute('href'))).toEqual([
       '/services/it-consulting',
       '/services/digital-transformation',
@@ -108,14 +100,15 @@ describe('IndustryDetailComponent', () => {
       '/services/web-mobile-development',
       '/services/custom-software-development',
       '/services/ai-machine-learning',
+      '/services/digital-marketing',
     ]);
-    expect(compiled.querySelector('.relevant-services')?.textContent).not.toContain(
-      'Digital Marketing',
+    expect(links.every((link) => link.querySelector('strong') && link.querySelector('p'))).toBe(
+      true,
     );
   });
 
-  it('preserves project CTAs, Services navigation and Project enquiry selection', async () => {
-    const { fixture, compiled } = await renderHealthcare();
+  it('preserves project CTA query parameters, Services navigation and contact selection', async () => {
+    const { fixture, compiled } = await renderEducation();
 
     expect(compiled.querySelectorAll('main a[href="/contact-us?enquiry=project"]')).toHaveLength(2);
     expect(compiled.querySelector('.hero-actions a[href="/services"]')?.textContent).toContain(
@@ -132,14 +125,15 @@ describe('IndustryDetailComponent', () => {
     );
   });
 
-  it('renders exact SEO plus WebPage, Service, breadcrumb and FAQ structured data', async () => {
-    const { compiled } = await renderHealthcare();
+  it('renders exact SEO and the four approved structured-data entities', async () => {
+    const { compiled } = await renderEducation();
     const document = TestBed.inject(DOCUMENT);
     const scripts = document.querySelectorAll<HTMLScriptElement>('#structured-data');
     const structuredData = JSON.parse(scripts[0]?.textContent ?? '{}') as {
       '@graph'?: Array<{
         '@type'?: string;
         name?: string;
+        url?: string;
         serviceType?: string;
         provider?: { '@id'?: string };
         itemListElement?: Array<{ name?: string }>;
@@ -147,16 +141,17 @@ describe('IndustryDetailComponent', () => {
       }>;
     };
     const graph = structuredData['@graph'] ?? [];
+    const page = graph.find((item) => item['@type'] === 'WebPage');
     const service = graph.find((item) => item['@type'] === 'Service');
     const breadcrumbs = graph.find((item) => item['@type'] === 'BreadcrumbList');
     const faqPage = graph.find((item) => item['@type'] === 'FAQPage');
 
-    expect(document.title).toBe('Healthcare Technology Solutions | SunSolv Technologies');
+    expect(document.title).toBe('Education Technology Solutions | SunSolv Technologies');
     expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toBe(
-      'Modernize healthcare experiences and operations with SunSolv solutions for digital platforms, connected workflows, cloud, integration, automation and analytics.',
+      'Improve learning and administration with SunSolv education technology solutions for digital platforms, connected systems, cloud, automation and analytics.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/industries/healthcare',
+      'https://www.sunsolv.in/industries/education',
     );
     expect(scripts).toHaveLength(1);
     expect(graph.map((item) => item['@type'])).toEqual([
@@ -165,14 +160,17 @@ describe('IndustryDetailComponent', () => {
       'BreadcrumbList',
       'FAQPage',
     ]);
-    expect(service?.name).toBe('Healthcare Technology Solutions');
-    expect(service?.serviceType).toBe('Healthcare technology consulting and digital solutions');
+    expect(page?.name).toBe('Education Technology Solutions');
+    expect(page?.url).toBe('https://www.sunsolv.in/industries/education');
+    expect(service?.name).toBe('Education Technology Solutions');
+    expect(service?.serviceType).toBe('Education technology consulting and digital solutions');
     expect(service?.provider?.['@id']).toBe('https://www.sunsolv.in/#organization');
-    expect(graph.some((item) => item['@type'] === 'MedicalOrganization')).toBe(false);
+    expect(graph.some((item) => item['@type'] === 'EducationalOrganization')).toBe(false);
+    expect(graph.some((item) => item['@type'] === 'Course')).toBe(false);
     expect(breadcrumbs?.itemListElement?.map((item) => item.name)).toEqual([
       'Home',
       'Industries',
-      'Healthcare',
+      'Education',
     ]);
     expect(faqPage?.mainEntity).toHaveLength(6);
     expect(faqPage?.mainEntity?.map((item) => item.name)).toEqual(
@@ -182,14 +180,15 @@ describe('IndustryDetailComponent', () => {
     );
   });
 
-  it('keeps all Healthcare FAQ controls keyboard-operable with synchronized ARIA state', async () => {
-    const { fixture, compiled } = await renderHealthcare();
+  it('keeps all Education FAQ controls keyboard-operable with scoped ARIA state', async () => {
+    const { fixture, compiled } = await renderEducation();
     const buttons = [...compiled.querySelectorAll<HTMLButtonElement>('.faq-list button')];
     const firstButton = buttons[0];
     const firstAnswer = compiled.querySelector<HTMLElement>('.faq-answer');
 
     expect(buttons).toHaveLength(6);
     expect(firstButton?.getAttribute('aria-expanded')).toBe('false');
+    expect(firstButton?.getAttribute('aria-controls')).toBe('education-faq-answer-0');
     expect(firstButton?.getAttribute('aria-controls')).toBe(firstAnswer?.id);
     expect(firstAnswer?.hidden).toBe(true);
 
@@ -203,12 +202,11 @@ describe('IndustryDetailComponent', () => {
 
     firstButton?.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }));
     fixture.detectChanges();
-
     expect(firstButton?.getAttribute('aria-expanded')).toBe('false');
     expect(firstAnswer?.hidden).toBe(true);
   });
 
-  it('links only Healthcare and Education from the approved Industries Overview', async () => {
+  it('updates only the Education overview card and preserves Healthcare', async () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     await TestBed.inject(Router).navigateByUrl('/industries');
@@ -216,25 +214,14 @@ describe('IndustryDetailComponent', () => {
     await fixture.whenStable();
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    const industryLinks = [
-      ...compiled.querySelectorAll<HTMLAnchorElement>('.industry-card-grid a'),
-    ];
-    const approvedServicePaths = [
-      'services/it-consulting',
-      'services/digital-transformation',
-      'services/cloud-solutions',
-      'services/web-mobile-development',
-      'services/custom-software-development',
-      'services/ai-machine-learning',
-      'services/digital-marketing',
-    ];
+    const links = [...compiled.querySelectorAll<HTMLAnchorElement>('.industry-card-grid a')];
 
-    expect(industryLinks.map((link) => link.getAttribute('href'))).toEqual([
+    expect(links.map((link) => link.getAttribute('href'))).toEqual([
       '/industries/healthcare',
       '/industries/education',
     ]);
-    expect(routes.filter((route) => approvedServicePaths.includes(route.path ?? ''))).toHaveLength(
-      7,
-    );
+    expect(
+      links.map((link) => link.querySelector('.industry-card-action')?.textContent?.trim()),
+    ).toEqual(['Explore Healthcare', 'Explore Education']);
   });
 });

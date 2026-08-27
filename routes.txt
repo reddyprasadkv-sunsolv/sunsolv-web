@@ -10,6 +10,7 @@
 /services/digital-marketing
 /industries
 /industries/healthcare
+/industries/education
 /case-studies
 /partnerships
 /careers

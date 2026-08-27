@@ -14,6 +14,7 @@ export interface PageData {
   sections?: readonly string[];
   seo: SeoData;
   schemaType?: string;
+  structuredPageName?: string;
   structuredServiceName?: string;
   structuredServiceDescription?: string;
   structuredServiceType?: string;
@@ -98,7 +99,7 @@ export const services: readonly ServiceDefinition[] = [
 
 export const industries = [
   { title: 'Healthcare', icon: 'heroHeart', route: '/industries/healthcare' },
-  { title: 'Education', icon: 'heroAcademicCap' },
+  { title: 'Education', icon: 'heroAcademicCap', route: '/industries/education' },
   { title: 'Retail & E-Commerce', icon: 'heroShoppingCart' },
   { title: 'Real Estate', icon: 'heroBuildingOffice2' },
   { title: 'SaaS', icon: 'heroServerStack' },
@@ -271,6 +272,7 @@ export const publicPaths = [
   ...services.map((service) => `/services/${service.slug}`),
   '/industries',
   '/industries/healthcare',
+  '/industries/education',
   '/case-studies',
   '/partnerships',
   '/careers',

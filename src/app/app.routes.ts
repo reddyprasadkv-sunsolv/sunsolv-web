@@ -35,6 +35,17 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'industries/education',
+    loadComponent: () =>
+      import('./pages/industry-detail/industry-detail.component').then(
+        (m) => m.IndustryDetailComponent,
+      ),
+    resolve: {
+      industryData: () =>
+        import('./pages/industry-detail/education.data').then((m) => m.educationPageData),
+    },
+  },
+  {
     path: 'industries',
     loadComponent: () =>
       import('./pages/industries-overview/industries-overview.component').then(

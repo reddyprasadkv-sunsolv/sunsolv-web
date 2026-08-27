@@ -50,6 +50,7 @@ const relevantServices: readonly IndustryServiceLink[] = healthcareServiceSlugs.
 });
 
 export const healthcarePageData: IndustryDetailPageData = {
+  pageId: 'healthcare',
   eyebrow: 'Healthcare Technology Solutions',
   breadcrumbLabel: 'Healthcare',
   title: 'Connected technology for better care and stronger operations.',

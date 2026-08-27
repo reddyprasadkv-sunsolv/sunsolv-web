@@ -1,3 +1,103 @@
+# SunSolv Education industry page — design QA
+
+## Evidence and scope
+
+- Branch: `feature/education-industry`.
+- Verified base: `51b8e2cb04a1f9b39e6297bd38effaf7df8d0dcd`.
+- Route and state: `/industries/education`, production SSR build, default navigation state, with the accessibility FAQ keyboard-expanded for the focused interaction capture.
+- Source visual truth: `/Users/reddyprasadkv/.codex/generated_images/01a00b6e-25a3-71a3-9f0c-8acdddce6583/exec-5c5dd2e1-8326-4107-8431-cb3ac0b696bd.png`, 1672 × 941 pixels at 1× density. The external review copy is `education-industry-review/sunsolv-education-connected-learning-source.png`.
+- Browser-rendered implementation: `education-industry-review/education-hero-1920.png`, captured from a 1920 × 1080 CSS viewport at device pixel ratio 1. The browser output is 1857 × 1072 pixels after application-panel and scrollbar allocation.
+- Mandatory combined source/render comparison: `education-industry-review/education-source-implementation-comparison.png`. The source and rendered hero region were normalized to adjacent 800 × 450 panels.
+- Focused visual evidence: `education-hero-1440.png`, `education-hero-1024.png`, `education-hero-430.png`, `education-capabilities-desktop.png`, `education-environments-desktop.png`, `education-connected-services-desktop.png`, `education-delivery-approach-desktop.png`, `education-faq-keyboard-focus.png`, `education-final-cta-footer.png`, and `education-full-mobile-430.png`.
+- Crop and compression evidence: `education-source-optimized-comparison.png`.
+- Cross-page distinction evidence: `education-healthcare-service-visual-comparison.png`, which compares Education, Healthcare, Industries Overview and AI & Machine Learning at equal 800 × 450 panels.
+- Review directory: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/education-industry-review/` (outside Git).
+
+The source is hero artwork rather than a full-page mockup. The combined comparison therefore evaluates image fidelity, crop, protected copy field and hero integration. The remaining captures evaluate the approved reusable industry-detail system, exact Education content, responsive behavior and interaction states.
+
+## Files created and modified
+
+- Created: `src/app/pages/industry-detail/education.data.ts` and `education.spec.ts`.
+- Created: the four responsive Education assets under `public/images/industries/education/` listed below.
+- Modified: `routes.txt`, `src/app/app.routes.ts`, `src/app/core/seo.service.ts`, `src/app/core/site-data.ts`, `src/app/core/site-data.spec.ts`, `src/app/pages/industries-overview/industries-overview.component.html`, `industries-overview.component.spec.ts`, `src/app/pages/industry-detail/industry-detail-data.ts`, `industry-detail.component.html`, `industry-detail.component.spec.ts`, `healthcare.data.ts`, and this QA report.
+- The reusable framework gained only a route-scoped `pageId`, optional approved service descriptions, and an optional structured WebPage name. Healthcare receives `pageId: 'healthcare'`, preserving its visible content while removing Healthcare-specific IDs from the shared template.
+- Not changed: dependencies, lockfile, Angular/build configuration, custom Express server, global styles, header, footer, contact backend, Homepage, About Us, Services Overview, approved service page data, Healthcare content or Healthcare imagery.
+
+## Responsive image assets
+
+| Asset | Dimensions | Size |
+| --- | ---: | ---: |
+| `sunsolv-education-connected-learning.avif` | 1600 × 900 | 55,459 bytes |
+| `sunsolv-education-connected-learning.webp` | 1600 × 900 | 71,206 bytes |
+| `sunsolv-education-connected-learning-mobile.avif` | 1000 × 750 | 41,047 bytes |
+| `sunsolv-education-connected-learning-mobile.webp` | 1000 × 750 | 53,734 bytes |
+
+The desktop crop preserves the full learning commons, protected dark-left transition, laptop, books, open notebook and physical educational model. The dedicated mobile crop uses the source's right 75 percent before resizing to 4:3, preserving both digital and traditional learning tools without squeezing the 16:9 image. The responsive `<picture>` prefers AVIF, retains WebP fallback, declares intrinsic dimensions and `sizes`, sets `fetchpriority="high"`, and does not lazy-load the LCP image.
+
+## Findings
+
+- No actionable P0, P1 or P2 differences remain.
+- Fonts and typography: the approved Manrope Variable heading and Inter Variable body system, optical weights, eyebrow treatment, line height and hierarchy remain consistent. The long Education H1 and section headings wrap naturally from 320 through 1920 pixels without truncation.
+- Spacing and layout rhythm: the desktop overlay, tablet stack, mobile stack, editorial sections, bordered grids, accordion and final CTA maintain clear grouping and even vertical rhythm. No header overlap, empty hero strip, clipping or horizontal overflow was observed.
+- Colors and tokens: warm daylight and natural timber distinguish Education while the established deep charcoal-green hero, teal accents, warm-neutral environment surface, ice-blue editorial sections, blue CTAs and unchanged navy footer preserve the SunSolv system.
+- Image quality and asset fidelity: source, desktop output and dedicated mobile crop remain sharp and undistorted. The scene contains no humans, silhouettes, body parts, human reflections, portraits or human-shaped artwork. It contains no institution name, logo, personal information, student record or readable academic data. The black laptop screen and abstract notebook diagrams remain non-readable.
+- Copy and content: the exact approved Education copy, one H1, six challenges, six capabilities, five environments, five potential outcomes, seven completed-service links, four delivery steps, six FAQs and final CTA are present. No placeholder copy, fabricated customer proof, institution name, statistic, guaranteed academic outcome or unsupported education claim was introduced.
+- Icons and controls: existing Heroicons remain aligned with the established header, CTA and accordion system. No handcrafted SVG, CSS art, emoji or placeholder graphic was introduced.
+- Accessibility and behavior: FAQ controls are native buttons with Education-scoped answer IDs, accurate `aria-expanded`, Enter and Space activation and a visible focus outline. The tested accessibility FAQ remained focused after expansion. The mobile navigation remains tap-driven and restores focus after Escape; desktop Services hover exposes all seven approved service links. Existing reduced-motion and global focus rules remain active.
+- Responsiveness: 320, 375, 430, 768, 1024, 1440 and 1920 pixel browser checks report equal client and scroll widths. Both hero CTAs remain visible, the mobile AVIF is selected through 768 pixels, and the desktop AVIF is selected from 1024 pixels. The dedicated mobile crop retains the laptop, books, notebook and learning architecture with no distortion.
+- Visual distinction: Education uses an empty, warm advanced-learning commons with physical and digital learning tools. Healthcare remains a quiet care-coordination space; Industries Overview remains an aerial connected-city scene; service pages retain their people, engineering or abstract technical imagery.
+
+## Comparison history
+
+### First rendered pass
+
+- The combined source/implementation comparison preserved the empty learning setting, dark-left copy field, laptop, books, notebook, model, warm daylight and architectural depth.
+- The 1600 × 900 desktop source and dedicated 1000 × 750 mobile crop fit the existing measured slots without distortion, overlap or actionable P0/P1/P2 drift.
+- The shared service-link grid initially gained extra component CSS for descriptions and crossed the existing 6 kB component-style warning by 182 bytes. The description was integrated through the existing `detail-card` treatment instead, removing the new warning without changing a budget or global style.
+
+### Final pass
+
+- Desktop and mobile captures confirm readable copy, unobstructed CTAs, stable intrinsic image space, visible digital and traditional learning elements and no horizontal overflow.
+- Focused captures confirm balanced capability and environment treatments, readable approved service descriptions, the four-step delivery approach, visible FAQ keyboard focus, the light final CTA and unchanged navy footer.
+- No remaining P0/P1/P2 findings.
+
+## SEO, schema and interaction verification
+
+- Title: `Education Technology Solutions | SunSolv Technologies`.
+- Description: `Improve learning and administration with SunSolv education technology solutions for digital platforms, connected systems, cloud, automation and analytics.`
+- Canonical: `https://www.sunsolv.in/industries/education`.
+- SSR JSON-LD contains one graph with `WebPage`, `Service`, `BreadcrumbList` and `FAQPage`. WebPage name and Service name are `Education Technology Solutions`; Service type is `Education technology consulting and digital solutions`; provider references the existing SunSolv Organization `@id`.
+- Structured data matches the visible six FAQs, appears once after hydration and does not use `EducationalOrganization`, `Course`, ratings, reviews, awards or fabricated statistics.
+- Hero and final CTAs preserve `/contact-us?enquiry=project`; the Contact form preselects `Project enquiry`. The secondary hero CTA reaches `/services`.
+- Angular 22.1.2 hydrates the production SSR output with one H1, one structured-data script and zero browser-console warnings or errors.
+
+## Automated, route and performance checks
+
+- `npm run format:check`: pass.
+- `npm run typecheck`: pass for application and SSR configurations.
+- `npm test -- --watch=false`: 90/90 tests pass across 12 test files.
+- `npm run build`: browser production, Angular SSR, 19-route prerender and Express server builds pass.
+- Direct routes: 19/19 return HTTP 200, including Education and Healthcare direct refreshes.
+- Legacy redirects: `/partnership` and `/terms-and-condition` return HTTP 301 to their approved destinations.
+- Invalid route: real HTTP 404.
+- `npm audit --omit=dev --audit-level=high`: zero vulnerabilities.
+- Base Healthcare checkpoint bundle: 476.60 kB raw / 132.38 kB estimated transfer.
+- Education checkpoint bundle: 476.88 kB raw / 132.44 kB estimated transfer.
+- Difference: approximately +0.28 kB raw / +0.06 kB estimated transfer. The initial bundle remains below the unchanged 500 kB warning threshold. Education data remains isolated in an 11.17 kB raw / 2.83 kB estimated-transfer lazy chunk.
+- Existing non-blocking warnings remain limited to the intentionally deferred Angular Webpack/application-builder migration and the unit-test builder's related compatibility notice. No dependency or build-budget change was made.
+
+## Scope and checkpoint state
+
+- Only Healthcare and Education are linked from Industries Overview and registered as industry-detail routes. Retail & E-Commerce, Real Estate, SaaS and Logistics & Supply Chain remain non-links with no public detail routes.
+- The Education hero is exclusive to Education. Healthcare content, imagery and route output remain covered by preservation tests.
+- The generated oversized source and all QA captures remain outside Git.
+- All implementation, test, optimized-asset and QA changes remain uncommitted and unstaged for visual approval.
+- No commit, push, merge, pull request, deployment or public sharing occurred.
+
+final result: passed
+
+---
+
 # SunSolv Digital Marketing service page — design QA
 
 ## Evidence

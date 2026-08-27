@@ -8,9 +8,11 @@ export interface IndustryDetailItem {
 export interface IndustryServiceLink {
   title: string;
   path: string;
+  description?: string;
 }
 
 export interface IndustryDetailPageData extends PageData {
+  pageId: string;
   breadcrumbLabel: string;
   hero: {
     supportingContent: string;

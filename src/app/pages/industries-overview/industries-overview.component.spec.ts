@@ -25,7 +25,7 @@ describe('IndustriesOverviewComponent', () => {
     return { fixture, compiled: fixture.nativeElement as HTMLElement };
   }
 
-  it('registers the dedicated overview plus only the approved Healthcare detail route', () => {
+  it('registers the overview plus only the approved Healthcare and Education routes', () => {
     const route = routes.find((candidate) => candidate.path === 'industries');
 
     expect(route?.loadComponent).toBeTypeOf('function');
@@ -35,7 +35,7 @@ describe('IndustriesOverviewComponent', () => {
       routes
         .filter((candidate) => candidate.path?.startsWith('industries/'))
         .map(({ path }) => path),
-    ).toEqual(['industries/healthcare']);
+    ).toEqual(['industries/healthcare', 'industries/education']);
   });
 
   it('renders the exact approved page structure without generic placeholder content', async () => {
@@ -84,7 +84,7 @@ describe('IndustriesOverviewComponent', () => {
     expect(sources?.[0]?.getAttribute('height')).toBe('750');
   });
 
-  it('renders the centralized industry list in order with only Healthcare linked', async () => {
+  it('renders the centralized industry list with only Healthcare and Education linked', async () => {
     const { compiled } = await renderPage();
     const cards = [...compiled.querySelectorAll<HTMLElement>('.industry-card-grid .industry-card')];
 
@@ -101,7 +101,7 @@ describe('IndustriesOverviewComponent', () => {
       [...compiled.querySelectorAll<HTMLAnchorElement>('.industry-card-grid a')].map((link) =>
         link.getAttribute('href'),
       ),
-    ).toEqual(['/industries/healthcare']);
+    ).toEqual(['/industries/healthcare', '/industries/education']);
     expect(compiled.textContent).not.toMatch(/>E-Commerce</);
   });
 
@@ -204,7 +204,7 @@ describe('IndustriesOverviewComponent', () => {
     expect(firstAnswer?.hidden).toBe(true);
   });
 
-  it('preserves every approved service route and all 18 canonical paths', () => {
+  it('preserves every approved service route and all 19 canonical paths', () => {
     const approvedServicePaths = [
       'services/it-consulting',
       'services/digital-transformation',

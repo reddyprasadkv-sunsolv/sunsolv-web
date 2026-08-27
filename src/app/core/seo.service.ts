@@ -85,7 +85,7 @@ export class SeoService {
     const base = {
       '@context': 'https://schema.org',
       '@type': data.schemaType ?? 'WebPage',
-      name: data.title,
+      name: data.structuredPageName ?? data.title,
       url: canonical,
     };
     if (data.schemaType === 'WebPage' && data.structuredServiceName) {

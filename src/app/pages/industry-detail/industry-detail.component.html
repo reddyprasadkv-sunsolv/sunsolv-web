@@ -57,11 +57,11 @@
   </div>
 </section>
 
-<section class="section introduction" aria-labelledby="healthcare-context-title">
+<section class="section introduction" [attr.aria-labelledby]="data.pageId + '-context-title'">
   <div class="shell editorial-layout">
     <header>
       <p class="eyebrow">{{ data.introduction.eyebrow }}</p>
-      <h2 id="healthcare-context-title">{{ data.introduction.heading }}</h2>
+      <h2 [id]="data.pageId + '-context-title'">{{ data.introduction.heading }}</h2>
     </header>
     <div class="editorial-copy">
       @for (paragraph of data.introduction.paragraphs; track paragraph) {
@@ -71,11 +71,11 @@
   </div>
 </section>
 
-<section class="section challenges" aria-labelledby="healthcare-challenges-title">
+<section class="section challenges" [attr.aria-labelledby]="data.pageId + '-challenges-title'">
   <div class="shell">
     <header class="section-heading">
       <p class="eyebrow">{{ data.challenges.eyebrow }}</p>
-      <h2 id="healthcare-challenges-title">{{ data.challenges.heading }}</h2>
+      <h2 [id]="data.pageId + '-challenges-title'">{{ data.challenges.heading }}</h2>
     </header>
     <div class="three-column-grid">
       @for (item of data.challenges.items; track item.title; let index = $index) {
@@ -89,11 +89,11 @@
   </div>
 </section>
 
-<section class="section capabilities" aria-labelledby="healthcare-capabilities-title">
+<section class="section capabilities" [attr.aria-labelledby]="data.pageId + '-capabilities-title'">
   <div class="shell">
     <header class="section-heading split-heading">
       <p class="eyebrow">{{ data.capabilities.eyebrow }}</p>
-      <h2 id="healthcare-capabilities-title">{{ data.capabilities.heading }}</h2>
+      <h2 [id]="data.pageId + '-capabilities-title'">{{ data.capabilities.heading }}</h2>
     </header>
     <div class="capability-grid">
       @for (item of data.capabilities.items; track item.title; let index = $index) {
@@ -109,11 +109,11 @@
   </div>
 </section>
 
-<section class="section environments" aria-labelledby="healthcare-environments-title">
+<section class="section environments" [attr.aria-labelledby]="data.pageId + '-environments-title'">
   <div class="shell editorial-layout">
     <header>
       <p class="eyebrow">{{ data.environments.eyebrow }}</p>
-      <h2 id="healthcare-environments-title">{{ data.environments.heading }}</h2>
+      <h2 [id]="data.pageId + '-environments-title'">{{ data.environments.heading }}</h2>
     </header>
     <div class="environment-list">
       @for (item of data.environments.items; track item.title; let index = $index) {
@@ -129,11 +129,11 @@
   </div>
 </section>
 
-<section class="section outcomes" aria-labelledby="healthcare-outcomes-title">
+<section class="section outcomes" [attr.aria-labelledby]="data.pageId + '-outcomes-title'">
   <div class="shell">
     <header class="section-heading">
       <p class="eyebrow">{{ data.outcomes.eyebrow }}</p>
-      <h2 id="healthcare-outcomes-title">{{ data.outcomes.heading }}</h2>
+      <h2 [id]="data.pageId + '-outcomes-title'">{{ data.outcomes.heading }}</h2>
     </header>
     <div class="outcome-grid">
       @for (item of data.outcomes.items; track item.title; let index = $index) {
@@ -147,17 +147,22 @@
   </div>
 </section>
 
-<section class="section relevant-services" aria-labelledby="healthcare-services-title">
+<section class="section relevant-services" [attr.aria-labelledby]="data.pageId + '-services-title'">
   <div class="shell">
     <header class="section-heading split-heading">
       <p class="eyebrow">{{ data.relevantServices.eyebrow }}</p>
-      <h2 id="healthcare-services-title">{{ data.relevantServices.heading }}</h2>
+      <h2 [id]="data.pageId + '-services-title'">{{ data.relevantServices.heading }}</h2>
     </header>
     <div class="service-link-grid">
       @for (service of data.relevantServices.items; track service.path; let index = $index) {
-        <a [routerLink]="service.path">
+        <a class="detail-card" [routerLink]="service.path">
           <span class="item-number">0{{ index + 1 }}</span>
-          <strong>{{ service.title }}</strong>
+          <div>
+            <strong>{{ service.title }}</strong>
+            @if (service.description) {
+              <p>{{ service.description }}</p>
+            }
+          </div>
           <ng-icon name="heroArrowRight" aria-hidden="true" />
         </a>
       }
@@ -165,11 +170,11 @@
   </div>
 </section>
 
-<section class="section approach" aria-labelledby="healthcare-approach-title">
+<section class="section approach" [attr.aria-labelledby]="data.pageId + '-approach-title'">
   <div class="shell">
     <header class="section-heading">
       <p class="eyebrow">{{ data.approach.eyebrow }}</p>
-      <h2 id="healthcare-approach-title">{{ data.approach.heading }}</h2>
+      <h2 [id]="data.pageId + '-approach-title'">{{ data.approach.heading }}</h2>
     </header>
     <ol class="approach-grid">
       @for (item of data.approach.items; track item.title; let index = $index) {
@@ -183,11 +188,11 @@
   </div>
 </section>
 
-<section class="section faq-section" aria-labelledby="healthcare-faq-title">
+<section class="section faq-section" [attr.aria-labelledby]="data.pageId + '-faq-title'">
   <div class="shell faq-layout">
     <header>
       <p class="eyebrow">{{ data.faqSection.eyebrow }}</p>
-      <h2 id="healthcare-faq-title">{{ data.faqSection.heading }}</h2>
+      <h2 [id]="data.pageId + '-faq-title'">{{ data.faqSection.heading }}</h2>
     </header>
     <div class="faq-list">
       @for (faq of data.faqSection.items; track faq.question; let index = $index) {
@@ -196,7 +201,7 @@
             <button
               type="button"
               [attr.aria-expanded]="openFaqIndex() === index"
-              [attr.aria-controls]="'healthcare-faq-answer-' + index"
+              [attr.aria-controls]="data.pageId + '-faq-answer-' + index"
               (click)="toggleFaq(index)"
               (keydown.enter)="toggleFaqFromKeyboard(index, $event)"
               (keydown.space)="toggleFaqFromKeyboard(index, $event)"
@@ -207,7 +212,7 @@
           </h3>
           <div
             class="faq-answer"
-            [id]="'healthcare-faq-answer-' + index"
+            [id]="data.pageId + '-faq-answer-' + index"
             [hidden]="openFaqIndex() !== index"
           >
             <p>{{ faq.answer }}</p>
@@ -218,11 +223,14 @@
   </div>
 </section>
 
-<section class="section final-cta-surface" aria-labelledby="healthcare-final-cta-title">
+<section
+  class="section final-cta-surface"
+  [attr.aria-labelledby]="data.pageId + '-final-cta-title'"
+>
   <div class="shell final-cta-layout">
     <div>
       <p class="eyebrow">{{ data.finalCta.eyebrow }}</p>
-      <h2 id="healthcare-final-cta-title">{{ data.finalCta.heading }}</h2>
+      <h2 [id]="data.pageId + '-final-cta-title'">{{ data.finalCta.heading }}</h2>
     </div>
     <div>
       <p>{{ data.finalCta.supportingContent }}</p>
