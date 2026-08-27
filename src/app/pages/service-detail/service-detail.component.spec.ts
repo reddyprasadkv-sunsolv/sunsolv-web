@@ -177,6 +177,34 @@ describe('ServiceDetailComponent', () => {
     expect(answer?.hidden).toBe(false);
   });
 
+  it('keeps all seven service pages on one shared Industries-aligned hero', async () => {
+    const renderers = [
+      renderItConsulting,
+      renderDigitalTransformation,
+      renderCloudSolutions,
+      renderWebMobileDevelopment,
+      renderCustomSoftwareDevelopment,
+      renderAiMachineLearning,
+      renderDigitalMarketing,
+    ];
+
+    for (const render of renderers) {
+      const { compiled } = await render();
+      const hero = compiled.querySelector<HTMLElement>(
+        'app-service-detail .service-detail-hero[data-hero-layout="industries-aligned"]',
+      );
+
+      expect(compiled.querySelectorAll('app-service-detail')).toHaveLength(1);
+      expect(hero).toBeTruthy();
+      expect(
+        hero?.querySelector('.service-detail-hero-grid > .service-detail-hero-copy'),
+      ).toBeTruthy();
+      expect(hero?.querySelectorAll('.service-breadcrumbs li')).toHaveLength(3);
+      expect(hero?.querySelectorAll('.service-detail-hero-image source')).toHaveLength(3);
+      expect(hero?.querySelectorAll('.hero-actions a')).toHaveLength(2);
+    }
+  });
+
   it('renders the approved Digital Transformation page without placeholder content', async () => {
     const { compiled } = await renderDigitalTransformation();
 

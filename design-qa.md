@@ -1,3 +1,88 @@
+# SunSolv Services hero alignment refinement — design QA
+
+## Evidence and scope
+
+- Branch: `feature/services-hero-alignment`.
+- Verified base: `9b17700f48f2bd1b09df1a85107532fa3dbeaf52` (approved Education checkpoint).
+- Routes: `/services` and the seven approved service-detail routes.
+- Source visual truth: `services-hero-alignment-review/industries-overview-reference-1920.png`, captured from the unchanged approved Industries Overview at a 1920 × 1080 CSS viewport and device pixel ratio 1.
+- Services before/after evidence: `services-overview-before-1920.png` and `services-overview-hero-1920-final.png`.
+- Mandatory full-view comparison: `industries-versus-services-alignment-comparison.png`, with the reference and implementation normalized to adjacent 960 × 540 panels.
+- Shared desktop comparison: `all-services-hero-alignment-1920-contact-sheet.png`.
+- Shared mobile comparison: `all-services-hero-alignment-430-contact-sheet.png`.
+- Individual responsive captures: `services-overview-hero-1024.png`, `services-overview-hero-430.png`, and one `{service-slug}-hero-1024.png` plus `{service-slug}-hero-430.png` for each of the seven service routes.
+- Final individual desktop captures: `services-overview-hero-1920-final.png` and one `{service-slug}-hero-1920-final.png` for each service route.
+- Review directory: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/services-hero-alignment-review/` (outside Git).
+
+The Industries Overview implementation is the source of truth for container alignment, hero height, overlay progression, vertical rhythm and responsive stacking. The refinement does not reinterpret the design or replace any service imagery.
+
+## Shared implementation
+
+- `data-hero-layout="industries-aligned"` identifies the synchronized hero system without duplicating per-route implementations.
+- A single globally scoped overlay rule provides the same dark-left gradient progression for Services Overview and all shared service-detail heroes. It is disabled at the approved 1024-pixel stacking breakpoint.
+- Services Overview now places its breadcrumb inside the hero copy column, uses the shared shell/container edge, renders the approved photograph across the complete hero surface and uses the same copy/image composition as Industries.
+- The reusable service-detail component was corrected once. All seven routes continue to resolve their existing lazy data into one `app-service-detail` component; there are no route-specific margins, transforms, overlay rules or layout components.
+- Desktop detail heroes use the shared 760-pixel maximum height and a common 650-pixel minimum. Services Overview follows the Industries 650–770-pixel range. Longer headings wrap naturally within the same 650-pixel copy maximum and font system.
+- At 1024 pixels and below, copy and CTAs precede a dedicated responsive image. At narrow widths buttons become full-width and the image remains edge-to-edge.
+- The shared image treatment retains `object-fit: cover`, existing responsive sources and intrinsic dimensions. No source image, responsive crop, alt text or fetch priority changed.
+
+## Findings
+
+- No actionable P0, P1 or P2 visual difference remains.
+- Layout and spacing: comparison with Industries confirms the same global shell line, breadcrumb/eyebrow/H1/lede/CTA left edge, continuous full-height image and controlled transition. The detached light panel and oversized navy gutter are gone.
+- Typography: the approved Manrope Variable heading and Inter Variable body system remains unchanged. White headings, cyan eyebrows and restrained supporting-copy colour preserve the Industries hierarchy; long service headings wrap without clipping or page-specific compensation.
+- Colors and surfaces: the shared navy copy surface and left-to-right overlay form one continuous composition. No hard seam, empty strip or accidental light gutter remains.
+- Image quality: all existing AVIF/WebP assets remain sharp and undistorted. The final desktop contact sheet confirms that people, hands, devices, screens and abstract focal subjects remain visible. The dedicated mobile assets continue to protect the intended subjects.
+- Responsiveness: browser checks at 320, 375, 430, 768, 1024, 1440 and 1920 pixels report equal document client and scroll widths on all eight routes. Breadcrumbs, H1s and both CTAs remain visible, mobile sources are selected through 768 pixels, and desktop sources are selected from 1024 pixels.
+- Accessibility and behavior: text contrast remains readable against the overlay; existing focus and reduced-motion rules are unchanged. The production Services hover menu exposes all seven links, the mobile Services disclosure opens by tap with seven links, and the FAQ expands from Enter while retaining focus.
+- Content and controls: approved eyebrow, H1, supporting copy, CTA labels/destinations, breadcrumbs, image sources and alt text remain covered by preservation tests. No placeholder content was introduced.
+- Preservation: Industries, Homepage, About Us, header markup/behavior, footer, Contact backend, route data, SEO, schema, FAQ content, dependencies, lockfile, build configuration and bundle budgets are unchanged.
+
+## Comparison history
+
+### Initial alignment pass
+
+- Services Overview changed from a disconnected light-left panel to the continuous Industries-style hero.
+- The service-detail image was expanded to the full hero surface and the copy was moved to the global shell line. A shared dark-left overlay preserved readability while removing the detached navy gutter.
+- Desktop, tablet and mobile captures showed stable stacking and no horizontal overflow.
+
+### Budget and final visual pass
+
+- The first component-scoped overlay implementation crossed the existing 6 kB component-style warning by 311 bytes for service detail and 385 bytes for Services Overview.
+- The overlay and responsive image-position rule were consolidated into the one shared, layout-scoped global rule. The final production build has no component-style budget warning and no budget was raised or disabled.
+- The final 1920-pixel contact sheet confirms consistent hero height, copy alignment and transition treatment across all eight routes while retaining each page's distinct approved imagery.
+
+## Automated, route and production-browser checks
+
+- `npm run format:check`: pass.
+- `npm run typecheck`: pass for application and SSR configurations.
+- `npm test -- --watch=false`: 92/92 tests pass across 12 test files.
+- `npm run build`: browser production build, Angular SSR build, 19-route prerender and Express server build pass.
+- Direct routes: all 19 configured routes return HTTP 200, including `/services` and every service-detail route.
+- Legacy redirects: `/partnership` and `/terms-and-condition` return HTTP 301 to their approved destinations.
+- Invalid route: real HTTP 404.
+- Production hydration: the SSR page retains two Angular state scripts, one H1 and one aligned hero; the production browser console contains zero warnings or errors.
+- Desktop Services hover: `aria-expanded="true"`, mega-menu visible, seven service links.
+- Mobile Services disclosure: tap opens the details element, `aria-expanded="true"`, seven service links and zero horizontal overflow.
+- FAQ keyboard interaction: Enter expands the answer and focus remains on the disclosure button.
+- Contact flow: `/contact-us?enquiry=project` preselects `Project enquiry`.
+- Production dependency audit: `npm audit --omit=dev --audit-level=high --offline` reports zero vulnerabilities using the local audit cache. The dependency manifest and lockfile are byte-for-byte unchanged from the already audited base.
+- Existing non-blocking warnings are limited to the intentionally deferred Angular Webpack/application-builder deprecation and the corresponding unit-test builder compatibility notice.
+
+## Bundle comparison and checkpoint state
+
+- Approved Education base: 476.88 kB raw / 132.44 kB estimated transfer.
+- Services alignment: 477.31 kB raw / 132.55 kB estimated transfer.
+- Difference: approximately +0.43 kB raw / +0.11 kB estimated transfer. The initial bundle remains below the unchanged 500 kB threshold.
+- Only the shared hero templates, their component styles/tests, the layout-scoped shared global rule and this QA report are modified.
+- All implementation and documentation changes remain uncommitted and unstaged.
+- All screenshots remain outside Git.
+- No commit, push, merge, pull request, deployment or public sharing occurred.
+
+final result: passed
+
+---
+
 # SunSolv Education industry page — design QA
 
 ## Evidence and scope

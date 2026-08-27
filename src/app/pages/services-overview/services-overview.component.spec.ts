@@ -58,6 +58,39 @@ describe('ServicesOverviewComponent', () => {
     expect(compiled.querySelector('a[href="/contact-us?enquiry=general"]')).toBeTruthy();
   });
 
+  it('uses the Industries-aligned hero structure without changing approved image sources', async () => {
+    const fixture = TestBed.createComponent(ServicesOverviewComponent);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const hero = compiled.querySelector<HTMLElement>(
+      '.services-hero[data-hero-layout="industries-aligned"]',
+    );
+    const picture = hero?.querySelector('.services-hero-image');
+    const sources = picture?.querySelectorAll('source');
+    const image = picture?.querySelector('img');
+
+    expect(hero).toBeTruthy();
+    expect(hero?.querySelector('.services-hero-inner > .services-hero-copy')).toBeTruthy();
+    expect(hero?.querySelector('.services-hero-copy > .services-breadcrumbs')).toBeTruthy();
+    expect(hero?.querySelectorAll('.services-breadcrumbs li')).toHaveLength(2);
+    expect(sources).toHaveLength(3);
+    expect(sources?.[0]?.getAttribute('srcset')).toContain(
+      'sunsolv-services-technology-consulting-mobile.avif?v=services-overview-1 900w',
+    );
+    expect(sources?.[2]?.getAttribute('srcset')).toContain(
+      'sunsolv-services-technology-consulting.avif?v=services-overview-1 1200w',
+    );
+    expect(image?.getAttribute('src')).toContain(
+      'sunsolv-services-technology-consulting.webp?v=services-overview-1',
+    );
+    expect(image?.getAttribute('alt')).toBe(
+      'Technology consultants reviewing a digital solution architecture.',
+    );
+    expect(image?.getAttribute('width')).toBe('1200');
+    expect(image?.getAttribute('height')).toBe('1000');
+  });
+
   it('applies the approved Services SEO and canonical metadata', async () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();

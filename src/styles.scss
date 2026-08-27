@@ -191,6 +191,31 @@ p {
   outline: 3px solid var(--cyan);
   outline-offset: 4px;
 }
+[data-hero-layout='industries-aligned']::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(7, 24, 50, 0.99) 0 29%,
+    rgba(7, 24, 50, 0.8) 46%,
+    rgba(7, 24, 50, 0.34) 64%,
+    rgba(7, 24, 50, 0) 85%
+  );
+  content: '';
+  pointer-events: none;
+}
+.services-hero[data-hero-layout='industries-aligned'] img {
+  object-position: center 20%;
+}
+@media (max-width: 1024px) {
+  [data-hero-layout='industries-aligned']::after {
+    display: none;
+  }
+  [data-hero-layout='industries-aligned'] img {
+    object-position: center;
+  }
+}
 @media (max-width: 620px) {
   .shell {
     width: min(100% - 32px, 1280px);

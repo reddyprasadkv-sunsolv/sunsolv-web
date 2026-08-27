@@ -1,13 +1,16 @@
-<nav class="breadcrumbs shell" aria-label="Breadcrumb">
-  <ol>
-    <li><a routerLink="/">Home</a></li>
-    <li aria-current="page">Services</li>
-  </ol>
-</nav>
-
-<section class="services-hero" aria-labelledby="services-title">
-  <div class="shell services-hero-grid">
+<section
+  class="services-hero"
+  data-hero-layout="industries-aligned"
+  aria-labelledby="services-title"
+>
+  <div class="shell services-hero-inner">
     <div class="services-hero-copy">
+      <nav class="breadcrumbs services-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a routerLink="/">Home</a></li>
+          <li aria-current="page">Services</li>
+        </ol>
+      </nav>
       <p class="eyebrow">SunSolv Services</p>
       <h1 id="services-title">Technology services built around business outcomes.</h1>
       <p class="hero-lede">

@@ -7,22 +7,22 @@
 }
 
 .service-detail-hero-grid {
-  min-height: clamp(640px, 37.5vw, 720px);
+  min-height: clamp(650px, 42vw, 760px);
   display: flex;
   align-items: center;
 }
 
 .service-detail-hero-copy {
   position: relative;
-  z-index: 1;
-  width: min(47%, 600px);
+  z-index: 2;
+  width: min(49%, 650px);
   min-width: 0;
-  padding: 32px 42px 34px 0;
+  padding: 34px 42px 36px 0;
 }
 
 .service-breadcrumbs {
   padding: 0;
-  margin-bottom: 42px;
+  margin-bottom: 38px;
 }
 
 .service-breadcrumbs ol {
@@ -38,19 +38,16 @@
 }
 
 .service-detail-hero h1 {
-  max-width: 720px;
   margin: 18px 0 24px;
   color: white;
-  font-size: clamp(3rem, 4.35vw, 4.25rem);
+  font-size: clamp(3rem, 4.3vw, 4.25rem);
   line-height: 0.98;
   letter-spacing: -0.055em;
 }
 
 .hero-lede {
-  max-width: 650px;
-  margin-bottom: 32px;
-  color: #c6d2df;
-  font-size: 1rem;
+  margin-bottom: 30px;
+  color: #d0d9df;
   line-height: 1.72;
 }
 
@@ -65,11 +62,13 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 42%;
 }
 
 .service-detail-hero-image {
   position: absolute;
-  inset: 0 0 0 clamp(360px, 27vw, 520px);
+  inset: 0;
+  min-width: 0;
   display: block;
   overflow: hidden;
 }
