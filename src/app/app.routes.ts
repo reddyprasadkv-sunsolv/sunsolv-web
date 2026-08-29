@@ -46,6 +46,19 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'industries/retail-ecommerce',
+    loadComponent: () =>
+      import('./pages/industry-detail/industry-detail.component').then(
+        (m) => m.IndustryDetailComponent,
+      ),
+    resolve: {
+      industryData: () =>
+        import('./pages/industry-detail/retail-ecommerce.data').then(
+          (m) => m.retailEcommercePageData,
+        ),
+    },
+  },
+  {
     path: 'industries',
     loadComponent: () =>
       import('./pages/industries-overview/industries-overview.component').then(

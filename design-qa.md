@@ -67,6 +67,83 @@ final result: passed
 
 ---
 
+# SunSolv Retail & E-Commerce industry page — design QA
+
+## Evidence and scope
+
+- Branch: `feature/retail-ecommerce-industry`.
+- Verified base: `4faead96d9573cacb305b641e8f2c568c5edd4b5` (approved Industries hero alignment checkpoint).
+- Route: `/industries/retail-ecommerce`, implemented through the approved reusable industry-detail framework and a lazy-loaded data module.
+- Selected source: generated option 1, a human-free premium omnichannel retail showroom with smart shelving, self-service ordering and a prepared-order collection niche. The oversized source is retained outside Git at `retail-ecommerce-industry-review/sunsolv-retail-omnichannel-source.png`.
+- Required visual evidence is stored outside Git in `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/retail-ecommerce-industry-review/`.
+- Source/render fidelity: `retail-source-implementation-comparison.png`.
+- Responsive hero captures: `01-retail-hero-1920.png`, `02-retail-hero-1440.png`, `03-retail-hero-1024.png` and `04-retail-hero-430.png`.
+- Post-alignment restoration captures: `16-retail-after-industries-alignment-1920.png` and `17-retail-after-industries-alignment-430.png`.
+- Focused section captures: `05-retail-common-challenges-desktop.png` through `11-retail-final-cta-footer.png`, plus `12-retail-full-page-430.png`.
+- Crop and cross-page evidence: `13-retail-source-optimized-crop-comparison.png`, `14-retail-healthcare-education-comparison.png` and `15-retail-industries-services-comparison.png`.
+
+## Files and responsive assets
+
+- Created: `src/app/pages/industry-detail/retail-ecommerce.data.ts`, `retail-ecommerce.spec.ts` and four optimized hero assets under `public/images/industries/retail-ecommerce/`.
+- Modified: `routes.txt`, `src/app/app.routes.ts`, `src/app/core/site-data.ts`, `src/app/core/site-data.spec.ts`, `src/app/pages/industries-overview/industries-overview.component.spec.ts`, `src/app/pages/industry-detail/education.spec.ts`, `industry-detail.component.spec.ts` and this report.
+- No dependency manifest, lockfile, build configuration, server, global style, shared component template, header, footer or Contact backend file changed.
+
+| Asset | Dimensions | Size |
+| --- | ---: | ---: |
+| `sunsolv-retail-omnichannel-commerce.avif` | 1600 × 900 | 40,573 bytes |
+| `sunsolv-retail-omnichannel-commerce.webp` | 1600 × 900 | 55,008 bytes |
+| `sunsolv-retail-omnichannel-commerce-mobile.avif` | 1000 × 750 | 29,654 bytes |
+| `sunsolv-retail-omnichannel-commerce-mobile.webp` | 1000 × 750 | 40,512 bytes |
+
+The dedicated 4:3 mobile crop preserves the collection niche, kiosk and merchandising shelves without squeezing the desktop composition. The responsive `<picture>` prefers AVIF, retains WebP fallback, declares intrinsic dimensions and sizes, and gives the LCP image high fetch priority.
+
+## Findings
+
+- No actionable P0, P1 or P2 visual issue remains.
+- The dark protected copy field, warm showroom and right-weighted commerce details produce a premium retail-specific identity distinct from Healthcare, Education, Industries Overview and every service hero.
+- The approved Manrope/Inter hierarchy, teal accents, editorial spacing, challenge grid, capability surface, environment section, connected-services grid, delivery sequence, FAQ and light final CTA remain aligned with the established industry-detail system.
+- The source and optimized crops remain sharp and undistorted. There are no humans, faces, silhouettes, body parts, human reflections, mannequins, brand marks, customer records, personal data, readable commercial dashboards or fabricated proof.
+- The exact approved H1, content, seven service links, six FAQs, CTA destinations and alt text are present. No placeholder content, customer name, statistic, guaranteed outcome or unsupported retail claim was introduced.
+- Responsive browser checks at 320, 375, 430, 768, 1024, 1440 and 1920 pixels report equal client and scroll widths, visible CTAs, one H1 and the correct mobile/desktop source selection.
+- Desktop Services hover exposes all seven links. The mobile Services disclosure opens by tap with seven links and no overflow. FAQ Enter activation expands the answer, preserves focus and exposes synchronized Retail-specific IDs and `aria-expanded` state.
+- Angular hydration retains one H1, one structured-data script and the expected state scripts with zero browser-console warnings or errors.
+- Homepage, About Us, Services Overview, all seven service pages, Healthcare, Education, navigation, footer, Contact behavior and approved global styling remain unchanged. Real Estate, SaaS and Logistics & Supply Chain remain unpublished.
+- The approved full-surface Industries hero image and continuous gradient remain intact after restoring the Retail work.
+
+## SEO and structured data
+
+- Title: `Retail & E-Commerce Technology Solutions | SunSolv Technologies`.
+- Canonical: `https://www.sunsolv.in/industries/retail-ecommerce`.
+- The approved description and social metadata are server-rendered.
+- JSON-LD appears once and contains `WebPage`, `Service`, `BreadcrumbList` and `FAQPage`; visible questions match the FAQ entities and provider identity references the existing SunSolv organization.
+
+## Automated, route and performance checks
+
+- `npm run format:check`: pass.
+- `npm run typecheck`: pass for application and SSR configurations.
+- `npm test -- --watch=false`: 100/100 tests pass across 13 test files.
+- `npm run build`: browser production, Angular SSR, 20-route prerender and Express server builds pass.
+- Direct-route checks: 20/20 return HTTP 200, including Retail & E-Commerce, Healthcare and Education.
+- Legacy redirects: `/partnership` and `/terms-and-condition` return HTTP 301 to their approved destinations.
+- Invalid route: real HTTP 404.
+- Production dependency audit: `npm audit --offline --omit=dev --audit-level=high` reports zero vulnerabilities from the local cache. The online registry audit was unavailable because network egress is restricted; package manifests are unchanged from the audited base.
+- Approved Services-alignment base bundle: 477.31 kB raw / 132.55 kB estimated transfer.
+- Retail checkpoint bundle: 477.58 kB raw / 132.52 kB estimated transfer.
+- Difference: approximately +0.27 kB raw / −0.03 kB estimated transfer. The unchanged 500 kB warning threshold is not crossed. Retail data remains isolated in an 11.77 kB raw / 2.92 kB estimated-transfer lazy chunk.
+- Existing non-blocking warnings remain limited to the intentionally deferred Angular Webpack/application-builder migration and the unit-test builder compatibility notice.
+
+## Checkpoint state
+
+- The implementation, tests, optimized assets and this report remain uncommitted and unstaged for visual approval.
+- The named Retail stash remains preserved after application at `65deba5bff5ff977e1b1d12e26d8fed1d8ea0a3a`.
+- Generated sources and all review captures remain outside Git.
+- No dependency, secret, environment file, build output, cache or temporary QA output was added.
+- No commit, push, merge, pull request, deployment or public sharing occurred.
+
+final result: passed
+
+---
+
 # SunSolv Services hero alignment refinement — design QA
 
 ## Evidence and scope

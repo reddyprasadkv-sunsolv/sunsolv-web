@@ -100,7 +100,11 @@ export const services: readonly ServiceDefinition[] = [
 export const industries = [
   { title: 'Healthcare', icon: 'heroHeart', route: '/industries/healthcare' },
   { title: 'Education', icon: 'heroAcademicCap', route: '/industries/education' },
-  { title: 'Retail & E-Commerce', icon: 'heroShoppingCart' },
+  {
+    title: 'Retail & E-Commerce',
+    icon: 'heroShoppingCart',
+    route: '/industries/retail-ecommerce',
+  },
   { title: 'Real Estate', icon: 'heroBuildingOffice2' },
   { title: 'SaaS', icon: 'heroServerStack' },
   { title: 'Logistics & Supply Chain', icon: 'heroTruck' },
@@ -273,6 +277,7 @@ export const publicPaths = [
   '/industries',
   '/industries/healthcare',
   '/industries/education',
+  '/industries/retail-ecommerce',
   '/case-studies',
   '/partnerships',
   '/careers',

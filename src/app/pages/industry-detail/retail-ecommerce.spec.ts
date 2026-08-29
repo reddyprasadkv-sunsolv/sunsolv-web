@@ -6,7 +6,40 @@ import { App } from '../../app';
 import { routes } from '../../app.routes';
 import { publicPaths } from '../../core/site-data';
 
-describe('Education industry page', () => {
+const expectedFaqs = [
+  {
+    question: 'What kinds of retail and e-commerce businesses can SunSolv support?',
+    answer:
+      'SunSolv can shape technology engagements for direct-to-consumer brands, multi-location retailers, marketplace sellers, specialty retailers, business-to-business commerce and distributed retail networks. The appropriate solution depends on the business model, customers, products, channels, systems and priorities.',
+  },
+  {
+    question: 'Can SunSolv work with our existing commerce platform?',
+    answer:
+      'Yes. SunSolv can assess an existing platform and recommend improvements, integrations, custom extensions or a phased modernization approach. Technical feasibility depends on the platform, available APIs, licensing, data responsibilities and current architecture.',
+  },
+  {
+    question: 'Can physical retail and e-commerce systems be connected?',
+    answer:
+      'Where appropriate systems and authorized interfaces are available, SunSolv can help connect digital storefronts with suitable product, inventory, order, customer and operational applications. The required level of integration should be defined during discovery.',
+  },
+  {
+    question: 'Can commerce modernization be delivered gradually?',
+    answer:
+      'Yes. A business can begin with a priority customer journey, operational workflow, integration or channel before expanding to connected areas. A phased approach can reduce disruption and provide useful learning for later stages.',
+  },
+  {
+    question: 'Can artificial intelligence be included in a retail solution?',
+    answer:
+      'AI may be appropriate for selected search, support, content, forecasting, recommendation or operational workflows. Its use should have a defined purpose and include suitable human oversight, privacy, security, monitoring and limitations. AI outputs should not be treated as automatically accurate or appropriate.',
+  },
+  {
+    question: 'How does a retail and e-commerce technology engagement begin?',
+    answer:
+      'It begins with a discovery conversation about the business model, customers, products, channels, current systems, operational challenges and desired outcomes. SunSolv can then recommend an assessment, focused advisory engagement or practical delivery phase.',
+  },
+] as const;
+
+describe('Retail & E-Commerce industry page', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
@@ -14,21 +47,22 @@ describe('Education industry page', () => {
     }).compileComponents();
   });
 
-  async function renderEducation() {
+  async function renderRetailEcommerce() {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    await TestBed.inject(Router).navigateByUrl('/industries/education');
+    await TestBed.inject(Router).navigateByUrl('/industries/retail-ecommerce');
     fixture.detectChanges();
     await fixture.whenStable();
     fixture.detectChanges();
     return { fixture, compiled: fixture.nativeElement as HTMLElement };
   }
 
-  it('registers Education with lazy component and data while leaving unfinished routes unpublished', () => {
-    const route = routes.find((candidate) => candidate.path === 'industries/education');
+  it('registers a lazy Retail & E-Commerce route without publishing unfinished industries', () => {
+    const route = routes.find((candidate) => candidate.path === 'industries/retail-ecommerce');
     const industryPaths = routes
       .filter((candidate) => candidate.path?.startsWith('industries/'))
       .map(({ path }) => path);
+
     expect(route?.loadComponent).toBeTypeOf('function');
     expect(route?.resolve?.['industryData']).toBeTypeOf('function');
     expect(route?.data).toBeUndefined();
@@ -38,33 +72,33 @@ describe('Education industry page', () => {
       'industries/retail-ecommerce',
     ]);
     expect(publicPaths).toHaveLength(20);
-    expect(publicPaths).toContain('/industries/education');
+    expect(publicPaths).toContain('/industries/retail-ecommerce');
     expect(industryPaths.join(' ')).not.toMatch(/real-estate|saas|logistics/);
   });
 
-  it('renders the exact approved Education content and section totals', async () => {
-    const { compiled } = await renderEducation();
+  it('renders the exact approved content and section totals without unsupported claims', async () => {
+    const { compiled } = await renderRetailEcommerce();
 
     expect(compiled.querySelectorAll('h1')).toHaveLength(1);
     expect(compiled.querySelector('h1')?.textContent?.trim()).toBe(
-      'Connected digital experiences for learning and administration.',
+      'Connected commerce experiences from discovery to delivery.',
     );
     expect(compiled.textContent).toContain(
-      'Technology should make education easier to access and manage.',
+      'Every customer interaction depends on connected operations.',
     );
     expect(compiled.querySelectorAll('.challenges article')).toHaveLength(6);
     expect(compiled.querySelectorAll('.capabilities article')).toHaveLength(6);
-    expect(compiled.querySelectorAll('.environments article')).toHaveLength(5);
+    expect(compiled.querySelectorAll('.environments article')).toHaveLength(6);
     expect(compiled.querySelectorAll('.outcomes article')).toHaveLength(5);
     expect(compiled.querySelectorAll('.approach li')).toHaveLength(4);
     expect(compiled.querySelectorAll('.faq-list article')).toHaveLength(6);
     expect(compiled.textContent).not.toMatch(
-      /placeholder|coming soon|guaranteed academic|guaranteed enrollment|accreditation advice|legal advice/i,
+      /placeholder|coming soon|guaranteed revenue|guaranteed conversion|guaranteed cost|guaranteed customer retention|guaranteed search rankings|financial advice|tax advice|legal advice/i,
     );
   });
 
-  it('uses the exclusive human-free responsive AVIF and WebP hero assets', async () => {
-    const { compiled } = await renderEducation();
+  it('uses exclusive human-free responsive AVIF and WebP assets with intrinsic dimensions', async () => {
+    const { compiled } = await renderRetailEcommerce();
     const picture = compiled.querySelector('.industry-detail-hero-image');
     const sources = picture?.querySelectorAll('source');
     const image = picture?.querySelector('img');
@@ -73,17 +107,17 @@ describe('Education industry page', () => {
     expect(picture?.querySelectorAll('source[type="image/avif"]')).toHaveLength(2);
     expect(picture?.querySelectorAll('source[type="image/webp"]')).toHaveLength(1);
     expect(sources?.[0]?.getAttribute('srcset')).toContain(
-      'sunsolv-education-connected-learning-mobile.avif 1000w',
+      'sunsolv-retail-omnichannel-commerce-mobile.avif 1000w',
     );
     expect(sources?.[1]?.getAttribute('srcset')).toContain(
-      'sunsolv-education-connected-learning-mobile.webp 1000w',
+      'sunsolv-retail-omnichannel-commerce-mobile.webp 1000w',
     );
     expect(sources?.[2]?.getAttribute('srcset')).toContain(
-      'sunsolv-education-connected-learning.avif 1600w',
+      'sunsolv-retail-omnichannel-commerce.avif 1600w',
     );
-    expect(image?.getAttribute('src')).toContain('sunsolv-education-connected-learning.webp');
+    expect(image?.getAttribute('src')).toContain('sunsolv-retail-omnichannel-commerce.webp');
     expect(image?.getAttribute('alt')).toBe(
-      'Modern education space with digital and traditional learning tools.',
+      'Modern omnichannel retail environment with connected shopping and order collection areas.',
     );
     expect(image?.getAttribute('fetchpriority')).toBe('high');
     expect(image?.hasAttribute('loading')).toBe(false);
@@ -93,8 +127,8 @@ describe('Education industry page', () => {
     expect(sources?.[0]?.getAttribute('height')).toBe('750');
   });
 
-  it('links all seven approved services with their centralized descriptions', async () => {
-    const { compiled } = await renderEducation();
+  it('links all seven completed services with their centralized descriptions', async () => {
+    const { compiled } = await renderRetailEcommerce();
     const links = [...compiled.querySelectorAll<HTMLAnchorElement>('.service-link-grid a')];
 
     expect(links.map((link) => link.getAttribute('href'))).toEqual([
@@ -111,8 +145,8 @@ describe('Education industry page', () => {
     );
   });
 
-  it('preserves project CTA query parameters, Services navigation and contact selection', async () => {
-    const { fixture, compiled } = await renderEducation();
+  it('preserves project query parameters, Services navigation and contact selection', async () => {
+    const { fixture, compiled } = await renderRetailEcommerce();
 
     expect(compiled.querySelectorAll('main a[href="/contact-us?enquiry=project"]')).toHaveLength(2);
     expect(compiled.querySelector('.hero-actions a[href="/services"]')?.textContent).toContain(
@@ -129,8 +163,8 @@ describe('Education industry page', () => {
     );
   });
 
-  it('renders exact SEO and the four approved structured-data entities', async () => {
-    const { compiled } = await renderEducation();
+  it('renders exact SEO and one valid four-entity structured-data graph', async () => {
+    const { compiled } = await renderRetailEcommerce();
     const document = TestBed.inject(DOCUMENT);
     const scripts = document.querySelectorAll<HTMLScriptElement>('#structured-data');
     const structuredData = JSON.parse(scripts[0]?.textContent ?? '{}') as {
@@ -150,12 +184,12 @@ describe('Education industry page', () => {
     const breadcrumbs = graph.find((item) => item['@type'] === 'BreadcrumbList');
     const faqPage = graph.find((item) => item['@type'] === 'FAQPage');
 
-    expect(document.title).toBe('Education Technology Solutions | SunSolv Technologies');
+    expect(document.title).toBe('Retail & E-Commerce Technology Solutions | SunSolv Technologies');
     expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toBe(
-      'Improve learning and administration with SunSolv education technology solutions for digital platforms, connected systems, cloud, automation and analytics.',
+      'Connect customer experiences and operations with SunSolv retail and e-commerce solutions for digital storefronts, integrations, cloud, data and automation.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/industries/education',
+      'https://www.sunsolv.in/industries/retail-ecommerce',
     );
     expect(scripts).toHaveLength(1);
     expect(graph.map((item) => item['@type'])).toEqual([
@@ -164,19 +198,30 @@ describe('Education industry page', () => {
       'BreadcrumbList',
       'FAQPage',
     ]);
-    expect(page?.name).toBe('Education Technology Solutions');
-    expect(page?.url).toBe('https://www.sunsolv.in/industries/education');
-    expect(service?.name).toBe('Education Technology Solutions');
-    expect(service?.serviceType).toBe('Education technology consulting and digital solutions');
+    expect(page?.name).toBe('Retail & E-Commerce Technology Solutions');
+    expect(page?.url).toBe('https://www.sunsolv.in/industries/retail-ecommerce');
+    expect(service?.name).toBe('Retail & E-Commerce Technology Solutions');
+    expect(service?.serviceType).toBe(
+      'Retail and e-commerce technology consulting and digital solutions',
+    );
     expect(service?.provider?.['@id']).toBe('https://www.sunsolv.in/#organization');
-    expect(graph.some((item) => item['@type'] === 'EducationalOrganization')).toBe(false);
-    expect(graph.some((item) => item['@type'] === 'Course')).toBe(false);
+    expect(
+      graph.some((item) =>
+        ['Store', 'OnlineStore', 'Product', 'Offer'].includes(item['@type'] ?? ''),
+      ),
+    ).toBe(false);
     expect(breadcrumbs?.itemListElement?.map((item) => item.name)).toEqual([
       'Home',
       'Industries',
-      'Education',
+      'Retail & E-Commerce',
     ]);
-    expect(faqPage?.mainEntity).toHaveLength(6);
+    expect(faqPage?.mainEntity).toEqual(
+      expectedFaqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+      })),
+    );
     expect(faqPage?.mainEntity?.map((item) => item.name)).toEqual(
       [...compiled.querySelectorAll('.faq-list button span')].map((item) =>
         item.textContent?.trim(),
@@ -184,15 +229,15 @@ describe('Education industry page', () => {
     );
   });
 
-  it('keeps all Education FAQ controls keyboard-operable with scoped ARIA state', async () => {
-    const { fixture, compiled } = await renderEducation();
+  it('keeps all FAQ controls keyboard-operable with scoped ARIA state', async () => {
+    const { fixture, compiled } = await renderRetailEcommerce();
     const buttons = [...compiled.querySelectorAll<HTMLButtonElement>('.faq-list button')];
     const firstButton = buttons[0];
     const firstAnswer = compiled.querySelector<HTMLElement>('.faq-answer');
 
     expect(buttons).toHaveLength(6);
     expect(firstButton?.getAttribute('aria-expanded')).toBe('false');
-    expect(firstButton?.getAttribute('aria-controls')).toBe('education-faq-answer-0');
+    expect(firstButton?.getAttribute('aria-controls')).toBe('retail-ecommerce-faq-answer-0');
     expect(firstButton?.getAttribute('aria-controls')).toBe(firstAnswer?.id);
     expect(firstAnswer?.hidden).toBe(true);
 
@@ -210,7 +255,7 @@ describe('Education industry page', () => {
     expect(firstAnswer?.hidden).toBe(true);
   });
 
-  it('updates only the Education overview card and preserves Healthcare', async () => {
+  it('updates only the Retail & E-Commerce overview card and preserves approved industries', async () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     await TestBed.inject(Router).navigateByUrl('/industries');
@@ -228,5 +273,21 @@ describe('Education industry page', () => {
     expect(
       links.map((link) => link.querySelector('.industry-card-action')?.textContent?.trim()),
     ).toEqual(['Explore Healthcare', 'Explore Education', 'Explore Retail & E-Commerce']);
+
+    await TestBed.inject(Router).navigateByUrl('/industries/healthcare');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+    expect(compiled.querySelector('h1')?.textContent?.trim()).toBe(
+      'Connected technology for better care and stronger operations.',
+    );
+
+    await TestBed.inject(Router).navigateByUrl('/industries/education');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+    expect(compiled.querySelector('h1')?.textContent?.trim()).toBe(
+      'Connected digital experiences for learning and administration.',
+    );
   });
 });
