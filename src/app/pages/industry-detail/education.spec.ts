@@ -36,10 +36,11 @@ describe('Education industry page', () => {
       'industries/healthcare',
       'industries/education',
       'industries/retail-ecommerce',
+      'industries/real-estate',
     ]);
-    expect(publicPaths).toHaveLength(20);
+    expect(publicPaths).toHaveLength(21);
     expect(publicPaths).toContain('/industries/education');
-    expect(industryPaths.join(' ')).not.toMatch(/real-estate|saas|logistics/);
+    expect(industryPaths.join(' ')).not.toMatch(/saas|logistics/);
   });
 
   it('renders the exact approved Education content and section totals', async () => {
@@ -224,9 +225,15 @@ describe('Education industry page', () => {
       '/industries/healthcare',
       '/industries/education',
       '/industries/retail-ecommerce',
+      '/industries/real-estate',
     ]);
     expect(
       links.map((link) => link.querySelector('.industry-card-action')?.textContent?.trim()),
-    ).toEqual(['Explore Healthcare', 'Explore Education', 'Explore Retail & E-Commerce']);
+    ).toEqual([
+      'Explore Healthcare',
+      'Explore Education',
+      'Explore Retail & E-Commerce',
+      'Explore Real Estate',
+    ]);
   });
 });

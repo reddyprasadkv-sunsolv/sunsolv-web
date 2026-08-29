@@ -2,13 +2,14 @@ import { describe, expect, it } from 'vitest';
 import { canonicalOrigin, industries, industryNames, publicPaths, services } from './site-data';
 
 describe('site routing data', () => {
-  it('defines the requested 20 canonical public routes', () => {
-    expect(publicPaths).toHaveLength(20);
+  it('defines the requested 21 canonical public routes', () => {
+    expect(publicPaths).toHaveLength(21);
     expect(new Set(publicPaths).size).toBe(publicPaths.length);
     expect(publicPaths).toContain('/contact-us');
     expect(publicPaths).toContain('/terms-and-conditions');
     expect(publicPaths).toContain('/industries/education');
     expect(publicPaths).toContain('/industries/retail-ecommerce');
+    expect(publicPaths).toContain('/industries/real-estate');
   });
 
   it('defines seven unique service routes on the www canonical host', () => {

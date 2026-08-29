@@ -12,6 +12,7 @@
 /industries/healthcare
 /industries/education
 /industries/retail-ecommerce
+/industries/real-estate
 /case-studies
 /partnerships
 /careers

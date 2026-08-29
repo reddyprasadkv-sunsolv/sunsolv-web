@@ -25,7 +25,7 @@ describe('IndustriesOverviewComponent', () => {
     return { fixture, compiled: fixture.nativeElement as HTMLElement };
   }
 
-  it('registers the overview plus only the three published industry routes', () => {
+  it('registers the overview plus only the four published industry routes', () => {
     const route = routes.find((candidate) => candidate.path === 'industries');
 
     expect(route?.loadComponent).toBeTypeOf('function');
@@ -35,7 +35,12 @@ describe('IndustriesOverviewComponent', () => {
       routes
         .filter((candidate) => candidate.path?.startsWith('industries/'))
         .map(({ path }) => path),
-    ).toEqual(['industries/healthcare', 'industries/education', 'industries/retail-ecommerce']);
+    ).toEqual([
+      'industries/healthcare',
+      'industries/education',
+      'industries/retail-ecommerce',
+      'industries/real-estate',
+    ]);
   });
 
   it('renders the exact approved page structure without generic placeholder content', async () => {
@@ -107,7 +112,12 @@ describe('IndustriesOverviewComponent', () => {
       [...compiled.querySelectorAll<HTMLAnchorElement>('.industry-card-grid a')].map((link) =>
         link.getAttribute('href'),
       ),
-    ).toEqual(['/industries/healthcare', '/industries/education', '/industries/retail-ecommerce']);
+    ).toEqual([
+      '/industries/healthcare',
+      '/industries/education',
+      '/industries/retail-ecommerce',
+      '/industries/real-estate',
+    ]);
     expect(compiled.textContent).not.toMatch(/>E-Commerce</);
   });
 
@@ -210,7 +220,7 @@ describe('IndustriesOverviewComponent', () => {
     expect(firstAnswer?.hidden).toBe(true);
   });
 
-  it('preserves every approved service route and all 20 canonical paths', () => {
+  it('preserves every approved service route and all 21 canonical paths', () => {
     const approvedServicePaths = [
       'services/it-consulting',
       'services/digital-transformation',

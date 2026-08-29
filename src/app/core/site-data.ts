@@ -105,7 +105,11 @@ export const industries = [
     icon: 'heroShoppingCart',
     route: '/industries/retail-ecommerce',
   },
-  { title: 'Real Estate', icon: 'heroBuildingOffice2' },
+  {
+    title: 'Real Estate',
+    icon: 'heroBuildingOffice2',
+    route: '/industries/real-estate',
+  },
   { title: 'SaaS', icon: 'heroServerStack' },
   { title: 'Logistics & Supply Chain', icon: 'heroTruck' },
 ] as const satisfies readonly IndustryDefinition[];
@@ -278,6 +282,7 @@ export const publicPaths = [
   '/industries/healthcare',
   '/industries/education',
   '/industries/retail-ecommerce',
+  '/industries/real-estate',
   '/case-studies',
   '/partnerships',
   '/careers',

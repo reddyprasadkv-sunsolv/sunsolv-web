@@ -37,8 +37,9 @@ describe('IndustryDetailComponent', () => {
       'industries/healthcare',
       'industries/education',
       'industries/retail-ecommerce',
+      'industries/real-estate',
     ]);
-    expect(publicPaths).toHaveLength(20);
+    expect(publicPaths).toHaveLength(21);
     expect(publicPaths).toContain('/industries/healthcare');
   });
 
@@ -212,7 +213,7 @@ describe('IndustryDetailComponent', () => {
     expect(firstAnswer?.hidden).toBe(true);
   });
 
-  it('links only the three published industry pages from the approved Industries Overview', async () => {
+  it('links only the four published industry pages from the approved Industries Overview', async () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     await TestBed.inject(Router).navigateByUrl('/industries');
@@ -237,6 +238,7 @@ describe('IndustryDetailComponent', () => {
       '/industries/healthcare',
       '/industries/education',
       '/industries/retail-ecommerce',
+      '/industries/real-estate',
     ]);
     expect(routes.filter((route) => approvedServicePaths.includes(route.path ?? ''))).toHaveLength(
       7,

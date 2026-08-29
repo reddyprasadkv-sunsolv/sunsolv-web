@@ -1,3 +1,72 @@
+# SunSolv Real Estate industry page — design QA
+
+## Evidence and scope
+
+- Branch: `feature/real-estate-industry`.
+- Verified base: `ccbe3d25034b0dd3a825961cf359c20568cafc73` (approved Retail & E-Commerce checkpoint).
+- Route: `/industries/real-estate`, implemented through the approved reusable industry-detail framework and a lazy-loaded data module.
+- Source visual truth: `/Users/reddyprasadkv/Downloads/Realestate.png` (1672 × 941 pixels).
+- Browser-rendered implementation: `01-real-estate-hero-1920-final.png`, captured from a 1920 × 1080 CSS viewport at device-pixel ratio 1 (1905 × 1072 pixels after scrollbar and application-panel allocation).
+- Mobile evidence: `04-real-estate-hero-430-clean.png` and `10-real-estate-complete-mobile-430-clean.png`, captured from a 430 × 932 CSS viewport (415 × 899 viewport pixels).
+- Mandatory full-view comparison: `13-real-estate-source-rendered-hero-comparison.png`, with source and rendered hero normalized to adjacent 960 × 540 panels.
+- Focused evidence: `05-real-estate-capabilities-desktop-final.png`, `08-real-estate-faq-keyboard-expanded-final.png` and `09-real-estate-final-cta-footer-final.png`.
+- Cross-page distinction evidence: `12-real-estate-healthcare-education-retail-comparison.png`.
+- Review directory: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/real-estate-industry-review/` (outside Git).
+
+The source and implementation were compared at the same 16:9 desktop composition after density normalization. The dedicated 4:3 mobile source was reviewed separately because the approved industry-detail system intentionally uses copy-first/image-second stacking below the desktop breakpoint.
+
+## Findings
+
+- No actionable P0, P1 or P2 issue remains.
+- Fonts and typography: the existing Manrope/Inter hierarchy, optical weights, line height and wrapping remain consistent with the approved industry-detail framework. The long H1 remains readable at 320, 375, 430, 768, 1024, 1440 and 1920 pixels without clipping or overlap.
+- Spacing and layout rhythm: the breadcrumb, eyebrow, H1, lede and CTAs align with the shared header container. Desktop uses a continuous full-surface hero; tablet and mobile preserve the approved copy-first/image-second sequence. Capability cards, environment rows, delivery steps, FAQ and final CTA retain the established section rhythm.
+- Colors and tokens: the warm architectural image, continuous navy gradient, teal eyebrow, deep-green capability surface, warm-neutral environment section and light CTA use existing project tokens. No page-specific global styling or unsupported visual token was introduced.
+- Image quality and asset fidelity: the approved human-free property-planning environment remains sharp and undistorted. The architectural model, tablet, plans, material samples and exterior property context remain visible; no people, brand marks, personal information or fabricated proof appear. AVIF is selected in supported browsers with WebP fallback.
+- Copy and content: the exact approved Real Estate copy, seven service links, six FAQs, CTA destinations and alt text are present. No placeholder, unsupported statistic, customer name, guarantee or internal approval phrase appears publicly.
+- Accessibility and interaction: the page retains one H1, semantic regions, meaningful alt text, visible keyboard focus and reduced-motion behavior. Enter expands the first FAQ while focus remains on the disclosure button; its computed outline is `rgb(0, 95, 204) auto 1px`. Desktop Services hover exposes seven links, the mobile Services disclosure opens with seven links, and the Contact project query preselects `project`.
+- Responsive behavior: all required widths have equal document client and scroll widths, visible CTAs and the correct responsive source. No horizontal overflow, image distortion or layout shift is visible.
+- Browser health: hydration retains one structured-data script and two Angular state scripts; the browser console contains zero warnings or errors.
+- Preservation: Homepage, About Us, Services Overview, all service pages, Industries Overview, Healthcare, Education, Retail & E-Commerce, navigation, footer, Contact backend, dependencies and approved global styling are unchanged.
+
+## SEO and structured data
+
+- Title: `Real Estate Technology Solutions | SunSolv Technologies`.
+- Description: `Connect property marketing, sales and operations with SunSolv real estate technology solutions for digital platforms, integrations, cloud and automation.`
+- Canonical: `https://www.sunsolv.in/industries/real-estate`.
+- JSON-LD appears once and contains `WebPage`, `Service`, `BreadcrumbList` and `FAQPage`.
+
+## Comparison history
+
+- Initial pass: no P0/P1/P2 visual mismatch was found. The supplied artwork already provided the protected left copy field and right-weighted architectural subject required by the shared hero system.
+- Asset preparation: the desktop source was optimized without reinterpretation. A faithful 4:3 mobile derivative was created to preserve the property model, tablet and planning context at narrow widths.
+- Final pass: the normalized source/rendered comparison and focused section captures confirm stable hierarchy, sharp imagery, consistent spacing, readable contrast, responsive stacking and distinct visual identity relative to Healthcare, Education and Retail & E-Commerce. No visual fix iteration was required.
+
+## Automated and production checks
+
+- `npm run format:check`: pass.
+- `npm run typecheck`: pass for application and SSR configurations.
+- `npm test -- --watch=false`: 108/108 tests pass across 14 test files.
+- `npm run build`: browser production, Angular SSR, 21-route prerender and Express server builds pass.
+- Direct routes: 21/21 return HTTP 200.
+- Legacy redirects: `/partnership` and `/terms-and-condition` return HTTP 301 to their approved destinations.
+- Invalid route: real HTTP 404.
+- Initial production bundle: 477.84 kB raw / 132.44 kB estimated transfer, below the unchanged 500 kB warning threshold.
+- Real Estate lazy chunk: 11.26 kB raw / 2.85 kB estimated transfer.
+- `npm audit --offline --omit=dev --audit-level=high`: zero vulnerabilities.
+- Existing non-blocking warnings remain limited to the intentionally deferred Angular Webpack/application-builder migration and its unit-test compatibility notice.
+
+## Checkpoint state
+
+- Real Estate implementation, tests, optimized assets and this report remain unstaged and uncommitted for visual approval.
+- The preserved Retail backup stash remains untouched at `65deba5bff5ff977e1b1d12e26d8fed1d8ea0a3a`.
+- Generated sources and all review captures remain outside Git.
+- No dependency, secret, environment file, build output, cache or temporary QA output was added.
+- No commit, push, pull request, merge, deployment or public sharing occurred.
+
+final result: passed
+
+---
+
 # SunSolv Industries hero alignment refinement — design QA
 
 ## Evidence and scope

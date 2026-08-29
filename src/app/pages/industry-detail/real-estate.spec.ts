@@ -8,38 +8,38 @@ import { publicPaths } from '../../core/site-data';
 
 const expectedFaqs = [
   {
-    question: 'What kinds of retail and e-commerce businesses can SunSolv support?',
+    question: 'What kinds of real estate organizations can SunSolv support?',
     answer:
-      'SunSolv can shape technology engagements for direct-to-consumer brands, multi-location retailers, marketplace sellers, specialty retailers, business-to-business commerce and distributed retail networks. The appropriate solution depends on the business model, customers, products, channels, systems and priorities.',
+      'SunSolv can shape technology engagements for residential and commercial developers, property-management organizations, brokerages, advisory organizations and property technology platforms. The appropriate solution depends on the organization’s users, systems, workflows and priorities.',
   },
   {
-    question: 'Can SunSolv work with our existing commerce platform?',
+    question: 'Can SunSolv integrate with our existing CRM and property systems?',
     answer:
-      'Yes. SunSolv can assess an existing platform and recommend improvements, integrations, custom extensions or a phased modernization approach. Technical feasibility depends on the platform, available APIs, licensing, data responsibilities and current architecture.',
+      'Where suitable APIs, interfaces and authorized access are available, SunSolv can assess and implement integrations between CRM, property inventory, finance, communication and operational applications. Vendor limitations, data responsibilities and security requirements must be understood during discovery.',
   },
   {
-    question: 'Can physical retail and e-commerce systems be connected?',
+    question: 'Can real estate processes be modernized gradually?',
     answer:
-      'Where appropriate systems and authorized interfaces are available, SunSolv can help connect digital storefronts with suitable product, inventory, order, customer and operational applications. The required level of integration should be defined during discovery.',
+      'Yes. Organizations can begin with a focused customer journey, workflow, project or operational requirement before expanding modernization across connected processes.',
   },
   {
-    question: 'Can commerce modernization be delivered gradually?',
+    question: 'Can SunSolv build customer, broker or tenant portals?',
     answer:
-      'Yes. A business can begin with a priority customer journey, operational workflow, integration or channel before expanding to connected areas. A phased approach can reduce disruption and provide useful learning for later stages.',
+      'SunSolv can design and develop accessible web or mobile experiences for suitable customer, broker, tenant and internal workflows. Features, integrations and access controls should be defined around the organization’s operating requirements.',
   },
   {
-    question: 'Can artificial intelligence be included in a retail solution?',
+    question: 'Can artificial intelligence be included in a real estate solution?',
     answer:
-      'AI may be appropriate for selected search, support, content, forecasting, recommendation or operational workflows. Its use should have a defined purpose and include suitable human oversight, privacy, security, monitoring and limitations. AI outputs should not be treated as automatically accurate or appropriate.',
+      'AI may be appropriate for selected search, knowledge, support, document or operational workflows. Its use should have a clear purpose and include appropriate human oversight, privacy, security, monitoring and limitations.',
   },
   {
-    question: 'How does a retail and e-commerce technology engagement begin?',
+    question: 'How does a real estate technology engagement begin?',
     answer:
-      'It begins with a discovery conversation about the business model, customers, products, channels, current systems, operational challenges and desired outcomes. SunSolv can then recommend an assessment, focused advisory engagement or practical delivery phase.',
+      'It begins with a discovery conversation about the organization, properties, users, existing systems, operational challenges and desired outcomes. SunSolv can then recommend an assessment, focused advisory engagement or practical delivery phase.',
   },
 ] as const;
 
-describe('Retail & E-Commerce industry page', () => {
+describe('Real Estate industry page', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
@@ -47,18 +47,18 @@ describe('Retail & E-Commerce industry page', () => {
     }).compileComponents();
   });
 
-  async function renderRetailEcommerce() {
+  async function renderRealEstate() {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    await TestBed.inject(Router).navigateByUrl('/industries/retail-ecommerce');
+    await TestBed.inject(Router).navigateByUrl('/industries/real-estate');
     fixture.detectChanges();
     await fixture.whenStable();
     fixture.detectChanges();
     return { fixture, compiled: fixture.nativeElement as HTMLElement };
   }
 
-  it('registers a lazy Retail & E-Commerce route without publishing unfinished industries', () => {
-    const route = routes.find((candidate) => candidate.path === 'industries/retail-ecommerce');
+  it('registers Real Estate through lazy component and data without publishing unfinished routes', () => {
+    const route = routes.find((candidate) => candidate.path === 'industries/real-estate');
     const industryPaths = routes
       .filter((candidate) => candidate.path?.startsWith('industries/'))
       .map(({ path }) => path);
@@ -73,33 +73,36 @@ describe('Retail & E-Commerce industry page', () => {
       'industries/real-estate',
     ]);
     expect(publicPaths).toHaveLength(21);
-    expect(publicPaths).toContain('/industries/retail-ecommerce');
+    expect(publicPaths).toContain('/industries/real-estate');
     expect(industryPaths.join(' ')).not.toMatch(/saas|logistics/);
   });
 
-  it('renders the exact approved content and section totals without unsupported claims', async () => {
-    const { compiled } = await renderRetailEcommerce();
+  it('renders the exact approved Real Estate content and section totals', async () => {
+    const { compiled } = await renderRealEstate();
 
     expect(compiled.querySelectorAll('h1')).toHaveLength(1);
     expect(compiled.querySelector('h1')?.textContent?.trim()).toBe(
-      'Connected commerce experiences from discovery to delivery.',
+      'Connected property experiences from enquiry to ongoing operations.',
     );
     expect(compiled.textContent).toContain(
-      'Every customer interaction depends on connected operations.',
+      'Property journeys depend on connected information and timely coordination.',
+    );
+    expect(compiled.textContent).toContain(
+      'Technology that supports property journeys beyond implementation.',
     );
     expect(compiled.querySelectorAll('.challenges article')).toHaveLength(6);
     expect(compiled.querySelectorAll('.capabilities article')).toHaveLength(6);
-    expect(compiled.querySelectorAll('.environments article')).toHaveLength(6);
+    expect(compiled.querySelectorAll('.environments article')).toHaveLength(5);
     expect(compiled.querySelectorAll('.outcomes article')).toHaveLength(5);
     expect(compiled.querySelectorAll('.approach li')).toHaveLength(4);
     expect(compiled.querySelectorAll('.faq-list article')).toHaveLength(6);
     expect(compiled.textContent).not.toMatch(
-      /placeholder|coming soon|guaranteed revenue|guaranteed conversion|guaranteed cost|guaranteed customer retention|guaranteed search rankings|financial advice|tax advice|legal advice/i,
+      /placeholder|coming soon|guaranteed sales|guaranteed occupancy|investment advice|valuation advice|legal advice/i,
     );
   });
 
-  it('uses exclusive human-free responsive AVIF and WebP assets with intrinsic dimensions', async () => {
-    const { compiled } = await renderRetailEcommerce();
+  it('uses the exclusive human-free responsive AVIF and WebP hero assets', async () => {
+    const { compiled } = await renderRealEstate();
     const picture = compiled.querySelector('.industry-detail-hero-image');
     const sources = picture?.querySelectorAll('source');
     const image = picture?.querySelector('img');
@@ -108,17 +111,19 @@ describe('Retail & E-Commerce industry page', () => {
     expect(picture?.querySelectorAll('source[type="image/avif"]')).toHaveLength(2);
     expect(picture?.querySelectorAll('source[type="image/webp"]')).toHaveLength(1);
     expect(sources?.[0]?.getAttribute('srcset')).toContain(
-      'sunsolv-retail-omnichannel-commerce-mobile.avif 1000w',
+      'sunsolv-real-estate-connected-property-operations-mobile.avif 1000w',
     );
     expect(sources?.[1]?.getAttribute('srcset')).toContain(
-      'sunsolv-retail-omnichannel-commerce-mobile.webp 1000w',
+      'sunsolv-real-estate-connected-property-operations-mobile.webp 1000w',
     );
     expect(sources?.[2]?.getAttribute('srcset')).toContain(
-      'sunsolv-retail-omnichannel-commerce.avif 1600w',
+      'sunsolv-real-estate-connected-property-operations.avif 1600w',
     );
-    expect(image?.getAttribute('src')).toContain('sunsolv-retail-omnichannel-commerce.webp');
+    expect(image?.getAttribute('src')).toContain(
+      'sunsolv-real-estate-connected-property-operations.webp',
+    );
     expect(image?.getAttribute('alt')).toBe(
-      'Modern omnichannel retail environment with connected shopping and order collection areas.',
+      'Modern real estate planning environment with a property model and connected digital tools.',
     );
     expect(image?.getAttribute('fetchpriority')).toBe('high');
     expect(image?.hasAttribute('loading')).toBe(false);
@@ -128,8 +133,8 @@ describe('Retail & E-Commerce industry page', () => {
     expect(sources?.[0]?.getAttribute('height')).toBe('750');
   });
 
-  it('links all seven completed services with their centralized descriptions', async () => {
-    const { compiled } = await renderRetailEcommerce();
+  it('links all seven approved services with their centralized descriptions', async () => {
+    const { compiled } = await renderRealEstate();
     const links = [...compiled.querySelectorAll<HTMLAnchorElement>('.service-link-grid a')];
 
     expect(links.map((link) => link.getAttribute('href'))).toEqual([
@@ -146,8 +151,8 @@ describe('Retail & E-Commerce industry page', () => {
     );
   });
 
-  it('preserves project query parameters, Services navigation and contact selection', async () => {
-    const { fixture, compiled } = await renderRetailEcommerce();
+  it('preserves project CTA query parameters, Services navigation and contact selection', async () => {
+    const { fixture, compiled } = await renderRealEstate();
 
     expect(compiled.querySelectorAll('main a[href="/contact-us?enquiry=project"]')).toHaveLength(2);
     expect(compiled.querySelector('.hero-actions a[href="/services"]')?.textContent).toContain(
@@ -164,8 +169,8 @@ describe('Retail & E-Commerce industry page', () => {
     );
   });
 
-  it('renders exact SEO and one valid four-entity structured-data graph', async () => {
-    const { compiled } = await renderRetailEcommerce();
+  it('renders exact SEO and the four approved structured-data entities', async () => {
+    const { compiled } = await renderRealEstate();
     const document = TestBed.inject(DOCUMENT);
     const scripts = document.querySelectorAll<HTMLScriptElement>('#structured-data');
     const structuredData = JSON.parse(scripts[0]?.textContent ?? '{}') as {
@@ -185,12 +190,12 @@ describe('Retail & E-Commerce industry page', () => {
     const breadcrumbs = graph.find((item) => item['@type'] === 'BreadcrumbList');
     const faqPage = graph.find((item) => item['@type'] === 'FAQPage');
 
-    expect(document.title).toBe('Retail & E-Commerce Technology Solutions | SunSolv Technologies');
+    expect(document.title).toBe('Real Estate Technology Solutions | SunSolv Technologies');
     expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toBe(
-      'Connect customer experiences and operations with SunSolv retail and e-commerce solutions for digital storefronts, integrations, cloud, data and automation.',
+      'Connect property marketing, sales and operations with SunSolv real estate technology solutions for digital platforms, integrations, cloud and automation.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/industries/retail-ecommerce',
+      'https://www.sunsolv.in/industries/real-estate',
     );
     expect(scripts).toHaveLength(1);
     expect(graph.map((item) => item['@type'])).toEqual([
@@ -199,30 +204,19 @@ describe('Retail & E-Commerce industry page', () => {
       'BreadcrumbList',
       'FAQPage',
     ]);
-    expect(page?.name).toBe('Retail & E-Commerce Technology Solutions');
-    expect(page?.url).toBe('https://www.sunsolv.in/industries/retail-ecommerce');
-    expect(service?.name).toBe('Retail & E-Commerce Technology Solutions');
-    expect(service?.serviceType).toBe(
-      'Retail and e-commerce technology consulting and digital solutions',
-    );
+    expect(page?.name).toBe('Real Estate Technology Solutions');
+    expect(page?.url).toBe('https://www.sunsolv.in/industries/real-estate');
+    expect(service?.name).toBe('Real Estate Technology Solutions');
+    expect(service?.serviceType).toBe('Real estate technology consulting and digital solutions');
     expect(service?.provider?.['@id']).toBe('https://www.sunsolv.in/#organization');
-    expect(
-      graph.some((item) =>
-        ['Store', 'OnlineStore', 'Product', 'Offer'].includes(item['@type'] ?? ''),
-      ),
-    ).toBe(false);
+    expect(graph.some((item) => item['@type'] === 'RealEstateAgent')).toBe(false);
+    expect(graph.some((item) => item['@type'] === 'Residence')).toBe(false);
     expect(breadcrumbs?.itemListElement?.map((item) => item.name)).toEqual([
       'Home',
       'Industries',
-      'Retail & E-Commerce',
+      'Real Estate',
     ]);
-    expect(faqPage?.mainEntity).toEqual(
-      expectedFaqs.map((faq) => ({
-        '@type': 'Question',
-        name: faq.question,
-        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
-      })),
-    );
+    expect(faqPage?.mainEntity).toHaveLength(6);
     expect(faqPage?.mainEntity?.map((item) => item.name)).toEqual(
       [...compiled.querySelectorAll('.faq-list button span')].map((item) =>
         item.textContent?.trim(),
@@ -230,22 +224,28 @@ describe('Retail & E-Commerce industry page', () => {
     );
   });
 
-  it('keeps all FAQ controls keyboard-operable with scoped ARIA state', async () => {
-    const { fixture, compiled } = await renderRetailEcommerce();
+  it('keeps all Real Estate FAQs exact and keyboard-operable with scoped ARIA state', async () => {
+    const { fixture, compiled } = await renderRealEstate();
     const buttons = [...compiled.querySelectorAll<HTMLButtonElement>('.faq-list button')];
+    const answers = [...compiled.querySelectorAll<HTMLElement>('.faq-answer')];
     const firstButton = buttons[0];
-    const firstAnswer = compiled.querySelector<HTMLElement>('.faq-answer');
+    const firstAnswer = answers[0];
 
     expect(buttons).toHaveLength(6);
+    expect(
+      buttons.map((button, index) => ({
+        question: button.querySelector('span')?.textContent?.trim(),
+        answer: answers[index]?.textContent?.trim(),
+      })),
+    ).toEqual(expectedFaqs);
     expect(firstButton?.getAttribute('aria-expanded')).toBe('false');
-    expect(firstButton?.getAttribute('aria-controls')).toBe('retail-ecommerce-faq-answer-0');
+    expect(firstButton?.getAttribute('aria-controls')).toBe('real-estate-faq-answer-0');
     expect(firstButton?.getAttribute('aria-controls')).toBe(firstAnswer?.id);
     expect(firstAnswer?.hidden).toBe(true);
 
     firstButton?.focus();
     firstButton?.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
     fixture.detectChanges();
-
     expect(document.activeElement).toBe(firstButton);
     expect(firstButton?.getAttribute('aria-expanded')).toBe('true');
     expect(firstAnswer?.hidden).toBe(false);
@@ -256,10 +256,11 @@ describe('Retail & E-Commerce industry page', () => {
     expect(firstAnswer?.hidden).toBe(true);
   });
 
-  it('updates only the Retail & E-Commerce overview card and preserves approved industries', async () => {
+  it('updates only the Real Estate overview card and preserves earlier industry content', async () => {
+    const router = TestBed.inject(Router);
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    await TestBed.inject(Router).navigateByUrl('/industries');
+    await router.navigateByUrl('/industries');
     fixture.detectChanges();
     await fixture.whenStable();
     fixture.detectChanges();
@@ -281,20 +282,19 @@ describe('Retail & E-Commerce industry page', () => {
       'Explore Real Estate',
     ]);
 
-    await TestBed.inject(Router).navigateByUrl('/industries/healthcare');
-    fixture.detectChanges();
-    await fixture.whenStable();
-    fixture.detectChanges();
-    expect(compiled.querySelector('h1')?.textContent?.trim()).toBe(
-      'Connected technology for better care and stronger operations.',
-    );
-
-    await TestBed.inject(Router).navigateByUrl('/industries/education');
-    fixture.detectChanges();
-    await fixture.whenStable();
-    fixture.detectChanges();
-    expect(compiled.querySelector('h1')?.textContent?.trim()).toBe(
-      'Connected digital experiences for learning and administration.',
-    );
+    for (const [path, h1] of [
+      ['/industries/healthcare', 'Connected technology for better care and stronger operations.'],
+      ['/industries/education', 'Connected digital experiences for learning and administration.'],
+      [
+        '/industries/retail-ecommerce',
+        'Connected commerce experiences from discovery to delivery.',
+      ],
+    ] as const) {
+      await router.navigateByUrl(path);
+      fixture.detectChanges();
+      await fixture.whenStable();
+      fixture.detectChanges();
+      expect(compiled.querySelector('h1')?.textContent?.trim()).toBe(h1);
+    }
   });
 });
