@@ -1,3 +1,72 @@
+# SunSolv Industries hero alignment refinement — design QA
+
+## Evidence and scope
+
+- Branch: `feature/industries-hero-alignment`.
+- Verified base: `ceeb80904c02a7650532f0fdad41e226d4ff08cb`.
+- Route: `/industries`; Healthcare and Education are preservation targets only.
+- Source of truth: the approved Services hero at `industries-hero-alignment-review/02-services-source-1920.png`.
+- Pre-correction Industries evidence: `01-industries-before-1920.png`.
+- Final implementation evidence: `03-industries-after-1920.png`, `04-industries-after-1024.png` and `05-industries-after-430.png`.
+- Full-view source/implementation comparison: `08-services-industries-alignment-comparison.png`, normalized to adjacent 960 × 540 panels.
+- Before/after comparison: `07-industries-before-after-comparison.png`.
+- Healthcare and Education preservation comparison: `09-healthcare-education-preservation-comparison.png`.
+- Review directory: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/industries-hero-alignment-review/` (outside Git).
+
+The desktop captures use a 1920 × 1080 CSS viewport at device-pixel ratio 1 and produce 1905 × 1072 PNGs after scrollbar and application-panel allocation. The tablet and mobile captures use 1024 × 900 and 430 × 932 CSS viewports and produce 1009 × 887 and 415 × 899 PNGs. All comparison panels use the same top-aligned crop and density.
+
+## Findings and implementation
+
+- No actionable P0, P1 or P2 issue remains.
+- Layout: the Industries picture now covers the complete hero surface rather than beginning at a fixed 27vw inset. The prior hard vertical seam has been removed.
+- Overlay: Industries opts into the existing `industries-aligned` hero contract. The same continuous left-to-right navy gradient used by Services now supports the complete breadcrumb, eyebrow, heading, paragraph and CTA region.
+- Layering: copy is explicitly above the shared overlay at z-index 2; the full-surface picture remains below it. At 1030 pixels the picture is absolute, begins at x=0 and spans the full 1015-pixel document width.
+- Responsive behavior: at 1024 pixels and below the overlay is disabled and the existing copy-first/image-second layout remains. The mobile image retains its dedicated 4:3 source and both CTAs remain full-width at narrow viewports.
+- Typography and copy: the approved Manrope/Inter hierarchy, wording, line breaks, breadcrumb, eyebrow, paragraph and CTA labels remain unchanged.
+- Colors and tokens: the correction reuses the existing global navy gradient and established variables; no new visual token or page-specific gradient was introduced.
+- Image quality: the approved connected-economy AVIF/WebP sources, intrinsic dimensions, alt text, fetch priority, crop and right-side visibility remain unchanged. No distortion or new asset was introduced.
+- Accessibility and interaction: the hero retains one H1, readable contrast, visible focus styling, reduced-motion behavior and working CTA destinations. Browser console review contains zero warnings or errors.
+- Preservation: current Healthcare and Education captures match their approved 1920-pixel captures. Their content, images, templates, SEO, schema and routes are untouched.
+
+## Comparison history
+
+### Initial blocked state
+
+- P1: the picture began at a fixed-width inset, producing a visible solid-navy/image seam while the heading and paragraph extended across it.
+- P1: the limited transition did not support the complete paragraph width and made the image read as a separate column.
+
+### Final pass
+
+- The picture inset was changed to full-surface `inset: 0` and Industries was attached to the already approved shared gradient contract.
+- The copy layer was raised above the overlay and given the same minimum-width protection as Services.
+- The overview hero breakpoint was synchronized to 1024 pixels while unrelated content grids retain their existing 1050-pixel behavior.
+- The final Services-versus-Industries comparison confirms synchronized container alignment, full-height image treatment, gradient progression and responsive transition. No remaining P0/P1/P2 finding is visible.
+
+## Automated and production checks
+
+- `npm run format:check`: pass.
+- `npm run typecheck`: pass for browser and SSR configurations.
+- `npm test -- --watch=false`: 92/92 tests pass across 12 files.
+- `npm run build`: browser production, Angular SSR, 19-route prerender and Express server builds pass.
+- Direct routes: 19/19 return HTTP 200.
+- Legacy redirects: `/partnership` and `/terms-and-condition` return HTTP 301 to their approved destinations.
+- Invalid route: real HTTP 404.
+- Responsive widths 320, 375, 430, 768, 1024, 1440 and 1920 have equal client and scroll widths, one H1, two visible hero CTAs and a visible hero image.
+- Initial production bundle: 477.31 kB raw / 132.56 kB estimated transfer, below the unchanged 500 kB warning threshold.
+- `npm audit --offline --omit=dev --audit-level=high`: zero vulnerabilities.
+- Existing non-blocking warnings remain limited to the intentionally deferred Angular Webpack/application-builder migration and its unit-test compatibility notice.
+
+## Checkpoint state
+
+- Modified files are limited to the Industries Overview template, component styles, preservation test and this QA report.
+- The approved Industries artwork, page content, CTA routes, Services heroes, Healthcare and Education remain unchanged.
+- The Retail & E-Commerce work is preserved separately in the named stash `codex-retail-ecommerce-option-1-uncommitted` for later continuation.
+- All correction changes remain unstaged and uncommitted. No push, merge, pull request, deployment or public sharing occurred.
+
+final result: passed
+
+---
+
 # SunSolv Services hero alignment refinement — design QA
 
 ## Evidence and scope

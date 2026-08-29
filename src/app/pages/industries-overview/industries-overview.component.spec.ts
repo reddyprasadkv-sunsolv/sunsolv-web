@@ -56,10 +56,16 @@ describe('IndustriesOverviewComponent', () => {
 
   it('uses the exclusive responsive connected-economy AVIF and WebP artwork', async () => {
     const { compiled } = await renderPage();
+    const hero = compiled.querySelector<HTMLElement>(
+      '.industries-hero[data-hero-layout="industries-aligned"]',
+    );
     const picture = compiled.querySelector('.industries-hero-image');
     const sources = picture?.querySelectorAll('source');
     const image = picture?.querySelector('img');
 
+    expect(hero).toBeTruthy();
+    expect(hero?.querySelector('.industries-hero-inner > .industries-hero-copy')).toBeTruthy();
+    expect(hero?.querySelector('.industries-hero-copy > .industries-breadcrumbs')).toBeTruthy();
     expect(sources).toHaveLength(3);
     expect(picture?.querySelectorAll('source[type="image/avif"]')).toHaveLength(2);
     expect(picture?.querySelectorAll('source[type="image/webp"]')).toHaveLength(1);

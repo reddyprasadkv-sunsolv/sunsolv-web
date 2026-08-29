@@ -18,8 +18,9 @@
 
 .industries-hero-copy {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: min(48%, 610px);
+  min-width: 0;
   padding: 36px 44px 38px 0;
 }
 
@@ -64,7 +65,8 @@
 
 .industries-hero-image {
   position: absolute;
-  inset: 0 0 0 clamp(360px, 27vw, 520px);
+  inset: 0;
+  min-width: 0;
   overflow: hidden;
 }
 
@@ -314,6 +316,19 @@
 }
 
 @media (max-width: 1050px) {
+  .four-card-grid,
+  .approach-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .four-card-grid article:nth-child(3),
+  .approach-grid li:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+@media (max-width: 1024px) {
   .industries-hero-inner {
     min-height: 0;
     display: block;
@@ -331,17 +346,6 @@
     height: auto;
     margin: 0 -24px;
     aspect-ratio: 16 / 9;
-  }
-
-  .four-card-grid,
-  .approach-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .four-card-grid article:nth-child(3),
-  .approach-grid li:nth-child(3) {
-    padding-left: 0;
-    border-left: 0;
   }
 }
 
