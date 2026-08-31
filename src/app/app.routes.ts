@@ -70,6 +70,16 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'industries/saas',
+    loadComponent: () =>
+      import('./pages/industry-detail/industry-detail.component').then(
+        (m) => m.IndustryDetailComponent,
+      ),
+    resolve: {
+      industryData: () => import('./pages/industry-detail/saas.data').then((m) => m.saasPageData),
+    },
+  },
+  {
     path: 'industries',
     loadComponent: () =>
       import('./pages/industries-overview/industries-overview.component').then(

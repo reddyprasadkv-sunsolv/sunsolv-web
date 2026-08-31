@@ -71,10 +71,11 @@ describe('Retail & E-Commerce industry page', () => {
       'industries/education',
       'industries/retail-ecommerce',
       'industries/real-estate',
+      'industries/saas',
     ]);
-    expect(publicPaths).toHaveLength(21);
+    expect(publicPaths).toHaveLength(22);
     expect(publicPaths).toContain('/industries/retail-ecommerce');
-    expect(industryPaths.join(' ')).not.toMatch(/saas|logistics/);
+    expect(industryPaths.join(' ')).not.toMatch(/logistics/);
   });
 
   it('renders the exact approved content and section totals without unsupported claims', async () => {
@@ -271,6 +272,7 @@ describe('Retail & E-Commerce industry page', () => {
       '/industries/education',
       '/industries/retail-ecommerce',
       '/industries/real-estate',
+      '/industries/saas',
     ]);
     expect(
       links.map((link) => link.querySelector('.industry-card-action')?.textContent?.trim()),
@@ -279,6 +281,7 @@ describe('Retail & E-Commerce industry page', () => {
       'Explore Education',
       'Explore Retail & E-Commerce',
       'Explore Real Estate',
+      'Explore SaaS',
     ]);
 
     await TestBed.inject(Router).navigateByUrl('/industries/healthcare');

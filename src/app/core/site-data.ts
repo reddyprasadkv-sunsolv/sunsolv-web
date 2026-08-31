@@ -110,7 +110,7 @@ export const industries = [
     icon: 'heroBuildingOffice2',
     route: '/industries/real-estate',
   },
-  { title: 'SaaS', icon: 'heroServerStack' },
+  { title: 'SaaS', icon: 'heroServerStack', route: '/industries/saas' },
   { title: 'Logistics & Supply Chain', icon: 'heroTruck' },
 ] as const satisfies readonly IndustryDefinition[];
 
@@ -283,6 +283,7 @@ export const publicPaths = [
   '/industries/education',
   '/industries/retail-ecommerce',
   '/industries/real-estate',
+  '/industries/saas',
   '/case-studies',
   '/partnerships',
   '/careers',

@@ -13,6 +13,7 @@
 /industries/education
 /industries/retail-ecommerce
 /industries/real-estate
+/industries/saas
 /case-studies
 /partnerships
 /careers

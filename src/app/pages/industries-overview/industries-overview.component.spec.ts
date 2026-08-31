@@ -25,7 +25,7 @@ describe('IndustriesOverviewComponent', () => {
     return { fixture, compiled: fixture.nativeElement as HTMLElement };
   }
 
-  it('registers the overview plus only the four published industry routes', () => {
+  it('registers the overview plus only the five published industry routes', () => {
     const route = routes.find((candidate) => candidate.path === 'industries');
 
     expect(route?.loadComponent).toBeTypeOf('function');
@@ -40,6 +40,7 @@ describe('IndustriesOverviewComponent', () => {
       'industries/education',
       'industries/retail-ecommerce',
       'industries/real-estate',
+      'industries/saas',
     ]);
   });
 
@@ -117,6 +118,7 @@ describe('IndustriesOverviewComponent', () => {
       '/industries/education',
       '/industries/retail-ecommerce',
       '/industries/real-estate',
+      '/industries/saas',
     ]);
     expect(compiled.textContent).not.toMatch(/>E-Commerce</);
   });

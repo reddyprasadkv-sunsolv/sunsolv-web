@@ -6,7 +6,40 @@ import { App } from '../../app';
 import { routes } from '../../app.routes';
 import { publicPaths } from '../../core/site-data';
 
-describe('Education industry page', () => {
+const expectedFaqs = [
+  {
+    question: 'What kinds of SaaS products can SunSolv support?',
+    answer:
+      'SunSolv can shape technology engagements for early-stage products, established platforms, vertical SaaS applications, B2B workflow products and API-connected services. The appropriate approach depends on the product’s users, current architecture, operational model and priorities.',
+  },
+  {
+    question: 'Can an existing SaaS application be modernized gradually?',
+    answer:
+      'Yes. Modernization can begin with a focused product journey, application component, integration, workflow or technical foundation. A phased approach can reduce disruption and provide useful evidence for later decisions.',
+  },
+  {
+    question: 'Can SunSolv integrate a SaaS platform with third-party systems?',
+    answer:
+      'Where suitable APIs, interfaces and authorized access are available, SunSolv can assess and implement integrations with customer, partner and operational systems. Vendor limitations, data responsibilities, failure handling and security requirements should be understood during discovery.',
+  },
+  {
+    question: 'How does SunSolv approach multi-tenant SaaS architecture?',
+    answer:
+      'The approach begins with the product’s tenancy model, users, authorization requirements, data responsibilities, operational constraints and expected patterns of change. Architecture decisions should then be evaluated for appropriate isolation, maintainability, performance and observability.',
+  },
+  {
+    question: 'Can artificial intelligence be included in a SaaS product?',
+    answer:
+      'AI may be appropriate for selected search, knowledge, support, content or workflow capabilities. Its use should have a clear purpose and include suitable human oversight, privacy, security, monitoring and limitations. AI should not be added where a simpler approach would better serve the user.',
+  },
+  {
+    question: 'How does a SaaS technology engagement begin?',
+    answer:
+      'It begins with a discovery conversation about the product, users, current platform, operational challenges and desired outcomes. SunSolv can then recommend an assessment, focused advisory engagement or practical delivery phase.',
+  },
+] as const;
+
+describe('SaaS industry page', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
@@ -14,21 +47,22 @@ describe('Education industry page', () => {
     }).compileComponents();
   });
 
-  async function renderEducation() {
+  async function renderSaas() {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    await TestBed.inject(Router).navigateByUrl('/industries/education');
+    await TestBed.inject(Router).navigateByUrl('/industries/saas');
     fixture.detectChanges();
     await fixture.whenStable();
     fixture.detectChanges();
     return { fixture, compiled: fixture.nativeElement as HTMLElement };
   }
 
-  it('registers Education with lazy component and data while leaving unfinished routes unpublished', () => {
-    const route = routes.find((candidate) => candidate.path === 'industries/education');
+  it('registers SaaS through lazy component and data without publishing Logistics', () => {
+    const route = routes.find((candidate) => candidate.path === 'industries/saas');
     const industryPaths = routes
       .filter((candidate) => candidate.path?.startsWith('industries/'))
       .map(({ path }) => path);
+
     expect(route?.loadComponent).toBeTypeOf('function');
     expect(route?.resolve?.['industryData']).toBeTypeOf('function');
     expect(route?.data).toBeUndefined();
@@ -40,19 +74,20 @@ describe('Education industry page', () => {
       'industries/saas',
     ]);
     expect(publicPaths).toHaveLength(22);
-    expect(publicPaths).toContain('/industries/education');
+    expect(publicPaths).toContain('/industries/saas');
     expect(industryPaths.join(' ')).not.toMatch(/logistics/);
   });
 
-  it('renders the exact approved Education content and section totals', async () => {
-    const { compiled } = await renderEducation();
+  it('renders the exact approved SaaS content and section totals', async () => {
+    const { compiled } = await renderSaas();
 
     expect(compiled.querySelectorAll('h1')).toHaveLength(1);
     expect(compiled.querySelector('h1')?.textContent?.trim()).toBe(
-      'Connected digital experiences for learning and administration.',
+      'Scalable SaaS products built around users, operations and change.',
     );
+    expect(compiled.textContent).toContain('A SaaS product is more than the features users see.');
     expect(compiled.textContent).toContain(
-      'Technology should make education easier to access and manage.',
+      'Technology that supports a SaaS product beyond launch.',
     );
     expect(compiled.querySelectorAll('.challenges article')).toHaveLength(6);
     expect(compiled.querySelectorAll('.capabilities article')).toHaveLength(6);
@@ -61,12 +96,12 @@ describe('Education industry page', () => {
     expect(compiled.querySelectorAll('.approach li')).toHaveLength(4);
     expect(compiled.querySelectorAll('.faq-list article')).toHaveLength(6);
     expect(compiled.textContent).not.toMatch(
-      /placeholder|coming soon|guaranteed academic|guaranteed enrollment|accreditation advice|legal advice/i,
+      /placeholder|coming soon|guaranteed growth|guaranteed adoption|guaranteed uptime|legal advice|financial advice/i,
     );
   });
 
   it('uses the exclusive human-free responsive AVIF and WebP hero assets', async () => {
-    const { compiled } = await renderEducation();
+    const { compiled } = await renderSaas();
     const picture = compiled.querySelector('.industry-detail-hero-image');
     const sources = picture?.querySelectorAll('source');
     const image = picture?.querySelector('img');
@@ -75,17 +110,17 @@ describe('Education industry page', () => {
     expect(picture?.querySelectorAll('source[type="image/avif"]')).toHaveLength(2);
     expect(picture?.querySelectorAll('source[type="image/webp"]')).toHaveLength(1);
     expect(sources?.[0]?.getAttribute('srcset')).toContain(
-      'sunsolv-education-connected-learning-mobile.avif 1000w',
+      'sunsolv-saas-connected-product-platform-mobile.avif 1000w',
     );
     expect(sources?.[1]?.getAttribute('srcset')).toContain(
-      'sunsolv-education-connected-learning-mobile.webp 1000w',
+      'sunsolv-saas-connected-product-platform-mobile.webp 1000w',
     );
     expect(sources?.[2]?.getAttribute('srcset')).toContain(
-      'sunsolv-education-connected-learning.avif 1600w',
+      'sunsolv-saas-connected-product-platform.avif 1600w',
     );
-    expect(image?.getAttribute('src')).toContain('sunsolv-education-connected-learning.webp');
+    expect(image?.getAttribute('src')).toContain('sunsolv-saas-connected-product-platform.webp');
     expect(image?.getAttribute('alt')).toBe(
-      'Modern education space with digital and traditional learning tools.',
+      'Modern SaaS product workspace with connected digital platform dashboards.',
     );
     expect(image?.getAttribute('fetchpriority')).toBe('high');
     expect(image?.hasAttribute('loading')).toBe(false);
@@ -96,7 +131,7 @@ describe('Education industry page', () => {
   });
 
   it('links all seven approved services with their centralized descriptions', async () => {
-    const { compiled } = await renderEducation();
+    const { compiled } = await renderSaas();
     const links = [...compiled.querySelectorAll<HTMLAnchorElement>('.service-link-grid a')];
 
     expect(links.map((link) => link.getAttribute('href'))).toEqual([
@@ -114,7 +149,7 @@ describe('Education industry page', () => {
   });
 
   it('preserves project CTA query parameters, Services navigation and contact selection', async () => {
-    const { fixture, compiled } = await renderEducation();
+    const { fixture, compiled } = await renderSaas();
 
     expect(compiled.querySelectorAll('main a[href="/contact-us?enquiry=project"]')).toHaveLength(2);
     expect(compiled.querySelector('.hero-actions a[href="/services"]')?.textContent).toContain(
@@ -132,7 +167,7 @@ describe('Education industry page', () => {
   });
 
   it('renders exact SEO and the four approved structured-data entities', async () => {
-    const { compiled } = await renderEducation();
+    const { compiled } = await renderSaas();
     const document = TestBed.inject(DOCUMENT);
     const scripts = document.querySelectorAll<HTMLScriptElement>('#structured-data');
     const structuredData = JSON.parse(scripts[0]?.textContent ?? '{}') as {
@@ -152,12 +187,12 @@ describe('Education industry page', () => {
     const breadcrumbs = graph.find((item) => item['@type'] === 'BreadcrumbList');
     const faqPage = graph.find((item) => item['@type'] === 'FAQPage');
 
-    expect(document.title).toBe('Education Technology Solutions | SunSolv Technologies');
+    expect(document.title).toBe('SaaS Technology Solutions | SunSolv Technologies');
     expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toBe(
-      'Improve learning and administration with SunSolv education technology solutions for digital platforms, connected systems, cloud, automation and analytics.',
+      'Build and modernize SaaS products with SunSolv solutions for product engineering, cloud architecture, integrations, automation and analytics.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/industries/education',
+      'https://www.sunsolv.in/industries/saas',
     );
     expect(scripts).toHaveLength(1);
     expect(graph.map((item) => item['@type'])).toEqual([
@@ -166,17 +201,17 @@ describe('Education industry page', () => {
       'BreadcrumbList',
       'FAQPage',
     ]);
-    expect(page?.name).toBe('Education Technology Solutions');
-    expect(page?.url).toBe('https://www.sunsolv.in/industries/education');
-    expect(service?.name).toBe('Education Technology Solutions');
-    expect(service?.serviceType).toBe('Education technology consulting and digital solutions');
+    expect(page?.name).toBe('SaaS Technology Solutions');
+    expect(page?.url).toBe('https://www.sunsolv.in/industries/saas');
+    expect(service?.name).toBe('SaaS Technology Solutions');
+    expect(service?.serviceType).toBe('SaaS product engineering and digital solutions');
     expect(service?.provider?.['@id']).toBe('https://www.sunsolv.in/#organization');
-    expect(graph.some((item) => item['@type'] === 'EducationalOrganization')).toBe(false);
-    expect(graph.some((item) => item['@type'] === 'Course')).toBe(false);
+    expect(graph.some((item) => item['@type'] === 'SoftwareApplication')).toBe(false);
+    expect(graph.some((item) => item['@type'] === 'Product')).toBe(false);
     expect(breadcrumbs?.itemListElement?.map((item) => item.name)).toEqual([
       'Home',
       'Industries',
-      'Education',
+      'SaaS',
     ]);
     expect(faqPage?.mainEntity).toHaveLength(6);
     expect(faqPage?.mainEntity?.map((item) => item.name)).toEqual(
@@ -186,22 +221,28 @@ describe('Education industry page', () => {
     );
   });
 
-  it('keeps all Education FAQ controls keyboard-operable with scoped ARIA state', async () => {
-    const { fixture, compiled } = await renderEducation();
+  it('keeps all SaaS FAQs exact and keyboard-operable with scoped ARIA state', async () => {
+    const { fixture, compiled } = await renderSaas();
     const buttons = [...compiled.querySelectorAll<HTMLButtonElement>('.faq-list button')];
+    const answers = [...compiled.querySelectorAll<HTMLElement>('.faq-answer')];
     const firstButton = buttons[0];
-    const firstAnswer = compiled.querySelector<HTMLElement>('.faq-answer');
+    const firstAnswer = answers[0];
 
     expect(buttons).toHaveLength(6);
+    expect(
+      buttons.map((button, index) => ({
+        question: button.querySelector('span')?.textContent?.trim(),
+        answer: answers[index]?.textContent?.trim(),
+      })),
+    ).toEqual(expectedFaqs);
     expect(firstButton?.getAttribute('aria-expanded')).toBe('false');
-    expect(firstButton?.getAttribute('aria-controls')).toBe('education-faq-answer-0');
+    expect(firstButton?.getAttribute('aria-controls')).toBe('saas-faq-answer-0');
     expect(firstButton?.getAttribute('aria-controls')).toBe(firstAnswer?.id);
     expect(firstAnswer?.hidden).toBe(true);
 
     firstButton?.focus();
     firstButton?.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
     fixture.detectChanges();
-
     expect(document.activeElement).toBe(firstButton);
     expect(firstButton?.getAttribute('aria-expanded')).toBe('true');
     expect(firstAnswer?.hidden).toBe(false);
@@ -212,10 +253,11 @@ describe('Education industry page', () => {
     expect(firstAnswer?.hidden).toBe(true);
   });
 
-  it('updates only the Education overview card and preserves Healthcare', async () => {
+  it('updates only the SaaS overview card and preserves approved industries', async () => {
+    const router = TestBed.inject(Router);
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    await TestBed.inject(Router).navigateByUrl('/industries');
+    await router.navigateByUrl('/industries');
     fixture.detectChanges();
     await fixture.whenStable();
     fixture.detectChanges();
@@ -238,5 +280,24 @@ describe('Education industry page', () => {
       'Explore Real Estate',
       'Explore SaaS',
     ]);
+
+    for (const [path, h1] of [
+      ['/industries/healthcare', 'Connected technology for better care and stronger operations.'],
+      ['/industries/education', 'Connected digital experiences for learning and administration.'],
+      [
+        '/industries/retail-ecommerce',
+        'Connected commerce experiences from discovery to delivery.',
+      ],
+      [
+        '/industries/real-estate',
+        'Connected property experiences from enquiry to ongoing operations.',
+      ],
+    ] as const) {
+      await router.navigateByUrl(path);
+      fixture.detectChanges();
+      await fixture.whenStable();
+      fixture.detectChanges();
+      expect(compiled.querySelector('h1')?.textContent?.trim()).toBe(h1);
+    }
   });
 });

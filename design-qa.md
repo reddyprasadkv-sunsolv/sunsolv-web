@@ -1,3 +1,90 @@
+# SunSolv SaaS industry page — design QA
+
+## Evidence and scope
+
+- Branch: `feature/saas-industry`.
+- Verified base: `6933db6d034641cbb00db355c8f107b82e208991` (approved Real Estate checkpoint).
+- Route: `/industries/saas`, implemented through the approved reusable industry-detail framework and a lazy-loaded data module.
+- Source visual truth: generated human-free desktop source `/Users/reddyprasadkv/.codex/generated_images/01a00b6e-25a3-71a3-9f0c-8acdddce6583/exec-e5a08c8c-f533-4186-a198-14b29ef6100e.png` and dedicated mobile source `/Users/reddyprasadkv/.codex/generated_images/01a00b6e-25a3-71a3-9f0c-8acdddce6583/exec-09de8147-515b-4d60-8a06-06a6a695f94e.png`.
+- Browser-rendered implementation: `01-saas-hero-1920.png`, captured from a 1920 × 1080 CSS viewport at device-pixel ratio 1 (1905 × 1072 pixels after scrollbar and application-panel allocation).
+- Mobile evidence: `04-saas-hero-430-including-image.png` and `10-saas-complete-mobile-430.png`, captured from a 430 × 932 CSS viewport (415-pixel document width).
+- Mandatory normalized source/render comparison: `13-saas-source-rendered-hero-comparison.png`, with the 16:9 source and rendered full-surface hero normalized into adjacent 960 × 540 panels without distortion.
+- Source/optimized evidence: `11-saas-source-optimized-desktop-mobile-comparison.png`.
+- Focused evidence: `05-saas-capabilities-desktop.png`, `06-saas-environments-desktop.png`, `07-saas-delivery-approach-desktop.png`, `08-saas-faq-keyboard-expanded-final.png` and `09-saas-final-cta-footer-final.png`.
+- Cross-page distinction evidence: `12-saas-industry-service-hero-comparison.png`.
+- Review directory: `/Users/reddyprasadkv/.codex/visualizations/2026/08/16/01a00b6e-25a3-71a3-9f0c-8acdddce6583/saas-industry-review/` (outside Git).
+
+The desktop and dedicated 4:3 mobile compositions were reviewed independently because the approved framework intentionally changes from a continuous image-backed hero to copy-first/image-second stacking at the mobile breakpoint.
+
+## Files and responsive assets
+
+- Created: `src/app/pages/industry-detail/saas.data.ts`, `src/app/pages/industry-detail/saas.spec.ts` and four optimized SaaS hero assets under `public/images/industries/saas/`.
+- Modified: `routes.txt`, `src/app/app.routes.ts`, `src/app/core/site-data.ts`, `src/app/core/site-data.spec.ts`, `src/app/pages/industries-overview/industries-overview.component.spec.ts`, `src/app/pages/industry-detail/industry-detail.component.spec.ts`, `education.spec.ts`, `retail-ecommerce.spec.ts`, `real-estate.spec.ts` and this report.
+- No dependency manifest, lockfile, build configuration, server, global style, shared component template, header, footer or Contact backend file changed.
+
+| Asset | Dimensions | Size |
+| --- | ---: | ---: |
+| `sunsolv-saas-connected-product-platform.avif` | 1600 × 900 | 36,044 bytes |
+| `sunsolv-saas-connected-product-platform.webp` | 1600 × 900 | 41,012 bytes |
+| `sunsolv-saas-connected-product-platform-mobile.avif` | 1000 × 750 | 25,903 bytes |
+| `sunsolv-saas-connected-product-platform-mobile.webp` | 1000 × 750 | 28,870 bytes |
+
+The responsive `<picture>` prefers AVIF, retains WebP fallback, declares intrinsic dimensions and sizes, and gives the LCP image high fetch priority without lazy loading. The dedicated mobile composition preserves the principal display, laptop, tablet and their connected-product relationship without squeezing the desktop frame.
+
+## Findings
+
+- No actionable P0, P1 or P2 issue remains.
+- Fonts and typography: the existing Manrope/Inter hierarchy, optical weights, line height and wrapping remain consistent with the approved industry-detail framework. The long SaaS H1 and section headings remain readable at 320, 375, 430, 768, 1024, 1440 and 1920 pixels without clipping or overlap.
+- Spacing and layout rhythm: desktop breadcrumb, eyebrow, H1, lede and CTAs align with the shared header container over one continuous hero surface. Tablet and mobile preserve copy-first/image-second stacking. The six-card capability grid, five-environment editorial list, four delivery steps, FAQ and final CTA retain the established section rhythm.
+- Colors and tokens: the graphite/navy/teal hero, continuous navy gradient, deep-green capability surface, warm-neutral environment section and light aqua CTA reuse approved project tokens. No page-specific global styling or unsupported token was introduced.
+- Image quality and asset fidelity: the display, laptop and tablet remain sharp, undistorted and physically coherent in desktop and mobile compositions. The source/render comparison confirms the dark-left copy field and right-weighted product environment are preserved. The artwork contains no people, silhouettes, body parts, human shadows or human reflections. It includes no branding, readable interface text, customer, account, billing or personal data.
+- Copy and content: the exact approved SaaS copy, seven centralized service links, six FAQs, CTA destinations and alt text are present. No placeholder, customer name, fabricated metric, guarantee, unsupported proof or internal approval phrase appears publicly.
+- Accessibility and interaction: the page retains one server-rendered H1, semantic regions, meaningful alt text, visible keyboard focus and reduced-motion behavior. Enter expands the first FAQ while focus remains on the native button; the computed outline is `rgb(0, 95, 204) auto 1px`, and Space collapses it in automated tests. Desktop Services hover exposes seven links, the mobile Services disclosure opens by tap with seven links, and the Contact project query visibly selects `Project enquiry`.
+- Responsive behavior: all required widths have equal document client and scroll widths, visible hero CTAs and the intended mobile or desktop AVIF source. No horizontal overflow, image distortion, layout shift, header overlap or obscured CTA is visible.
+- Browser health: hydration retains one H1, one structured-data script and two Angular state scripts; the browser console contains zero warnings or errors.
+- Visual distinction: the calm unoccupied SaaS operations studio is visibly distinct from Healthcare, Education, Retail & E-Commerce, Real Estate, the Industries overview and service-page artwork. It does not resemble a meeting room, generic development team, data centre, retail scene, property model, classroom or healthcare interior.
+- Preservation: Homepage, About Us, Services Overview, all seven service pages, Industries Overview content other than the SaaS card link, Healthcare, Education, Retail & E-Commerce, Real Estate, navigation, footer, Contact backend, dependencies and approved global styling remain unchanged. Logistics & Supply Chain remains unpublished.
+
+## SEO and structured data
+
+- Title: `SaaS Technology Solutions | SunSolv Technologies`.
+- Description: `Build and modernize SaaS products with SunSolv solutions for product engineering, cloud architecture, integrations, automation and analytics.`
+- Canonical: `https://www.sunsolv.in/industries/saas`.
+- JSON-LD appears once after SSR and hydration and contains `WebPage`, `Service`, `BreadcrumbList` and `FAQPage`, matching the visible content and exact six FAQs. No `SoftwareApplication`, `Product`, pricing, rating or unsupported proof schema was added.
+
+## Comparison history
+
+- Initial visual pass: no P0/P1/P2 visual mismatch was found. The generated source already provided the protected dark-left copy field, coherent right-side devices and restrained natural-material composition required by the brief.
+- Asset preparation: the desktop source was optimized to 1600 × 900. A dedicated ImageGen-assisted 4:3 mobile recomposition was created and optimized to 1000 × 750 to retain the connected device relationship without distortion.
+- Final pass: normalized source/render, focused section, responsive, source/optimized and cross-page comparisons confirm stable hierarchy, sharp imagery, consistent spacing, readable contrast and a distinct SaaS identity. No design fix iteration was required.
+
+## Automated, route and performance checks
+
+- Supported runtime: Node.js 24.19.0 from the bundled workspace runtime.
+- `npm run format:check`: pass.
+- `npm run typecheck`: pass for application and SSR configurations.
+- `npm test -- --watch=false`: 116/116 tests pass across 15 test files.
+- `npm run build`: browser production, Angular SSR, 22-route prerender and Express server builds pass.
+- Direct routes: 22/22 return HTTP 200, including direct refresh for `/industries/saas` and all approved industry routes.
+- Legacy redirects: `/partnership` and `/terms-and-condition` return HTTP 301 to their approved destinations.
+- Invalid route: real HTTP 404.
+- Initial production bundle: 478.08 kB raw / 132.62 kB estimated transfer, below the unchanged 500 kB warning threshold.
+- Real Estate baseline: 477.84 kB raw / 132.44 kB estimated transfer. Difference: approximately +0.24 kB raw / +0.18 kB transfer; SaaS data remains isolated in an 11.28 kB raw / 2.89 kB estimated-transfer lazy chunk.
+- `npm audit --offline --omit=dev --audit-level=high`: zero vulnerabilities. The online advisory endpoint was unavailable in the restricted environment, so the repository’s established offline production audit was also run and passed.
+- Existing non-blocking warnings remain limited to the intentionally deferred Angular Webpack/application-builder migration and its unit-test compatibility notice.
+
+## Checkpoint state
+
+- The SaaS visual checkpoint is approved, and the scoped implementation, tests, optimized assets and this report are included in the approved feature checkpoint.
+- The preserved Retail backup stash remains untouched at `65deba5bff5ff977e1b1d12e26d8fed1d8ea0a3a`.
+- Generated sources and all review captures remain outside Git.
+- No dependency, secret, environment file, build output, cache or temporary QA output was added.
+- The approved checkpoint is committed locally only; no push, pull request, merge, deployment or public sharing occurred.
+
+final result: passed
+
+---
+
 # SunSolv Real Estate industry page — design QA
 
 ## Evidence and scope

@@ -71,10 +71,11 @@ describe('Real Estate industry page', () => {
       'industries/education',
       'industries/retail-ecommerce',
       'industries/real-estate',
+      'industries/saas',
     ]);
-    expect(publicPaths).toHaveLength(21);
+    expect(publicPaths).toHaveLength(22);
     expect(publicPaths).toContain('/industries/real-estate');
-    expect(industryPaths.join(' ')).not.toMatch(/saas|logistics/);
+    expect(industryPaths.join(' ')).not.toMatch(/logistics/);
   });
 
   it('renders the exact approved Real Estate content and section totals', async () => {
@@ -272,6 +273,7 @@ describe('Real Estate industry page', () => {
       '/industries/education',
       '/industries/retail-ecommerce',
       '/industries/real-estate',
+      '/industries/saas',
     ]);
     expect(
       links.map((link) => link.querySelector('.industry-card-action')?.textContent?.trim()),
@@ -280,6 +282,7 @@ describe('Real Estate industry page', () => {
       'Explore Education',
       'Explore Retail & E-Commerce',
       'Explore Real Estate',
+      'Explore SaaS',
     ]);
 
     for (const [path, h1] of [
