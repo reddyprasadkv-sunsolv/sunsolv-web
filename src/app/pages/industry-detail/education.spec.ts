@@ -24,7 +24,7 @@ describe('Education industry page', () => {
     return { fixture, compiled: fixture.nativeElement as HTMLElement };
   }
 
-  it('registers Education with lazy component and data while leaving unfinished routes unpublished', () => {
+  it('preserves Education with lazy component and data after all six industries are published', () => {
     const route = routes.find((candidate) => candidate.path === 'industries/education');
     const industryPaths = routes
       .filter((candidate) => candidate.path?.startsWith('industries/'))
@@ -38,10 +38,10 @@ describe('Education industry page', () => {
       'industries/retail-ecommerce',
       'industries/real-estate',
       'industries/saas',
+      'industries/logistics-supply-chain',
     ]);
-    expect(publicPaths).toHaveLength(22);
+    expect(publicPaths).toHaveLength(23);
     expect(publicPaths).toContain('/industries/education');
-    expect(industryPaths.join(' ')).not.toMatch(/logistics/);
   });
 
   it('renders the exact approved Education content and section totals', async () => {
@@ -228,6 +228,7 @@ describe('Education industry page', () => {
       '/industries/retail-ecommerce',
       '/industries/real-estate',
       '/industries/saas',
+      '/industries/logistics-supply-chain',
     ]);
     expect(
       links.map((link) => link.querySelector('.industry-card-action')?.textContent?.trim()),
@@ -237,6 +238,7 @@ describe('Education industry page', () => {
       'Explore Retail & E-Commerce',
       'Explore Real Estate',
       'Explore SaaS',
+      'Explore Logistics & Supply Chain',
     ]);
   });
 });

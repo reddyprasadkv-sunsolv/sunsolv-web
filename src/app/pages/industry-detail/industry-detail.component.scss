@@ -23,6 +23,31 @@
   object-position: center;
 }
 
+.industry-detail-hero--logistics::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(5, 16, 29, 0.99) 0%,
+    rgba(5, 16, 29, 0.97) 44%,
+    rgba(5, 16, 29, 0.9) 54%,
+    rgba(5, 16, 29, 0.5) 66%,
+    rgba(5, 16, 29, 0.12) 78%,
+    rgba(5, 16, 29, 0) 86%
+  );
+}
+
+.industry-detail-hero--logistics .industry-detail-hero-image {
+  z-index: 0;
+}
+
+.industry-detail-hero--logistics .industry-detail-hero-copy {
+  z-index: 2;
+}
+
 .industry-detail-hero-inner {
   min-height: clamp(650px, 42vw, 760px);
   display: flex;
@@ -379,6 +404,10 @@
     height: auto;
     margin: 0 -24px;
     aspect-ratio: 16 / 9;
+  }
+
+  .industry-detail-hero--logistics::before {
+    display: none;
   }
 
   .approach-grid {

@@ -57,7 +57,7 @@ describe('Real Estate industry page', () => {
     return { fixture, compiled: fixture.nativeElement as HTMLElement };
   }
 
-  it('registers Real Estate through lazy component and data without publishing unfinished routes', () => {
+  it('preserves Real Estate through lazy component and data after all industries are published', () => {
     const route = routes.find((candidate) => candidate.path === 'industries/real-estate');
     const industryPaths = routes
       .filter((candidate) => candidate.path?.startsWith('industries/'))
@@ -72,10 +72,10 @@ describe('Real Estate industry page', () => {
       'industries/retail-ecommerce',
       'industries/real-estate',
       'industries/saas',
+      'industries/logistics-supply-chain',
     ]);
-    expect(publicPaths).toHaveLength(22);
+    expect(publicPaths).toHaveLength(23);
     expect(publicPaths).toContain('/industries/real-estate');
-    expect(industryPaths.join(' ')).not.toMatch(/logistics/);
   });
 
   it('renders the exact approved Real Estate content and section totals', async () => {
@@ -274,6 +274,7 @@ describe('Real Estate industry page', () => {
       '/industries/retail-ecommerce',
       '/industries/real-estate',
       '/industries/saas',
+      '/industries/logistics-supply-chain',
     ]);
     expect(
       links.map((link) => link.querySelector('.industry-card-action')?.textContent?.trim()),
@@ -283,6 +284,7 @@ describe('Real Estate industry page', () => {
       'Explore Retail & E-Commerce',
       'Explore Real Estate',
       'Explore SaaS',
+      'Explore Logistics & Supply Chain',
     ]);
 
     for (const [path, h1] of [

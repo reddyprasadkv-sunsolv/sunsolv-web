@@ -1,3 +1,85 @@
+# SunSolv Logistics & Supply Chain industry page — design QA
+
+## Evidence and scope
+
+- Branch: `feature/logistics-supply-chain-industry`.
+- Verified base: `2b52b738a95ab6329ee855890b83eace9327c373` (approved SaaS checkpoint).
+- Route: `/industries/logistics-supply-chain`, implemented through the approved reusable industry-detail framework and a lazy-loaded data module.
+- Source visual truth: generated human-free operational source retained outside Git as `sunsolv-logistics-connected-operations-source.png`.
+- Desktop evidence: contrast-corrected `13-logistics-hero-1920-contrast-corrected.png`, `14-logistics-hero-1440-contrast-corrected.png` and approved `03-logistics-hero-1024.png`.
+- Mobile evidence: approved hero capture `04-logistics-hero-430-including-image.png` plus the 14 independent 430-pixel browser captures in `sunsolv-logistics-mobile-unstitched-430.zip`.
+- Focused evidence: `05-logistics-capabilities-desktop.png`, `06-logistics-environments-desktop.png`, `07-logistics-delivery-approach-desktop.png`, `08-logistics-faq-keyboard-expanded.png` and `09-logistics-final-cta-unchanged-footer.png`.
+- Source/optimized evidence: `11-logistics-source-optimized-desktop-mobile-comparison.png`.
+- Cross-page distinction evidence: `12-logistics-industry-service-hero-comparison.png`.
+- Review evidence remains in the Codex review-artifact directory outside Git.
+
+The desktop and dedicated 4:3 mobile crops were reviewed independently because the shared industry-detail framework changes from a continuous image-backed hero to copy-first/image-second stacking at the approved responsive breakpoint.
+
+## Files and responsive assets
+
+- Created: `src/app/pages/industry-detail/logistics-supply-chain.data.ts`, `logistics-supply-chain.spec.ts` and four optimized Logistics hero assets under `public/images/industries/logistics-supply-chain/`.
+- Modified: `routes.txt`, `src/app/app.routes.ts`, `src/app/core/site-data.ts`, `src/app/core/site-data.spec.ts`, `src/app/pages/industries-overview/industries-overview.component.spec.ts`, the four affected approved-industry preservation specs, `industry-detail.component.html`, `industry-detail.component.scss`, `industry-detail.component.spec.ts` and this report.
+- The shared industry-detail template and stylesheet changes only add the Logistics-specific desktop overlay hook and gradient; other industry pages retain their existing visual behavior.
+- No dependency manifest, lockfile, build configuration, server, header, footer, Contact backend or global styling file changed.
+
+| Asset | Dimensions | Size |
+| --- | ---: | ---: |
+| `sunsolv-logistics-connected-operations.avif` | 1600 × 900 | 89,096 bytes |
+| `sunsolv-logistics-connected-operations.webp` | 1600 × 900 | 113,024 bytes |
+| `sunsolv-logistics-connected-operations-mobile.avif` | 1000 × 750 | 72,116 bytes |
+| `sunsolv-logistics-connected-operations-mobile.webp` | 1000 × 750 | 92,872 bytes |
+
+The responsive `<picture>` prefers AVIF, retains WebP fallback, declares intrinsic dimensions and sizes, and gives the LCP image high fetch priority without lazy loading. The right-weighted 4:3 crop preserves the operational display, rugged planning device, conveyor, anonymous parcels and warehouse context without squeezing the desktop composition.
+
+## Findings
+
+- No actionable P0, P1 or P2 visual issue remains.
+- Composition and identity: the generated editorial scene is exclusive to Logistics & Supply Chain. It combines a real warehouse environment, conveyor, anonymous parcels, reusable containers, a connected operational display and a rugged planning device. It is visually distinct from all five approved industry pages and the service-page hero system.
+- Human-free and privacy review: the source, optimized crops and rendered heroes contain no people, silhouettes, body parts, human shadows, portraits or human reflections. No customer name, address, tracking number, readable shipping label, barcode, QR code, vehicle registration, personal information, brand or identifying signage is visible.
+- Image quality: equipment, shelving, containers, parcels, display and device remain sharp, correctly proportioned and undistorted. The Logistics-only desktop gradient keeps the complete copy field readable at 1440 and 1920 pixels without obscuring the right-side equipment; mobile preserves the relationship between physical logistics and connected planning tools.
+- Typography and layout: the established Manrope/Inter hierarchy, breadcrumb, eyebrow, H1, lede and CTAs remain aligned with the shared header container. Capability cards, logistics environments, five potential outcomes, seven connected services, delivery approach, FAQ and final CTA retain the approved industry-page rhythm.
+- Content integrity: the exact approved copy, seven centralized service links, six FAQs, CTA routes, SEO metadata and alt text are present. No placeholder, customer claim, unsupported statistic, guarantee, transportation advice, customs advice, trade-compliance advice, legal advice or financial advice was added.
+- Responsive behavior: 320, 375, 430, 768, 1024, 1440 and 1920 pixels have equal document client and scroll widths, one H1, visible hero CTAs and the intended AVIF source. No horizontal overflow, header/hero overlap, image distortion, obscured CTA or awkward text wrapping is visible.
+- Accessibility and interaction: the FAQ uses native buttons with synchronized `aria-expanded`/`aria-controls`; Enter expands the first answer while focus remains visible (`rgb(0, 95, 204) auto 1px`). Reduced-motion emulation matches and reduces transitions to `0.01ms`. Desktop Services hover exposes seven links, mobile navigation and its Services disclosure are tap-driven with seven links, the close control dismisses the dialog, and the Contact project query selects `project`.
+- SSR and hydration: the server-rendered route contains one H1 and one structured-data script. Hydration retains one H1, one structured-data script and two Angular state scripts without schema duplication or page errors.
+- Browser console: Logistics introduces no route-specific warning or error. The production server logs the same pre-existing CSP rejection on both the approved SaaS baseline and Logistics because Angular's deprecated Webpack critical-CSS output includes a stylesheet `onload` handler while the unchanged server CSP disallows inline handlers. Resolving that inherited build/server interaction is outside this page's approved scope.
+- Preservation: Homepage, About Us, Services Overview, all seven service pages, Industries Overview content other than the Logistics card link, Healthcare, Education, Retail & E-Commerce, Real Estate, SaaS, navigation, footer, Contact backend, dependencies, build configuration and approved global styling remain unchanged.
+
+## SEO and structured data
+
+- Title: `Logistics & Supply Chain Technology Solutions | SunSolv Technologies`.
+- Description: `Connect logistics and supply chain operations with SunSolv solutions for platforms, integrations, cloud, automation, data and operational visibility.`
+- Canonical: `https://www.sunsolv.in/industries/logistics-supply-chain`.
+- JSON-LD appears once after SSR and hydration and contains `WebPage`, `Service`, `BreadcrumbList` and `FAQPage`, matching the exact visible content and six approved FAQs. No `ParcelDelivery`, `Product`, pricing, delivery estimate, rating, review or unsupported proof schema was added.
+
+## Automated, route and performance checks
+
+- Supported runtime: Node.js 24.19.0 from the bundled workspace runtime.
+- `npm run format:check`: pass.
+- `npm run typecheck`: pass for application and SSR configurations.
+- `npm test -- --watch=false`: 124/124 tests pass across 16 test files.
+- `npm run build`: browser production, Angular SSR, 23-route prerender and Express server builds pass.
+- Direct routes: 23/23 return HTTP 200, including direct refresh for `/industries/logistics-supply-chain` and all six approved industry routes.
+- Legacy redirects: `/partnership` and `/terms-and-condition` return HTTP 301 to their approved destinations.
+- Invalid route: real HTTP 404.
+- Initial production bundle: 478.37 kB raw / 132.69 kB estimated transfer, below the unchanged 500 kB warning threshold.
+- SaaS baseline: 478.08 kB raw / 132.62 kB estimated transfer. Difference: approximately +0.29 kB raw / +0.07 kB transfer; Logistics data remains isolated in an 11.75 kB raw / 2.93 kB estimated-transfer lazy chunk.
+- `npm audit --omit=dev --audit-level=high`: zero vulnerabilities using the live npm advisory endpoint.
+- Existing build warning: the intentionally deferred Angular Webpack/application-builder migration continues to emit its known builder deprecation and unit-test compatibility notices.
+
+## Checkpoint state
+
+- The Logistics implementation, tests, optimized assets and this report received visual approval and are ready for the scoped local checkpoint commit.
+- All six Industries Overview cards now link only to approved industry pages; no additional industry route was exposed.
+- The preserved Retail backup stash remains untouched at `65deba5bff5ff977e1b1d12e26d8fed1d8ea0a3a`.
+- Generated sources and all review captures remain outside Git.
+- No dependency, secret, environment file, build output, cache or temporary QA output was added.
+- No push, merge, pull request, deployment or public sharing was performed as part of the checkpoint review.
+
+final result: passed for the scoped Logistics implementation; inherited CSP/build warnings documented
+
+---
+
 # SunSolv SaaS industry page — design QA
 
 ## Evidence and scope

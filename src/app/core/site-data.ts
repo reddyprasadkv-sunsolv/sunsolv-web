@@ -111,7 +111,11 @@ export const industries = [
     route: '/industries/real-estate',
   },
   { title: 'SaaS', icon: 'heroServerStack', route: '/industries/saas' },
-  { title: 'Logistics & Supply Chain', icon: 'heroTruck' },
+  {
+    title: 'Logistics & Supply Chain',
+    icon: 'heroTruck',
+    route: '/industries/logistics-supply-chain',
+  },
 ] as const satisfies readonly IndustryDefinition[];
 
 export const industryNames: readonly string[] = industries.map(({ title }) => title);
@@ -284,6 +288,7 @@ export const publicPaths = [
   '/industries/retail-ecommerce',
   '/industries/real-estate',
   '/industries/saas',
+  '/industries/logistics-supply-chain',
   '/case-studies',
   '/partnerships',
   '/careers',
