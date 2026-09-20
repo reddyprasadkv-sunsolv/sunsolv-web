@@ -79,3 +79,11 @@ The supplied hero file is approved artwork rather than a full-page mockup. Image
 - No blocking visual follow-up. Run a separately approved Lighthouse session in a production-like network environment if numeric score evidence is required for launch governance.
 
 final result: passed
+
+## Hero layout correction — 20 September 2026
+
+- Replaced the 52%-wide image panel with a full-width desktop background using the existing approved artwork. Centered framing restores the main glass structures and removes the hard split edge.
+- Matched Services/Industries hero height, heading scale and internal breadcrumb placement. Added a subtle dark gradient behind desktop text.
+- At 1080px and below, text and image stack. Tablet artwork uses 16:9 framing; the existing 900×1200 mobile image keeps its native 3:4 ratio rather than cropping its top and base.
+- Updated responsive image sizes to 100vw. Existing image files and the rest of the About content are unchanged.
+- Production build passed with 23 prerendered routes; git diff --check passed. Desktop and 390px mobile inspected, with no mobile horizontal overflow.

@@ -103,9 +103,9 @@ describe('ServiceDetailComponent', () => {
     expect(sources).toHaveLength(3);
     expect(picture?.querySelectorAll('source[type="image/avif"]')).toHaveLength(2);
     expect(picture?.querySelectorAll('source[type="image/webp"]')).toHaveLength(1);
-    expect(image?.getAttribute('src')).toContain('sunsolv-it-consulting-strategy.webp');
+    expect(image?.getAttribute('src')).toContain('sunsolv-it-consulting-premium.webp');
     expect(image?.getAttribute('alt')).toBe(
-      'Technology consultant discussing a digital strategy with business leaders.',
+      'Connected glass architecture modules converging on an illuminated amber core.',
     );
     expect(image?.getAttribute('fetchpriority')).toBe('high');
     expect(image?.hasAttribute('loading')).toBe(false);
@@ -236,14 +236,14 @@ describe('ServiceDetailComponent', () => {
     expect(picture?.querySelectorAll('source[type="image/avif"]')).toHaveLength(2);
     expect(picture?.querySelectorAll('source[type="image/webp"]')).toHaveLength(1);
     expect(sources?.[0]?.getAttribute('srcset')).toContain(
-      'sunsolv-digital-transformation-workflow-mobile.avif 1000w',
+      'sunsolv-digital-transformation-premium-mobile.avif 1000w',
     );
     expect(sources?.[2]?.getAttribute('srcset')).toContain(
-      'sunsolv-digital-transformation-workflow.avif 1400w',
+      'sunsolv-digital-transformation-premium.avif 1400w',
     );
-    expect(image?.getAttribute('src')).toContain('sunsolv-digital-transformation-workflow.webp');
+    expect(image?.getAttribute('src')).toContain('sunsolv-digital-transformation-premium.webp');
     expect(image?.getAttribute('alt')).toBe(
-      'Business and technology professionals redesigning a digital workflow.',
+      'Solid titanium blocks evolving into a flowing ribbon of illuminated glass tiles.',
     );
     expect(image?.getAttribute('fetchpriority')).toBe('high');
     expect(image?.hasAttribute('loading')).toBe(false);
@@ -319,9 +319,9 @@ describe('ServiceDetailComponent', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain(
       'Make technology decisions with greater clarity and confidence.',
     );
-    expect(image?.getAttribute('src')).toContain('sunsolv-it-consulting-strategy.webp');
+    expect(image?.getAttribute('src')).toContain('sunsolv-it-consulting-premium.webp');
     expect(image?.getAttribute('alt')).toBe(
-      'Technology consultant discussing a digital strategy with business leaders.',
+      'Connected glass architecture modules converging on an illuminated amber core.',
     );
     expect(compiled.querySelector('.approach-statement')?.textContent).toContain(
       'The engagement can conclude with an assessment and roadmap',
@@ -359,12 +359,14 @@ describe('ServiceDetailComponent', () => {
     expect(picture?.querySelectorAll('source[type="image/avif"]')).toHaveLength(2);
     expect(picture?.querySelectorAll('source[type="image/webp"]')).toHaveLength(1);
     expect(sources?.[0]?.getAttribute('srcset')).toContain(
-      'sunsolv-cloud-architecture-mobile.avif 1000w',
+      'sunsolv-cloud-solutions-premium-mobile.avif 1000w',
     );
-    expect(sources?.[2]?.getAttribute('srcset')).toContain('sunsolv-cloud-architecture.avif 1400w');
-    expect(image?.getAttribute('src')).toContain('sunsolv-cloud-architecture.webp');
+    expect(sources?.[2]?.getAttribute('srcset')).toContain(
+      'sunsolv-cloud-solutions-premium.avif 1400w',
+    );
+    expect(image?.getAttribute('src')).toContain('sunsolv-cloud-solutions-premium.webp');
     expect(image?.getAttribute('alt')).toBe(
-      'Cloud architects reviewing infrastructure performance and system resilience.',
+      'Floating glass cloud layers connected to sculptural server towers by light.',
     );
     expect(image?.getAttribute('fetchpriority')).toBe('high');
     expect(image?.hasAttribute('loading')).toBe(false);
@@ -440,7 +442,7 @@ describe('ServiceDetailComponent', () => {
     );
     expect(
       itConsulting.compiled.querySelector<HTMLImageElement>('.service-detail-hero-image img')?.src,
-    ).toContain('sunsolv-it-consulting-strategy.webp');
+    ).toContain('sunsolv-it-consulting-premium.webp');
 
     const digitalTransformation = await renderDigitalTransformation();
     expect(digitalTransformation.compiled.querySelector('h1')?.textContent).toContain(
@@ -450,7 +452,7 @@ describe('ServiceDetailComponent', () => {
       digitalTransformation.compiled.querySelector<HTMLImageElement>(
         '.service-detail-hero-image img',
       )?.src,
-    ).toContain('sunsolv-digital-transformation-workflow.webp');
+    ).toContain('sunsolv-digital-transformation-premium.webp');
   });
 
   it('renders the approved Web & Mobile Development page without placeholder content', async () => {
@@ -484,14 +486,12 @@ describe('ServiceDetailComponent', () => {
     expect(picture?.querySelectorAll('source[type="image/avif"]')).toHaveLength(2);
     expect(picture?.querySelectorAll('source[type="image/webp"]')).toHaveLength(1);
     expect(sources?.[0]?.getAttribute('srcset')).toContain(
-      'sunsolv-responsive-product-development-mobile.avif 1000w',
+      'sunsolv-web-mobile-premium-mobile.avif 1000w',
     );
-    expect(sources?.[2]?.getAttribute('srcset')).toContain(
-      'sunsolv-responsive-product-development.avif 1400w',
-    );
-    expect(image?.getAttribute('src')).toContain('sunsolv-responsive-product-development.webp');
+    expect(sources?.[2]?.getAttribute('srcset')).toContain('sunsolv-web-mobile-premium.avif 1400w');
+    expect(image?.getAttribute('src')).toContain('sunsolv-web-mobile-premium.webp');
     expect(image?.getAttribute('alt')).toBe(
-      'Product designers and developers testing a responsive web and mobile application.',
+      'Connected desktop, tablet and mobile glass displays on a dark architectural plinth.',
     );
     expect(image?.getAttribute('fetchpriority')).toBe('high');
     expect(image?.hasAttribute('loading')).toBe(false);
@@ -567,7 +567,7 @@ describe('ServiceDetailComponent', () => {
     );
     expect(
       itConsulting.compiled.querySelector<HTMLImageElement>('.service-detail-hero-image img')?.src,
-    ).toContain('sunsolv-it-consulting-strategy.webp');
+    ).toContain('sunsolv-it-consulting-premium.webp');
 
     const digitalTransformation = await renderDigitalTransformation();
     expect(digitalTransformation.compiled.querySelector('h1')?.textContent).toContain(
@@ -577,7 +577,7 @@ describe('ServiceDetailComponent', () => {
       digitalTransformation.compiled.querySelector<HTMLImageElement>(
         '.service-detail-hero-image img',
       )?.src,
-    ).toContain('sunsolv-digital-transformation-workflow.webp');
+    ).toContain('sunsolv-digital-transformation-premium.webp');
 
     const cloudSolutions = await renderCloudSolutions();
     expect(cloudSolutions.compiled.querySelector('h1')?.textContent).toContain(
@@ -586,7 +586,7 @@ describe('ServiceDetailComponent', () => {
     expect(
       cloudSolutions.compiled.querySelector<HTMLImageElement>('.service-detail-hero-image img')
         ?.src,
-    ).toContain('sunsolv-cloud-architecture.webp');
+    ).toContain('sunsolv-cloud-solutions-premium.webp');
   });
 
   it('keeps published service content behind route-specific lazy resolvers', () => {

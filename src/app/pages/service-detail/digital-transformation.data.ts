@@ -45,7 +45,7 @@ export const digitalTransformationPageData: ServiceDetailPageData = {
     description:
       'Modernize processes, connect systems and introduce practical automation with SunSolv’s digital transformation services.',
     path: 'services/digital-transformation',
-    image: '/images/services/digital-transformation/sunsolv-digital-transformation-workflow.webp',
+    image: '/images/services/digital-transformation/sunsolv-digital-transformation-premium.webp',
   },
   structuredBreadcrumbs: [
     { name: 'Home', path: '' },
@@ -58,16 +58,16 @@ export const digitalTransformationPageData: ServiceDetailPageData = {
       'SunSolv helps organizations improve processes, connect systems and introduce practical automation through a transformation plan grounded in operational reality.',
     primaryCta: 'Plan Your Transformation',
     secondaryCta: 'Explore All Services',
-    imageAlt: 'Business and technology professionals redesigning a digital workflow.',
+    imageAlt: 'Solid titanium blocks evolving into a flowing ribbon of illuminated glass tiles.',
     image: {
       desktopAvif:
-        '/images/services/digital-transformation/sunsolv-digital-transformation-workflow.avif',
+        '/images/services/digital-transformation/sunsolv-digital-transformation-premium.avif',
       desktopWebp:
-        '/images/services/digital-transformation/sunsolv-digital-transformation-workflow.webp',
+        '/images/services/digital-transformation/sunsolv-digital-transformation-premium.webp',
       mobileAvif:
-        '/images/services/digital-transformation/sunsolv-digital-transformation-workflow-mobile.avif',
+        '/images/services/digital-transformation/sunsolv-digital-transformation-premium-mobile.avif',
       mobileWebp:
-        '/images/services/digital-transformation/sunsolv-digital-transformation-workflow-mobile.webp',
+        '/images/services/digital-transformation/sunsolv-digital-transformation-premium-mobile.webp',
       desktopWidth: 1400,
       desktopHeight: 900,
       mobileWidth: 1000,

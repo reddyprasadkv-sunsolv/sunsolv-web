@@ -53,7 +53,7 @@ The reverse proxy must preserve `Host` and `X-Forwarded-Proto`. Hashed static as
 Before public launch:
 
 1. Replace clearly labelled content holds with approved About, leadership, industries, case-study, partnership, careers, privacy, and terms copy.
-2. Add the approved Turnstile site widget and connect its client token to the existing server-side verification.
-3. Configure and test the email/CRM webhook in the target environment.
+2. Configure `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY`; the contact page includes the widget and server verification.
+3. Configure and live-test Google Sheets enquiry storage using [the integration guide](integrations/google-sheets/README.md), or the existing email webhook.
 4. Add the approved GA4/Tag Manager and consent configuration.
 5. Confirm production DNS/TLS, canonical redirects, `robots.txt`, `sitemap.xml`, real-device accessibility, and form delivery.

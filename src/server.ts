@@ -4,6 +4,7 @@ import { randomBytes } from 'node:crypto';
 import { join } from 'node:path';
 import { publicPaths } from './app/core/site-data';
 import bootstrap from './main.server';
+import { deliverEnquiry, deliveryConfigured } from './enquiry-delivery';
 
 const browserDistFolder = join(__dirname, '../browser');
 const canonicalHost = 'www.sunsolv.in';
@@ -28,7 +29,7 @@ app.use((_req, res, next) => {
   res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
   res.setHeader(
     'Content-Security-Policy',
-    "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+    "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
   );
   next();
 });
@@ -44,6 +45,15 @@ app.use((req, res, next) => {
 
 app.get('/partnership', (_req, res) => res.redirect(301, '/partnerships'));
 app.get('/terms-and-condition', (_req, res) => res.redirect(301, '/terms-and-conditions'));
+
+app.get('/api/enquiry-config', (_req, res) => {
+  res.setHeader('Cache-Control', 'no-store');
+  const siteKey = process.env['TURNSTILE_SITE_KEY'] ?? '';
+  res.json({
+    ready: Boolean(siteKey && process.env['TURNSTILE_SECRET_KEY'] && deliveryConfigured()),
+    siteKey,
+  });
+});
 
 app.options('/api/enquiries', (req, res) => {
   if (!originAllowed(req.headers.origin)) return res.sendStatus(403);
@@ -66,9 +76,7 @@ app.post(
     if (validation.value['website']) return res.status(202).json({ reference: 'SS-RECEIVED' });
 
     const turnstileSecret = process.env['TURNSTILE_SECRET_KEY'];
-    const webhookUrl = process.env['EMAIL_WEBHOOK_URL'];
-    const webhookToken = process.env['EMAIL_WEBHOOK_TOKEN'];
-    if (!turnstileSecret || !webhookUrl || !webhookToken)
+    if (!turnstileSecret || !process.env['TURNSTILE_SITE_KEY'] || !deliveryConfigured())
       return res.status(503).json({ error: 'Enquiry delivery is not configured.' });
 
     const verified = await verifyTurnstile(
@@ -80,18 +88,11 @@ app.post(
 
     const reference = `SS-${new Date().toISOString().slice(0, 10).replaceAll('-', '')}-${randomBytes(4).toString('hex').toUpperCase()}`;
     try {
-      const providerResponse = await fetch(webhookUrl, {
-        method: 'POST',
-        headers: { authorization: `Bearer ${webhookToken}`, 'content-type': 'application/json' },
-        body: JSON.stringify({
-          reference,
-          submittedAt: new Date().toISOString(),
-          recipient: process.env['ENQUIRY_RECIPIENT'] ?? 'info@sunsolv.in',
-          ...validation.value,
-        }),
-        signal: AbortSignal.timeout(10_000),
+      await deliverEnquiry({
+        ...validation.value,
+        reference,
+        submittedAt: new Date().toISOString(),
       });
-      if (!providerResponse.ok) return res.status(502).json({ error: 'Enquiry delivery failed.' });
       return res.status(201).json({ reference });
     } catch {
       return res.status(502).json({ error: 'Enquiry delivery failed.' });

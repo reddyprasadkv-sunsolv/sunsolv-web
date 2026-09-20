@@ -106,9 +106,27 @@ export const routes: Routes = [
         ),
     },
   },
+  {
+    path: 'case-studies',
+    loadComponent: () =>
+      import('./pages/case-studies-overview/case-studies-overview.component').then(
+        (m) => m.CaseStudiesOverviewComponent,
+      ),
+    data: pageRouteData.caseStudies,
+    resolve: {
+      pageData: () =>
+        import('./pages/case-studies-overview/case-studies-overview.data').then(
+          (m) => m.caseStudiesPageData,
+        ),
+    },
+  },
+  {
+    path: 'partnerships',
+    loadComponent: () =>
+      import('./pages/partnerships/partnerships.component').then((m) => m.PartnershipsComponent),
+    data: pageRouteData.partnerships,
+  },
   ...[
-    ['case-studies', 'caseStudies'],
-    ['partnerships', 'partnerships'],
     ['careers', 'careers'],
     ['privacy-policy', 'privacy'],
     ['terms-and-conditions', 'terms'],

@@ -45,7 +45,7 @@ export const webMobileDevelopmentPageData: ServiceDetailPageData = {
     description:
       'Build fast, accessible websites, web applications and mobile experiences with SunSolv’s product design and development services.',
     path: 'services/web-mobile-development',
-    image: '/images/services/web-mobile-development/sunsolv-responsive-product-development.webp',
+    image: '/images/services/web-mobile-development/sunsolv-web-mobile-premium.webp',
   },
   structuredBreadcrumbs: [
     { name: 'Home', path: '' },
@@ -58,16 +58,12 @@ export const webMobileDevelopmentPageData: ServiceDetailPageData = {
       'SunSolv designs and develops fast, intuitive and accessible websites, business portals and mobile applications shaped around real users and measurable business needs.',
     primaryCta: 'Discuss Your Product Idea',
     secondaryCta: 'Explore All Services',
-    imageAlt: 'Product designers and developers testing a responsive web and mobile application.',
+    imageAlt: 'Connected desktop, tablet and mobile glass displays on a dark architectural plinth.',
     image: {
-      desktopAvif:
-        '/images/services/web-mobile-development/sunsolv-responsive-product-development.avif',
-      desktopWebp:
-        '/images/services/web-mobile-development/sunsolv-responsive-product-development.webp',
-      mobileAvif:
-        '/images/services/web-mobile-development/sunsolv-responsive-product-development-mobile.avif',
-      mobileWebp:
-        '/images/services/web-mobile-development/sunsolv-responsive-product-development-mobile.webp',
+      desktopAvif: '/images/services/web-mobile-development/sunsolv-web-mobile-premium.avif',
+      desktopWebp: '/images/services/web-mobile-development/sunsolv-web-mobile-premium.webp',
+      mobileAvif: '/images/services/web-mobile-development/sunsolv-web-mobile-premium-mobile.avif',
+      mobileWebp: '/images/services/web-mobile-development/sunsolv-web-mobile-premium-mobile.webp',
       desktopWidth: 1400,
       desktopHeight: 900,
       mobileWidth: 1000,

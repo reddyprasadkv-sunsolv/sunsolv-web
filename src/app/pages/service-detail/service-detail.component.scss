@@ -65,6 +65,10 @@
   object-position: center 42%;
 }
 
+.service-detail-hero-image img[src*='-premium'] {
+  object-position: center top;
+}
+
 .service-detail-hero-image {
   position: absolute;
   inset: 0;

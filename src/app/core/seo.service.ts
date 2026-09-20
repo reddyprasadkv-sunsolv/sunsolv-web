@@ -187,7 +187,7 @@ export class SeoService {
             ? [
                 {
                   '@type': 'ItemList',
-                  name: 'Industries served by SunSolv Technologies',
+                  name: data.structuredItemListName ?? 'Industries served by SunSolv Technologies',
                   numberOfItems: data.structuredItems.length,
                   itemListElement: data.structuredItems.map((item, index) => ({
                     '@type': 'ListItem',
@@ -224,6 +224,28 @@ export class SeoService {
                 },
               ]
             : []),
+        ],
+      };
+    }
+    if (
+      ['WebPage', 'ContactPage'].includes(data.schemaType ?? '') &&
+      data.structuredBreadcrumbs?.length
+    ) {
+      return {
+        '@context': 'https://schema.org',
+        '@graph': [
+          { ...base, description: data.seo.description },
+          {
+            '@type': 'BreadcrumbList',
+            itemListElement: data.structuredBreadcrumbs.map((breadcrumb, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: breadcrumb.name,
+              item: breadcrumb.path
+                ? `${canonicalOrigin}/${breadcrumb.path}`
+                : `${canonicalOrigin}/`,
+            })),
+          },
         ],
       };
     }

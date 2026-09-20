@@ -45,7 +45,7 @@ export const itConsultingPageData: ServiceDetailPageData = {
     description:
       'Make confident technology decisions with SunSolv IT consulting services covering strategy, architecture, modernization and delivery guidance.',
     path: 'services/it-consulting',
-    image: '/images/services/it-consulting/sunsolv-it-consulting-strategy.webp',
+    image: '/images/services/it-consulting/sunsolv-it-consulting-premium.webp',
   },
   structuredBreadcrumbs: [
     { name: 'Home', path: '' },
@@ -58,12 +58,12 @@ export const itConsultingPageData: ServiceDetailPageData = {
       'SunSolv helps organizations connect technology choices with business priorities. From strategy and architecture to modernization planning and delivery guidance, we provide practical advice shaped around your goals, current environment and capacity for change.',
     primaryCta: 'Discuss Your Technology Priorities',
     secondaryCta: 'Explore All Services',
-    imageAlt: 'Technology consultant discussing a digital strategy with business leaders.',
+    imageAlt: 'Connected glass architecture modules converging on an illuminated amber core.',
     image: {
-      desktopAvif: '/images/services/it-consulting/sunsolv-it-consulting-strategy.avif',
-      desktopWebp: '/images/services/it-consulting/sunsolv-it-consulting-strategy.webp',
-      mobileAvif: '/images/services/it-consulting/sunsolv-it-consulting-strategy-mobile.avif',
-      mobileWebp: '/images/services/it-consulting/sunsolv-it-consulting-strategy-mobile.webp',
+      desktopAvif: '/images/services/it-consulting/sunsolv-it-consulting-premium.avif',
+      desktopWebp: '/images/services/it-consulting/sunsolv-it-consulting-premium.webp',
+      mobileAvif: '/images/services/it-consulting/sunsolv-it-consulting-premium-mobile.avif',
+      mobileWebp: '/images/services/it-consulting/sunsolv-it-consulting-premium-mobile.webp',
       desktopWidth: 1400,
       desktopHeight: 900,
       mobileWidth: 1000,

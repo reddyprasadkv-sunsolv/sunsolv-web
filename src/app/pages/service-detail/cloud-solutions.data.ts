@@ -45,7 +45,7 @@ export const cloudSolutionsPageData: ServiceDetailPageData = {
     description:
       'Plan, migrate and optimize secure, scalable cloud environments with SunSolv’s cloud architecture, migration and operations services.',
     path: 'services/cloud-solutions',
-    image: '/images/services/cloud-solutions/sunsolv-cloud-architecture.webp',
+    image: '/images/services/cloud-solutions/sunsolv-cloud-solutions-premium.webp',
   },
   structuredBreadcrumbs: [
     { name: 'Home', path: '' },
@@ -58,12 +58,12 @@ export const cloudSolutionsPageData: ServiceDetailPageData = {
       'SunSolv helps organizations plan, migrate, optimize and manage cloud environments designed around performance, resilience, security and responsible cost control.',
     primaryCta: 'Discuss Your Cloud Priorities',
     secondaryCta: 'Explore All Services',
-    imageAlt: 'Cloud architects reviewing infrastructure performance and system resilience.',
+    imageAlt: 'Floating glass cloud layers connected to sculptural server towers by light.',
     image: {
-      desktopAvif: '/images/services/cloud-solutions/sunsolv-cloud-architecture.avif',
-      desktopWebp: '/images/services/cloud-solutions/sunsolv-cloud-architecture.webp',
-      mobileAvif: '/images/services/cloud-solutions/sunsolv-cloud-architecture-mobile.avif',
-      mobileWebp: '/images/services/cloud-solutions/sunsolv-cloud-architecture-mobile.webp',
+      desktopAvif: '/images/services/cloud-solutions/sunsolv-cloud-solutions-premium.avif',
+      desktopWebp: '/images/services/cloud-solutions/sunsolv-cloud-solutions-premium.webp',
+      mobileAvif: '/images/services/cloud-solutions/sunsolv-cloud-solutions-premium-mobile.avif',
+      mobileWebp: '/images/services/cloud-solutions/sunsolv-cloud-solutions-premium-mobile.webp',
       desktopWidth: 1400,
       desktopHeight: 900,
       mobileWidth: 1000,

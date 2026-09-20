@@ -1,150 +1,311 @@
-<section class="contact-hero">
+<section class="contact-hero" aria-labelledby="contact-title">
   <div class="shell">
-    <p class="eyebrow">Contact SunSolv Technologies</p>
-    <h1>Start your technology project.</h1>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a routerLink="/">Home</a></li>
+        <li aria-current="page">Contact Us</li>
+      </ol>
+    </nav>
+    <div class="hero-layout">
+      <div>
+        <p class="eyebrow">Contact SunSolv Technologies</p>
+        <h1 id="contact-title">Let’s talk about<br /><span>what’s next.</span></h1>
+      </div>
+      <div class="hero-intro">
+        <p>
+          A new project, a partnership or a question. Tell us what you have in mind, and let’s find
+          a practical way forward.
+        </p>
+        <a class="hero-link" routerLink="/contact-us" fragment="enquiry-form"
+          >Start a conversation <span aria-hidden="true">↓</span></a
+        >
+      </div>
+    </div>
   </div>
 </section>
-<section class="section contact-section">
+<section class="section contact-section" aria-labelledby="form-title">
   <div class="shell contact-grid">
     <aside>
-      <p class="eyebrow">One enquiry form</p>
-      <h2>Tell us what you need.</h2>
-      <dl>
+      <p class="eyebrow">Let’s connect</p>
+      <h2>A conversation is a good place to start.</h2>
+      <p>Share a little about your organization and what you need. We’ll take it from there.</p>
+      <div class="contact-detail">
+        <ng-icon name="heroEnvelope" aria-hidden="true" />
         <div>
-          <dt>Email</dt>
-          <dd><a href="mailto:info@sunsolv.in">info&#64;sunsolv.in</a></dd>
+          <h3>Email us directly</h3>
+          <a href="mailto:info@sunsolv.in">info&#64;sunsolv.in <span aria-hidden="true">↗</span></a>
+          <p>Prefer email? Our inbox is open.</p>
         </div>
+      </div>
+      <div class="contact-detail">
+        <ng-icon name="heroClock" aria-hidden="true" />
         <div>
-          <dt>Privacy</dt>
-          <dd>Your information is used only to respond to this enquiry.</dd>
+          <h3>Business hours</h3>
+          <p>Monday–Friday<br /><strong>9:30 AM–6:30 PM IST</strong></p>
+          <p class="small">Saturday and Sunday: closed.<br />Enterprise support by request.</p>
         </div>
-      </dl>
-    </aside>
-    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
-      <p class="required-note">All fields marked * are required.</p>
-      <div class="field full">
-        <label for="enquiryType">Enquiry type *</label
-        ><select
-          id="enquiryType"
-          formControlName="enquiryType"
-          [attr.aria-invalid]="invalid(form.controls.enquiryType)"
-        >
-          <option value="project">Project enquiry</option>
-          <option value="partnership">Partnership enquiry</option>
-          <option value="career">Career enquiry</option>
-          <option value="general">General enquiry</option>
-        </select>
       </div>
-      <div class="field">
-        <label for="fullName">Full name *</label
-        ><input
-          id="fullName"
-          formControlName="fullName"
-          autocomplete="name"
-          maxlength="80"
-          [attr.aria-invalid]="invalid(form.controls.fullName)"
-        />
-        @if (invalid(form.controls.fullName)) {
-          <small>Required; 2–80 characters.</small>
-        }
-      </div>
-      <div class="field">
-        <label for="workEmail">Work email *</label
-        ><input
-          id="workEmail"
-          type="email"
-          formControlName="workEmail"
-          autocomplete="email"
-          [attr.aria-invalid]="invalid(form.controls.workEmail)"
-        />
-        @if (invalid(form.controls.workEmail)) {
-          <small>Enter a valid email address.</small>
-        }
-      </div>
-      <div class="field">
-        <label for="phone">Phone number</label
-        ><input
-          id="phone"
-          type="tel"
-          formControlName="phone"
-          autocomplete="tel"
-          [attr.aria-invalid]="invalid(form.controls.phone)"
-        />
-        @if (invalid(form.controls.phone)) {
-          <small>Use a valid international phone number.</small>
-        }
-      </div>
-      <div class="field">
-        <label for="company">Company</label
-        ><input
-          id="company"
-          formControlName="company"
-          autocomplete="organization"
-          maxlength="120"
-        />
-      </div>
-      <div class="field full">
-        <label for="service"
-          >Service interested in
-          @if (form.controls.enquiryType.value === 'project') {
-            *
-          }</label
-        ><select
-          id="service"
-          formControlName="service"
-          [attr.aria-invalid]="invalid(form.controls.service)"
-        >
-          <option value="">Select a service</option>
-          @for (service of services; track service.slug) {
-            <option [value]="service.title">{{ service.title }}</option>
+      <div class="next-steps">
+        <p class="eyebrow">What happens next</p>
+        <ol>
+          @for (step of nextSteps; track step.title; let i = $index) {
+            <li>
+              <span aria-hidden="true">0{{ i + 1 }}</span>
+              <div>
+                <h3>{{ step.title }}</h3>
+                <p>{{ step.description }}</p>
+              </div>
+            </li>
           }
-          <option value="Other">Other</option>
-        </select>
-        @if (invalid(form.controls.service)) {
-          <small>Required for project enquiries.</small>
-        }
+        </ol>
       </div>
-      <div class="field full">
-        <label for="message">Project brief or message *</label
-        ><textarea
-          id="message"
-          formControlName="message"
-          rows="7"
-          minlength="20"
-          maxlength="2000"
-          [attr.aria-invalid]="invalid(form.controls.message)"
-        ></textarea
-        ><span class="counter">{{ form.controls.message.value.length }} / 2,000</span>
-        @if (invalid(form.controls.message)) {
-          <small>Required; 20–2,000 characters.</small>
-        }
-      </div>
-      <div class="field full consent">
-        <input
-          id="privacyConsent"
-          type="checkbox"
-          formControlName="privacyConsent"
-          [attr.aria-invalid]="invalid(form.controls.privacyConsent)"
-        /><label for="privacyConsent"
-          >I consent to SunSolv Technologies using this information to respond to my enquiry.
-          *</label
+    </aside>
+    <div class="form-panel" id="enquiry-form">
+      @if (state() === 'success') {
+        <div class="success-panel" id="enquiry-success" tabindex="-1">
+          <ng-icon name="heroCheckCircle" aria-hidden="true" />
+          <p class="eyebrow">Message received</p>
+          <h2 id="form-title">Thank you for reaching out.</h2>
+          <p>We’ll review your message and contact you using the details you provided.</p>
+          <div class="reference">
+            Your enquiry reference<strong>{{ reference() }}</strong>
+          </div>
+          <button class="button" type="button" (click)="startNewEnquiry()">
+            Send another enquiry <ng-icon name="heroArrowRight" aria-hidden="true" />
+          </button>
+        </div>
+      } @else {
+        <div class="form-heading">
+          <p class="eyebrow">Your next step</p>
+          <h2 id="form-title">Tell us what you need.</h2>
+          <p>All fields marked <span aria-hidden="true">*</span> are required.</p>
+        </div>
+        <form
+          [formGroup]="form"
+          (ngSubmit)="submit()"
+          novalidate
+          [attr.aria-busy]="state() === 'submitting'"
+          aria-labelledby="form-title"
         >
-      </div>
-      <div class="honeypot" aria-hidden="true">
-        <label for="website">Website</label
-        ><input id="website" formControlName="website" tabindex="-1" autocomplete="off" />
-      </div>
-      <div class="form-actions full">
-        <button class="button" type="submit" [disabled]="state() === 'submitting'">
-          {{ state() === 'submitting' ? 'Submitting…' : 'Submit enquiry' }}
-        </button>
-      </div>
-      <div class="status full" aria-live="polite" role="status">
+          <fieldset [disabled]="state() === 'submitting'">
+            <legend class="visually-hidden">Enquiry details</legend>
+            <div class="field full">
+              <label for="enquiryType">Enquiry type *</label
+              ><select id="enquiryType" formControlName="enquiryType" required>
+                <option value="project">Project enquiry</option>
+                <option value="partnership">Partnership enquiry</option>
+                <option value="career">Career enquiry</option>
+                <option value="general">General enquiry</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="fullName">Full name *</label
+              ><input
+                id="fullName"
+                formControlName="fullName"
+                autocomplete="name"
+                maxlength="80"
+                required
+                [attr.aria-invalid]="invalid(form.controls.fullName)"
+                [attr.aria-describedby]="invalid(form.controls.fullName) ? 'name-error' : null"
+              />
+              @if (invalid(form.controls.fullName)) {
+                <small id="name-error" class="error">Enter your name (2–80 characters).</small>
+              }
+            </div>
+            <div class="field">
+              <label for="workEmail">Work email *</label
+              ><input
+                id="workEmail"
+                type="email"
+                formControlName="workEmail"
+                autocomplete="email"
+                maxlength="254"
+                required
+                [attr.aria-invalid]="invalid(form.controls.workEmail)"
+                [attr.aria-describedby]="invalid(form.controls.workEmail) ? 'email-error' : null"
+              />
+              @if (invalid(form.controls.workEmail)) {
+                <small id="email-error" class="error"
+                  >Enter a valid email address, such as name&#64;company.com.</small
+                >
+              }
+            </div>
+            <div class="field">
+              <label for="phone">Phone number <span>(optional)</span></label
+              ><input
+                id="phone"
+                type="tel"
+                formControlName="phone"
+                autocomplete="tel"
+                maxlength="24"
+                [attr.aria-invalid]="invalid(form.controls.phone)"
+                [attr.aria-describedby]="invalid(form.controls.phone) ? 'phone-error' : null"
+              />
+              @if (invalid(form.controls.phone)) {
+                <small id="phone-error" class="error"
+                  >Enter a phone number with 7–24 characters, including a country code if
+                  needed.</small
+                >
+              }
+            </div>
+            <div class="field">
+              <label for="company">Company <span>(optional)</span></label
+              ><input
+                id="company"
+                formControlName="company"
+                autocomplete="organization"
+                maxlength="120"
+              />
+            </div>
+            <div class="field full">
+              <label for="service"
+                >Service interested in
+                @if (form.controls.enquiryType.value === 'project') {
+                  *
+                } @else {
+                  <span>(optional)</span>
+                }</label
+              ><select
+                id="service"
+                formControlName="service"
+                [required]="form.controls.enquiryType.value === 'project'"
+                [attr.aria-invalid]="invalid(form.controls.service)"
+                [attr.aria-describedby]="
+                  invalid(form.controls.service) ? 'service-hint service-error' : 'service-hint'
+                "
+              >
+                <option value="">Select a service</option>
+                @for (service of services; track service.slug) {
+                  <option [value]="service.title">{{ service.title }}</option>
+                }
+                <option value="Other">Other</option></select
+              ><small id="service-hint" class="hint"
+                >Not sure? Choose Other and tell us about your idea.</small
+              >
+              @if (invalid(form.controls.service)) {
+                <small id="service-error" class="error"
+                  >Choose a service for your project enquiry.</small
+                >
+              }
+            </div>
+            <div class="field full">
+              <label for="message">Your message *</label>
+              <p id="message-hint" class="hint">{{ messageHint }}</p>
+              <textarea
+                id="message"
+                formControlName="message"
+                rows="6"
+                minlength="20"
+                maxlength="2000"
+                required
+                [attr.aria-invalid]="invalid(form.controls.message)"
+                [attr.aria-describedby]="
+                  invalid(form.controls.message)
+                    ? 'message-hint message-counter message-error'
+                    : 'message-hint message-counter'
+                "
+              ></textarea>
+              <div class="message-notes">
+                <small class="hint">Please keep confidential information out of this form.</small
+                ><span id="message-counter" class="counter"
+                  >{{ form.controls.message.value.length }} / 2,000</span
+                >
+              </div>
+              @if (invalid(form.controls.message)) {
+                <small id="message-error" class="error"
+                  >Tell us a little more (20–2,000 characters).</small
+                >
+              }
+            </div>
+            <div class="field full">
+              <div class="consent">
+                <input
+                  id="privacyConsent"
+                  type="checkbox"
+                  formControlName="privacyConsent"
+                  required
+                  [attr.aria-invalid]="invalid(form.controls.privacyConsent)"
+                  [attr.aria-describedby]="
+                    invalid(form.controls.privacyConsent) ? 'consent-error' : null
+                  "
+                /><label for="privacyConsent"
+                  >I consent to SunSolv Technologies using this information to respond to my
+                  enquiry. *</label
+                >
+              </div>
+              @if (invalid(form.controls.privacyConsent)) {
+                <small id="consent-error" class="error"
+                  >Please give your consent so we can respond to your enquiry.</small
+                >
+              }
+            </div>
+            <div class="honeypot" aria-hidden="true">
+              <label for="website">Website</label
+              ><input id="website" formControlName="website" tabindex="-1" autocomplete="off" />
+            </div>
+            <div class="full delivery-status" role="status" aria-live="polite">
+              @if (deliveryReady() === null) {
+                <p>Checking enquiry availability…</p>
+              } @else if (deliveryReady() === false) {
+                <p>
+                  Online enquiries are temporarily unavailable. Please
+                  <a href="mailto:info@sunsolv.in">email us directly</a> and we’ll help you get
+                  started.
+                </p>
+              } @else {
+                <app-enquiry-verification
+                  [siteKey]="siteKey()"
+                  (token)="form.controls.antiBotToken.setValue($event)"
+                />
+              }
+            </div>
+            <div class="form-actions full">
+              <button
+                class="button"
+                type="submit"
+                [disabled]="state() === 'submitting' || deliveryReady() !== true"
+              >
+                {{ state() === 'submitting' ? 'Sending enquiry…' : 'Send enquiry'
+                }}<ng-icon name="heroArrowRight" aria-hidden="true" /></button
+              ><span>No technical brief needed to get started.</span>
+            </div>
+          </fieldset>
+        </form>
+      }
+      <div
+        class="status"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        [class.status-error]="state() === 'error'"
+      >
         {{ statusMessage() }}
-        @if (state() === 'success') {
-          <strong> {{ reference() }}</strong>
+        @if (state() === 'error') {
+          <a href="mailto:info@sunsolv.in"
+            >Email SunSolv directly <span aria-hidden="true">↗</span></a
+          >
         }
       </div>
-    </form>
+    </div>
+  </div>
+</section>
+<section class="section contact-faq" aria-labelledby="faq-title">
+  <div class="shell faq-layout">
+    <div>
+      <p class="eyebrow">Before you get in touch</p>
+      <h2 id="faq-title">A little clarity.<br />A better conversation.</h2>
+      <a class="inline-link" routerLink="/services"
+        >Explore our services <ng-icon name="heroArrowRight" aria-hidden="true"
+      /></a>
+    </div>
+    <div class="faq-list">
+      @for (faq of faqs; track faq.question) {
+        <details>
+          <summary>{{ faq.question }}</summary>
+          <p>{{ faq.answer }}</p>
+        </details>
+      }
+    </div>
   </div>
 </section>

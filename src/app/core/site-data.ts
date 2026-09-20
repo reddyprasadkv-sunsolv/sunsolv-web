@@ -21,6 +21,7 @@ export interface PageData {
   structuredBreadcrumbs?: readonly StructuredBreadcrumb[];
   structuredFaqs?: readonly StructuredFaq[];
   structuredItems?: readonly StructuredItem[];
+  structuredItemListName?: string;
 }
 
 export interface StructuredBreadcrumb {
@@ -180,22 +181,40 @@ export const pageRouteData = {
     'CollectionPage',
     '/images/industries/sunsolv-industries-connected-economy.webp',
   ),
-  caseStudies: page(
-    'case-studies',
-    'Case Studies',
-    'Case Studies',
-    'Software & Digital Transformation Case Studies | SunSolv',
-    ['Approved case studies'],
-    '',
-    'CollectionPage',
-  ),
-  partnerships: page(
-    'partnerships',
-    'Partnerships',
-    'Partnerships',
-    'Technology Partnerships | SunSolv Technologies',
-    ['Partnership philosophy', 'Capabilities enabled by each partnership', 'Client benefits'],
-  ),
+  caseStudies: {
+    ...page(
+      'case-studies',
+      'Selected Work',
+      'Practical digital solutions built around real operational needs.',
+      'Case Studies | Digital Solutions by SunSolv Technologies',
+      [],
+      'Explore how SunSolv approaches complex business challenges through thoughtful consulting, connected technology and focused delivery.',
+      'CollectionPage',
+    ),
+    seo: {
+      path: 'case-studies',
+      image: '/images/case-studies/sunsolv-case-studies-premium.webp',
+      title: 'Case Studies | Digital Solutions by SunSolv Technologies',
+      description:
+        'Explore selected SunSolv case studies across education technology, business solution discovery and custom operational software.',
+    },
+  },
+  partnerships: {
+    eyebrow: 'Partnerships',
+    title: 'Better together. Built for progress.',
+    seo: {
+      path: 'partnerships',
+      title: 'Technology Partnerships | SunSolv Technologies',
+      description:
+        'Explore SunSolv’s AWS and Pinnacle partnerships for cloud solutions, business messaging and automation. Start a partnership conversation.',
+    },
+    schemaType: 'WebPage',
+    structuredPageName: 'Partnerships | SunSolv Technologies',
+    structuredBreadcrumbs: [
+      { name: 'Home', path: '' },
+      { name: 'Partnerships', path: 'partnerships' },
+    ],
+  },
   careers: page('careers', 'Careers', 'Careers', 'Careers at SunSolv Technologies', [
     'Culture',
     'Values',
@@ -203,15 +222,22 @@ export const pageRouteData = {
     'Learning and development',
     'Current opportunities',
   ]),
-  contact: page(
-    'contact-us',
-    'Contact SunSolv Technologies',
-    'Start your technology project.',
-    'Contact SunSolv | Start Your Technology Project',
-    [],
-    'Start your technology project.',
-    'ContactPage',
-  ),
+  contact: {
+    eyebrow: 'Contact SunSolv Technologies',
+    title: 'Let’s talk about what’s next.',
+    seo: {
+      path: 'contact-us',
+      title: 'Contact SunSolv | Projects, Partnerships & Enquiries',
+      description:
+        'Contact SunSolv Technologies to discuss a project, partnership, career or general enquiry. Email info@sunsolv.in or share your requirements through our enquiry form.',
+    },
+    schemaType: 'ContactPage',
+    structuredPageName: 'Contact SunSolv Technologies',
+    structuredBreadcrumbs: [
+      { name: 'Home', path: '' },
+      { name: 'Contact Us', path: 'contact-us' },
+    ],
+  },
   privacy: page(
     'privacy-policy',
     'Legal',

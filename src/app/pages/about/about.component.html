@@ -1,10 +1,3 @@
-<nav class="breadcrumbs shell" aria-label="Breadcrumb">
-  <ol>
-    <li><a routerLink="/">Home</a></li>
-    <li aria-current="page">About Us</li>
-  </ol>
-</nav>
-
 <section class="about-hero" aria-labelledby="about-title">
   <picture class="about-hero-art">
     <source
@@ -21,13 +14,13 @@
     />
     <source
       srcset="/images/about/sunsolv-about-purpose-driven-technology.avif 1672w"
-      sizes="52vw"
+      sizes="100vw"
       type="image/avif"
     />
     <img
       src="/images/about/sunsolv-about-purpose-driven-technology.webp"
       srcset="/images/about/sunsolv-about-purpose-driven-technology.webp 1672w"
-      sizes="52vw"
+      sizes="100vw"
       width="1672"
       height="941"
       alt="Connected glass structures representing collaboration, leadership and purposeful technology."
@@ -37,6 +30,12 @@
 
   <div class="shell about-hero-inner">
     <div class="about-hero-copy">
+      <nav class="breadcrumbs about-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a routerLink="/">Home</a></li>
+          <li aria-current="page">About Us</li>
+        </ol>
+      </nav>
       <p class="eyebrow">About SunSolv Technologies</p>
       <h1 id="about-title">Technology built around business outcomes.</h1>
       <p class="about-hero-lede">
