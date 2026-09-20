@@ -138,9 +138,9 @@
       </p>
     </div>
     <div class="industry-list">
-      @for (industry of industries; track industry) {
-        <a routerLink="/industries">
-          <span>{{ industry }}</span>
+      @for (industry of industries; track industry.route) {
+        <a [routerLink]="industry.route">
+          <span>{{ industry.title }}</span>
           <ng-icon name="heroArrowRight" aria-hidden="true" />
         </a>
       }

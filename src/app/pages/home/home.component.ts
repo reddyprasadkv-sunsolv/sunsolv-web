@@ -15,7 +15,7 @@ import {
   heroSquare3Stack3d,
   heroUsers,
 } from '@ng-icons/heroicons/outline';
-import { industryNames, services } from '../../core/site-data';
+import { industries, services } from '../../core/site-data';
 
 const serviceSummaries: Record<string, string> = {
   'it-consulting': 'Make technology decisions with greater clarity and confidence.',
@@ -125,5 +125,5 @@ export class HomeComponent {
     },
   ] as const;
 
-  readonly industries = industryNames;
+  readonly industries = industries;
 }
