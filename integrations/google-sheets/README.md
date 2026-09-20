@@ -72,3 +72,22 @@ References: [Google Apps Script web apps](https://developers.google.com/apps-scr
 The running preview at http://127.0.0.1:4318/contact-us serves the built Express application, including the API. It stores submissions in the actual enquiry sheet. Its Turnstile keys are official test keys, provided only to the local process; they are not saved in the production configuration. Do not expose this test process publicly. Restart with real Turnstile keys before production deployment.
 
 The receiver explicitly signs UTF-8 data, matching Node.js; the default Apps Script encoding rejected Unicode during the first live test. Error responses contain fixed diagnostic codes only, never message contents or secrets.
+
+## Connect the GitHub Pages frontend to hosted Express
+
+1. Deploy this repository to a Node 24 hosting service. Build with `npm ci && npm run build`
+   and start with `npm run serve:ssr:sunsolv-redesign`. Let the provider supply `PORT`.
+2. Set `HOST=0.0.0.0`, `NODE_ENV=production`, `ENFORCE_CANONICAL_HOST=false`, and
+   `APPROVED_PREVIEW_ORIGINS=https://reddyprasadkv-sunsolv.github.io`.
+   Set `APPROVED_PREVIEW_HOSTS` to the backend hostname if also serving its pages.
+3. Set the four Sheets/Turnstile environment values listed above in the provider's
+   private environment settings. Register `reddyprasadkv-sunsolv.github.io` with the
+   production Turnstile widget. Never use the local test keys publicly.
+4. Add the GitHub repository Actions variable `ENQUIRY_API_ORIGIN` containing the
+   backend HTTPS origin only (e.g. `https://enquiries.example.com`, without a slash).
+   Run the Pages deployment workflow. This public address is safe to include in the
+   built HTML; signing and Turnstile secrets stay exclusively on the backend.
+5. Verify configuration loads from that backend, then submit one labelled test
+   through the live form and confirm the exact returned reference in the sheet.
+
+Without this variable, the normal same-origin API behavior is retained.

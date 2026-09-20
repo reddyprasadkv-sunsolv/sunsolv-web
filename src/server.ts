@@ -46,10 +46,12 @@ app.use((req, res, next) => {
 app.get('/partnership', (_req, res) => res.redirect(301, '/partnerships'));
 app.get('/terms-and-condition', (_req, res) => res.redirect(301, '/terms-and-conditions'));
 
-app.get('/api/enquiry-config', (_req, res) => {
+app.get('/api/enquiry-config', (req, res) => {
+  if (!originAllowed(req.headers.origin)) return res.sendStatus(403);
+  setCors(req.headers.origin, res);
   res.setHeader('Cache-Control', 'no-store');
   const siteKey = process.env['TURNSTILE_SITE_KEY'] ?? '';
-  res.json({
+  return res.json({
     ready: Boolean(siteKey && process.env['TURNSTILE_SECRET_KEY'] && deliveryConfigured()),
     siteKey,
   });
@@ -160,7 +162,7 @@ function setCors(origin: string | undefined, res: express.Response): void {
   res.setHeader('Access-Control-Allow-Origin', origin);
   res.setHeader('Vary', 'Origin');
   res.setHeader('Access-Control-Allow-Headers', 'content-type');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
 }
 
 function withinRateLimit(ip: string): boolean {

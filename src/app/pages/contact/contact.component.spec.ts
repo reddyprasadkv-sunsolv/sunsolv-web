@@ -89,6 +89,25 @@ describe('Contact enquiry form', () => {
     expect(component.state()).toBe('error');
     expect(component.reference()).toBe('');
   });
+  it('sends to the configured external backend and waits for acknowledgement', async () => {
+    const meta = document.createElement('meta');
+    meta.name = 'enquiry-api-origin';
+    meta.content = 'https://enquiries.example.com';
+    document.head.appendChild(meta);
+    try {
+      const external = TestBed.createComponent(ContactComponent).componentInstance;
+      external.deliveryReady.set(true);
+      external.form.patchValue(component.form.getRawValue());
+      const pending = external.submit();
+      const request = http.expectOne('https://enquiries.example.com/api/enquiries');
+      expect(request.request.body.workEmail).toBe('test@example.com');
+      request.flush({ reference: 'SS-20260920-1234ABCD' });
+      await pending;
+      expect(external.state()).toBe('success');
+    } finally {
+      meta.remove();
+    }
+  });
   it('starts a fresh enquiry without retaining personal information', () => {
     component.form.controls.enquiryType.setValue('career');
     component.startNewEnquiry();

@@ -6,13 +6,28 @@ import { join } from 'node:path';
 const base = process.env.PAGES_BASE_PATH || '/sunsolv-web/';
 if (!/^\/[a-zA-Z0-9_-]+\/$/.test(base)) throw new Error('Invalid Pages base path');
 const output = 'dist/sunsolv-redesign/browser';
+const apiOrigin = process.env.ENQUIRY_API_ORIGIN || '';
+if (apiOrigin) {
+  const url = new URL(apiOrigin);
+  if (url.protocol !== 'https:' || url.origin !== apiOrigin)
+    throw new Error('ENQUIRY_API_ORIGIN must be an HTTPS origin without a path or trailing slash');
+}
+
 async function prepare(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
     const path = join(directory, entry.name);
-    if (entry.isDirectory()) { await prepare(path); continue; }
+    if (entry.isDirectory()) {
+      await prepare(path);
+      continue;
+    }
     if (!/\.(html|js|css)$/.test(entry.name)) continue;
     let content = await readFile(path, 'utf8');
     if (entry.name.endsWith('.html')) {
+      if (apiOrigin)
+        content = content.replace(
+          '</head>',
+          `<meta name="enquiry-api-origin" content="${apiOrigin}"></head>`,
+        );
       // Router links in prerendered markup must work before Angular hydrates.
       content = content.replace(/(href|src|srcset)="\/(?!\/)/g, `$1="${base}`);
       content = content.replace(/(,\s*)\/(images|fonts)\//g, `$1${base}$2/`);

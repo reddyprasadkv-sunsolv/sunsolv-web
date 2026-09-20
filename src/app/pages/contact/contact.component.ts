@@ -40,6 +40,8 @@ export class ContactComponent {
   private readonly http = inject(HttpClient);
   private readonly document = inject(DOCUMENT);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly apiOrigin =
+    this.document.querySelector<HTMLMetaElement>('meta[name="enquiry-api-origin"]')?.content ?? '';
   readonly services = services;
   readonly state = signal<SubmitState>('idle');
   readonly reference = signal('');
@@ -109,7 +111,7 @@ export class ContactComponent {
   constructor() {
     afterNextRender(() => {
       this.http
-        .get<{ ready: boolean; siteKey: string }>('/api/enquiry-config')
+        .get<{ ready: boolean; siteKey: string }>(`${this.apiOrigin}/api/enquiry-config`)
         .pipe(timeout(8000), takeUntilDestroyed(this.destroyRef))
         .subscribe({
           next: (config) => {
@@ -185,7 +187,10 @@ export class ContactComponent {
     this.statusMessage.set('Sending your enquiry…');
     try {
       const result = await firstValueFrom(
-        this.http.post<{ reference: string }>('/api/enquiries', this.form.getRawValue()),
+        this.http.post<{ reference: string }>(
+          `${this.apiOrigin}/api/enquiries`,
+          this.form.getRawValue(),
+        ),
       );
       if (!result || typeof result.reference !== 'string' || !result.reference.trim())
         throw new Error('Missing acknowledgement');
