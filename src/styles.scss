@@ -188,7 +188,7 @@ p {
   top: 16px;
 }
 :focus-visible {
-  outline: 3px solid var(--cyan);
+  outline: 3px solid var(--cyan-dark);
   outline-offset: 4px;
 }
 [data-hero-layout='industries-aligned']::after {
