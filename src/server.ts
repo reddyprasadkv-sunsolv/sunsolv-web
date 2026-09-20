@@ -34,6 +34,12 @@ app.use((_req, res, next) => {
   next();
 });
 
+// Keep container health independent of canonical redirects and external providers.
+app.get('/healthz', (_req, res) => {
+  res.setHeader('Cache-Control', 'no-store');
+  res.status(200).json({ status: 'ok' });
+});
+
 app.use((req, res, next) => {
   if (process.env['ENFORCE_CANONICAL_HOST'] !== 'true') return next();
   const forwardedProto = String(req.headers['x-forwarded-proto'] ?? req.protocol)
@@ -241,13 +247,22 @@ async function verifyTurnstile(secret: string, token: string, ip: string): Promi
 if (process.env['RUN_SUNSOLV_SERVER'] === 'true' || process.env['pm_id']) {
   const port = process.env['PORT'] || 4000;
   const host = process.env['HOST'] || '127.0.0.1';
-  app.listen(Number(port), host, (error) => {
+  const server = app.listen(Number(port), host, (error) => {
     if (error) {
       throw error;
     }
 
     console.log(`Node Express server listening on http://${host}:${port}`);
   });
+  let stopping = false;
+  const shutdown = () => {
+    if (stopping) return;
+    stopping = true;
+    server.close(() => process.exit(0));
+    setTimeout(() => process.exit(1), 25_000).unref();
+  };
+  process.on('SIGTERM', shutdown);
+  process.on('SIGINT', shutdown);
 }
 
 /**

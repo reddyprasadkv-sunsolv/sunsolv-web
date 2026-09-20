@@ -71,3 +71,9 @@ GitHub Pages hosts static files only. The enquiry API and its Google Sheets
 signing secret require a separate Node hosting environment; they are never
 included in the Pages artifact. Until that backend is connected, the contact
 page offers its email fallback.
+
+## AWS-ready packaging
+
+See [AWS preparation](deployment/aws/README.md) for the production Dockerfile,
+App Runner example configuration, secret mapping, health checks and release checks.
+These files do not create or deploy AWS resources.

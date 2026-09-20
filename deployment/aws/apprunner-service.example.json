@@ -1,0 +1,42 @@
+{
+  "ServiceName": "sunsolv-enquiries",
+  "SourceConfiguration": {
+    "AutoDeploymentsEnabled": false,
+    "AuthenticationConfiguration": {
+      "AccessRoleArn": "<ECR_IMAGE_PULL_ROLE_ARN>"
+    },
+    "ImageRepository": {
+      "ImageIdentifier": "<ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/sunsolv:<IMMUTABLE_TAG>",
+      "ImageRepositoryType": "ECR",
+      "ImageConfiguration": {
+        "Port": "8080",
+        "RuntimeEnvironmentVariables": {
+          "NODE_ENV": "production",
+          "HOST": "0.0.0.0",
+          "RUN_SUNSOLV_SERVER": "true",
+          "ENFORCE_CANONICAL_HOST": "false",
+          "APPROVED_PREVIEW_ORIGINS": "https://reddyprasadkv-sunsolv.github.io",
+          "TURNSTILE_SITE_KEY": "<PRODUCTION_PUBLIC_SITE_KEY>"
+        },
+        "RuntimeEnvironmentSecrets": {
+          "GOOGLE_SHEETS_WEBHOOK_URL": "<WEBHOOK_URL_SECRET_ARN>",
+          "GOOGLE_SHEETS_WEBHOOK_SECRET": "<WEBHOOK_SIGNING_SECRET_ARN>",
+          "TURNSTILE_SECRET_KEY": "<TURNSTILE_SECRET_ARN>"
+        }
+      }
+    }
+  },
+  "InstanceConfiguration": {
+    "Cpu": "1024",
+    "Memory": "2048",
+    "InstanceRoleArn": "<RUNTIME_SECRETS_ROLE_ARN>"
+  },
+  "HealthCheckConfiguration": {
+    "Protocol": "HTTP",
+    "Path": "/healthz",
+    "Interval": 10,
+    "Timeout": 5,
+    "HealthyThreshold": 1,
+    "UnhealthyThreshold": 5
+  }
+}
