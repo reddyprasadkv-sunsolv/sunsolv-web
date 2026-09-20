@@ -57,3 +57,17 @@ Before public launch:
 3. Configure and live-test Google Sheets enquiry storage using [the integration guide](integrations/google-sheets/README.md), or the existing email webhook.
 4. Add the approved GA4/Tag Manager and consent configuration.
 5. Confirm production DNS/TLS, canonical redirects, `robots.txt`, `sitemap.xml`, real-device accessibility, and form delivery.
+
+## GitHub Pages
+
+The `Deploy SunSolv website` workflow builds and publishes `main` to
+https://reddyprasadkv-sunsolv.github.io/sunsolv-web/.
+Set repository Settings → Pages → Source to **GitHub Actions**.
+The Pages preparation script adapts prerendered routes, images and fonts to the
+`/sunsolv-web/` base path. The regular production build stays compatible with the
+Node server and a root-domain deployment.
+
+GitHub Pages hosts static files only. The enquiry API and its Google Sheets
+signing secret require a separate Node hosting environment; they are never
+included in the Pages artifact. Until that backend is connected, the contact
+page offers its email fallback.
