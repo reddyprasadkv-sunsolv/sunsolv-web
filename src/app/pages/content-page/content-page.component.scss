@@ -111,3 +111,27 @@
     flex-direction: column;
   }
 }
+
+.legal-copy {
+  max-width: 860px;
+}
+.legal-copy article {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+  overflow-wrap: anywhere;
+}
+.legal-copy h2 {
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  line-height: 1.35;
+  margin: 0 0 16px;
+}
+.legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 28px;
+  padding-top: 32px;
+}
+.legal-links a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

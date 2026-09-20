@@ -1,3 +1,4 @@
+import { SocialLinksComponent } from '../../shared/social-links/social-links.component';
 import { DOCUMENT } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {
@@ -27,7 +28,7 @@ type SubmitState = 'idle' | 'submitting' | 'success' | 'error';
 
 @Component({
   selector: 'app-contact',
-  imports: [ReactiveFormsModule, RouterLink, NgIcon, TurnstileComponent],
+  imports: [SocialLinksComponent, ReactiveFormsModule, RouterLink, NgIcon, TurnstileComponent],
   providers: [provideIcons({ heroArrowRight, heroEnvelope, heroClock, heroCheckCircle })],
   templateUrl: './contact.component.html',
   changeDetection: ChangeDetectionStrategy.Eager,
