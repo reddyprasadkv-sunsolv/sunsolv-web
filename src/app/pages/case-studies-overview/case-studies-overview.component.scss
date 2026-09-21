@@ -58,41 +58,7 @@ h1 {
   line-height: 1.85;
   margin-bottom: 28px;
 }
-.work-index {
-  position: relative;
-  z-index: 1;
-  background: #071a33d9;
-  border-top: 1px solid #304258;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-.work-index a {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  color: #e7f1f9;
-  padding: 27px 24px;
-  font-size: 0.85rem;
-  border-right: 1px solid #304258;
-}
-.work-index a:first-child {
-  padding-left: 0;
-}
-.work-index a:last-child {
-  border-right: 0;
-}
-.work-index a > :last-child {
-  margin-left: auto;
-  color: #62dce0;
-  font-size: 1.4rem;
-}
-.index-number {
-  color: #87a6bc;
-  font-size: 0.75rem;
-}
-.work-index a:hover {
-  background: #102b45;
-}
+
 .work-heading {
   padding-block: 84px 40px;
 }
@@ -329,10 +295,7 @@ h4 {
   .cta-layout {
     gap: 48px;
   }
-  .work-index a {
-    font-size: 0.75rem;
-    padding-inline: 16px;
-  }
+
   .study-layout {
     gap: 36px;
   }
@@ -357,19 +320,7 @@ h4 {
   .hero-intro p {
     font-size: 1rem;
   }
-  .work-index {
-    grid-template-columns: 1fr;
-  }
-  .work-index a,
-  .work-index a:first-child {
-    padding: 16px 0;
-    border-right: 0;
-    border-bottom: 1px solid #304258;
-    font-size: 0.85rem;
-  }
-  .work-index a:last-child {
-    border-bottom: 0;
-  }
+
   .work-heading {
     padding-block: 60px 10px;
   }

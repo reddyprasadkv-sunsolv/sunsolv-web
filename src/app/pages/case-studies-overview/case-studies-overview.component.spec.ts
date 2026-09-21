@@ -61,10 +61,7 @@ describe('Case Studies Overview', () => {
         a.getAttribute('href'),
       ),
     ).toEqual(['/contact-us?enquiry=project', '/contact-us?enquiry=project']);
-    for (const anchor of Array.from(page.querySelectorAll('.work-index a'))) {
-      const id = anchor.getAttribute('href')?.split('#')[1];
-      expect(page.querySelector(`[id="${id}"]`)).toBeTruthy();
-    }
+    expect(page.querySelector('.work-index')).toBeNull();
   });
 
   it('shows two real source captures and keeps the local-only invoice case text-led', async () => {

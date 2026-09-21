@@ -44,15 +44,6 @@
         />
       </picture>
     </div>
-    <nav class="work-index" aria-label="Selected work">
-      @for (study of studies; track study.id; let i = $index) {
-        <a [href]="'/case-studies#' + study.id"
-          ><span class="index-number">0{{ i + 1 }}</span
-          ><span>{{ study.category }}</span
-          ><span aria-hidden="true">↘</span></a
-        >
-      }
-    </nav>
   </div>
 </section>
 
