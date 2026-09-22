@@ -5,6 +5,7 @@ import { join } from 'node:path';
 // Keep the normal build unchanged for the Node server and custom domains.
 let base = process.env.PAGES_BASE_PATH || '/sunsolv-web/';
 if (!base.endsWith('/')) base += '/';
+if (base === '/' && process.env.CUSTOM_DOMAIN !== 'true') base = '/sunsolv-web/';
 if (!/^\/(?:[a-zA-Z0-9_-]+\/)*$/.test(base)) throw new Error('Invalid Pages base path: ' + base);
 const output = 'dist/sunsolv-redesign/browser';
 const apiOrigin = process.env.ENQUIRY_API_ORIGIN || '';
