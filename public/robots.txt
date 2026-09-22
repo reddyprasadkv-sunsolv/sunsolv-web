@@ -1,4 +1,25 @@
 User-agent: *
 Allow: /
 
+# AI Crawlers & Search Engines (Allowed for search, answer synthesis, and citation)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemap and LLM documentation
 Sitemap: https://www.sunsolv.in/sitemap.xml
+# LLMs summary: https://www.sunsolv.in/llms.txt

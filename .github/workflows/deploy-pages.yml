@@ -23,6 +23,11 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
       - run: npm ci
+      - name: Code Quality Checks
+        run: |
+          npm run format:check
+          npm run typecheck
+          npm test -- --watch=false
       - run: npm run build
       - run: node scripts/prepare-pages.mjs
         env:

@@ -21,12 +21,18 @@ export const caseStudies: readonly CaseStudy[] = [
     summary:
       'Education technology connecting assessment administration, student participation and evaluation workflows.',
     challenge:
-      'Bring the administration, participation and evaluation stages of an assessment into a connected digital experience.',
+      'Institutions faced fragmented workflows between question bank authoring, exam scheduling, remote student participation, and manual grading turnaround, leading to administrative bottlenecks and delayed results.',
     solution:
-      'A centralized assessment platform that supports the administrative and student sides of the assessment process.',
-    capabilities: ['Assessment administration', 'Student participation', 'Evaluation workflows'],
+      'Engineered an end-to-end web assessment platform built with Angular, TypeScript, and Node.js. It unifies multi-format question authoring (MCQ, coding, short answer), secure timed testing sessions with local state autosave, and standardized rubric-based evaluation workflows with automated score computation.',
+    capabilities: [
+      'Assessment administration & scheduling',
+      'Student participation with session recovery',
+      'Rubric-based evaluation workflows',
+      'Automated grade computation & export',
+      'Role-based access control (Admin, Evaluator, Student)',
+    ],
     value:
-      'A connected assessment process can help teams coordinate administration and evaluation while giving students a clear point of participation.',
+      'Streamlines the entire examination lifecycle from setup to review, eliminates paper handling and manual transcription errors, and ensures students and evaluators have a reliable, responsive interface.',
     serviceSlugs: ['custom-software-development', 'web-mobile-development'],
     image: {
       src: '/images/case-studies/digital-assessment-workflow.png',
@@ -43,16 +49,18 @@ export const caseStudies: readonly CaseStudy[] = [
     title: 'Business Solution Finder',
     summary:
       'A guided digital experience that helps organizations understand their needs and identify relevant technology services.',
-    challenge: 'Help organizations connect their business needs with relevant technology services.',
+    challenge:
+      'Prospective clients frequently struggled to translate high-level business goals into specific technical requirements, often resulting in ambiguous project briefs, misaligned initial discussions, and protracted scoping cycles.',
     solution:
-      'A guided discovery experience that brings needs exploration and technology-service identification into one journey.',
+      'Developed a responsive, interactive diagnostic application built with Angular Reactive Architecture. It guides decision-makers through an intuitive 12-category discovery questionnaire, evaluates organizational priorities against defined architecture patterns, and synthesizes tailored service tracks with actionable next steps.',
     capabilities: [
-      'Guided needs discovery',
-      'Technology service identification',
-      'Digital discovery journey',
+      'Interactive 12-category needs discovery',
+      'Requirements mapping & service recommendation engine',
+      'Structured project brief synthesis',
+      'Zero-storage privacy-compliant client interaction',
     ],
     value:
-      'A clearer starting point can help organizations frame their needs and prepare for a more focused technology conversation.',
+      'Enables organizations to clearly articulate technical needs and operational scope upfront, reducing back-and-forth ambiguity and accelerating the path to focused technology delivery.',
     serviceSlugs: ['it-consulting', 'web-mobile-development'],
     image: {
       src: '/images/case-studies/business-solution-finder.png',
@@ -70,19 +78,18 @@ export const caseStudies: readonly CaseStudy[] = [
     summary:
       'A secure operational application bringing invoicing, projects, payments, developers and reporting into one connected workflow.',
     challenge:
-      'Keep project delivery, billing, payment records and developer assignments connected within everyday operations.',
+      'Operational workflows were disjointed across independent spreadsheets, manual invoicing tools, and chat channels. Project progress, billable developer hours, payment tracking, and outstanding receivables lacked real-time synchronization.',
     solution:
-      'An application with authenticated access, project tracking, invoice generation, payment records, developer assignments and reporting.',
+      'Architected a unified operations web application utilizing Node.js, Express, relational data persistence, and secure token-based authentication. The system directly links developer task assignments and billable milestones to automated invoice generation, payment reconciliation, and real-time financial reporting.',
     capabilities: [
-      'Project tracking',
-      'Invoice generation',
-      'Payment records',
-      'Developer assignments',
-      'Operational reporting',
-      'Authenticated access',
+      'Project milestone & developer assignment tracking',
+      'Automated invoice generation & PDF export',
+      'Payment recording & reconciliation audit trail',
+      'Operational cash-flow & receivable reporting',
+      'Authenticated role-based access controls',
     ],
     value:
-      'Connected operational records can help teams review project and billing information together and follow work through its related processes.',
+      'Provides leadership and project leads with a single, verifiable operational view. Replaces manual spreadsheet consolidation, eliminates double-entry billing errors, and aligns delivery progress directly with billing milestones.',
     serviceSlugs: ['custom-software-development', 'digital-transformation'],
   },
 ];

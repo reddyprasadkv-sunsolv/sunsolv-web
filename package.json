@@ -4,10 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production && ng run sunsolv-redesign:server:production && node scripts/prerender.mjs && ng run sunsolv-redesign:server-app:production",
+    "sitemap": "node scripts/generate-sitemap.mjs",
+    "build": "node scripts/generate-sitemap.mjs && ng build --configuration production && ng run sunsolv-redesign:server:production && node scripts/prerender.mjs && ng run sunsolv-redesign:server-app:production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "typecheck": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.server-app.json",
+    "format": "prettier --write src angular.json package.json tsconfig*.json",
     "format:check": "prettier --check src angular.json package.json tsconfig*.json",
     "serve:ssr:sunsolv-redesign": "RUN_SUNSOLV_SERVER=true node dist/sunsolv-redesign/server-app/main.js"
   },

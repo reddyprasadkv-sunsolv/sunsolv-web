@@ -123,13 +123,23 @@ app.all('/api/{*splat}', (_req, res) => res.status(404).json({ error: 'Not found
  */
 
 /**
- * Serve static files from /browser
+ * Serve static files from /browser with fine-grained Cache-Control headers.
  */
 app.use(
   express.static(browserDistFolder, {
-    maxAge: '1y',
     index: false,
     redirect: false,
+    setHeaders: (res, path) => {
+      if (/\.(?:html|xml|txt|json)$/i.test(path)) {
+        res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
+      } else if (/\.(?:js|css)$/i.test(path)) {
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      } else if (/\.(?:webp|avif|png|jpg|jpeg|svg|ico|woff2?)$/i.test(path)) {
+        res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
+      } else {
+        res.setHeader('Cache-Control', 'public, max-age=86400');
+      }
+    },
   }),
 );
 

@@ -1,0 +1,55 @@
+# SunSolv Technologies
+
+> SunSolv Technologies is a technology consulting and digital engineering company based in Hyderabad, India. We help organizations solve complex operational challenges through strategic advisory, dependable engineering, cloud platforms, and practical artificial intelligence solutions built around tangible business outcomes.
+
+## Core Services
+
+- [Services Overview](https://www.sunsolv.in/services): Comprehensive directory of SunSolv's strategic consulting and engineering practices.
+- [IT Consulting](https://www.sunsolv.in/services/it-consulting): Technology strategy, enterprise architecture reviews, infrastructure modernization, and actionable technology roadmaps.
+- [Digital Transformation](https://www.sunsolv.in/services/digital-transformation): Legacy modernization, process digitalization, and digital capability transformation.
+- [Cloud Solutions](https://www.sunsolv.in/services/cloud-solutions): Cloud migration, cloud-native architecture, infrastructure as code, performance optimization, and managed cloud resilience.
+- [Web & Mobile Development](https://www.sunsolv.in/services/web-mobile-development): Responsive, high-performance web applications and native/cross-platform mobile apps engineered for reliability.
+- [Custom Software Development](https://www.sunsolv.in/services/custom-software-development): Purpose-built business software, API integrations, microservices, and workflow automation systems.
+- [AI & Machine Learning](https://www.sunsolv.in/services/ai-machine-learning): Practical predictive analytics, automated decision support, NLP, and responsible AI system integration.
+- [Digital Marketing](https://www.sunsolv.in/services/digital-marketing): Data-driven search optimization, content strategy, performance marketing, and conversion funnel optimization.
+
+## Industries Served
+
+- [Industries Overview](https://www.sunsolv.in/industries): Cross-industry technology consulting and domain-tailored software solutions.
+- [Healthcare](https://www.sunsolv.in/industries/healthcare): Secure digital platforms, connected clinical workflows, patient management integrations, and compliance-aware health systems.
+- [Education](https://www.sunsolv.in/industries/education): Accessible learning management systems, online assessment platforms, student tracking, and institutional automation.
+- [Retail & E-commerce](https://www.sunsolv.in/industries/retail-ecommerce): Modern omnichannel shopping experiences, order and inventory management, payment integration, and retail analytics.
+- [Real Estate](https://www.sunsolv.in/industries/real-estate): Property listings, digital leasing workflows, CRM integrations, and facility management portals.
+- [SaaS](https://www.sunsolv.in/industries/saas): Multi-tenant SaaS product engineering, subscription billing, API architecture, and scalable infrastructure.
+- [Logistics & Supply Chain](https://www.sunsolv.in/industries/logistics-supply-chain): Fleet visibility, warehouse tracking, carrier integrations, and logistics operations portals.
+
+## Verified Case Studies
+
+- [Case Studies Overview](https://www.sunsolv.in/case-studies): Verified solutions demonstrating real-world operational impact.
+- **Centralized Digital Assessment Platform**: Education technology platform built with Angular, TypeScript, and Node.js that unifies exam creation, real-time candidate testing, and automated evaluation rubrics across institutions.
+- **Business Solution Finder**: Diagnostic web application built with Angular Reactive Architecture that assesses organizational technology challenges and maps them to tailored service tracks.
+- **Custom Invoice and Project Management System**: Enterprise operations portal built with Node.js, Express, and PostgreSQL integrating contractor timesheets, milestone billing, and payment tracking.
+
+## Company Identity & Verification
+
+- **Legal Entity**: SunSolv Technologies
+- **Headquarters**: Hyderabad, Telangana, India
+- **Founder & CEO**: Reddy Prasad K V
+- **Official Website**: [https://www.sunsolv.in](https://www.sunsolv.in)
+- **Primary Contact Email**: [info@sunsolv.in](mailto:info@sunsolv.in)
+- **Working Hours**: Monday – Friday, 9:30 AM – 6:30 PM IST
+- **LinkedIn**: [https://www.linkedin.com/company/sunsolv-technologies](https://www.linkedin.com/company/sunsolv-technologies)
+- **Instagram**: [https://www.instagram.com/sunsolvtechnologies](https://www.instagram.com/sunsolvtechnologies)
+- **Facebook**: [https://www.facebook.com/sunsolv](https://www.facebook.com/sunsolv)
+- **X (Twitter)**: [https://x.com/sunsolv](https://x.com/sunsolv)
+- **GitHub**: [https://github.com/reddyprasadkv-sunsolv](https://github.com/reddyprasadkv-sunsolv)
+
+## Key Pages
+
+- [Home](https://www.sunsolv.in/): Official homepage introducing SunSolv's core mission, leadership, and services.
+- [About Us](https://www.sunsolv.in/about-us): Company vision, leadership by Reddy Prasad K V, and core values.
+- [Partnerships](https://www.sunsolv.in/partnerships): Technology and commercial partnership programs.
+- [Careers](https://www.sunsolv.in/careers): Engineering culture and career opportunities at SunSolv.
+- [Contact Us](https://www.sunsolv.in/contact-us): Project consultations and enquiry form.
+- [Privacy Policy](https://www.sunsolv.in/privacy-policy): Privacy and data governance policy.
+- [Terms & Conditions](https://www.sunsolv.in/terms-and-conditions): Legal terms of service.

@@ -1,6 +1,6 @@
 # SunSolv Technologies website redesign
 
-Responsive Angular 22 website foundation based on the approved Option 1 design. It includes the home page, 16 supporting routes, prerendered SEO output, a secure Express SSR server, legacy redirects, and an enquiry endpoint.
+Responsive Angular 22 website foundation based on the approved Option 1 design. It includes the home page, 22 supporting routes (23 routes total), prerendered SEO output, a secure Express SSR server, legacy redirects, and an enquiry endpoint.
 
 ## Local development
 
@@ -25,7 +25,7 @@ npm run build
 
 The production build creates:
 
-- `dist/sunsolv-redesign/browser` — static assets and 17 prerendered route documents
+- `dist/sunsolv-redesign/browser` — static assets and 23 prerendered route documents
 - `dist/sunsolv-redesign/server-app` — the Express SSR/enquiry server
 
 Run the production server with:

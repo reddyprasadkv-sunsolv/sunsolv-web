@@ -259,13 +259,7 @@ export class SeoService {
             description: data.seo.description,
             about: { '@id': organizationId },
           },
-          {
-            '@type': 'Organization',
-            '@id': organizationId,
-            name: 'SunSolv Technologies',
-            url: canonicalOrigin,
-            logo: `${canonicalOrigin}/images/sunsolv-logo.webp`,
-          },
+          this.organizationSchema(organizationId),
           {
             '@type': 'BreadcrumbList',
             itemListElement: [
@@ -292,17 +286,43 @@ export class SeoService {
       return {
         '@context': 'https://schema.org',
         '@graph': [
-          {
-            '@type': 'Organization',
-            name: 'SunSolv Technologies',
-            url: canonicalOrigin,
-            logo: `${canonicalOrigin}/images/sunsolv-logo.webp`,
-          },
+          this.organizationSchema(),
           { '@type': 'WebSite', name: 'SunSolv Technologies', url: canonicalOrigin },
           base,
         ],
       };
     }
     return base;
+  }
+
+  private organizationSchema(id?: string): object {
+    return {
+      '@type': 'Organization',
+      ...(id ? { '@id': id } : {}),
+      name: 'SunSolv Technologies',
+      legalName: 'SunSolv Technologies',
+      url: canonicalOrigin,
+      logo: `${canonicalOrigin}/images/sunsolv-logo.webp`,
+      email: 'info@sunsolv.in',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Hyderabad',
+        addressRegion: 'Telangana',
+        addressCountry: 'IN',
+      },
+      sameAs: [
+        'https://www.linkedin.com/company/sunsolv-technologies',
+        'https://www.instagram.com/sunsolvtechnologies',
+        'https://www.facebook.com/sunsolv',
+        'https://x.com/sunsolv',
+        'https://github.com/reddyprasadkv-sunsolv',
+      ],
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'customer support',
+        email: 'info@sunsolv.in',
+        availableLanguage: ['English', 'Hindi'],
+      },
+    };
   }
 }

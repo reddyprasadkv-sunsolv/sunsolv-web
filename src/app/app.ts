@@ -1,5 +1,6 @@
 import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { AnalyticsService } from './core/analytics.service';
 import { SeoService } from './core/seo.service';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -20,4 +21,9 @@ import { HeaderComponent } from './shared/header/header.component';
 })
 export class App {
   private readonly seo = inject(SeoService);
+  private readonly analytics = inject(AnalyticsService);
+
+  constructor() {
+    this.analytics.init();
+  }
 }

@@ -162,11 +162,19 @@ describe('Contact enquiry form', () => {
     const sources = picture?.querySelectorAll('source');
     expect(sources?.length).toBe(3);
 
-    const mobileAvif = picture?.querySelector('source[type="image/avif"][media="(max-width: 820px)"]');
-    expect(mobileAvif?.getAttribute('srcset')).toContain('sunsolv-contact-scaling-solutions-mobile.avif');
+    const mobileAvif = picture?.querySelector(
+      'source[type="image/avif"][media="(max-width: 820px)"]',
+    );
+    expect(mobileAvif?.getAttribute('srcset')).toContain(
+      'sunsolv-contact-scaling-solutions-mobile.avif',
+    );
 
-    const mobileWebp = picture?.querySelector('source[type="image/webp"][media="(max-width: 820px)"]');
-    expect(mobileWebp?.getAttribute('srcset')).toContain('sunsolv-contact-scaling-solutions-mobile.webp');
+    const mobileWebp = picture?.querySelector(
+      'source[type="image/webp"][media="(max-width: 820px)"]',
+    );
+    expect(mobileWebp?.getAttribute('srcset')).toContain(
+      'sunsolv-contact-scaling-solutions-mobile.webp',
+    );
 
     const desktopAvif = picture?.querySelector('source[type="image/avif"]:not([media])');
     expect(desktopAvif?.getAttribute('srcset')).toContain('sunsolv-contact-scaling-solutions.avif');

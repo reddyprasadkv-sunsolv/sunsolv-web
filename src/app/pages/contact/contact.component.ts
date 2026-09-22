@@ -44,7 +44,8 @@ export class ContactComponent {
   private readonly apiOrigin =
     this.document.querySelector<HTMLMetaElement>('meta[name="enquiry-api-origin"]')?.content ?? '';
   private readonly appsScriptUrl =
-    this.document.querySelector<HTMLMetaElement>('meta[name="enquiry-apps-script-url"]')?.content ?? '';
+    this.document.querySelector<HTMLMetaElement>('meta[name="enquiry-apps-script-url"]')?.content ??
+    '';
   readonly services = services;
   readonly state = signal<SubmitState>('idle');
   readonly reference = signal('');
@@ -213,7 +214,11 @@ export class ContactComponent {
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify(payload),
         });
-        const result = (await response.json()) as { ok?: boolean; reference?: string; code?: string };
+        const result = (await response.json()) as {
+          ok?: boolean;
+          reference?: string;
+          code?: string;
+        };
         if (!result || result.ok !== true) {
           throw new Error(result?.code || 'Delivery failed');
         }

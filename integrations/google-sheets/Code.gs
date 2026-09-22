@@ -41,6 +41,31 @@ function doPost(event) {
       return jsonResponse({ ok: true, reference: 'SS-RECEIVED' });
     }
 
+    // Optional Cloudflare Turnstile token validation if TURNSTILE_SECRET_KEY is configured in Script Properties
+    const turnstileSecret = properties.getProperty('TURNSTILE_SECRET_KEY');
+    if (turnstileSecret) {
+      const turnstileToken = data.antiBotToken || data.turnstileToken || parsed.antiBotToken || parsed.turnstileToken;
+      if (!turnstileToken) {
+        return jsonResponse({ ok: false, code: 'missing_turnstile_token' });
+      }
+      try {
+        const verifyResp = UrlFetchApp.fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+          method: 'post',
+          payload: {
+            secret: turnstileSecret,
+            response: turnstileToken,
+          },
+          muteHttpExceptions: true,
+        });
+        const verifyResult = JSON.parse(verifyResp.getContentText());
+        if (!verifyResult || !verifyResult.success) {
+          return jsonResponse({ ok: false, code: 'turnstile_verification_failed' });
+        }
+      } catch (_err) {
+        return jsonResponse({ ok: false, code: 'turnstile_network_error' });
+      }
+    }
+
     if (!data.reference || !/^SS-\d{8}-[A-F0-9]{8}$/i.test(data.reference)) {
       data.reference = 'SS-' + Utilities.formatDate(new Date(), 'UTC', 'yyyyMMdd') + '-' + Utilities.getUuid().substring(0, 8).toUpperCase();
     }
