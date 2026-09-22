@@ -230,6 +230,7 @@ export const pageRouteData = {
       title: 'Contact SunSolv | Projects, Partnerships & Enquiries',
       description:
         'Contact SunSolv Technologies to discuss a project, partnership, career or general enquiry. Email info@sunsolv.in or share your requirements through our enquiry form.',
+      image: '/images/contact/sunsolv-contact-scaling-solutions.webp',
     },
     schemaType: 'ContactPage',
     structuredPageName: 'Contact SunSolv Technologies',

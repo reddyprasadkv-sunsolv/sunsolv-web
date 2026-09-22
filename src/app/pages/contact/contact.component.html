@@ -1,24 +1,60 @@
 <section class="contact-hero" aria-labelledby="contact-title">
-  <div class="shell">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <ol>
-        <li><a routerLink="/">Home</a></li>
-        <li aria-current="page">Contact Us</li>
-      </ol>
-    </nav>
-    <div class="hero-layout">
-      <div>
-        <p class="eyebrow">Contact SunSolv Technologies</p>
-        <h1 id="contact-title">Let’s talk about<br /><span>what’s next.</span></h1>
-      </div>
-      <div class="hero-intro">
-        <p>
-          A new project, a partnership or a question. Tell us what you have in mind, and let’s find
-          a practical way forward.
-        </p>
-        <a class="hero-link" routerLink="/contact-us" fragment="enquiry-form"
-          >Start a conversation <span aria-hidden="true">↓</span></a
-        >
+  <picture class="contact-hero-art">
+    <source
+      media="(max-width: 820px)"
+      srcset="/images/contact/sunsolv-contact-scaling-solutions-mobile.avif 800w"
+      sizes="100vw"
+      width="800"
+      height="600"
+      type="image/avif"
+    />
+    <source
+      media="(max-width: 820px)"
+      srcset="/images/contact/sunsolv-contact-scaling-solutions-mobile.webp 800w"
+      sizes="100vw"
+      width="800"
+      height="600"
+      type="image/webp"
+    />
+    <source
+      srcset="/images/contact/sunsolv-contact-scaling-solutions.avif 1024w"
+      sizes="100vw"
+      width="1024"
+      height="576"
+      type="image/avif"
+    />
+    <img
+      src="/images/contact/sunsolv-contact-scaling-solutions.webp"
+      srcset="/images/contact/sunsolv-contact-scaling-solutions.webp 1024w"
+      sizes="100vw"
+      width="1024"
+      height="576"
+      alt="Modern architectural glass facade reflecting sunrise with Scaling Solutions for a Brighter Tomorrow."
+      fetchpriority="high"
+    />
+  </picture>
+  <div class="shell contact-hero-inner">
+    <div class="contact-hero-copy">
+      <nav class="breadcrumbs contact-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a routerLink="/">Home</a></li>
+          <li aria-current="page">Contact Us</li>
+        </ol>
+      </nav>
+      <div class="hero-layout">
+        <div>
+          <p class="eyebrow">Contact SunSolv Technologies</p>
+          <h1 id="contact-title">Let’s talk about<br /><span>what’s next.</span></h1>
+        </div>
+        <div class="hero-intro">
+          <p>
+            A new project, a partnership or a question. Tell us what you have in mind, and let’s find
+            a practical way forward.
+          </p>
+          <a class="hero-link" routerLink="/contact-us" fragment="enquiry-form"
+            >Start a conversation <span aria-hidden="true">↓</span></a
+          >
+        </div>
       </div>
     </div>
   </div>

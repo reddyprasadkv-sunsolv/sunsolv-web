@@ -1,11 +1,12 @@
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ContactComponent } from './contact.component';
 
 describe('Contact enquiry form', () => {
+  let fixture: ComponentFixture<ContactComponent>;
   let component: ContactComponent;
   let http: HttpTestingController;
   const query = new BehaviorSubject(convertToParamMap({}));
@@ -20,7 +21,8 @@ describe('Contact enquiry form', () => {
         { provide: ActivatedRoute, useValue: { queryParamMap: query } },
       ],
     }).compileComponents();
-    component = TestBed.createComponent(ContactComponent).componentInstance;
+    fixture = TestBed.createComponent(ContactComponent);
+    component = fixture.componentInstance;
     http = TestBed.inject(HttpTestingController);
     component.deliveryReady.set(true);
     component.form.patchValue({
@@ -33,6 +35,8 @@ describe('Contact enquiry form', () => {
     });
   });
   afterEach(() => {
+    const configRequests = http.match((req) => req.url.endsWith('/api/enquiry-config'));
+    configRequests.forEach((req) => req.flush({ ready: true, siteKey: 'dummy' }));
     http.verify();
   });
   it('rejects whitespace-only names and missing consent before any POST', async () => {
@@ -147,5 +151,30 @@ describe('Contact enquiry form', () => {
     expect(component.form.controls.fullName.value).toBe('');
     expect(component.form.controls.privacyConsent.value).toBe(false);
     expect(component.form.controls.service.valid).toBe(true);
+  });
+
+  it('renders the responsive hero art with mobile and desktop sources', () => {
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const picture = compiled.querySelector<HTMLPictureElement>('picture.contact-hero-art');
+    expect(picture).toBeTruthy();
+
+    const sources = picture?.querySelectorAll('source');
+    expect(sources?.length).toBe(3);
+
+    const mobileAvif = picture?.querySelector('source[type="image/avif"][media="(max-width: 820px)"]');
+    expect(mobileAvif?.getAttribute('srcset')).toContain('sunsolv-contact-scaling-solutions-mobile.avif');
+
+    const mobileWebp = picture?.querySelector('source[type="image/webp"][media="(max-width: 820px)"]');
+    expect(mobileWebp?.getAttribute('srcset')).toContain('sunsolv-contact-scaling-solutions-mobile.webp');
+
+    const desktopAvif = picture?.querySelector('source[type="image/avif"]:not([media])');
+    expect(desktopAvif?.getAttribute('srcset')).toContain('sunsolv-contact-scaling-solutions.avif');
+
+    const img = picture?.querySelector('img');
+    expect(img?.getAttribute('src')).toContain('sunsolv-contact-scaling-solutions.webp');
+    expect(img?.getAttribute('alt')).toContain('Scaling Solutions for a Brighter Tomorrow');
+    expect(img?.getAttribute('width')).toBe('1024');
+    expect(img?.getAttribute('height')).toBe('576');
   });
 });
