@@ -19,12 +19,15 @@ jobs:
         with:
           node-version: '24'
           cache: npm
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
       - run: npm ci
       - run: npm run build
       - run: node scripts/prepare-pages.mjs
         env:
           ENQUIRY_API_ORIGIN: ${{ vars.ENQUIRY_API_ORIGIN }}
-      - uses: actions/configure-pages@v5
+          PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/sunsolv-redesign/browser

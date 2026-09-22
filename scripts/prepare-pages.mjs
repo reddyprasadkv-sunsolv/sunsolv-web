@@ -3,10 +3,9 @@ import { join } from 'node:path';
 
 // Adapt the prerendered build for GitHub's project-site subdirectory.
 // Keep the normal build unchanged for the Node server and custom domains.
-// const base = process.env.PAGES_BASE_PATH || '/sunsolv-web/';
-const base = process.env.PAGES_BASE_PATH || '/';
-if (!/^\/(?:[a-zA-Z0-9_-]+\/)?$/.test(base)) throw new Error('Invalid Pages base path');
-//if (!/^\/[a-zA-Z0-9_-]+\/$/.test(base)) throw new Error('Invalid Pages base path');
+let base = process.env.PAGES_BASE_PATH || '/sunsolv-web/';
+if (!base.endsWith('/')) base += '/';
+if (!/^\/(?:[a-zA-Z0-9_-]+\/)*$/.test(base)) throw new Error('Invalid Pages base path: ' + base);
 const output = 'dist/sunsolv-redesign/browser';
 const apiOrigin = process.env.ENQUIRY_API_ORIGIN || '';
 if (apiOrigin) {
@@ -31,11 +30,11 @@ async function prepare(directory) {
           `<meta name="enquiry-api-origin" content="${apiOrigin}"></head>`,
         );
       // Router links in prerendered markup must work before Angular hydrates.
-      content = content.replace(/(href|src|srcset)="\/(?!\/)/g, `$1="${base}`);
+      content = content.replace(/(href|src|srcset)="(\s*)\/(?!\/)/g, `$1="$2${base}`);
       content = content.replace(/(,\s*)\/(images|fonts)\//g, `$1${base}$2/`);
     }
     // Runtime image bindings and CSS font URLs must use the same mount point.
-    content = content.replace(/(["'`(])\/(images|fonts)\//g, `$1${base}$2/`);
+    content = content.replace(/(["'`(\s,])\/(images|fonts)\//g, `$1${base}$2/`);
     await writeFile(path, content);
   }
 }
