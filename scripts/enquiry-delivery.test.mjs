@@ -92,6 +92,8 @@ function receiver() {
         assert.equal(charset, 'UTF-8');
         return [...createHmac('sha256', key).update(text, 'utf8').digest()];
       },
+      formatDate: () => '20260922',
+      getUuid: () => '12345678-1234-1234-1234-1234567890AB',
     },
     SpreadsheetApp: { openById: () => ({ getSheetByName: () => sheet }), flush: () => {} },
     LockService: {
@@ -142,4 +144,48 @@ test('receiver rejects tampering, expired signatures and absent consent', () => 
     assert.equal(r.context.doPost({ postData: { contents: JSON.stringify(envelope) } }).ok, false);
     assert.equal(r.rows.length, 0);
   }
+});
+test('receiver accepts direct web form submissions and responds to doGet', () => {
+  const r = receiver();
+  assert.equal(r.context.doGet().ok, true);
+  assert.equal(r.context.doGet().ready, true);
+
+  const directEvent = {
+    postData: {
+      contents: JSON.stringify({
+        enquiryType: 'project',
+        fullName: 'Direct Visitor',
+        workEmail: 'visitor@example.com',
+        phone: '+91 99999 88888',
+        company: 'SunSolv Test',
+        service: 'Cloud Solutions',
+        message: 'Direct enquiry without server-side secret.',
+        privacyConsent: true,
+      }),
+    },
+  };
+  const response = r.context.doPost(directEvent);
+  assert.equal(response.ok, true);
+  assert.match(response.reference, /^SS-\d{8}-[A-F0-9]{8}$/);
+  assert.equal(r.rows.length, 1);
+  assert.equal(r.rows[0][3], 'Direct Visitor');
+});
+test('receiver honeypot returns silent acknowledgement without adding row', () => {
+  const r = receiver();
+  const botEvent = {
+    postData: {
+      contents: JSON.stringify({
+        enquiryType: 'general',
+        fullName: 'Spam Bot',
+        workEmail: 'bot@spam.com',
+        website: 'https://spam.com',
+        message: 'Spam message that is long enough to bypass simple length validation.',
+        privacyConsent: true,
+      }),
+    },
+  };
+  const response = r.context.doPost(botEvent);
+  assert.equal(response.ok, true);
+  assert.equal(response.reference, 'SS-RECEIVED');
+  assert.equal(r.rows.length, 0);
 });

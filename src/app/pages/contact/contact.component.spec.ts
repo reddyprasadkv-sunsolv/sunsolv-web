@@ -108,6 +108,38 @@ describe('Contact enquiry form', () => {
       meta.remove();
     }
   });
+  it('sends directly to Google Apps Script when configured', async () => {
+    const meta = document.createElement('meta');
+    meta.name = 'enquiry-apps-script-url';
+    meta.content = 'https://script.google.com/macros/s/test/exec';
+    document.head.appendChild(meta);
+    const originalFetch = globalThis.fetch;
+    try {
+      let postedUrl = '';
+      let postedBody: any = null;
+      globalThis.fetch = (async (url: any, opts: any) => {
+        postedUrl = String(url);
+        postedBody = JSON.parse(opts.body);
+        return {
+          ok: true,
+          json: async () => ({ ok: true, reference: 'SS-20260922-APPSCRPT' }),
+        } as Response;
+      }) as any;
+
+      const direct = TestBed.createComponent(ContactComponent).componentInstance;
+      direct.deliveryReady.set(true);
+      direct.form.patchValue(component.form.getRawValue());
+      await direct.submit();
+
+      expect(postedUrl).toBe('https://script.google.com/macros/s/test/exec');
+      expect(postedBody.workEmail).toBe('test@example.com');
+      expect(direct.state()).toBe('success');
+      expect(direct.reference()).toBe('SS-20260922-APPSCRPT');
+    } finally {
+      globalThis.fetch = originalFetch;
+      meta.remove();
+    }
+  });
   it('starts a fresh enquiry without retaining personal information', () => {
     component.form.controls.enquiryType.setValue('career');
     component.startNewEnquiry();

@@ -255,7 +255,7 @@
                   <a href="mailto:info@sunsolv.in">email us directly</a> and we’ll help you get
                   started.
                 </p>
-              } @else {
+              } @else if (siteKey()) {
                 <app-enquiry-verification
                   [siteKey]="siteKey()"
                   (token)="form.controls.antiBotToken.setValue($event)"

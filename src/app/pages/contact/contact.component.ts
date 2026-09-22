@@ -43,6 +43,8 @@ export class ContactComponent {
   private readonly destroyRef = inject(DestroyRef);
   private readonly apiOrigin =
     this.document.querySelector<HTMLMetaElement>('meta[name="enquiry-api-origin"]')?.content ?? '';
+  private readonly appsScriptUrl =
+    this.document.querySelector<HTMLMetaElement>('meta[name="enquiry-apps-script-url"]')?.content ?? '';
   readonly services = services;
   readonly state = signal<SubmitState>('idle');
   readonly reference = signal('');
@@ -111,6 +113,10 @@ export class ContactComponent {
 
   constructor() {
     afterNextRender(() => {
+      if (this.appsScriptUrl) {
+        this.deliveryReady.set(true);
+        return;
+      }
       this.http
         .get<{ ready: boolean; siteKey: string }>(`${this.apiOrigin}/api/enquiry-config`)
         .pipe(timeout(8000), takeUntilDestroyed(this.destroyRef))
@@ -180,13 +186,44 @@ export class ContactComponent {
       );
       return;
     }
-    if (!this.form.controls.antiBotToken.value) {
+    if (!this.appsScriptUrl && !this.form.controls.antiBotToken.value) {
       this.statusMessage.set('Please complete the security check before sending.');
       return;
     }
     this.state.set('submitting');
     this.statusMessage.set('Sending your enquiry…');
     try {
+      if (this.appsScriptUrl) {
+        const raw = this.form.getRawValue();
+        if (raw.website) {
+          this.reference.set('SS-RECEIVED');
+          this.state.set('success');
+          this.statusMessage.set('Thank you. Your enquiry has been received.');
+          setTimeout(() => this.document.getElementById('enquiry-success')?.focus(), 0);
+          return;
+        }
+        const ref = `SS-${new Date().toISOString().slice(0, 10).replaceAll('-', '')}-${Math.random().toString(16).slice(2, 10).toUpperCase()}`;
+        const payload = {
+          ...raw,
+          reference: ref,
+          submittedAt: new Date().toISOString(),
+        };
+        const response = await fetch(this.appsScriptUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload),
+        });
+        const result = (await response.json()) as { ok?: boolean; reference?: string; code?: string };
+        if (!result || result.ok !== true) {
+          throw new Error(result?.code || 'Delivery failed');
+        }
+        this.reference.set(result.reference || ref);
+        this.state.set('success');
+        this.statusMessage.set('Thank you. Your enquiry has been received.');
+        setTimeout(() => this.document.getElementById('enquiry-success')?.focus(), 0);
+        return;
+      }
+
       const result = await firstValueFrom(
         this.http.post<{ reference: string }>(
           `${this.apiOrigin}/api/enquiries`,

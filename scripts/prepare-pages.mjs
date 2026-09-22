@@ -13,6 +13,9 @@ if (apiOrigin) {
   if (url.protocol !== 'https:' || url.origin !== apiOrigin)
     throw new Error('ENQUIRY_API_ORIGIN must be an HTTPS origin without a path or trailing slash');
 }
+const appsScriptUrl =
+  process.env.GOOGLE_APPS_SCRIPT_URL ||
+  'https://script.google.com/macros/s/AKfycby0qCH7z0J4CNgpy5jdWhyT9pVmNAor8jHtxGdUx_AESxu-OKU9qwHms7jZVMl9yF1Q_A/exec';
 
 async function prepare(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -24,11 +27,10 @@ async function prepare(directory) {
     if (!/\.(html|js|css)$/.test(entry.name)) continue;
     let content = await readFile(path, 'utf8');
     if (entry.name.endsWith('.html')) {
-      if (apiOrigin)
-        content = content.replace(
-          '</head>',
-          `<meta name="enquiry-api-origin" content="${apiOrigin}"></head>`,
-        );
+      let metas = '';
+      if (apiOrigin) metas += `<meta name="enquiry-api-origin" content="${apiOrigin}">`;
+      if (appsScriptUrl) metas += `<meta name="enquiry-apps-script-url" content="${appsScriptUrl}">`;
+      if (metas) content = content.replace('</head>', `${metas}</head>`);
       // Router links in prerendered markup must work before Angular hydrates.
       content = content.replace(/(href|src|srcset)="(\s*)\/(?!\/)/g, `$1="$2${base}`);
       content = content.replace(/(,\s*)\/(images|fonts)\//g, `$1${base}$2/`);
