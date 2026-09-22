@@ -3,8 +3,10 @@ import { join } from 'node:path';
 
 // Adapt the prerendered build for GitHub's project-site subdirectory.
 // Keep the normal build unchanged for the Node server and custom domains.
-const base = process.env.PAGES_BASE_PATH || '/sunsolv-web/';
-if (!/^\/[a-zA-Z0-9_-]+\/$/.test(base)) throw new Error('Invalid Pages base path');
+// const base = process.env.PAGES_BASE_PATH || '/sunsolv-web/';
+const base = process.env.PAGES_BASE_PATH || '/';
+if (!/^\/(?:[a-zA-Z0-9_-]+\/)?$/.test(base)) throw new Error('Invalid Pages base path');
+//if (!/^\/[a-zA-Z0-9_-]+\/$/.test(base)) throw new Error('Invalid Pages base path');
 const output = 'dist/sunsolv-redesign/browser';
 const apiOrigin = process.env.ENQUIRY_API_ORIGIN || '';
 if (apiOrigin) {
