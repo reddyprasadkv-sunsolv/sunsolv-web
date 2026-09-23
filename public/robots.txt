@@ -2,6 +2,9 @@ User-agent: *
 Allow: /
 
 # AI Crawlers & Search Engines (Allowed for search, answer synthesis, and citation)
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: GPTBot
 Allow: /
 
