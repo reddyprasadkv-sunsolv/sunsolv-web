@@ -87,7 +87,16 @@
       @for (item of opportunities; track item.number) {
         <article class="opportunity-card">
           <div class="card-top">
-            <ng-icon [name]="item.icon" aria-hidden="true" /><span>{{ item.number }}</span>
+            <img
+              [src]="item.logo"
+              [alt]="item.logoAlt"
+              class="partner-logo"
+              [attr.width]="item.logoWidth"
+              [attr.height]="item.logoHeight"
+              loading="lazy"
+              decoding="async"
+            />
+            <span>{{ item.number }}</span>
           </div>
           <h3>{{ item.title }}</h3>
           <p>{{ item.description }}</p>

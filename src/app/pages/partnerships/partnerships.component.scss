@@ -193,6 +193,14 @@ h1 span {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 28px;
+  min-height: 40px;
+}
+.card-top .partner-logo {
+  height: 36px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  display: block;
 }
 .card-top ng-icon {
   color: var(--cyan-dark);

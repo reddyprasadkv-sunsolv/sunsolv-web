@@ -20,7 +20,10 @@ export class PartnershipsComponent {
   readonly opportunities = [
     {
       number: '01 / CLOUD',
-      icon: 'heroCodeBracketSquare',
+      logo: '/images/partnerships/aws-logo.svg',
+      logoAlt: 'Amazon Web Services logo',
+      logoWidth: 61,
+      logoHeight: 36,
       title: 'Amazon Web Services',
       description:
         'Cloud infrastructure for applications that need room to grow. Our AWS collaboration brings architecture, migration and ongoing cloud management into a connected delivery approach.',
@@ -36,7 +39,10 @@ export class PartnershipsComponent {
     },
     {
       number: '02 / COMMUNICATIONS',
-      icon: 'heroUsers',
+      logo: '/images/partnerships/pinnacle-logo.webp',
+      logoAlt: 'Pinnacle logo',
+      logoWidth: 63,
+      logoHeight: 36,
       title: 'Pinnacle',
       description:
         'Communication tools that connect businesses with their customers. Our Pinnacle collaboration supports messaging, voice and automation across customer touchpoints.',
