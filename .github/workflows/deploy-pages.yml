@@ -33,7 +33,7 @@ jobs:
         env:
           ENQUIRY_API_ORIGIN: ${{ vars.ENQUIRY_API_ORIGIN }}
           PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}/
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist/sunsolv-redesign/browser
   deploy:
