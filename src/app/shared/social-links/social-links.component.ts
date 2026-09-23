@@ -12,7 +12,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
         [attr.aria-label]="'SunSolv on ' + link.name + ' (opens in a new tab)'"
         [title]="link.name + ' (opens in a new tab)'"
       >
-        <img [src]="'images/social/' + link.icon + '.svg'" alt="" width="20" height="20" />
+        <img [src]="'/images/social/' + link.icon + '.svg'" alt="" width="20" height="20" />
       </a>
     }
   </nav>`,

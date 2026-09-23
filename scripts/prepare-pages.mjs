@@ -1,11 +1,11 @@
 import { readdir, readFile, writeFile, copyFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-// Adapt the prerendered build for GitHub's project-site subdirectory.
-// Keep the normal build unchanged for the Node server and custom domains.
-let base = process.env.PAGES_BASE_PATH || '/sunsolv-web/';
+// Adapt the prerendered build for GitHub's project-site subdirectory when needed.
+// Custom domain (www.sunsolv.in) and normal root deployments keep base = '/'.
+let base = process.env.PAGES_BASE_PATH || '/';
 if (!base.endsWith('/')) base += '/';
-if (base === '/' && process.env.CUSTOM_DOMAIN !== 'true') base = '/sunsolv-web/';
+if (!base.startsWith('/')) base = '/' + base;
 if (!/^\/(?:[a-zA-Z0-9_-]+\/)*$/.test(base)) throw new Error('Invalid Pages base path: ' + base);
 const output = 'dist/sunsolv-redesign/browser';
 const apiOrigin = process.env.ENQUIRY_API_ORIGIN || '';
@@ -32,16 +32,21 @@ async function prepare(directory) {
       if (apiOrigin) metas += `<meta name="enquiry-api-origin" content="${apiOrigin}">`;
       if (appsScriptUrl) metas += `<meta name="enquiry-apps-script-url" content="${appsScriptUrl}">`;
       if (metas) content = content.replace('</head>', `${metas}</head>`);
-      // Router links in prerendered markup must work before Angular hydrates.
-      content = content.replace(/(href|src|srcset)="(\s*)\/(?!\/)/g, `$1="$2${base}`);
-      content = content.replace(/(,\s*)\/(images|fonts)\//g, `$1${base}$2/`);
+      if (base !== '/') {
+        // Router links in prerendered markup must work before Angular hydrates.
+        content = content.replace(/(href|src|srcset)="(\s*)\/(?!\/)/g, `$1="$2${base}`);
+        content = content.replace(/(,\s*)\/(images|fonts)\//g, `$1${base}$2/`);
+      }
     }
-    // Runtime image bindings and CSS font URLs must use the same mount point.
-    content = content.replace(/(["'`(\s,])\/(images|fonts)\//g, `$1${base}$2/`);
+    if (base !== '/') {
+      // Runtime image bindings and CSS font URLs must use the same mount point.
+      content = content.replace(/(["'`(\s,])\/(images|fonts)\//g, `$1${base}$2/`);
+    }
     await writeFile(path, content);
   }
 }
 await prepare(output);
 await copyFile(join(output, 'index.html'), join(output, '404.html'));
 await writeFile(join(output, '.nojekyll'), '');
+await writeFile(join(output, 'CNAME'), 'www.sunsolv.in\n');
 console.log(`Prepared GitHub Pages build at ${base}`);

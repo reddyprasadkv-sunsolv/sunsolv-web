@@ -32,7 +32,7 @@ jobs:
       - run: node scripts/prepare-pages.mjs
         env:
           ENQUIRY_API_ORIGIN: ${{ vars.ENQUIRY_API_ORIGIN }}
-          PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path || '/sunsolv-web' }}/
+          PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/sunsolv-redesign/browser

@@ -61,11 +61,11 @@ Before public launch:
 ## GitHub Pages
 
 The `Deploy SunSolv website` workflow builds and publishes `main` to
-https://reddyprasadkv-sunsolv.github.io/sunsolv-web/.
+https://www.sunsolv.in/ (custom domain mapped to GitHub Pages).
 Set repository Settings → Pages → Source to **GitHub Actions**.
-The Pages preparation script adapts prerendered routes, images and fonts to the
-`/sunsolv-web/` base path. The regular production build stays compatible with the
-Node server and a root-domain deployment.
+The Pages preparation script retains root `/` base path for the custom domain
+and automatically adapts to a subpath if deployed without a custom domain.
+The regular production build stays compatible with the Node server and a root-domain deployment.
 
 GitHub Pages hosts static files only. The enquiry API and its Google Sheets
 signing secret require a separate Node hosting environment; they are never
