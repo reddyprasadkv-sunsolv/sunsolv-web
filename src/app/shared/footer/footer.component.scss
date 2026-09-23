@@ -8,10 +8,10 @@
   grid-template-columns: 1.5fr repeat(3, 1fr);
   gap: 48px;
 }
-.footer-grid img {
-  width: 154px;
+.footer-grid .footer-logo {
+  width: 170px;
   height: auto;
-  filter: brightness(0) invert(1);
+  display: block;
 }
 .footer-grid p {
   max-width: 28ch;
