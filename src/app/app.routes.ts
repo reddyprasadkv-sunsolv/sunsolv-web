@@ -126,8 +126,13 @@ export const routes: Routes = [
       import('./pages/partnerships/partnerships.component').then((m) => m.PartnershipsComponent),
     data: pageRouteData.partnerships,
   },
+  {
+    path: 'careers',
+    loadComponent: () =>
+      import('./pages/careers/careers.component').then((m) => m.CareersComponent),
+    data: pageRouteData.careers,
+  },
   ...[
-    ['careers', 'careers'],
     ['privacy-policy', 'privacy'],
     ['terms-and-conditions', 'terms'],
   ].map(([path, key]) => ({

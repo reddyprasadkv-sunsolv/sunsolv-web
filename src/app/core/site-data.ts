@@ -225,15 +225,20 @@ export const pageRouteData = {
     ],
   },
   careers: {
-    ...page('careers', 'Careers', 'Careers', 'Careers at SunSolv Technologies', [
-      'Culture',
-      'Values',
-      'Working at SunSolv',
-      'Learning and development',
-      'Current opportunities',
-    ]),
+    eyebrow: 'Careers at SunSolv',
+    title: 'Build what’s next.',
+    positioning:
+      'At SunSolv Technologies, we work on meaningful digital solutions that solve real business problems and create lasting impact.',
+    sections: [],
     schemaType: 'WebPage',
-    structuredPageName: 'Careers | SunSolv Technologies',
+    structuredPageName: 'Careers at SunSolv Technologies | Join Our Team',
+    seo: {
+      path: 'careers',
+      title: 'Careers at SunSolv Technologies | Join Our Team',
+      description:
+        'Explore careers at SunSolv Technologies. Build your future across software engineering, cloud, AI, automation, digital transformation and more.',
+      image: '/images/careers/sunsolv-careers-build-whats-next.webp',
+    },
     structuredBreadcrumbs: [
       { name: 'Home', path: '' },
       { name: 'Careers', path: 'careers' },

@@ -1,0 +1,297 @@
+<section class="careers-hero" aria-labelledby="careers-title">
+  <picture class="careers-hero-art">
+    <source
+      media="(max-width: 820px)"
+      srcset="/images/careers/sunsolv-careers-build-whats-next-mobile.avif 800w"
+      sizes="100vw"
+      width="800"
+      height="450"
+      type="image/avif"
+    />
+    <source
+      media="(max-width: 820px)"
+      srcset="/images/careers/sunsolv-careers-build-whats-next-mobile.webp 800w"
+      sizes="100vw"
+      width="800"
+      height="450"
+      type="image/webp"
+    />
+    <source
+      srcset="/images/careers/sunsolv-careers-build-whats-next.avif 1024w"
+      sizes="100vw"
+      width="1024"
+      height="576"
+      type="image/avif"
+    />
+    <img
+      src="/images/careers/sunsolv-careers-build-whats-next.webp"
+      srcset="/images/careers/sunsolv-careers-build-whats-next.webp 1024w"
+      sizes="100vw"
+      width="1024"
+      height="576"
+      alt="Modern architectural studio overlooking an illuminated sunrise reflecting future technology, opportunity and growth."
+      fetchpriority="high"
+    />
+  </picture>
+
+  <div class="shell careers-hero-inner">
+    <div class="careers-hero-copy">
+      <nav class="breadcrumbs careers-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a routerLink="/">Home</a></li>
+          <li aria-current="page">Careers</li>
+        </ol>
+      </nav>
+
+      <p class="eyebrow">Careers at SunSolv</p>
+      <h1 id="careers-title">Build what’s next.</h1>
+
+      <div class="hero-intro">
+        <p>
+          At SunSolv Technologies, we work on meaningful digital solutions that solve real business
+          problems and create lasting impact.
+        </p>
+        <p>
+          We bring together technology, creativity and practical thinking across software
+          engineering, cloud, AI, automation and digital transformation.
+        </p>
+        <p class="hero-highlight">
+          If you are curious, responsible and excited about building better solutions, there is room
+          for you to grow with us.
+        </p>
+      </div>
+
+      <div class="hero-actions">
+        <a class="button" routerLink="/careers" fragment="current-opportunities">
+          Explore Opportunities <ng-icon name="heroArrowRight" aria-hidden="true" />
+        </a>
+        <a
+          class="button button-secondary"
+          routerLink="/contact-us"
+          [queryParams]="{ enquiry: 'career' }"
+        >
+          Share Your Profile
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section philosophy-section" aria-labelledby="philosophy-title">
+  <div class="shell philosophy-layout">
+    <div class="philosophy-lead">
+      <p class="eyebrow">A place to grow</p>
+      <h2 id="philosophy-title">More than a role.<br /><span>A place to grow.</span></h2>
+    </div>
+    <div class="philosophy-copy">
+      <p class="lead-text">
+        We believe great work happens when people are trusted, challenged and supported.
+      </p>
+      <p>
+        At SunSolv, you get opportunities to contribute to real projects, work with evolving
+        technologies and take ownership beyond your job title.
+      </p>
+      <p>
+        Whether you are starting your career or bringing years of experience, we value people who
+        are willing to learn, collaborate and make a difference.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section why-section" aria-labelledby="why-title">
+  <div class="shell">
+    <div class="section-intro">
+      <p class="eyebrow">Why SunSolv</p>
+      <h2 id="why-title">Why build your career at SunSolv</h2>
+    </div>
+
+    <div class="cards-grid cards-grid-3">
+      @for (card of whyCards; track card.title) {
+        <article class="feature-card">
+          <div class="icon-wrap" aria-hidden="true">
+            <ng-icon [name]="card.icon" />
+          </div>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section disciplines-section" aria-labelledby="disciplines-title">
+  <div class="shell">
+    <div class="section-intro">
+      <p class="eyebrow">Disciplines &amp; Practices</p>
+      <h2 id="disciplines-title">What you can build with us</h2>
+      <p class="section-lede">
+        Your career at SunSolv can span multiple technology and business disciplines.
+      </p>
+    </div>
+
+    <div class="cards-grid cards-grid-4">
+      @for (item of disciplines; track item.title) {
+        <article class="discipline-card">
+          <div class="icon-wrap" aria-hidden="true">
+            <ng-icon [name]="item.icon" />
+          </div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section principles-section" aria-labelledby="principles-title">
+  <div class="shell">
+    <div class="section-intro">
+      <p class="eyebrow">Our Principles</p>
+      <h2 id="principles-title">How we work</h2>
+    </div>
+
+    <div class="cards-grid cards-grid-3">
+      @for (principle of principles; track principle.number) {
+        <article class="principle-card">
+          <span class="principle-num" aria-hidden="true">{{ principle.number }}</span>
+          <h3>{{ principle.title }}</h3>
+          <p>{{ principle.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section learning-section" aria-labelledby="learning-title">
+  <div class="shell learning-layout">
+    <div class="learning-copy">
+      <p class="eyebrow">Everyday Learning</p>
+      <h2 id="learning-title">Learning that happens through real work</h2>
+      <p class="lead-text">We believe learning should be part of everyday work.</p>
+      <div class="learning-callout">
+        <p>Your career path does not have to follow one fixed direction.</p>
+        <p class="callout-emphasis">
+          As your strengths evolve, your opportunities can evolve with them.
+        </p>
+      </div>
+    </div>
+
+    <div class="learning-checklist">
+      <p class="checklist-heading">At SunSolv, growth can come from:</p>
+      <ul class="checklist">
+        @for (point of learningPoints; track point) {
+          <li>
+            <ng-icon name="heroCheck" aria-hidden="true" class="check-icon" />
+            <span>{{ point }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section lookfor-section" aria-labelledby="lookfor-title">
+  <div class="shell">
+    <div class="section-intro">
+      <p class="eyebrow">Culture &amp; Mindset</p>
+      <h2 id="lookfor-title">Who we look for</h2>
+      <p class="section-lede">We value people who are:</p>
+    </div>
+
+    <div class="attributes-grid">
+      @for (attr of attributes; track attr) {
+        <div class="attribute-pill">
+          <ng-icon name="heroCheckCircle" aria-hidden="true" class="pill-icon" />
+          <span>{{ attr }}</span>
+        </div>
+      }
+    </div>
+
+    <div class="lookfor-note">
+      <p>Experience matters, but attitude, curiosity and the ability to learn matter too.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section process-section" aria-labelledby="process-title">
+  <div class="shell">
+    <div class="section-intro">
+      <p class="eyebrow">Hiring Process</p>
+      <h2 id="process-title">Our hiring process</h2>
+      <p class="section-lede">
+        We keep the process simple, transparent and focused on finding the right fit.
+      </p>
+    </div>
+
+    <ol class="process-steps">
+      @for (step of hiringSteps; track step.step) {
+        <li class="process-step">
+          <span class="step-badge" aria-hidden="true">{{ step.step }}</span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<section
+  class="section opportunities-section"
+  id="current-opportunities"
+  aria-labelledby="opportunities-title"
+>
+  <div class="shell">
+    <div class="section-intro">
+      <p class="eyebrow">Join Our Team</p>
+      <h2 id="opportunities-title">Current Opportunities</h2>
+    </div>
+
+    <div class="opportunities-grid">
+      <article class="opportunity-card opportunity-card-primary">
+        <div class="opportunity-badge">Active Openings</div>
+        <h3>Find where you can make an impact.</h3>
+        <p>Open positions will be published here as opportunities become available.</p>
+        <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'career' }">
+          View Open Roles <ng-icon name="heroArrowRight" aria-hidden="true" />
+        </a>
+      </article>
+
+      <article class="opportunity-card opportunity-card-secondary">
+        <div class="opportunity-badge opportunity-badge-accent">Speculative Applications</div>
+        <h3>Don’t see the right opportunity?</h3>
+        <p>
+          We are always interested in connecting with talented people. Send us your profile along
+          with a short note about your experience, interests and the kind of opportunity you are
+          looking for.
+        </p>
+        <a
+          class="button button-secondary"
+          routerLink="/contact-us"
+          [queryParams]="{ enquiry: 'career' }"
+        >
+          Share Your Profile <ng-icon name="heroArrowRight" aria-hidden="true" />
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta" aria-labelledby="final-cta-title">
+  <div class="shell final-cta-inner">
+    <div class="final-cta-copy">
+      <p class="eyebrow">Start Your Journey</p>
+      <h2 id="final-cta-title">Your next chapter could start here.</h2>
+      <p>
+        If you enjoy learning, solving problems and building technology that creates practical
+        value, we would like to hear from you.
+      </p>
+      <p class="tagline">Build. Learn. Contribute. Grow.</p>
+    </div>
+    <div class="final-cta-actions">
+      <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'career' }">
+        Explore Careers at SunSolv <ng-icon name="heroArrowRight" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+</section>

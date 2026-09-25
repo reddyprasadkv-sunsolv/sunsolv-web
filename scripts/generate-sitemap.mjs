@@ -47,7 +47,7 @@ const routeSources = {
   '/industries/logistics-supply-chain': ['src/app/pages/industry-detail/logistics-supply-chain.data.ts'],
   '/case-studies': ['src/app/pages/case-studies-overview/'],
   '/partnerships': ['src/app/pages/partnerships/'],
-  '/careers': ['src/app/core/site-data.ts', 'src/app/pages/content-page/'],
+  '/careers': ['src/app/pages/careers/', 'src/app/core/site-data.ts'],
   '/contact-us': ['src/app/pages/contact/'],
   '/privacy-policy': ['src/app/core/site-data.ts', 'src/app/pages/content-page/'],
   '/terms-and-conditions': ['src/app/core/site-data.ts', 'src/app/pages/content-page/'],

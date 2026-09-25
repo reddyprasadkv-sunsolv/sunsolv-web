@@ -14,10 +14,10 @@ describe('ContentPageComponent', () => {
     }).compileComponents();
   });
 
-  it('renders visible breadcrumbs and structured BreadcrumbList on /careers', async () => {
+  it('renders visible breadcrumbs and structured BreadcrumbList on /terms-and-conditions', async () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    await TestBed.inject(Router).navigateByUrl('/careers');
+    await TestBed.inject(Router).navigateByUrl('/terms-and-conditions');
     await fixture.whenStable();
     fixture.detectChanges();
 
@@ -27,7 +27,7 @@ describe('ContentPageComponent', () => {
     const breadcrumbItems = [...(breadcrumbNav?.querySelectorAll('li') ?? [])].map((li) =>
       li.textContent?.trim(),
     );
-    expect(breadcrumbItems).toEqual(['Home', 'Careers']);
+    expect(breadcrumbItems).toEqual(['Home', 'Terms & Conditions']);
 
     const script = document.querySelector<HTMLScriptElement>('#structured-data');
     expect(script).toBeTruthy();
@@ -42,7 +42,12 @@ describe('ContentPageComponent', () => {
     const breadcrumbs = graph.find((item) => item['@type'] === 'BreadcrumbList');
     expect(breadcrumbs?.itemListElement).toEqual([
       { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.sunsolv.in/' },
-      { '@type': 'ListItem', position: 2, name: 'Careers', item: 'https://www.sunsolv.in/careers' },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Terms & Conditions',
+        item: 'https://www.sunsolv.in/terms-and-conditions',
+      },
     ]);
   });
 
