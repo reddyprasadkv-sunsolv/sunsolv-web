@@ -3,7 +3,7 @@
 export const legalContent = {
   privacy: [
     {
-      html: '<p> Sunsolv Technologies (“we,” “our,” “us”) values your trust and is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit <a href="https://sunsolv.in">sunsolv.in</a> or use our services. </p><p> By using our website or services, you agree to this Privacy Policy. If you do not agree, please do not use our website. </p>',
+      html: '<p> Sunsolv Technologies (“we,” “our,” “us”) values your trust and is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit <a href="/">sunsolv.in</a> or use our services. </p><p> By using our website or services, you agree to this Privacy Policy. If you do not agree, please do not use our website. </p>',
       title: '1. Introduction',
     },
     {
@@ -57,7 +57,7 @@ export const legalContent = {
   ],
   terms: [
     {
-      html: '<p> By accessing or using the website <a href="http://sunsolv.in">sunsolv.in</a>, you agree to these Terms &amp; Conditions and the Privacy Policy. If you disagree, please discontinue use. </p>',
+      html: '<p> By accessing or using the website <a href="/">sunsolv.in</a>, you agree to these Terms &amp; Conditions and the Privacy Policy. If you disagree, please discontinue use. </p>',
       title: '1. Acceptance of Terms',
     },
     {
