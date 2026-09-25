@@ -161,16 +161,25 @@ export const pageRouteData = {
     'AboutPage',
     '/images/about/sunsolv-about-purpose-driven-technology.webp',
   ),
-  services: page(
-    'services',
-    'SunSolv Services',
-    'Technology services built around business outcomes.',
-    'IT Services & Digital Solutions | SunSolv Technologies',
-    [],
-    'Explore SunSolv’s IT consulting, cloud, custom software, web and mobile, AI, digital transformation and marketing services.',
-    'CollectionPage',
-    '/images/services/sunsolv-services-technology-consulting.webp',
-  ),
+  services: {
+    ...page(
+      'services',
+      'SunSolv Services',
+      'Technology services built around business outcomes.',
+      'IT Services & Digital Solutions | SunSolv Technologies',
+      [],
+      'Explore SunSolv’s IT consulting, cloud, custom software, web and mobile, AI, digital transformation and marketing services.',
+      'CollectionPage',
+      '/images/services/sunsolv-services-technology-consulting.webp',
+    ),
+    structuredPageName: 'SunSolv Services',
+    structuredItemListName: 'Services offered by SunSolv Technologies',
+    structuredItems: services.map(({ title }) => ({ name: title })),
+    structuredBreadcrumbs: [
+      { name: 'Home', path: '' },
+      { name: 'Services', path: 'services' },
+    ],
+  },
   industries: page(
     'industries',
     'Industries',
@@ -215,13 +224,21 @@ export const pageRouteData = {
       { name: 'Partnerships', path: 'partnerships' },
     ],
   },
-  careers: page('careers', 'Careers', 'Careers', 'Careers at SunSolv Technologies', [
-    'Culture',
-    'Values',
-    'Working at SunSolv',
-    'Learning and development',
-    'Current opportunities',
-  ]),
+  careers: {
+    ...page('careers', 'Careers', 'Careers', 'Careers at SunSolv Technologies', [
+      'Culture',
+      'Values',
+      'Working at SunSolv',
+      'Learning and development',
+      'Current opportunities',
+    ]),
+    schemaType: 'WebPage',
+    structuredPageName: 'Careers | SunSolv Technologies',
+    structuredBreadcrumbs: [
+      { name: 'Home', path: '' },
+      { name: 'Careers', path: 'careers' },
+    ],
+  },
   contact: {
     eyebrow: 'Contact SunSolv Technologies',
     title: 'Let’s talk about what’s next.',
@@ -239,20 +256,32 @@ export const pageRouteData = {
       { name: 'Contact Us', path: 'contact-us' },
     ],
   },
-  privacy: page(
-    'privacy-policy',
-    'Legal',
-    'Privacy Policy',
-    'Privacy Policy | SunSolv Technologies',
-    ['Approved legal content'],
-  ),
-  terms: page(
-    'terms-and-conditions',
-    'Legal',
-    'Terms & Conditions',
-    'Terms & Conditions | SunSolv Technologies',
-    ['Approved legal content'],
-  ),
+  privacy: {
+    ...page('privacy-policy', 'Legal', 'Privacy Policy', 'Privacy Policy | SunSolv Technologies', [
+      'Approved legal content',
+    ]),
+    schemaType: 'WebPage',
+    structuredPageName: 'Privacy Policy | SunSolv Technologies',
+    structuredBreadcrumbs: [
+      { name: 'Home', path: '' },
+      { name: 'Privacy Policy', path: 'privacy-policy' },
+    ],
+  },
+  terms: {
+    ...page(
+      'terms-and-conditions',
+      'Legal',
+      'Terms & Conditions',
+      'Terms & Conditions | SunSolv Technologies',
+      ['Approved legal content'],
+    ),
+    schemaType: 'WebPage',
+    structuredPageName: 'Terms & Conditions | SunSolv Technologies',
+    structuredBreadcrumbs: [
+      { name: 'Home', path: '' },
+      { name: 'Terms & Conditions', path: 'terms-and-conditions' },
+    ],
+  },
   notFound: {
     eyebrow: '404',
     title: 'Page not found',

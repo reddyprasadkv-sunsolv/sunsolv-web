@@ -9,6 +9,21 @@
   padding-top: 64px;
   padding-bottom: 64px;
 }
+.content-breadcrumbs {
+  padding-top: 0;
+  padding-bottom: 24px;
+}
+.content-breadcrumbs ol {
+  color: var(--slate);
+}
+.content-breadcrumbs a {
+  color: var(--slate);
+  text-decoration: none;
+}
+.content-breadcrumbs a:hover {
+  color: var(--blue);
+  text-decoration: underline;
+}
 .page-hero h1 {
   max-width: 900px;
   margin: 16px 0 20px;

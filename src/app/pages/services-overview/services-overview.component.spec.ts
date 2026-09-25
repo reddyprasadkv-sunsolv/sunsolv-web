@@ -108,5 +108,22 @@ describe('ServicesOverviewComponent', () => {
     expect(document.querySelector('meta[property="og:image"]')?.getAttribute('content')).toBe(
       'https://www.sunsolv.in/images/services/sunsolv-services-technology-consulting.webp',
     );
+
+    const script = document.querySelector<HTMLScriptElement>('#structured-data');
+    expect(script).toBeTruthy();
+    const structuredData = JSON.parse(script?.textContent ?? '{}') as {
+      '@graph'?: Array<{
+        '@type'?: string;
+        itemListElement?: Array<{ name?: string; position?: number }>;
+      }>;
+    };
+    const graph = structuredData['@graph'] ?? [];
+    expect(graph.map((item) => item['@type'])).toEqual([
+      'CollectionPage',
+      'ItemList',
+      'BreadcrumbList',
+    ]);
+    const breadcrumbs = graph.find((item) => item['@type'] === 'BreadcrumbList');
+    expect(breadcrumbs?.itemListElement?.map((item) => item.name)).toEqual(['Home', 'Services']);
   });
 });

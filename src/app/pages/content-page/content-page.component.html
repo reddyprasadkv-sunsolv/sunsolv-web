@@ -1,5 +1,22 @@
 <section class="page-hero">
   <div class="shell page-hero-inner">
+    @if (data.structuredBreadcrumbs?.length) {
+      <nav class="breadcrumbs content-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          @for (breadcrumb of data.structuredBreadcrumbs; track breadcrumb.name; let last = $last) {
+            @if (last) {
+              <li aria-current="page">{{ breadcrumb.name }}</li>
+            } @else {
+              <li>
+                <a [routerLink]="breadcrumb.path ? '/' + breadcrumb.path : '/'">{{
+                  breadcrumb.name
+                }}</a>
+              </li>
+            }
+          }
+        </ol>
+      </nav>
+    }
     <p class="eyebrow">{{ data.eyebrow }}</p>
     <h1>{{ data.title }}</h1>
     @if (data.positioning) {
