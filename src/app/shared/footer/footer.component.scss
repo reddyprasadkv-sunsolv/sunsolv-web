@@ -25,11 +25,23 @@
 .footer-grid strong {
   margin-bottom: 4px;
 }
-.footer-grid a {
+.footer-grid a,
+.footer-grid .cookie-settings-btn {
   color: #cbd5e1;
   font-size: 0.92rem;
+  font-family: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  cursor: pointer;
+  line-height: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease;
 }
-.footer-grid a:hover {
+.footer-grid a:hover,
+.footer-grid .cookie-settings-btn:hover {
   color: white;
 }
 .footer-bottom {

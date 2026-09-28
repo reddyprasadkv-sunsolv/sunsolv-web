@@ -2,12 +2,13 @@ import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AnalyticsService } from './core/analytics.service';
 import { SeoService } from './core/seo.service';
+import { CookieConsentComponent } from './shared/cookie-consent/cookie-consent.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, CookieConsentComponent],
   template: `
     <a class="skip-link" href="#main-content">Skip to content</a>
     <app-header />
@@ -15,6 +16,7 @@ import { HeaderComponent } from './shared/header/header.component';
       <router-outlet />
     </main>
     <app-footer />
+    <app-cookie-consent />
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.scss',

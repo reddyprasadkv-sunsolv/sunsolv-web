@@ -1,0 +1,78 @@
+@if (showBanner) {
+  <div class="cookie-banner">
+    <div class="cookie-content">
+      By clicking “Accept All Cookies”, you agree to the storing of cookies on your device to
+      enhance site navigation, analyze site usage, and assist in our marketing efforts.
+      <a routerLink="/cookie-policy">Cookie Policy</a>
+    </div>
+    <div class="cookie-actions">
+      <button type="button" class="btn-settings" (click)="openSettings()">Cookies Settings</button>
+      <button type="button" class="btn-primary-cookie" (click)="rejectAll()">Reject All</button>
+      <button type="button" class="btn-primary-cookie" (click)="acceptAll()">
+        Accept All Cookies
+      </button>
+    </div>
+  </div>
+}
+
+<!-- Cookie Settings Modal -->
+@if (showSettings) {
+  <div class="cookie-overlay">
+    <div
+      class="cookie-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cookie-settings-title"
+    >
+      <button
+        type="button"
+        class="close-btn"
+        (click)="closeSettings()"
+        aria-label="Close cookie settings"
+      >
+        &times;
+      </button>
+      <h2 id="cookie-settings-title">Cookie Settings</h2>
+      <p>
+        You can choose which cookies you allow. Necessary cookies are required for the website to
+        function.
+      </p>
+
+      <div class="cookie-option">
+        <div>
+          <strong>Necessary Cookies</strong>
+          <p>Required for basic website functionality and security.</p>
+        </div>
+        <input type="checkbox" checked disabled aria-label="Necessary Cookies (Always Active)" />
+      </div>
+
+      <div class="cookie-option">
+        <div>
+          <strong>Analytics Cookies</strong>
+          <p>Help us understand how visitors use our website.</p>
+        </div>
+        <input
+          type="checkbox"
+          [(ngModel)]="preferences.analytics"
+          id="consent-analytics"
+          aria-label="Analytics Cookies"
+        />
+      </div>
+
+      <div class="cookie-option">
+        <div>
+          <strong>Marketing Cookies</strong>
+          <p>Used to measure advertising performance and relevance.</p>
+        </div>
+        <input
+          type="checkbox"
+          [(ngModel)]="preferences.marketing"
+          id="consent-marketing"
+          aria-label="Marketing Cookies"
+        />
+      </div>
+
+      <button type="button" class="save-btn" (click)="savePreferences()">Save Preferences</button>
+    </div>
+  </div>
+}

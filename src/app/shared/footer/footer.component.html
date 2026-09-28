@@ -26,9 +26,13 @@
     </nav>
     <nav aria-label="Legal">
       <strong>Legal</strong>
-      <a routerLink="/privacy-policy">Privacy Policy</a
-      ><a routerLink="/terms-and-conditions">Terms & Conditions</a
-      ><a href="mailto:info@sunsolv.in">info&#64;sunsolv.in</a>
+      <a routerLink="/privacy-policy">Privacy Policy</a>
+      <a routerLink="/cookie-policy">Cookie Policy</a>
+      <button type="button" class="cookie-settings-btn" (click)="openCookieSettings()">
+        Cookie Settings
+      </button>
+      <a routerLink="/terms-and-conditions">Terms & Conditions</a>
+      <a href="mailto:info@sunsolv.in">info&#64;sunsolv.in</a>
     </nav>
   </div>
   <div class="shell footer-bottom">
