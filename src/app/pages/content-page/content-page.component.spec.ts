@@ -120,4 +120,22 @@ describe('ContentPageComponent', () => {
       },
     ]);
   });
+
+  it('renders responsive hero images with proper intrinsic dimensions and alt text', async () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    await TestBed.inject(Router).navigateByUrl('/privacy-policy');
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const document = TestBed.inject(DOCUMENT);
+    const heroImage = document.querySelector<HTMLImageElement>('.hero-art-frame img');
+    expect(heroImage).toBeTruthy();
+    expect(heroImage?.getAttribute('src')).toBe(
+      '/images/legal/sunsolv-privacy-policy-data-protection.webp',
+    );
+    expect(heroImage?.getAttribute('width')).toBe('1024');
+    expect(heroImage?.getAttribute('height')).toBe('576');
+    expect(heroImage?.getAttribute('alt')).toContain('Digital security shield');
+  });
 });

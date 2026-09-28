@@ -262,9 +262,16 @@ export const pageRouteData = {
     ],
   },
   privacy: {
-    ...page('privacy-policy', 'Legal', 'Privacy Policy', 'Privacy Policy | SunSolv Technologies', [
-      'Approved legal content',
-    ]),
+    ...page(
+      'privacy-policy',
+      'Legal',
+      'Privacy Policy',
+      'Privacy Policy | SunSolv Technologies',
+      ['Approved legal content'],
+      'SunSolv Technologies Privacy Policy explains how we collect, use, store, share and protect personal data responsibly, transparently and securely.',
+      'WebPage',
+      '/images/legal/sunsolv-privacy-policy-data-protection.webp',
+    ),
     schemaType: 'WebPage',
     structuredPageName: 'Privacy Policy | SunSolv Technologies',
     structuredBreadcrumbs: [
@@ -273,9 +280,16 @@ export const pageRouteData = {
     ],
   },
   cookie: {
-    ...page('cookie-policy', 'Legal', 'Cookie Policy', 'Cookie Policy | SunSolv Technologies', [
-      'Approved legal content',
-    ]),
+    ...page(
+      'cookie-policy',
+      'Legal',
+      'Cookie Policy',
+      'Cookie Policy | SunSolv Technologies',
+      ['Approved legal content'],
+      'SunSolv Technologies Cookie Policy explains how cookies and similar technologies are used when you visit our website, and how to manage your preferences.',
+      'WebPage',
+      '/images/legal/sunsolv-cookie-policy-consent-preferences.webp',
+    ),
     schemaType: 'WebPage',
     structuredPageName: 'Cookie Policy | SunSolv Technologies',
     structuredBreadcrumbs: [
@@ -290,6 +304,9 @@ export const pageRouteData = {
       'Terms & Conditions',
       'Terms & Conditions | SunSolv Technologies',
       ['Approved legal content'],
+      'Terms & Conditions governing access to and use of www.sunsolv.in operated by SunSolv Technologies.',
+      'WebPage',
+      '/images/legal/sunsolv-terms-and-conditions-client-agreements.webp',
     ),
     schemaType: 'WebPage',
     structuredPageName: 'Terms & Conditions | SunSolv Technologies',
