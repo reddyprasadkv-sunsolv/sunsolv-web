@@ -1,79 +1,75 @@
 <section class="page-hero" aria-labelledby="content-page-title">
-  <div class="shell page-hero-inner">
-    <div class="page-hero-grid" [class.has-media]="heroImage">
-      <div class="page-hero-copy">
-        @if (data.structuredBreadcrumbs?.length) {
-          <nav class="breadcrumbs content-breadcrumbs" aria-label="Breadcrumb">
-            <ol>
-              @for (
-                breadcrumb of data.structuredBreadcrumbs;
-                track breadcrumb.name;
-                let last = $last
-              ) {
-                @if (last) {
-                  <li aria-current="page">{{ breadcrumb.name }}</li>
-                } @else {
-                  <li>
-                    <a [routerLink]="breadcrumb.path ? '/' + breadcrumb.path : '/'">{{
-                      breadcrumb.name
-                    }}</a>
-                  </li>
-                }
-              }
-            </ol>
-          </nav>
-        }
-        <p class="eyebrow">{{ data.eyebrow }}</p>
-        <h1 id="content-page-title">{{ data.title }}</h1>
-        @if (legalSections) {
-          <div class="legal-meta-badge">
-            <span>Effective Date: 28 September 2026</span>
-            <span class="dot">·</span>
-            <span>Last Updated: 28 September 2026</span>
-          </div>
-        }
-        @if (data.positioning) {
-          <p class="lede">{{ data.positioning }}</p>
-        }
-      </div>
+  @if (heroImage) {
+    <picture class="page-hero-art">
+      <source
+        media="(max-width: 820px)"
+        type="image/avif"
+        [srcset]="heroImage.mobileAvif + ' ' + heroImage.mobileWidth + 'w'"
+        sizes="100vw"
+        [width]="heroImage.mobileWidth"
+        [height]="heroImage.mobileHeight"
+      />
+      <source
+        media="(max-width: 820px)"
+        type="image/webp"
+        [srcset]="heroImage.mobileWebp + ' ' + heroImage.mobileWidth + 'w'"
+        sizes="100vw"
+        [width]="heroImage.mobileWidth"
+        [height]="heroImage.mobileHeight"
+      />
+      <source
+        type="image/avif"
+        [srcset]="heroImage.desktopAvif + ' ' + heroImage.width + 'w'"
+        sizes="100vw"
+        [width]="heroImage.width"
+        [height]="heroImage.height"
+      />
+      <img
+        [src]="heroImage.desktopWebp"
+        [srcset]="heroImage.desktopWebp + ' ' + heroImage.width + 'w'"
+        sizes="100vw"
+        [width]="heroImage.width"
+        [height]="heroImage.height"
+        [alt]="heroImage.alt"
+        fetchpriority="high"
+      />
+    </picture>
+  }
 
-      @if (heroImage) {
-        <div class="page-hero-media">
-          <picture class="hero-art-frame">
-            <source
-              media="(max-width: 820px)"
-              type="image/avif"
-              [srcset]="heroImage.mobileAvif + ' ' + heroImage.mobileWidth + 'w'"
-              sizes="(max-width: 820px) 100vw, 520px"
-              [width]="heroImage.mobileWidth"
-              [height]="heroImage.mobileHeight"
-            />
-            <source
-              media="(max-width: 820px)"
-              type="image/webp"
-              [srcset]="heroImage.mobileWebp + ' ' + heroImage.mobileWidth + 'w'"
-              sizes="(max-width: 820px) 100vw, 520px"
-              [width]="heroImage.mobileWidth"
-              [height]="heroImage.mobileHeight"
-            />
-            <source
-              type="image/avif"
-              [srcset]="heroImage.desktopAvif + ' ' + heroImage.width + 'w'"
-              sizes="(max-width: 1200px) 45vw, 520px"
-              [width]="heroImage.width"
-              [height]="heroImage.height"
-            />
-            <img
-              [src]="heroImage.desktopWebp"
-              [srcset]="heroImage.desktopWebp + ' ' + heroImage.width + 'w'"
-              sizes="(max-width: 1200px) 45vw, 520px"
-              [width]="heroImage.width"
-              [height]="heroImage.height"
-              [alt]="heroImage.alt"
-              fetchpriority="high"
-            />
-          </picture>
+  <div class="shell page-hero-inner">
+    <div class="page-hero-copy">
+      @if (data.structuredBreadcrumbs?.length) {
+        <nav class="breadcrumbs content-breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            @for (
+              breadcrumb of data.structuredBreadcrumbs;
+              track breadcrumb.name;
+              let last = $last
+            ) {
+              @if (last) {
+                <li aria-current="page">{{ breadcrumb.name }}</li>
+              } @else {
+                <li>
+                  <a [routerLink]="breadcrumb.path ? '/' + breadcrumb.path : '/'">{{
+                    breadcrumb.name
+                  }}</a>
+                </li>
+              }
+            }
+          </ol>
+        </nav>
+      }
+      <p class="eyebrow">{{ data.eyebrow }}</p>
+      <h1 id="content-page-title">{{ data.title }}</h1>
+      @if (legalSections) {
+        <div class="legal-meta-badge">
+          <span>Effective Date: 28 September 2026</span>
+          <span class="dot">·</span>
+          <span>Last Updated: 28 September 2026</span>
         </div>
+      }
+      @if (data.positioning) {
+        <p class="page-hero-lede">{{ data.positioning }}</p>
       }
     </div>
   </div>

@@ -129,7 +129,7 @@ describe('ContentPageComponent', () => {
     fixture.detectChanges();
 
     const document = TestBed.inject(DOCUMENT);
-    const heroImage = document.querySelector<HTMLImageElement>('.hero-art-frame img');
+    const heroImage = document.querySelector<HTMLImageElement>('.page-hero-art img');
     expect(heroImage).toBeTruthy();
     expect(heroImage?.getAttribute('src')).toBe(
       '/images/legal/sunsolv-privacy-policy-data-protection.webp',
