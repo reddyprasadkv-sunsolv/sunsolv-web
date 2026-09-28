@@ -83,4 +83,41 @@ describe('ContentPageComponent', () => {
       },
     ]);
   });
+
+  it('renders visible breadcrumbs and structured BreadcrumbList on /cookie-policy', async () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    await TestBed.inject(Router).navigateByUrl('/cookie-policy');
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const document = TestBed.inject(DOCUMENT);
+    const breadcrumbNav = document.querySelector('.content-breadcrumbs');
+    expect(breadcrumbNav).toBeTruthy();
+    const breadcrumbItems = [...(breadcrumbNav?.querySelectorAll('li') ?? [])].map((li) =>
+      li.textContent?.trim(),
+    );
+    expect(breadcrumbItems).toEqual(['Home', 'Cookie Policy']);
+
+    const script = document.querySelector<HTMLScriptElement>('#structured-data');
+    expect(script).toBeTruthy();
+    const structuredData = JSON.parse(script?.textContent ?? '{}') as {
+      '@graph'?: Array<{
+        '@type'?: string;
+        itemListElement?: Array<{ name?: string; position?: number; item?: string }>;
+      }>;
+    };
+    const graph = structuredData['@graph'] ?? [];
+    expect(graph.map((item) => item['@type'])).toEqual(['WebPage', 'BreadcrumbList']);
+    const breadcrumbs = graph.find((item) => item['@type'] === 'BreadcrumbList');
+    expect(breadcrumbs?.itemListElement).toEqual([
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.sunsolv.in/' },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Cookie Policy',
+        item: 'https://www.sunsolv.in/cookie-policy',
+      },
+    ]);
+  });
 });

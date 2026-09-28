@@ -23,7 +23,7 @@ function getPriority(route) {
 function getChangeFreq(route) {
   if (route === '/' || route === '/services' || route === '/industries') return 'weekly';
   if (route.startsWith('/services/') || route.startsWith('/industries/')) return 'monthly';
-  if (['/privacy-policy', '/terms-and-conditions'].includes(route)) return 'yearly';
+  if (['/privacy-policy', '/cookie-policy', '/terms-and-conditions'].includes(route)) return 'yearly';
   return 'monthly';
 }
 
@@ -50,6 +50,7 @@ const routeSources = {
   '/careers': ['src/app/pages/careers/', 'src/app/core/site-data.ts'],
   '/contact-us': ['src/app/pages/contact/'],
   '/privacy-policy': ['src/app/core/site-data.ts', 'src/app/pages/content-page/'],
+  '/cookie-policy': ['src/app/core/site-data.ts', 'src/app/pages/content-page/'],
   '/terms-and-conditions': ['src/app/core/site-data.ts', 'src/app/pages/content-page/'],
 };
 

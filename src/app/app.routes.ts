@@ -23,7 +23,6 @@ export const routes: Routes = [
   },
   { path: 'partnership', pathMatch: 'full', redirectTo: 'partnerships' },
   { path: 'terms-and-condition', pathMatch: 'full', redirectTo: 'terms-and-conditions' },
-  { path: 'cookie-policy', pathMatch: 'full', redirectTo: 'privacy-policy' },
   {
     path: 'industries/healthcare',
     loadComponent: () =>
@@ -135,6 +134,7 @@ export const routes: Routes = [
   },
   ...[
     ['privacy-policy', 'privacy'],
+    ['cookie-policy', 'cookie'],
     ['terms-and-conditions', 'terms'],
   ].map(([path, key]) => ({
     path,

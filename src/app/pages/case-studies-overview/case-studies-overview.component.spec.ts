@@ -48,9 +48,9 @@ describe('Case Studies Overview', () => {
     );
   });
 
-  it('keeps all 23 routes and links only to existing services and the project enquiry', async () => {
+  it('keeps all 24 routes and links only to existing services and the project enquiry', async () => {
     const page = await renderPage();
-    expect(publicPaths).toHaveLength(23);
+    expect(publicPaths).toHaveLength(24);
     expect(routes.filter(({ path }) => path?.startsWith('case-studies'))).toHaveLength(1);
     expect(routes.filter(({ path }) => path?.startsWith('industries/'))).toHaveLength(6);
     for (const anchor of Array.from(page.querySelectorAll('.study-services a, .service-list a'))) {

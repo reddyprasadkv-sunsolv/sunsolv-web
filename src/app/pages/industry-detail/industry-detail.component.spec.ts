@@ -41,7 +41,7 @@ describe('IndustryDetailComponent', () => {
       'industries/saas',
       'industries/logistics-supply-chain',
     ]);
-    expect(publicPaths).toHaveLength(23);
+    expect(publicPaths).toHaveLength(24);
     expect(publicPaths).toContain('/industries/healthcare');
   });
 

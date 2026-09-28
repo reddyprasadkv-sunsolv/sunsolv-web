@@ -140,6 +140,24 @@
   line-height: 1.35;
   margin: 0 0 16px;
 }
+.legal-copy table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.95rem;
+}
+.legal-copy th,
+.legal-copy td {
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.legal-copy th {
+  background: var(--off-white);
+  font-weight: 600;
+  color: var(--navy);
+}
 .legal-links {
   display: flex;
   flex-wrap: wrap;

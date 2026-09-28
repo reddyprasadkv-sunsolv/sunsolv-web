@@ -1,13 +1,18 @@
 @if (showBanner) {
   <div class="cookie-banner">
     <div class="cookie-content">
-      By clicking “Accept All Cookies”, you agree to the storing of cookies on your device to
-      enhance site navigation, analyze site usage, and assist in our marketing efforts.
-      <a routerLink="/cookie-policy">Cookie Policy</a>
+      <h3 class="cookie-title">We value your privacy</h3>
+      <p>
+        We use necessary cookies to keep our website secure and working properly. With your
+        permission, we may also use analytics and marketing technologies to understand website
+        usage, improve your experience and measure our marketing efforts. You can accept all
+        cookies, reject optional cookies or manage your preferences.
+        <a routerLink="/cookie-policy">Cookie Policy</a>
+      </p>
     </div>
     <div class="cookie-actions">
-      <button type="button" class="btn-settings" (click)="openSettings()">Cookies Settings</button>
-      <button type="button" class="btn-primary-cookie" (click)="rejectAll()">Reject All</button>
+      <button type="button" class="btn-settings" (click)="openSettings()">Cookie Settings</button>
+      <button type="button" class="btn-reject" (click)="rejectAll()">Reject All</button>
       <button type="button" class="btn-primary-cookie" (click)="acceptAll()">
         Accept All Cookies
       </button>
@@ -32,24 +37,42 @@
       >
         &times;
       </button>
-      <h2 id="cookie-settings-title">Cookie Settings</h2>
+      <h2 id="cookie-settings-title">Cookie Preferences</h2>
       <p>
-        You can choose which cookies you allow. Necessary cookies are required for the website to
-        function.
+        Choose how SunSolv may use optional cookies. Necessary cookies are required for core website
+        functionality and cannot be switched off.
       </p>
 
       <div class="cookie-option">
         <div>
-          <strong>Necessary Cookies</strong>
-          <p>Required for basic website functionality and security.</p>
+          <strong>Necessary Cookies <span class="badge-active">— Always Active</span></strong>
+          <p>
+            Required for core website operation, security and remembering your cookie preferences.
+          </p>
         </div>
         <input type="checkbox" checked disabled aria-label="Necessary Cookies (Always Active)" />
       </div>
 
       <div class="cookie-option">
         <div>
-          <strong>Analytics Cookies</strong>
-          <p>Help us understand how visitors use our website.</p>
+          <label for="consent-functional"><strong>Functional Cookies</strong></label>
+          <p>Enable enhanced website functionality and remember selected preferences.</p>
+        </div>
+        <input
+          type="checkbox"
+          [(ngModel)]="preferences.functional"
+          id="consent-functional"
+          aria-label="Functional Cookies"
+        />
+      </div>
+
+      <div class="cookie-option">
+        <div>
+          <label for="consent-analytics"><strong>Analytics Cookies</strong></label>
+          <p>
+            Help us understand how visitors use our website so we can improve performance, content
+            and user experience.
+          </p>
         </div>
         <input
           type="checkbox"
@@ -61,8 +84,11 @@
 
       <div class="cookie-option">
         <div>
-          <strong>Marketing Cookies</strong>
-          <p>Used to measure advertising performance and relevance.</p>
+          <label for="consent-marketing"><strong>Marketing Cookies</strong></label>
+          <p>
+            Help us measure marketing and advertising effectiveness and understand campaign
+            performance.
+          </p>
         </div>
         <input
           type="checkbox"
@@ -72,7 +98,15 @@
         />
       </div>
 
-      <button type="button" class="save-btn" (click)="savePreferences()">Save Preferences</button>
+      <div class="modal-actions">
+        <button type="button" class="btn-modal-secondary" (click)="rejectAll()">
+          Reject Optional Cookies
+        </button>
+        <button type="button" class="btn-modal-secondary" (click)="savePreferences()">
+          Save Preferences
+        </button>
+        <button type="button" class="btn-modal-primary" (click)="acceptAll()">Accept All</button>
+      </div>
     </div>
   </div>
 }

@@ -1,9 +1,9 @@
 import { publicPaths, canonicalOrigin } from './site-data';
 
 describe('Sitemap generation and route coverage', () => {
-  it('covers all 23 public routes with valid canonical URLs', async () => {
+  it('covers all 24 public routes with valid canonical URLs', async () => {
     // In node/browser test environment, fetch or verify public/sitemap.xml
-    expect(publicPaths.length).toBe(23);
+    expect(publicPaths.length).toBe(24);
 
     // Verify expected routes are present in publicPaths
     const requiredRoutes = [
@@ -29,6 +29,7 @@ describe('Sitemap generation and route coverage', () => {
       '/careers',
       '/contact-us',
       '/privacy-policy',
+      '/cookie-policy',
       '/terms-and-conditions',
     ];
 

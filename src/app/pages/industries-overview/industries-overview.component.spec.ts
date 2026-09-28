@@ -224,7 +224,7 @@ describe('IndustriesOverviewComponent', () => {
     expect(firstAnswer?.hidden).toBe(true);
   });
 
-  it('preserves every approved service route and all 23 canonical paths', () => {
+  it('preserves every approved service route and all 24 canonical paths', () => {
     const approvedServicePaths = [
       'services/it-consulting',
       'services/digital-transformation',

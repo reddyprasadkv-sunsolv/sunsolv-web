@@ -80,7 +80,7 @@ describe('Navigation link targets', () => {
   });
 
   it('ensures legal content HTML links do not use target="_blank"', () => {
-    const allLegalHtml = [...legalContent.privacy, ...legalContent.terms]
+    const allLegalHtml = [...legalContent.privacy, ...legalContent.cookie, ...legalContent.terms]
       .map((entry) => entry.html)
       .join(' ');
 

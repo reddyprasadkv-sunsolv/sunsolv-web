@@ -23,6 +23,7 @@ describe('CookieConsentService', () => {
 
     service.saveConsent({
       necessary: true,
+      functional: true,
       analytics: true,
       marketing: false,
     });
@@ -30,6 +31,7 @@ describe('CookieConsentService', () => {
     const consent = service.getConsent();
     expect(consent).not.toBeNull();
     expect(consent?.necessary).toBe(true);
+    expect(consent?.functional).toBe(true);
     expect(consent?.analytics).toBe(true);
     expect(consent?.marketing).toBe(false);
 
@@ -46,7 +48,7 @@ describe('CookieConsentService', () => {
     expect(service.isBrowser()).toBe(false);
     expect(service.getConsent()).toBeNull();
     expect(() =>
-      service.saveConsent({ necessary: true, analytics: true, marketing: true }),
+      service.saveConsent({ necessary: true, functional: false, analytics: true, marketing: true }),
     ).not.toThrow();
   });
 

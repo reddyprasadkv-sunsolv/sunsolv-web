@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 
 export interface CookiePreferences {
   necessary: boolean;
+  functional: boolean;
   analytics: boolean;
   marketing: boolean;
 }
@@ -36,6 +37,7 @@ export class CookieConsentService {
       const consent = JSON.parse(value);
       return {
         necessary: true,
+        functional: !!consent.functional,
         analytics: !!consent.analytics,
         marketing: !!consent.marketing,
       };
@@ -48,6 +50,7 @@ export class CookieConsentService {
     if (!this.isBrowser()) return;
     const consent = {
       necessary: true,
+      functional: !!preferences.functional,
       analytics: !!preferences.analytics,
       marketing: !!preferences.marketing,
       timestamp: new Date().toISOString(),
@@ -70,6 +73,7 @@ export class CookieConsentService {
             win.dataLayer.push(arguments);
           };
     gtag('consent', 'update', {
+      functionality_storage: preferences.functional ? 'granted' : 'denied',
       analytics_storage: preferences.analytics ? 'granted' : 'denied',
       ad_storage: preferences.marketing ? 'granted' : 'denied',
       ad_user_data: preferences.marketing ? 'granted' : 'denied',

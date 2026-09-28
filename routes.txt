@@ -20,4 +20,5 @@
 /careers
 /contact-us
 /privacy-policy
+/cookie-policy
 /terms-and-conditions

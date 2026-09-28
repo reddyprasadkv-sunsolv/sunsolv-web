@@ -50,6 +50,39 @@
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   color: #94a3b8;
   font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-legal-line {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  a,
+  .cookie-settings-btn {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-family: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  .sep {
+    color: #64748b;
+  }
 }
 @media (max-width: 760px) {
   .footer-grid {

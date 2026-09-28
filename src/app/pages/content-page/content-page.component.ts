@@ -20,7 +20,9 @@ export class ContentPageComponent {
       ? legalContent.privacy
       : this.data.seo.path === 'terms-and-conditions'
         ? legalContent.terms
-        : null;
+        : this.data.seo.path === 'cookie-policy'
+          ? legalContent.cookie
+          : null;
   readonly services = services;
   readonly industries = industryNames;
 }

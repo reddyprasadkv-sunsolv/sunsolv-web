@@ -29,6 +29,7 @@ export class CookieConsentComponent implements OnInit, OnDestroy {
   showSettings = false;
   preferences: CookiePreferences = {
     necessary: true,
+    functional: false,
     analytics: false,
     marketing: false,
   };
@@ -54,6 +55,7 @@ export class CookieConsentComponent implements OnInit, OnDestroy {
   acceptAll(): void {
     this.preferences = {
       necessary: true,
+      functional: true,
       analytics: true,
       marketing: true,
     };
@@ -63,6 +65,7 @@ export class CookieConsentComponent implements OnInit, OnDestroy {
   rejectAll(): void {
     this.preferences = {
       necessary: true,
+      functional: false,
       analytics: false,
       marketing: false,
     };

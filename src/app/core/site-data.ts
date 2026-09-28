@@ -272,6 +272,17 @@ export const pageRouteData = {
       { name: 'Privacy Policy', path: 'privacy-policy' },
     ],
   },
+  cookie: {
+    ...page('cookie-policy', 'Legal', 'Cookie Policy', 'Cookie Policy | SunSolv Technologies', [
+      'Approved legal content',
+    ]),
+    schemaType: 'WebPage',
+    structuredPageName: 'Cookie Policy | SunSolv Technologies',
+    structuredBreadcrumbs: [
+      { name: 'Home', path: '' },
+      { name: 'Cookie Policy', path: 'cookie-policy' },
+    ],
+  },
   terms: {
     ...page(
       'terms-and-conditions',
@@ -355,5 +366,6 @@ export const publicPaths = [
   '/careers',
   '/contact-us',
   '/privacy-policy',
+  '/cookie-policy',
   '/terms-and-conditions',
 ] as const;

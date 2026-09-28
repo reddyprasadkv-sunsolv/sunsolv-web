@@ -36,12 +36,18 @@ describe('CookieConsentComponent', () => {
   });
 
   it('hides banner if consent cookie is already present', () => {
-    consentService.saveConsent({ necessary: true, analytics: true, marketing: false });
+    consentService.saveConsent({
+      necessary: true,
+      functional: false,
+      analytics: true,
+      marketing: false,
+    });
     fixture = TestBed.createComponent(CookieConsentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
 
     expect(component.showBanner).toBe(false);
+    expect(component.preferences.functional).toBe(false);
     expect(component.preferences.analytics).toBe(true);
     expect(component.preferences.marketing).toBe(false);
   });
@@ -52,10 +58,12 @@ describe('CookieConsentComponent', () => {
     fixture.detectChanges();
 
     expect(component.showBanner).toBe(false);
+    expect(component.preferences.functional).toBe(true);
     expect(component.preferences.analytics).toBe(true);
     expect(component.preferences.marketing).toBe(true);
 
     const saved = consentService.getConsent();
+    expect(saved?.functional).toBe(true);
     expect(saved?.analytics).toBe(true);
     expect(saved?.marketing).toBe(true);
   });
@@ -66,10 +74,12 @@ describe('CookieConsentComponent', () => {
     fixture.detectChanges();
 
     expect(component.showBanner).toBe(false);
+    expect(component.preferences.functional).toBe(false);
     expect(component.preferences.analytics).toBe(false);
     expect(component.preferences.marketing).toBe(false);
 
     const saved = consentService.getConsent();
+    expect(saved?.functional).toBe(false);
     expect(saved?.analytics).toBe(false);
     expect(saved?.marketing).toBe(false);
   });

@@ -74,7 +74,7 @@ describe('Real Estate industry page', () => {
       'industries/saas',
       'industries/logistics-supply-chain',
     ]);
-    expect(publicPaths).toHaveLength(23);
+    expect(publicPaths).toHaveLength(24);
     expect(publicPaths).toContain('/industries/real-estate');
   });
 

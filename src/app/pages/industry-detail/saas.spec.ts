@@ -74,7 +74,7 @@ describe('SaaS industry page', () => {
       'industries/saas',
       'industries/logistics-supply-chain',
     ]);
-    expect(publicPaths).toHaveLength(23);
+    expect(publicPaths).toHaveLength(24);
     expect(publicPaths).toContain('/industries/saas');
     expect(publicPaths).toContain('/industries/logistics-supply-chain');
   });
