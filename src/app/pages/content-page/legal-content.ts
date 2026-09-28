@@ -153,7 +153,7 @@ export const legalContent = {
     },
     {
       title: '11. Cookie Categories',
-      html: '<p>Our preference centre may contain the following categories:</p><table class="cookie-table"><thead><tr><th>Category</th><th>Status</th><th>Purpose</th></tr></thead><tbody><tr><td><strong>Necessary</strong></td><td>Always Active</td><td>Core website operation, security and consent preferences</td></tr><tr><td><strong>Functional</strong></td><td>Optional where applicable</td><td>Enhanced functionality and preferences</td></tr><tr><td><strong>Analytics</strong></td><td>Optional</td><td>Website measurement and performance</td></tr><tr><td><strong>Marketing</strong></td><td>Optional</td><td>Marketing, advertising and campaign measurement</td></tr></tbody></table>',
+      html: '<p>Our preference centre may contain the following categories:</p><div class="table-wrap"><table class="cookie-table"><thead><tr><th>Category</th><th>Status</th><th>Purpose</th></tr></thead><tbody><tr><td><strong>Necessary</strong></td><td><span class="status-badge badge-active">Always Active</span></td><td>Core website functionality, security and consent preferences</td></tr><tr><td><strong>Functional</strong></td><td><span class="status-badge badge-optional">Optional</span></td><td>Enhanced functionality and preferences</td></tr><tr><td><strong>Analytics</strong></td><td><span class="status-badge badge-optional">Optional</span></td><td>Website measurement and performance</td></tr><tr><td><strong>Marketing</strong></td><td><span class="status-badge badge-optional">Optional</span></td><td>Advertising and campaign measurement</td></tr></tbody></table></div>',
     },
     {
       title: '12. Cookie Register',
