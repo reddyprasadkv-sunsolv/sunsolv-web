@@ -55,7 +55,14 @@
 
       <div class="cookie-option">
         <div>
-          <label for="consent-functional"><strong>Functional Cookies</strong></label>
+          <label for="consent-functional">
+            <strong
+              >Functional Cookies
+              <span class="status-indicator"
+                >— {{ preferences.functional ? 'ON' : 'OFF' }}</span
+              ></strong
+            >
+          </label>
           <p>Enable enhanced website functionality and remember selected preferences.</p>
         </div>
         <input
@@ -68,7 +75,14 @@
 
       <div class="cookie-option">
         <div>
-          <label for="consent-analytics"><strong>Analytics Cookies</strong></label>
+          <label for="consent-analytics">
+            <strong
+              >Analytics Cookies
+              <span class="status-indicator"
+                >— {{ preferences.analytics ? 'ON' : 'OFF' }}</span
+              ></strong
+            >
+          </label>
           <p>
             Help us understand how visitors use our website so we can improve performance, content
             and user experience.
@@ -84,7 +98,14 @@
 
       <div class="cookie-option">
         <div>
-          <label for="consent-marketing"><strong>Marketing Cookies</strong></label>
+          <label for="consent-marketing">
+            <strong
+              >Marketing Cookies
+              <span class="status-indicator"
+                >— {{ preferences.marketing ? 'ON' : 'OFF' }}</span
+              ></strong
+            >
+          </label>
           <p>
             Help us measure marketing and advertising effectiveness and understand campaign
             performance.
