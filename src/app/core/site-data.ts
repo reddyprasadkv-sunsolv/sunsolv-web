@@ -5,6 +5,7 @@ export interface SeoData {
   image?: string;
   type?: 'website' | 'article';
   noIndex?: boolean;
+  robots?: string;
 }
 
 export interface PageData {

@@ -96,7 +96,30 @@ function getRouteLastmod(route) {
   return '2026-09-29';
 }
 
-const xmlEntries = routes.map((route) => {
+// Exclude empty insights categories from sitemap until they contain published content
+let emptyCategorySlugs = new Set();
+try {
+  const { getArticlesByCategory, insightCategories } = await import(
+    '../src/app/core/insights.data.ts'
+  );
+  emptyCategorySlugs = new Set(
+    insightCategories
+      .filter((c) => getArticlesByCategory(c.slug).length === 0)
+      .map((c) => c.slug),
+  );
+} catch (err) {
+  console.warn('Could not dynamically load insight categories for sitemap filtering:', err);
+}
+
+const filteredRoutes = routes.filter((route) => {
+  const match = route.match(/^\/insights\/([a-z0-9-]+)$/);
+  if (match && match[1] !== 'all' && emptyCategorySlugs.has(match[1])) {
+    return false;
+  }
+  return true;
+});
+
+const xmlEntries = filteredRoutes.map((route) => {
   const loc =
     route === '/'
       ? `${canonicalOrigin}/`
@@ -124,4 +147,6 @@ try {
   // dist may not exist yet if running before build
 }
 
-console.log(`Generated sitemap with ${routes.length} URLs at ${publicSitemap}`);
+console.log(
+  `Generated sitemap with ${filteredRoutes.length} URLs (excluded ${emptyCategorySlugs.size} empty categories) at ${publicSitemap}`,
+);

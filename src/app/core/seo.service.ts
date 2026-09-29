@@ -65,7 +65,7 @@ export class SeoService {
     });
     this.meta.updateTag({
       name: 'robots',
-      content: seo.noIndex ? 'noindex, nofollow' : 'index, follow',
+      content: seo.robots ?? (seo.noIndex ? 'noindex, nofollow' : 'index, follow'),
     });
 
     let link = this.document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');

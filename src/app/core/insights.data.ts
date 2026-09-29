@@ -294,9 +294,10 @@ export const insightArticles: readonly InsightArticle[] = [
     ],
     framework: {
       name: 'SunSolv AI Opportunity Framework',
-      subtitle: 'Seven dimensions for pragmatic AI evaluation',
+      subtitle:
+        'A practical seven-dimension framework for evaluating whether a business challenge is suitable for AI.',
       description:
-        'A practical assessment model developed by SunSolv to help organizations determine whether an operational challenge genuinely warrants an AI investment.',
+        'A practical SunSolv framework to help organizations determine whether an operational challenge genuinely warrants an AI investment.',
       dimensions: [
         {
           number: '01',
@@ -418,8 +419,8 @@ export const insightArticles: readonly InsightArticle[] = [
           'If a process can be reliably completed using deterministic if-then logic, rules-based automation is usually more cost-effective, faster, and more dependable than AI.',
         paragraphs: [
           'One of the most consequential decisions in any modernization effort is deciding whether a task actually requires artificial intelligence or whether conventional software automation is sufficient.',
-          'Conventional automation—such as API integrations, scheduled database jobs, schema validations, and deterministic business rules engines—excels when inputs are structured and expected outcomes follow strict logic. It delivers zero ambiguity, executes with microsecond latency, carries minimal compute cost, and is straightforward to audit.',
-          'Artificial intelligence is required only when the task involves interpretation, classification of unstructured signals, prediction under uncertainty, or pattern extraction across noisy data. Applying a neural network or language model to a task that can be solved with a database query or regular expression introduces unnecessary fragility, higher cost, and latency.',
+          'Conventional automation—such as API integrations, scheduled database jobs, schema validations, and deterministic business rules engines—excels when inputs are structured and expected outcomes follow strict logic. It can provide highly predictable behaviour when inputs and business rules are well defined, can operate with relatively low computational overhead and predictable execution characteristics, depending on the implementation, and is straightforward to audit.',
+          'AI may become appropriate when the task requires interpretation, classification, prediction, generation or handling meaningful variability that deterministic rules cannot address reliably. Applying a neural network or language model to a task that can be solved with a database query or regular expression often introduces unnecessary fragility, higher operational cost, and latency.',
         ],
       },
       {
@@ -591,7 +592,7 @@ export const insightArticles: readonly InsightArticle[] = [
     metaDescription:
       'Understand the practical difference between AI and traditional automation, where each works best and when businesses may benefit from combining both.',
     excerpt:
-      'Understand the practical differences between conventional rules-based automation and artificial intelligence, where each approach excels, and how hybrid workflows deliver the strongest enterprise results.',
+      'Understand the practical differences between conventional rules-based automation and artificial intelligence, where each approach excels, and how hybrid workflows can combine the strengths of both approaches for suitable enterprise workflows.',
     author: 'Reddy Prasad K V',
     authorRole: 'Founder & CEO, SunSolv Technologies',
     authorLink: '/about-us#founder',
@@ -730,7 +731,7 @@ export const insightArticles: readonly InsightArticle[] = [
         directAnswer:
           'AI excels when the input data is unstructured, the workflow requires semantic interpretation, or the task demands predictive pattern recognition.',
         paragraphs: [
-          'Artificial intelligence becomes indispensable when tasks cannot be reduced to clean if-then rules because the input format or content varies widely. Common applications include:',
+          'Artificial intelligence can become particularly useful when tasks cannot be reduced to clean if-then rules because the input format or content varies widely. Common applications include:',
           '• Unstructured Document Parsing: Extracting contractual terms, payment terms, or line items from diverse PDF documents formatted differently by every vendor.',
           '• Support Inbound Triage: Reading natural-language customer emails, classifying their sentiment and urgency, and extracting account numbers regardless of phrasing.',
           '• Predictive Quality Control: Analyzing sensor telemetry or visual inspection imagery on a production line to detect defects that do not fit a static geometric threshold.',
@@ -926,9 +927,10 @@ export const insightArticles: readonly InsightArticle[] = [
     ],
     framework: {
       name: 'SunSolv Cloud Readiness Framework',
-      subtitle: 'Eight pillars for comprehensive migration planning',
+      subtitle:
+        'A practical framework for evaluating organizational readiness across business, applications, infrastructure, data, security, operations, cost and migration.',
       description:
-        'A structured methodology to systematically audit organizational, technical, and financial factors before migrating workloads to the cloud.',
+        'A practical SunSolv framework to systematically evaluate organizational, technical, and operational readiness before migrating workloads to the cloud.',
       dimensions: [
         {
           number: '01',
@@ -1110,8 +1112,8 @@ export const insightArticles: readonly InsightArticle[] = [
         directAnswer:
           'Without active cost governance, cloud expenditure can quickly exceed on-premises infrastructure budgets.',
         paragraphs: [
-          'One of the most common surprises for migrating businesses is the cloud invoice. In an on-premises data center, servers are paid for upfront; in the cloud, resources are billed continuously by the second.',
-          'To maintain financial control, organizations must establish FinOps governance from the beginning: enforcing resource tagging by department, configuring automated spending budget alerts, shutting down non-production environments outside business hours, and taking advantage of reserved instances or savings plans for predictable steady-state workloads.',
+          'One of the most common surprises for migrating businesses is the cloud invoice. In an on-premises data center, servers are paid for upfront; cloud services generally use consumption-based pricing models, with billing units and commercial terms varying by provider and service.',
+          'To maintain financial control, organizations must establish FinOps governance from the beginning: enforcing resource tagging by department, configuring automated spending budget alerts, shutting down non-production environments outside business hours, and taking advantage of committed-use discounts, reserved capacity or other provider-specific pricing models for predictable steady-state workloads.',
         ],
       },
       {
@@ -1309,6 +1311,7 @@ export function categoryToPageData(category: InsightCategory): PageData {
       description: category.metaDescription,
       path: `insights/${category.slug}/`,
       image: '/images/insights/sunsolv-insights-hub.webp',
+      robots: publishedArticles.length > 0 ? 'index, follow' : 'noindex,follow',
     },
   };
 }

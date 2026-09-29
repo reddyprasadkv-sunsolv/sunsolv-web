@@ -203,8 +203,8 @@ describe('SunSolv Insights Module', () => {
       expect(articles.length).toBe(2);
     });
 
-    it('renders professional informative state for categories without articles yet', async () => {
-      const { compiled } = await setupApp('/insights/software-engineering');
+    it('renders professional informative state and sets noindex,follow for categories without articles yet', async () => {
+      const { compiled, document } = await setupApp('/insights/software-engineering');
 
       expect(compiled.querySelector('h1')?.textContent?.trim()).toBe('Software Engineering');
       const emptyState = compiled.querySelector('.empty-state-card');
@@ -212,6 +212,15 @@ describe('SunSolv Insights Module', () => {
       expect(emptyState?.textContent).toContain(
         'New insights in this area will be added as we publish practical guidance and perspectives.',
       );
+
+      const robots = document.querySelector('meta[name="robots"]')?.getAttribute('content');
+      expect(robots).toBe('noindex,follow');
+    });
+
+    it('sets index, follow for categories with published articles', async () => {
+      const { document } = await setupApp('/insights/ai-automation');
+      const robots = document.querySelector('meta[name="robots"]')?.getAttribute('content');
+      expect(robots).toBe('index, follow');
     });
   });
 
@@ -229,9 +238,14 @@ describe('SunSolv Insights Module', () => {
       // Executive Summary
       const summary = compiled.querySelector('.executive-summary-card');
       expect(summary).toBeTruthy();
-      expect(summary?.textContent).toContain('Direct Answer');
+      expect(summary?.textContent).toContain('Executive Summary');
 
-      // Author Block
+      // No repeated Direct Answer labels
+      expect(compiled.textContent).not.toContain('Direct Answer:');
+
+      // Author Blocks: Header and Bottom Profile exist, Sidebar intermediate card is removed
+      expect(compiled.querySelector('.article-meta-bar .author-block')).toBeTruthy();
+      expect(compiled.querySelector('.author-sidebar-card')).toBeNull();
       const author = compiled.querySelector('.author-full-profile');
       expect(author?.textContent).toContain('Reddy Prasad K V');
       expect(author?.textContent).toContain('Founder & CEO, SunSolv Technologies');
@@ -247,9 +261,16 @@ describe('SunSolv Insights Module', () => {
         'Business documents passing through evaluation and review stages',
       );
 
-      // SunSolv AI Opportunity Framework
+      // SunSolv AI Opportunity Framework & badge
       expect(compiled.textContent).toContain('SunSolv AI Opportunity Framework');
+      expect(compiled.querySelector('.framework-header .eyebrow')?.textContent?.trim()).toBe(
+        'SunSolv Framework',
+      );
       expect(compiled.querySelectorAll('.dimension-card').length).toBe(7);
+
+      // Softened technical claims
+      expect(compiled.textContent).toContain('can provide highly predictable behaviour');
+      expect(compiled.textContent).not.toContain('delivers zero ambiguity');
 
       // Checklist
       const checklist = compiled.querySelector('.checklist-card');
@@ -314,6 +335,17 @@ describe('SunSolv Insights Module', () => {
       expect(compiled.textContent).toContain('Traditional Automation');
       expect(compiled.textContent).toContain('Hybrid Approach');
 
+      // Softened claims & No repeated Direct Answer
+      const art2 = getArticleBySlug('ai-vs-automation-which-does-your-business-actually-need');
+      expect(art2?.excerpt).toContain(
+        'how hybrid workflows can combine the strengths of both approaches for suitable enterprise workflows',
+      );
+      expect(compiled.textContent).toContain(
+        'Artificial intelligence can become particularly useful',
+      );
+      expect(compiled.textContent).not.toContain('indispensable');
+      expect(compiled.textContent).not.toContain('Direct Answer:');
+
       // Canonical
       const canonical = document.querySelector('link[rel="canonical"]')?.getAttribute('href');
       expect(canonical).toBe(
@@ -341,9 +373,23 @@ describe('SunSolv Insights Module', () => {
         'Infrastructure and data systems assessed before a phased cloud migration',
       );
 
-      // Framework
+      // Framework & Badge
       expect(compiled.textContent).toContain('SunSolv Cloud Readiness Framework');
+      expect(compiled.querySelector('.framework-header .eyebrow')?.textContent?.trim()).toBe(
+        'SunSolv Framework',
+      );
       expect(compiled.querySelectorAll('.dimension-card').length).toBe(8);
+
+      // Softened claims & No repeated Direct Answer
+      expect(compiled.textContent).toContain(
+        'cloud services generally use consumption-based pricing models',
+      );
+      expect(compiled.textContent).toContain(
+        'committed-use discounts, reserved capacity or other provider-specific pricing models',
+      );
+      expect(compiled.textContent).not.toContain('billed continuously by the second');
+      expect(compiled.textContent).not.toContain('reserved instances or savings plans');
+      expect(compiled.textContent).not.toContain('Direct Answer:');
 
       // Related Cloud Service
       const serviceLinks = compiled.querySelectorAll('.related-services-section a');
@@ -383,6 +429,77 @@ describe('SunSolv Insights Module', () => {
       expect(section?.querySelectorAll('app-article-card').length).toBe(3);
       const cta = section?.querySelector('.insights-more a');
       expect(cta?.getAttribute('href')).toBe('/insights');
+    });
+  });
+
+  describe('SEO & Sitemap Validation', () => {
+    it('sets canonical URL and trailing slash correctly for insights hub, all, and categories', async () => {
+      const { router, document, fixture } = await setupApp('/insights');
+      expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
+        'https://www.sunsolv.in/insights/',
+      );
+
+      await router.navigateByUrl('/insights/all');
+      fixture.detectChanges();
+      await fixture.whenStable();
+      fixture.detectChanges();
+      expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
+        'https://www.sunsolv.in/insights/all/',
+      );
+
+      await router.navigateByUrl('/insights/ai-automation');
+      fixture.detectChanges();
+      await fixture.whenStable();
+      fixture.detectChanges();
+      expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
+        'https://www.sunsolv.in/insights/ai-automation/',
+      );
+    });
+
+    it('sets index, follow for hub and populated categories', async () => {
+      const { router, document, fixture } = await setupApp('/insights');
+      expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
+        'index, follow',
+      );
+
+      await router.navigateByUrl('/insights/ai-automation');
+      fixture.detectChanges();
+      await fixture.whenStable();
+      fixture.detectChanges();
+      expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
+        'index, follow',
+      );
+
+      await router.navigateByUrl('/insights/cloud-infrastructure');
+      fixture.detectChanges();
+      await fixture.whenStable();
+      fixture.detectChanges();
+      expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
+        'index, follow',
+      );
+    });
+
+    it('sets noindex,follow for all five empty categories', async () => {
+      const { router, document, fixture } = await setupApp('/insights/digital-transformation');
+      expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
+        'noindex,follow',
+      );
+
+      const remainingEmptyCategories = [
+        '/insights/software-engineering',
+        '/insights/technology-strategy',
+        '/insights/digital-experience',
+        '/insights/industries',
+      ];
+      for (const catUrl of remainingEmptyCategories) {
+        await router.navigateByUrl(catUrl);
+        fixture.detectChanges();
+        await fixture.whenStable();
+        fixture.detectChanges();
+        expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
+          'noindex,follow',
+        );
+      }
     });
   });
 });

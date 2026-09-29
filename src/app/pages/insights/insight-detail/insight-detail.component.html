@@ -59,30 +59,6 @@
             </nav>
           </div>
         }
-
-        <!-- Quick Author Block in Sidebar -->
-        <div class="sidebar-block author-sidebar-card">
-          <h2 class="sidebar-heading">Author</h2>
-          <div class="sidebar-author-inner">
-            <img
-              [src]="art.authorImage"
-              [alt]="art.author"
-              width="56"
-              height="56"
-              class="sidebar-avatar"
-            />
-            <div>
-              <a routerLink="/about-us" fragment="founder" class="sidebar-author-name">{{
-                art.author
-              }}</a>
-              <span class="sidebar-author-role">{{ art.authorRole }}</span>
-            </div>
-          </div>
-          <p class="sidebar-author-bio">
-            Leading SunSolv Technologies with an emphasis on clarity, engineering accountability,
-            and pragmatic digital solutions.
-          </p>
-        </div>
       </aside>
 
       <!-- Article Content Column -->
@@ -91,7 +67,7 @@
         <div class="executive-summary-card" role="region" aria-label="Executive summary">
           <div class="summary-badge">
             <ng-icon name="heroCheckCircle" aria-hidden="true" />
-            <span>Executive Summary &amp; Direct Answer</span>
+            <span>Executive Summary</span>
           </div>
           <p class="summary-text">{{ art.executiveSummary }}</p>
         </div>
@@ -120,7 +96,7 @@
             aria-labelledby="framework-heading"
           >
             <div class="framework-header">
-              <span class="eyebrow">Proprietary Methodology</span>
+              <span class="eyebrow">SunSolv Framework</span>
               <h2 id="framework-heading">{{ fw.name }}</h2>
               <p class="framework-subtitle">{{ fw.subtitle }}</p>
               <p class="framework-desc">{{ fw.description }}</p>
@@ -196,7 +172,7 @@
             <h2 [id]="sec.id + '-heading'">{{ sec.heading }}</h2>
             @if (sec.directAnswer) {
               <div class="direct-answer-callout">
-                <p><strong>Direct Answer:</strong> {{ sec.directAnswer }}</p>
+                <p>{{ sec.directAnswer }}</p>
               </div>
             }
             @for (p of sec.paragraphs; track p) {
