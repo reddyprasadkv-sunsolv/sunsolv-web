@@ -640,7 +640,7 @@ export const insightArticles: readonly InsightArticle[] = [
       rows: [
         {
           factor: 'Predictability',
-          automation: 'Deterministic (100% consistent results for identical inputs)',
+          automation: 'Highly predictable for defined inputs and operating conditions',
           ai: 'Probabilistic (outputs depend on confidence, patterns, and weights)',
           hybrid: 'High (AI normalizes inputs, deterministic logic executes transactions)',
         },
@@ -652,7 +652,7 @@ export const insightArticles: readonly InsightArticle[] = [
         },
         {
           factor: 'Interpretation',
-          automation: 'Cannot handle ambiguity; fails on unmapped schema deviations',
+          automation: 'Limited unless ambiguity and exceptions are explicitly represented in rules',
           ai: 'Interprets nuanced text, intent, images, and unstructured formats',
           hybrid: 'AI handles nuance; rules catch edge cases and enforce boundaries',
         },
@@ -670,7 +670,8 @@ export const insightArticles: readonly InsightArticle[] = [
         },
         {
           factor: 'Ongoing Maintenance',
-          automation: 'Low; changes only when external schemas or business rules change',
+          automation:
+            'Low to moderate; depends on changes to rules, schemas, integrations and surrounding systems',
           ai: 'Moderate to high; monitoring for data drift, model updates, token budgets',
           hybrid: 'Manageable; decoupled architecture isolates model updates from core rules',
         },
@@ -715,14 +716,14 @@ export const insightArticles: readonly InsightArticle[] = [
         id: 'where-automation-excels',
         heading: 'Where Traditional Automation Works Best',
         directAnswer:
-          'Traditional automation is the superior choice for high-volume, structured tasks where rules are clear and there is zero tolerance for variability.',
+          'Traditional automation is often the more appropriate choice for high-volume, structured tasks where rules are clearly defined.',
         paragraphs: [
           'Organizations should look to traditional automation when the inputs, process steps, and desired outputs are well-defined. Typical domains include:',
           '• Financial Ledger Reconciliation: Moving transaction records between bank feeds and accounting software based on exact transaction IDs and balanced totals.',
           '• Data Synchronization: Replicating customer profile updates from an e-commerce platform into an ERP database via standard webhooks.',
           '• Employee Onboarding Provisioning: Automatically generating email accounts, Slack access, and security tokens when an HR record is created.',
           '• Scheduled Reporting: Extracting structured SQL query results every Monday morning and emailing summary tables to team leads.',
-          'In each of these scenarios, the data is already structured, the rules are definitive, and introducing a machine learning model would add cost and uncertainty with zero operational benefit.',
+          'In each of these scenarios, the data is already structured, the rules are definitive, and introducing a machine learning model may add cost and uncertainty without creating meaningful additional operational value.',
         ],
       },
       {
@@ -745,7 +746,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'AI is not an upgrade to automation; it is a different computational paradigm with distinct trade-offs in predictability, cost, and maintenance.',
         paragraphs: [
           'Marketing narratives often imply that artificial intelligence is simply "better automation." This misconception causes organizations to replace simple, reliable software with complex, opaque models.',
-          'In reality, traditional automation holds several significant advantages over AI. It is 100% deterministic, meaning you can guarantee identical behavior across millions of runs. It executes in milliseconds with minimal server compute cost. Its logic is readable and auditable by any engineer or financial compliance auditor.',
+          'In reality, traditional automation holds several significant advantages over AI. Deterministic software can produce highly predictable behaviour for defined inputs and operating conditions. It executes in milliseconds with minimal server compute cost. Its logic is readable and auditable by any engineer or financial compliance auditor.',
           'AI systems, conversely, require continuous monitoring for accuracy drift, token budgeting, prompt versioning, and safety guardrails. When an automation script fails, it throws a clear exception code; when an AI model fails, it may output a believable falsehood that slips silently into downstream databases.',
         ],
       },
@@ -756,7 +757,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'Using AI for problems that can be solved with database queries, regex, or standard APIs increases operational overhead and decreases system resilience.',
         paragraphs: [
           'A common architectural anti-pattern is using large language models for tasks that require simple mathematical operations or schema lookups. For example, using an LLM to calculate sales tax or parse a standard JSON payload introduces latency, unpredictability, and unnecessary API fees.',
-          'If a problem can be solved with a 10-line SQL query, a regular expression, or an established API endpoint, writing that deterministic code is always the superior engineering decision.',
+          'If a problem can be solved with a 10-line SQL query, a regular expression, or an established API endpoint, writing that deterministic code is generally the simpler and more appropriate engineering decision.',
           'Resilient architecture adheres to the principle of least power: choose the simplest, least complex technology that completely solves the problem.',
         ],
       },
@@ -1003,7 +1004,7 @@ export const insightArticles: readonly InsightArticle[] = [
           name: 'Cost',
           question: 'What is the full total cost of ownership including operational expenditure?',
           description:
-            'Compare on-premises capital expenses against cloud subscription fees, network egress charges, storage tiers, and reserved pricing opportunities.',
+            'Compare on-premises capital expenses against cloud subscription fees, network egress charges, storage tiers, and committed-use discounts, reserved-capacity options and other applicable provider pricing models.',
           keyConsiderations: [
             'Are cloud budget alerts and automated governance policies defined upfront?',
             'Have data egress fees and storage retention policies been modeled realistically?',
@@ -1120,7 +1121,7 @@ export const insightArticles: readonly InsightArticle[] = [
         id: 'migration-approaches',
         heading: 'Selecting Migration Approaches: The 5 Rs',
         directAnswer:
-          'Each application in the portfolio should be categorized under one of the five established migration pathways.',
+          'Each application should be assessed against an appropriate migration strategy. Five common migration pathways used in this framework are:',
         paragraphs: [
           '1. Rehost (Lift and Shift): Moving applications from on-premises to cloud virtual machines without changing the underlying architecture. Fast and low-risk, but does not leverage cloud-native features.',
           '2. Replatform (Lift, Tinker, and Shift): Making minor optimizations—such as transitioning an application database to a cloud-managed database service—without altering core application code.',

@@ -335,11 +335,39 @@ describe('SunSolv Insights Module', () => {
       expect(compiled.textContent).toContain('Traditional Automation');
       expect(compiled.textContent).toContain('Hybrid Approach');
 
+      // Comparison table refined cells
+      expect(compiled.textContent).toContain(
+        'Highly predictable for defined inputs and operating conditions',
+      );
+      expect(compiled.textContent).toContain(
+        'Limited unless ambiguity and exceptions are explicitly represented in rules',
+      );
+      expect(compiled.textContent).toContain(
+        'Low to moderate; depends on changes to rules, schemas, integrations and surrounding systems',
+      );
+      expect(compiled.textContent).not.toContain('Cannot handle ambiguity; fails');
+
       // Softened claims & No repeated Direct Answer
       const art2 = getArticleBySlug('ai-vs-automation-which-does-your-business-actually-need');
       expect(art2?.excerpt).toContain(
         'how hybrid workflows can combine the strengths of both approaches for suitable enterprise workflows',
       );
+      expect(compiled.textContent).toContain(
+        'Traditional automation is often the more appropriate choice',
+      );
+      expect(compiled.textContent).not.toContain('superior choice');
+      expect(compiled.textContent).toContain(
+        'may add cost and uncertainty without creating meaningful additional operational value',
+      );
+      expect(compiled.textContent).not.toContain('zero operational benefit');
+      expect(compiled.textContent).toContain(
+        'Deterministic software can produce highly predictable behaviour for defined inputs and operating conditions',
+      );
+      expect(compiled.textContent).not.toContain('100% deterministic');
+      expect(compiled.textContent).toContain(
+        'is generally the simpler and more appropriate engineering decision',
+      );
+      expect(compiled.textContent).not.toContain('always the superior engineering decision');
       expect(compiled.textContent).toContain(
         'Artificial intelligence can become particularly useful',
       );
@@ -379,6 +407,16 @@ describe('SunSolv Insights Module', () => {
         'SunSolv Framework',
       );
       expect(compiled.querySelectorAll('.dimension-card').length).toBe(8);
+
+      // Pricing & Migration wording in framework and sections
+      expect(compiled.textContent).toContain(
+        'committed-use discounts, reserved-capacity options and other applicable provider pricing models',
+      );
+      expect(compiled.textContent).not.toContain('reserved pricing opportunities');
+      expect(compiled.textContent).toContain(
+        'Five common migration pathways used in this framework are:',
+      );
+      expect(compiled.textContent).not.toContain('one of the five established migration pathways');
 
       // Softened claims & No repeated Direct Answer
       expect(compiled.textContent).toContain(
