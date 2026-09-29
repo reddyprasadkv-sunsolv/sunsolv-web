@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#071a33"/>
+      <stop offset="50%" stop-color="#0d2545"/>
+      <stop offset="100%" stop-color="#071424"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="rgba(255, 255, 255, 0.08)"/>
+      <stop offset="100%" stop-color="rgba(255, 255, 255, 0.02)"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="50%" stop-color="#20c5d8"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <filter id="shadow" x="-10" y="-10" width="1220" height="695" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#bgGrad)"/>
+
+  <!-- Subtle Blueprint Grid -->
+  <g stroke="rgba(255, 255, 255, 0.04)" stroke-width="1">
+    <line x1="100" y1="0" x2="100" y2="675"/>
+    <line x1="300" y1="0" x2="300" y2="675"/>
+    <line x1="500" y1="0" x2="500" y2="675"/>
+    <line x1="700" y1="0" x2="700" y2="675"/>
+    <line x1="900" y1="0" x2="900" y2="675"/>
+    <line x1="1100" y1="0" x2="1100" y2="675"/>
+    <line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="280" x2="1200" y2="280"/>
+    <line x1="0" y1="440" x2="1200" y2="440"/>
+    <line x1="0" y1="600" x2="1200" y2="600"/>
+  </g>
+
+  <!-- Title Badge -->
+  <rect x="80" y="44" width="220" height="28" rx="14" fill="rgba(32, 197, 216, 0.12)" stroke="#20c5d8" stroke-width="1"/>
+  <text x="190" y="63" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="#20c5d8" text-anchor="middle">SUNSOLV FRAMEWORK</text>
+
+  <!-- Title -->
+  <text x="80" y="112" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="28" font-weight="750" fill="#ffffff" letter-spacing="-0.5">SunSolv AI Opportunity Framework</text>
+  <text x="80" y="142" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="14" font-weight="400" fill="#94a3b8">Seven evaluation dimensions for identifying practical, high-value business AI initiatives.</text>
+
+  <!-- Connecting Pathway -->
+  <path d="M 120 300 H 1080" stroke="url(#accentGrad)" stroke-width="3" stroke-dasharray="6 6"/>
+
+  <!-- 7 Dimension Cards -->
+  <!-- 1. Problem -->
+  <g transform="translate(70, 220)">
+    <rect width="136" height="160" rx="10" fill="url(#cardGrad)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"/>
+    <circle cx="68" cy="40" r="20" fill="rgba(37, 99, 235, 0.2)" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="68" y="45" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="13" font-weight="800" fill="#20c5d8" text-anchor="middle">01</text>
+    <text x="68" y="85" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">Problem</text>
+    <text x="68" y="110" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="10.5" fill="#94a3b8" text-anchor="middle">Specific, recurring</text>
+    <text x="68" y="126" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="10.5" fill="#94a3b8" text-anchor="middle">operational friction</text>
+  </g>
+
+  <!-- 2. Process -->
+  <g transform="translate(220, 220)">
+    <rect width="136" height="160" rx="10" fill="url(#cardGrad)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"/>
+    <circle cx="68" cy="40" r="20" fill="rgba(37, 99, 235, 0.2)" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="68" y="45" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="13" font-weight="800" fill="#20c5d8" text-anchor="middle">02</text>
+    <text x="68" y="85" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">Process</text>
+    <text x="68" y="110" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="10.5" fill="#94a3b8" text-anchor="middle">Workflow mapping</text>
+    <text x="68" y="126" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="10.5" fill="#94a3b8" text-anchor="middle">&amp; human roles</text>
+  </g>
+
+  <!-- 3. Data -->
+  <g transform="translate(370, 220)">
+    <rect width="136" height="160" rx="10" fill="url(#cardGrad)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"/>
+    <circle cx="68" cy="40" r="20" fill="rgba(37, 99, 235, 0.2)" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="68" y="45" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="13" font-weight="800" fill="#20c5d8" text-anchor="middle">03</text>
+    <text x="68" y="85" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">Data</text>
+    <text x="68" y="110" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="10.5" fill="#94a3b8" text-anchor="middle">Quality, access,</text>
+    <text x="68" y="126" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="10.5" fill="#94a3b8" text-anchor="middle">volume &amp; rights</text>
+  </g>
+
+  <!-- 4. Value -->
+  <g transform="translate(520, 220)">
+    <rect width="136" height="160" rx="10" fill="url(#cardGrad)" stroke="rgba(32, 197, 216, 0.3)" stroke-width="1.5"/>
+    <circle cx="68" cy="40" r="20" fill="rgba(32, 197, 216, 0.2)" stroke="#20c5d8" stroke-width="1.5"/>
+    <text x="68" y="45" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="13" font-weight="800" fill="#20c5d8" text-anchor="middle">04</text>
+    <text x="68" y="85" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">Value</text>
+    <text x="68" y="110" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="10.5" fill="#94a3b8" text-anchor="middle">Measurable return</text>
+    <text x="68" y="126" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="10.5" fill="#94a3b8" text-anchor="middle">vs total cost</text>
+  </g>
+
+  <!-- 5. Risk -->
+  <g transform="translate(670, 220)">
+    <rect width="136" height="160" rx="10" fill="url(#cardGrad)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"/>
+    <circle cx="68" cy="40" r="20" fill="rgba(37, 99, 235, 0.2)" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="68" y="45" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="13" font-weight="800" fill="#20c5d8" text-anchor="middle">05</text>
+    <text x="68" y="85" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">Risk</text>
+    <text x="68" y="110" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="10.5" fill="#94a3b8" text-anchor="middle">Cost of errors &amp;</text>
+    <text x="68" y="126" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="10.5" fill="#94a3b8" text-anchor="middle">containment</text>
+  </g>
+
+  <!-- 6. Integration -->
+  <g transform="translate(820, 220)">
+    <rect width="136" height="160" rx="10" fill="url(#cardGrad)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"/>
+    <circle cx="68" cy="40" r="20" fill="rgba(37, 99, 235, 0.2)" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="68" y="45" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="13" font-weight="800" fill="#20c5d8" text-anchor="middle">06</text>
+    <text x="68" y="85" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">Integration</text>
+    <text x="68" y="110" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="10.5" fill="#94a3b8" text-anchor="middle">Existing APIs,</text>
+    <text x="68" y="126" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="10.5" fill="#94a3b8" text-anchor="middle">software &amp; data</text>
+  </g>
+
+  <!-- 7. Measurement -->
+  <g transform="translate(970, 220)">
+    <rect width="136" height="160" rx="10" fill="url(#cardGrad)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"/>
+    <circle cx="68" cy="40" r="20" fill="rgba(37, 99, 235, 0.2)" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="68" y="45" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="13" font-weight="800" fill="#20c5d8" text-anchor="middle">07</text>
+    <text x="68" y="85" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">Measurement</text>
+    <text x="68" y="110" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="10.5" fill="#94a3b8" text-anchor="middle">Clear baseline &amp;</text>
+    <text x="68" y="126" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="10.5" fill="#94a3b8" text-anchor="middle">success criteria</text>
+  </g>
+
+  <!-- Bottom Evaluation Summary Callout -->
+  <g transform="translate(80, 440)">
+    <rect width="1040" height="170" rx="12" fill="rgba(7, 26, 51, 0.7)" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1"/>
+    <text x="40" y="40" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="16" font-weight="700" fill="#20c5d8">Core Principle</text>
+    <text x="40" y="70" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="14" font-weight="400" fill="#e2e8f0" line-height="1.6">
+      A viable AI initiative does not start with model selection. It begins with an unambiguous business problem where
+    </text>
+    <text x="40" y="94" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="14" font-weight="400" fill="#e2e8f0">
+      probabilistic pattern interpretation, classification, or extraction creates tangible operational advantage over deterministic rules.
+    </text>
+    <g transform="translate(40, 122)">
+      <rect width="180" height="28" rx="6" fill="rgba(37, 99, 235, 0.2)" stroke="#2563eb" stroke-width="1"/>
+      <text x="90" y="18" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11.5" font-weight="600" fill="#93c5fd" text-anchor="middle">Continuous Human Review</text>
+    </g>
+    <g transform="translate(235, 122)">
+      <rect width="180" height="28" rx="6" fill="rgba(32, 197, 216, 0.15)" stroke="#20c5d8" stroke-width="1"/>
+      <text x="90" y="18" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11.5" font-weight="600" fill="#20c5d8" text-anchor="middle">Bounded Risk Profile</text>
+    </g>
+    <g transform="translate(430, 122)">
+      <rect width="180" height="28" rx="6" fill="rgba(255, 255, 255, 0.08)" stroke="rgba(255, 255, 255, 0.18)" stroke-width="1"/>
+      <text x="90" y="18" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11.5" font-weight="600" fill="#ffffff" text-anchor="middle">Verifiable Value Baseline</text>
+    </g>
+  </g>
+</svg>

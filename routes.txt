@@ -22,3 +22,15 @@
 /privacy-policy
 /cookie-policy
 /terms-and-conditions
+/insights
+/insights/ai-automation
+/insights/cloud-infrastructure
+/insights/digital-transformation
+/insights/software-engineering
+/insights/technology-strategy
+/insights/digital-experience
+/insights/industries
+/insights/all
+/insights/ai-automation/how-to-identify-the-right-ai-use-case-for-your-business
+/insights/ai-automation/ai-vs-automation-which-does-your-business-actually-need
+/insights/cloud-infrastructure/cloud-readiness-assessment-a-practical-framework

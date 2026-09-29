@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" fill="none">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#071a33"/>
+      <stop offset="60%" stop-color="#092244"/>
+      <stop offset="100%" stop-color="#061222"/>
+    </linearGradient>
+    <linearGradient id="cloudCard" x1="0" y1="0" x2="0" y2="1" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="rgba(255, 255, 255, 0.08)"/>
+      <stop offset="100%" stop-color="rgba(255, 255, 255, 0.02)"/>
+    </linearGradient>
+    <linearGradient id="cloudLine" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="50%" stop-color="#20c5d8"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#bgGrad3)"/>
+
+  <!-- Subtle Blueprint Grid -->
+  <g stroke="rgba(255, 255, 255, 0.04)" stroke-width="1">
+    <line x1="150" y1="0" x2="150" y2="675"/>
+    <line x1="450" y1="0" x2="450" y2="675"/>
+    <line x1="750" y1="0" x2="750" y2="675"/>
+    <line x1="1050" y1="0" x2="1050" y2="675"/>
+    <line x1="0" y1="140" x2="1200" y2="140"/>
+    <line x1="0" y1="380" x2="1200" y2="380"/>
+  </g>
+
+  <!-- Title Badge -->
+  <rect x="80" y="44" width="220" height="28" rx="14" fill="rgba(32, 197, 216, 0.12)" stroke="#20c5d8" stroke-width="1"/>
+  <text x="190" y="63" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="#20c5d8" text-anchor="middle">SUNSOLV FRAMEWORK</text>
+
+  <!-- Title -->
+  <text x="80" y="112" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="28" font-weight="750" fill="#ffffff" letter-spacing="-0.5">SunSolv Cloud Readiness Framework</text>
+  <text x="80" y="142" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="14" font-weight="400" fill="#94a3b8">Eight comprehensive evaluation pillars spanning strategy, architecture, security, and migration strategy.</text>
+
+  <!-- Flow Line Row 1 -->
+  <path d="M 120 250 H 1080" stroke="url(#cloudLine)" stroke-width="2" stroke-dasharray="4 4"/>
+  <!-- Flow Line Row 2 -->
+  <path d="M 120 450 H 1080" stroke="url(#cloudLine)" stroke-width="2" stroke-dasharray="4 4"/>
+
+  <!-- Row 1: 4 Dimensions -->
+  <!-- 1. Business -->
+  <g transform="translate(80, 180)">
+    <rect width="235" height="150" rx="10" fill="url(#cloudCard)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"/>
+    <text x="24" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="12" font-weight="800" fill="#20c5d8">01 · STRATEGY</text>
+    <text x="24" y="66" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="16" font-weight="700" fill="#ffffff">Business Objectives</text>
+    <text x="24" y="94" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">Commercial drivers, agility</text>
+    <text x="24" y="114" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">goals &amp; ROI expectations</text>
+  </g>
+
+  <!-- 2. Applications -->
+  <g transform="translate(345, 180)">
+    <rect width="235" height="150" rx="10" fill="url(#cloudCard)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"/>
+    <text x="24" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="12" font-weight="800" fill="#20c5d8">02 · PORTFOLIO</text>
+    <text x="24" y="66" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="16" font-weight="700" fill="#ffffff">Applications</text>
+    <text x="24" y="94" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">Monolith vs modular architecture,</text>
+    <text x="24" y="114" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">statefulness &amp; licensing</text>
+  </g>
+
+  <!-- 3. Infrastructure -->
+  <g transform="translate(610, 180)">
+    <rect width="235" height="150" rx="10" fill="url(#cloudCard)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"/>
+    <text x="24" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="12" font-weight="800" fill="#20c5d8">03 · ENVIRONMENT</text>
+    <text x="24" y="66" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="16" font-weight="700" fill="#ffffff">Infrastructure</text>
+    <text x="24" y="94" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">Network latency, physical</text>
+    <text x="24" y="114" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">dependencies &amp; hardware ties</text>
+  </g>
+
+  <!-- 4. Data -->
+  <g transform="translate(875, 180)">
+    <rect width="235" height="150" rx="10" fill="url(#cloudCard)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"/>
+    <text x="24" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="12" font-weight="800" fill="#20c5d8">04 · STORAGE</text>
+    <text x="24" y="66" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="16" font-weight="700" fill="#ffffff">Data &amp; Databases</text>
+    <text x="24" y="94" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">Volume, IOPS requirements,</text>
+    <text x="24" y="114" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">schema migration &amp; backups</text>
+  </g>
+
+  <!-- Row 2: 4 Dimensions -->
+  <!-- 5. Security -->
+  <g transform="translate(80, 380)">
+    <rect width="235" height="150" rx="10" fill="url(#cloudCard)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"/>
+    <text x="24" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="12" font-weight="800" fill="#20c5d8">05 · COMPLIANCE</text>
+    <text x="24" y="66" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="16" font-weight="700" fill="#ffffff">Security &amp; Identity</text>
+    <text x="24" y="94" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">IAM boundaries, regulatory</text>
+    <text x="24" y="114" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">localization &amp; encryption</text>
+  </g>
+
+  <!-- 6. Operations -->
+  <g transform="translate(345, 380)">
+    <rect width="235" height="150" rx="10" fill="url(#cloudCard)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"/>
+    <text x="24" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="12" font-weight="800" fill="#20c5d8">06 · TEAM</text>
+    <text x="24" y="66" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="16" font-weight="700" fill="#ffffff">Operations &amp; Skills</text>
+    <text x="24" y="94" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">Monitoring, internal capability,</text>
+    <text x="24" y="114" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">CI/CD pipelines &amp; incident model</text>
+  </g>
+
+  <!-- 7. Cost -->
+  <g transform="translate(610, 380)">
+    <rect width="235" height="150" rx="10" fill="url(#cloudCard)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"/>
+    <text x="24" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="12" font-weight="800" fill="#20c5d8">07 · FINOPS</text>
+    <text x="24" y="66" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="16" font-weight="700" fill="#ffffff">Cost &amp; Governance</text>
+    <text x="24" y="94" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">Total cost of ownership,</text>
+    <text x="24" y="114" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">egress budgets &amp; rightsizing</text>
+  </g>
+
+  <!-- 8. Migration -->
+  <g transform="translate(875, 380)">
+    <rect width="235" height="150" rx="10" fill="url(#cloudCard)" stroke="rgba(32, 197, 216, 0.3)" stroke-width="1.5"/>
+    <text x="24" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="12" font-weight="800" fill="#20c5d8">08 · EXECUTION</text>
+    <text x="24" y="66" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="16" font-weight="700" fill="#ffffff">Migration Strategy</text>
+    <text x="24" y="94" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">The 5 Rs: Rehost, Replatform,</text>
+    <text x="24" y="114" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">Refactor, Retain or Retire</text>
+  </g>
+
+  <!-- Bottom Legend Bar -->
+  <g transform="translate(80, 560)">
+    <rect width="1030" height="50" rx="8" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.08)"/>
+    <text x="30" y="31" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12.5" font-weight="600" fill="#e2e8f0">The 5 Migration Paths:</text>
+    <text x="210" y="31" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#20c5d8">1. Rehost (Lift &amp; Shift)</text>
+    <text x="390" y="31" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#93c5fd">2. Replatform</text>
+    <text x="520" y="31" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#93c5fd">3. Refactor</text>
+    <text x="630" y="31" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">4. Retain (Keep On-Prem)</text>
+    <text x="830" y="31" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">5. Retire</text>
+  </g>
+</svg>

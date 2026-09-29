@@ -14,15 +14,26 @@ const routes = (await readFile(routesFile, 'utf8'))
 
 function getPriority(route) {
   if (route === '/') return '1.0';
-  if (['/services', '/industries', '/case-studies'].includes(route)) return '0.9';
-  if (route.startsWith('/services/') || route.startsWith('/industries/')) return '0.8';
+  if (['/services', '/industries', '/case-studies', '/insights'].includes(route)) return '0.9';
+  if (
+    route.startsWith('/services/') ||
+    route.startsWith('/industries/') ||
+    route.startsWith('/insights/')
+  )
+    return '0.8';
   if (['/about-us', '/contact-us', '/partnerships', '/careers'].includes(route)) return '0.7';
   return '0.5';
 }
 
 function getChangeFreq(route) {
-  if (route === '/' || route === '/services' || route === '/industries') return 'weekly';
-  if (route.startsWith('/services/') || route.startsWith('/industries/')) return 'monthly';
+  if (route === '/' || route === '/services' || route === '/industries' || route === '/insights')
+    return 'weekly';
+  if (
+    route.startsWith('/services/') ||
+    route.startsWith('/industries/') ||
+    route.startsWith('/insights/')
+  )
+    return 'monthly';
   if (['/privacy-policy', '/cookie-policy', '/terms-and-conditions'].includes(route)) return 'yearly';
   return 'monthly';
 }
@@ -52,6 +63,24 @@ const routeSources = {
   '/privacy-policy': ['src/app/core/site-data.ts', 'src/app/pages/content-page/'],
   '/cookie-policy': ['src/app/core/site-data.ts', 'src/app/pages/content-page/'],
   '/terms-and-conditions': ['src/app/core/site-data.ts', 'src/app/pages/content-page/'],
+  '/insights': ['src/app/pages/insights/insights-home/'],
+  '/insights/all': ['src/app/pages/insights/insights-all/'],
+  '/insights/ai-automation': ['src/app/pages/insights/insights-category/'],
+  '/insights/cloud-infrastructure': ['src/app/pages/insights/insights-category/'],
+  '/insights/digital-transformation': ['src/app/pages/insights/insights-category/'],
+  '/insights/software-engineering': ['src/app/pages/insights/insights-category/'],
+  '/insights/technology-strategy': ['src/app/pages/insights/insights-category/'],
+  '/insights/digital-experience': ['src/app/pages/insights/insights-category/'],
+  '/insights/industries': ['src/app/pages/insights/insights-category/'],
+  '/insights/ai-automation/how-to-identify-the-right-ai-use-case-for-your-business': [
+    'src/app/core/insights.data.ts',
+  ],
+  '/insights/ai-automation/ai-vs-automation-which-does-your-business-actually-need': [
+    'src/app/core/insights.data.ts',
+  ],
+  '/insights/cloud-infrastructure/cloud-readiness-assessment-a-practical-framework': [
+    'src/app/core/insights.data.ts',
+  ],
 };
 
 function getRouteLastmod(route) {
@@ -64,11 +93,16 @@ function getRouteLastmod(route) {
       // Git command error or outside git repo
     }
   }
-  return '2026-09-20';
+  return '2026-09-29';
 }
 
 const xmlEntries = routes.map((route) => {
-  const loc = route === '/' ? `${canonicalOrigin}/` : `${canonicalOrigin}${route}`;
+  const loc =
+    route === '/'
+      ? `${canonicalOrigin}/`
+      : route.startsWith('/insights')
+      ? `${canonicalOrigin}${route}/`
+      : `${canonicalOrigin}${route}`;
   const priority = getPriority(route);
   const changefreq = getChangeFreq(route);
   const lastmod = getRouteLastmod(route);

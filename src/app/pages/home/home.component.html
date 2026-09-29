@@ -148,6 +148,32 @@
   </div>
 </section>
 
+<section class="latest-insights section" aria-labelledby="latest-insights-title">
+  <div class="shell">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Insights</p>
+        <h2 id="latest-insights-title">Latest Insights</h2>
+      </div>
+      <p class="section-intro">
+        Practical perspectives on technology, transformation and digital engineering.
+      </p>
+    </div>
+
+    <div class="insights-grid">
+      @for (article of latestInsights; track article.slug) {
+        <app-article-card [article]="article" />
+      }
+    </div>
+
+    <div class="insights-more">
+      <a class="button button-secondary" routerLink="/insights">
+        Explore all insights <ng-icon name="heroArrowRight" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="final-cta final-cta-surface section" aria-labelledby="cta-title">
   <div class="shell cta-grid">
     <div>

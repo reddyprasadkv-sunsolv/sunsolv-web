@@ -1,5 +1,13 @@
-import { Routes } from '@angular/router';
+import { Route, Routes } from '@angular/router';
 import { pageRouteData, serviceRouteData } from './core/site-data';
+import {
+  articleToPageData,
+  categoryToPageData,
+  getAllArticles,
+  getAllCategories,
+  getArticleBySlug,
+  getCategoryBySlug,
+} from './core/insights.data';
 
 export const routes: Routes = [
   {
@@ -20,6 +28,70 @@ export const routes: Routes = [
         (m) => m.ServicesOverviewComponent,
       ),
     data: pageRouteData.services,
+  },
+  {
+    path: 'insights',
+    loadComponent: () =>
+      import('./pages/insights/insights-home/insights-home.component').then(
+        (m) => m.InsightsHomeComponent,
+      ),
+    data: pageRouteData.insights,
+  },
+  {
+    path: 'insights/all',
+    loadComponent: () =>
+      import('./pages/insights/insights-all/insights-all.component').then(
+        (m) => m.InsightsAllComponent,
+      ),
+    data: pageRouteData.insightsAll,
+  },
+  ...getAllArticles().map((article): Route => ({
+    path: `insights/${article.categorySlug}/${article.slug}`,
+    loadComponent: () =>
+      import('./pages/insights/insight-detail/insight-detail.component').then(
+        (m) => m.InsightDetailComponent,
+      ),
+    data: {
+      articleData: articleToPageData(article),
+      articleSlug: article.slug,
+    },
+  })),
+  ...getAllCategories().map((category): Route => ({
+    path: `insights/${category.slug}`,
+    loadComponent: () =>
+      import('./pages/insights/insights-category/insights-category.component').then(
+        (m) => m.InsightsCategoryComponent,
+      ),
+    data: {
+      pageData: categoryToPageData(category),
+      categorySlug: category.slug,
+    },
+  })),
+  {
+    path: 'insights/:category/:slug',
+    canMatch: [
+      (_route: any, segments: any[]) => {
+        const slug = segments[2]?.path;
+        return !!getArticleBySlug(slug);
+      },
+    ],
+    loadComponent: () =>
+      import('./pages/insights/insight-detail/insight-detail.component').then(
+        (m) => m.InsightDetailComponent,
+      ),
+  },
+  {
+    path: 'insights/:category',
+    canMatch: [
+      (_route: any, segments: any[]) => {
+        const category = segments[1]?.path;
+        return !!getCategoryBySlug(category);
+      },
+    ],
+    loadComponent: () =>
+      import('./pages/insights/insights-category/insights-category.component').then(
+        (m) => m.InsightsCategoryComponent,
+      ),
   },
   { path: 'partnership', pathMatch: 'full', redirectTo: 'partnerships' },
   { path: 'terms-and-condition', pathMatch: 'full', redirectTo: 'terms-and-conditions' },

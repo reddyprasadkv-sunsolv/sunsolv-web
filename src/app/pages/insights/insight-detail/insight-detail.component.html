@@ -1,0 +1,326 @@
+@if (article(); as art) {
+  <!-- Article Header / Hero -->
+  <header class="article-header">
+    <div class="shell header-container">
+      <app-insights-breadcrumbs [items]="breadcrumbs()" />
+      <div class="header-content">
+        <a [routerLink]="['/insights', art.categorySlug + '/']" class="article-category-badge">
+          {{ art.categoryTitle }}
+        </a>
+        <h1 id="article-title" class="article-main-title">{{ art.title }}</h1>
+
+        <!-- Author & Date Meta Bar -->
+        <div class="article-meta-bar">
+          <div class="author-block">
+            <img
+              [src]="art.authorImage"
+              [alt]="art.author + ', ' + art.authorRole"
+              width="48"
+              height="48"
+              class="author-avatar"
+            />
+            <div class="author-details">
+              <a routerLink="/about-us" fragment="founder" class="author-link">{{ art.author }}</a>
+              <span class="author-title">{{ art.authorRole }}</span>
+            </div>
+          </div>
+          <div class="article-timing">
+            <span class="timing-item">
+              <ng-icon name="heroCalendarDays" aria-hidden="true" />
+              <time [attr.datetime]="art.datePublished">{{ art.formattedDate }}</time>
+            </span>
+            <span class="timing-sep" aria-hidden="true">·</span>
+            <span class="timing-item">
+              <ng-icon name="heroClock" aria-hidden="true" />
+              <span>{{ art.readingTime }}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Article Container -->
+  <main class="article-main section-tight">
+    <div class="shell article-layout">
+      <!-- Sticky Sidebar -->
+      <aside class="article-sidebar">
+        @if (art.tableOfContents.length > 0) {
+          <div class="sidebar-block toc-block">
+            <h2 class="sidebar-heading">Contents</h2>
+            <nav aria-label="Table of contents" class="toc-nav">
+              <ol>
+                @for (item of art.tableOfContents; track item.id) {
+                  <li>
+                    <a [href]="'#' + item.id">{{ item.title }}</a>
+                  </li>
+                }
+              </ol>
+            </nav>
+          </div>
+        }
+
+        <!-- Quick Author Block in Sidebar -->
+        <div class="sidebar-block author-sidebar-card">
+          <h2 class="sidebar-heading">Author</h2>
+          <div class="sidebar-author-inner">
+            <img
+              [src]="art.authorImage"
+              [alt]="art.author"
+              width="56"
+              height="56"
+              class="sidebar-avatar"
+            />
+            <div>
+              <a routerLink="/about-us" fragment="founder" class="sidebar-author-name">{{
+                art.author
+              }}</a>
+              <span class="sidebar-author-role">{{ art.authorRole }}</span>
+            </div>
+          </div>
+          <p class="sidebar-author-bio">
+            Leading SunSolv Technologies with an emphasis on clarity, engineering accountability,
+            and pragmatic digital solutions.
+          </p>
+        </div>
+      </aside>
+
+      <!-- Article Content Column -->
+      <article class="article-body-col" [attr.aria-labelledby]="'article-title'">
+        <!-- Executive Summary / Direct Answer Callout -->
+        <div class="executive-summary-card" role="region" aria-label="Executive summary">
+          <div class="summary-badge">
+            <ng-icon name="heroCheckCircle" aria-hidden="true" />
+            <span>Executive Summary &amp; Direct Answer</span>
+          </div>
+          <p class="summary-text">{{ art.executiveSummary }}</p>
+        </div>
+
+        <!-- Featured Visual -->
+        @if (art.featuredImage; as featuredImg) {
+          <figure class="featured-figure">
+            <img
+              [src]="featuredImg"
+              [alt]="art.featuredImageAlt"
+              width="1200"
+              height="675"
+              class="featured-visual-img"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption class="featured-caption">{{ art.featuredImageAlt }}</figcaption>
+          </figure>
+        }
+
+        <!-- Framework Visual Showcase (if applicable) -->
+        @if (art.framework; as fw) {
+          <section
+            class="framework-showcase"
+            [id]="art.slug + '-framework'"
+            aria-labelledby="framework-heading"
+          >
+            <div class="framework-header">
+              <span class="eyebrow">Proprietary Methodology</span>
+              <h2 id="framework-heading">{{ fw.name }}</h2>
+              <p class="framework-subtitle">{{ fw.subtitle }}</p>
+              <p class="framework-desc">{{ fw.description }}</p>
+            </div>
+            <div class="framework-grid">
+              @for (dim of fw.dimensions; track dim.number) {
+                <div class="dimension-card">
+                  <div class="dim-num-badge">{{ dim.number }}</div>
+                  <div class="dim-content">
+                    <h3>{{ dim.name }}</h3>
+                    <p class="dim-question">"{{ dim.question }}"</p>
+                    <p class="dim-desc">{{ dim.description }}</p>
+                    <ul class="dim-considerations">
+                      @for (item of dim.keyConsiderations; track item) {
+                        <li>{{ item }}</li>
+                      }
+                    </ul>
+                  </div>
+                </div>
+              }
+            </div>
+          </section>
+        }
+
+        <!-- Comparison Table (if applicable) -->
+        @if (art.comparisonTable; as table) {
+          <section
+            class="comparison-section"
+            id="comparison-table"
+            aria-labelledby="comparison-heading"
+          >
+            <h2 id="comparison-heading">Detailed Comparison Table</h2>
+            <div class="table-wrap">
+              <table class="cookie-table comparison-table">
+                <caption class="table-caption">
+                  {{
+                    table.caption
+                  }}
+                </caption>
+                <thead>
+                  <tr>
+                    @for (header of table.headers; track header) {
+                      <th scope="col">{{ header }}</th>
+                    }
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (row of table.rows; track row.factor) {
+                    <tr>
+                      <th scope="row">
+                        <strong>{{ row.factor }}</strong>
+                      </th>
+                      <td>{{ row.automation }}</td>
+                      <td>{{ row.ai }}</td>
+                      <td>
+                        <strong>{{ row.hybrid }}</strong>
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </section>
+        }
+
+        <!-- Dynamic Article Sections -->
+        @for (sec of art.sections; track sec.id) {
+          <section
+            [id]="sec.id"
+            class="article-section"
+            [attr.aria-labelledby]="sec.id + '-heading'"
+          >
+            <h2 [id]="sec.id + '-heading'">{{ sec.heading }}</h2>
+            @if (sec.directAnswer) {
+              <div class="direct-answer-callout">
+                <p><strong>Direct Answer:</strong> {{ sec.directAnswer }}</p>
+              </div>
+            }
+            @for (p of sec.paragraphs; track p) {
+              <p>{{ p }}</p>
+            }
+          </section>
+        }
+
+        <!-- Practical Checklist (if applicable) -->
+        @if (art.checklist; as cl) {
+          <div class="checklist-card" id="decision-checklist">
+            <h2 class="checklist-heading">{{ cl.title }}</h2>
+            <p class="checklist-desc">{{ cl.description }}</p>
+            <ul class="checklist-items">
+              @for (item of cl.items; track item) {
+                <li>
+                  <ng-icon name="heroCheckCircle" class="check-icon" aria-hidden="true" />
+                  <span>{{ item }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+        }
+
+        <!-- Key Takeaway Box -->
+        <div class="key-takeaway-card" id="key-takeaway">
+          <div class="takeaway-header">
+            <span class="takeaway-badge">Conclusion</span>
+            <h2>{{ art.keyTakeaway.title }}</h2>
+          </div>
+          <p class="takeaway-content">{{ art.keyTakeaway.content }}</p>
+        </div>
+
+        <!-- Full Author Profile Card -->
+        <div class="author-full-profile">
+          <img
+            [src]="art.authorImage"
+            [alt]="art.author"
+            width="80"
+            height="80"
+            class="author-profile-img"
+          />
+          <div class="author-profile-text">
+            <span class="eyebrow">About the Author</span>
+            <h3>
+              <a routerLink="/about-us" fragment="founder">{{ art.author }}</a>
+            </h3>
+            <p class="author-profile-role">{{ art.authorRole }}</p>
+            <p class="author-profile-bio">
+              Reddy Prasad K V founded SunSolv Technologies to bring strategic business thinking and
+              disciplined technology execution closer together. Under his direction, SunSolv helps
+              enterprises modernize operations, adopt cloud platforms responsibly, and build
+              scalable digital software.
+            </p>
+            <a routerLink="/about-us" fragment="founder" class="author-learn-more">
+              Learn more about SunSolv leadership
+              <ng-icon name="heroArrowRight" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- Related Services Section -->
+  @if (art.relatedServices.length > 0) {
+    <section class="section related-services-section" aria-labelledby="related-services-title">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Connected Capabilities</p>
+          <h2 id="related-services-title">Related SunSolv Services</h2>
+          <p class="section-intro">
+            Explore how SunSolv applies these principles in production client engagements.
+          </p>
+        </div>
+        <div class="services-mini-grid">
+          @for (svc of art.relatedServices; track svc.route) {
+            <article class="service-mini-card">
+              <h3>{{ svc.title }}</h3>
+              <p>{{ svc.description }}</p>
+              <a [routerLink]="svc.route" class="service-link">
+                <span>Explore {{ svc.title }}</span>
+                <ng-icon name="heroArrowRight" aria-hidden="true" />
+              </a>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+  }
+
+  <!-- Related Insights Section -->
+  @if (relatedArticles().length > 0) {
+    <section class="section related-insights-section" aria-labelledby="related-insights-title">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Further Reading</p>
+          <h2 id="related-insights-title">Related Insights</h2>
+        </div>
+        <div class="related-insights-grid">
+          @for (rel of relatedArticles(); track rel.slug) {
+            <app-article-card [article]="rel" />
+          }
+        </div>
+      </div>
+    </section>
+  }
+
+  <!-- Final CTA Surface -->
+  <section class="final-cta final-cta-surface section" aria-labelledby="article-cta-title">
+    <div class="shell cta-grid">
+      <div>
+        <p class="eyebrow">Have a technology challenge to solve?</p>
+        <h2 id="article-cta-title">Start with a practical assessment.</h2>
+      </div>
+      <div class="cta-copy">
+        <p>
+          Tell us what you are trying to build, improve, automate or understand. SunSolv can help
+          you assess the opportunity and define a practical way forward.
+        </p>
+        <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }">
+          Start a conversation <ng-icon name="heroArrowRight" aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+  </section>
+}

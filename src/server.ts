@@ -2,7 +2,7 @@ import { CommonEngine, createNodeRequestHandler } from '@angular/ssr/node';
 import express from 'express';
 import { randomBytes } from 'node:crypto';
 import { join } from 'node:path';
-import { publicPaths } from './app/core/site-data';
+import { allPublicPaths } from './app/core/site-data';
 import bootstrap from './main.server';
 import { deliverEnquiry, deliveryConfigured } from './enquiry-delivery';
 
@@ -19,7 +19,7 @@ const commonEngine = new CommonEngine({
 });
 app.set('trust proxy', 1);
 
-const validPaths = new Set<string>(publicPaths);
+const validPaths = new Set<string>(allPublicPaths);
 const rateLimits = new Map<string, { count: number; resetAt: number }>();
 
 app.use((_req, res, next) => {

@@ -1,0 +1,220 @@
+<!-- Hero Section -->
+<section class="insights-hero" aria-labelledby="insights-title">
+  <picture class="insights-hero-art">
+    <source
+      media="(max-width: 820px)"
+      type="image/avif"
+      srcset="/images/insights/sunsolv-insights-hub-mobile.avif"
+    />
+    <source
+      media="(max-width: 820px)"
+      type="image/webp"
+      srcset="/images/insights/sunsolv-insights-hub-mobile.webp"
+    />
+    <source type="image/avif" srcset="/images/insights/sunsolv-insights-hub.avif" />
+    <img
+      src="/images/insights/sunsolv-insights-hub.webp"
+      width="1024"
+      height="576"
+      alt="Connected technology pathways forming a coherent architecture"
+      fetchpriority="high"
+    />
+  </picture>
+
+  <div class="shell insights-hero-inner">
+    <div class="insights-hero-copy">
+      <app-insights-breadcrumbs [items]="breadcrumbs" />
+      <p class="eyebrow">SunSolv Insights</p>
+      <h1 id="insights-title">Insights</h1>
+      <p class="hero-supporting">Practical thinking for better technology decisions.</p>
+      <p class="hero-lede">
+        Explore perspectives, guides and practical insights across technology strategy, artificial
+        intelligence, cloud, digital transformation, software engineering and modern digital
+        experiences.
+      </p>
+      <p class="hero-lede">
+        SunSolv Insights is where we share practical thinking around solving real technology and
+        operational challenges—helping business and technology leaders make clearer decisions and
+        turn ideas into practical action.
+      </p>
+      <div class="hero-actions">
+        <a class="button" routerLink="/insights/all/">
+          Explore All Insights <ng-icon name="heroArrowRight" aria-hidden="true" />
+        </a>
+        <a class="button button-secondary" href="#categories">Browse by Topic</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Insight Section -->
+<section class="section-tight featured-insight" aria-labelledby="featured-title">
+  <div class="shell">
+    <div class="featured-card">
+      <div class="featured-content">
+        <div class="featured-kicker">
+          <span class="badge-accent">Featured Insight</span>
+          <span class="category-name">{{ featuredArticle.categoryTitle }}</span>
+        </div>
+        <h2 id="featured-title" class="featured-heading">
+          <a [routerLink]="featuredArticle.route">{{ featuredArticle.title }}</a>
+        </h2>
+        <p class="featured-summary">
+          AI opportunities are everywhere, but not every business problem requires artificial
+          intelligence. A useful AI initiative starts by understanding the workflow, the people
+          involved, available data, expected value, operational constraints and the consequences of
+          an incorrect output.
+        </p>
+        <p class="featured-summary">
+          This guide presents a practical framework organizations can use to decide whether AI,
+          conventional automation or another technology approach is appropriate.
+        </p>
+        <div class="featured-actions">
+          <a class="button" [routerLink]="featuredArticle.route">
+            Read the insight <ng-icon name="heroArrowRight" aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+      <div class="featured-visual">
+        <img
+          [src]="featuredArticle.featuredImage"
+          [alt]="featuredArticle.featuredImageAlt"
+          width="600"
+          height="338"
+          class="featured-image"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Categories Section -->
+<section id="categories" class="section categories-section" aria-labelledby="categories-title">
+  <div class="shell">
+    <div class="section-heading">
+      <p class="eyebrow">Topic Areas</p>
+      <h2 id="categories-title">Explore by Domain</h2>
+      <p class="section-intro">
+        Browse targeted perspectives, frameworks and guides across core areas of enterprise
+        modernization and software engineering.
+      </p>
+    </div>
+
+    <div class="categories-grid">
+      @for (category of categories; track category.slug) {
+        <article class="category-card">
+          <div class="category-header">
+            <span class="category-icon-wrap" aria-hidden="true">
+              <ng-icon [name]="category.icon" />
+            </span>
+            <h3>{{ category.title }}</h3>
+          </div>
+          <p class="category-desc">{{ category.description }}</p>
+          <a [routerLink]="category.route" class="category-cta">
+            <span>{{ category.ctaText || 'Explore ' + category.shortTitle }}</span>
+            <ng-icon name="heroArrowRight" aria-hidden="true" />
+          </a>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Positioning / Philosophy Section -->
+<section class="section positioning-section" aria-labelledby="positioning-title">
+  <div class="shell editorial-grid">
+    <header>
+      <p class="eyebrow">Our Perspective</p>
+      <h2 id="positioning-title">Technology decisions deserve more than generic answers.</h2>
+      <p class="supporting-headline">Insight grounded in practical implementation.</p>
+    </header>
+    <div class="prose">
+      <p>Technology changes quickly. Business challenges are more nuanced.</p>
+      <p>
+        SunSolv Insights focuses on the questions organizations encounter when deciding what to
+        modernize, automate, migrate, build or improve.
+      </p>
+      <p>
+        Rather than discussing technology in isolation, we examine how technology choices affect
+        operations, users, security, scalability, cost and long-term maintainability.
+      </p>
+      <p>
+        Our goal is simple: provide practical information that helps organizations ask better
+        questions and make better technology decisions.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Explore by Business Challenge Section -->
+<section class="section challenges-section" aria-labelledby="challenges-title">
+  <div class="shell">
+    <div class="section-heading">
+      <p class="eyebrow">Problem-First Discovery</p>
+      <h2 id="challenges-title">Start with the problem you are trying to solve.</h2>
+      <p class="section-intro">
+        Select the challenge closest to your current organizational priorities to find relevant
+        guidance, frameworks, and architectural considerations.
+      </p>
+    </div>
+
+    <div class="challenges-grid">
+      @for (challenge of challenges; track challenge.title) {
+        <article class="challenge-card">
+          <div class="challenge-body">
+            <h3>{{ challenge.title }}</h3>
+            <p>{{ challenge.description }}</p>
+          </div>
+          <div class="challenge-footer">
+            <a [routerLink]="challenge.route" class="challenge-link">
+              <span>{{ challenge.linkText }}</span>
+              <ng-icon name="heroArrowRight" aria-hidden="true" />
+            </a>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Latest Insights Section -->
+<section class="section latest-insights-section" aria-labelledby="latest-insights-title">
+  <div class="shell">
+    <div class="section-header-flex">
+      <div>
+        <p class="eyebrow">Latest Perspectives</p>
+        <h2 id="latest-insights-title">Recent Guides and Frameworks</h2>
+      </div>
+      <a routerLink="/insights/all/" class="button button-secondary">
+        Explore all insights <ng-icon name="heroArrowRight" aria-hidden="true" />
+      </a>
+    </div>
+
+    <div class="articles-grid">
+      @for (article of articles; track article.slug) {
+        <app-article-card [article]="article" />
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA Section -->
+<section class="final-cta final-cta-surface section" aria-labelledby="hub-cta-title">
+  <div class="shell cta-grid">
+    <div>
+      <p class="eyebrow">Have a technology challenge to solve?</p>
+      <h2 id="hub-cta-title">Let’s turn practical insight into measurable action.</h2>
+    </div>
+    <div class="cta-copy">
+      <p>
+        Tell us what you are trying to build, improve, automate or understand. SunSolv can help you
+        assess the opportunity and define a practical way forward.
+      </p>
+      <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }">
+        Start a conversation <ng-icon name="heroArrowRight" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+</section>

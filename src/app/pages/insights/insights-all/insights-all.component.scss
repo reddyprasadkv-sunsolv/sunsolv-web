@@ -1,0 +1,138 @@
+.all-hero {
+  background: var(--navy);
+  color: #d7e3f0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.all-hero-inner {
+  padding: clamp(56px, 7vw, 84px) 0;
+}
+
+.all-hero-copy {
+  max-width: 820px;
+}
+
+.all-hero h1 {
+  margin: 12px 0 16px;
+  color: #ffffff;
+  font-size: clamp(2.6rem, 3.8vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.hero-lede {
+  margin: 0;
+  color: #d0d9df;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 72ch;
+}
+
+.all-content-section {
+  background: #f8fafc;
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.filter-pill {
+  padding: 8px 18px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 9999px;
+  color: var(--slate);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.filter-pill:hover {
+  border-color: #94a3b8;
+  color: var(--navy);
+}
+
+.filter-pill.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #ffffff;
+}
+
+.results-meta {
+  margin-bottom: 32px;
+  color: #64748b;
+  font-size: 0.92rem;
+}
+
+.results-meta strong {
+  color: var(--navy);
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.empty-filter-state {
+  max-width: 640px;
+  margin: 36px auto;
+  padding: 48px 32px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 24px -6px rgba(7, 26, 51, 0.05);
+}
+
+.empty-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--blue);
+  font-size: 26px;
+  margin-bottom: 18px;
+}
+
+.empty-filter-state h3 {
+  margin: 0 0 12px;
+  font-size: 1.35rem;
+  color: var(--navy);
+}
+
+.empty-filter-state p {
+  margin: 0 auto 24px;
+  color: var(--slate);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 1080px) {
+  .articles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .articles-grid {
+    grid-template-columns: 1fr;
+  }
+  .filter-bar {
+    gap: 8px;
+  }
+  .filter-pill {
+    padding: 6px 14px;
+    font-size: 0.82rem;
+  }
+}

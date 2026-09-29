@@ -1,0 +1,92 @@
+<section class="all-hero" aria-labelledby="all-title">
+  <div class="shell all-hero-inner">
+    <div class="all-hero-copy">
+      <app-insights-breadcrumbs [items]="breadcrumbs" />
+      <p class="eyebrow">SunSolv Knowledge Hub</p>
+      <h1 id="all-title">All Insights</h1>
+      <p class="hero-lede">
+        Browse all published technology insights, frameworks and practical guides across artificial
+        intelligence, cloud infrastructure, software engineering and digital transformation.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section all-content-section">
+  <div class="shell">
+    <!-- Filter Pills -->
+    <div class="filter-bar" role="toolbar" aria-label="Filter insights by domain">
+      <button
+        type="button"
+        class="filter-pill"
+        [class.active]="selectedCategory() === 'all'"
+        (click)="setFilter('all')"
+      >
+        All Domains
+      </button>
+      @for (category of categories; track category.slug) {
+        <button
+          type="button"
+          class="filter-pill"
+          [class.active]="selectedCategory() === category.slug"
+          (click)="setFilter(category.slug)"
+        >
+          {{ category.shortTitle }}
+        </button>
+      }
+    </div>
+
+    <!-- Active Count Display -->
+    <div class="results-meta">
+      <p>
+        Showing <strong>{{ filteredArticles().length }}</strong>
+        {{ filteredArticles().length === 1 ? 'insight' : 'insights' }}
+        @if (selectedCategory() !== 'all') {
+          in selected domain
+        }
+      </p>
+    </div>
+
+    <!-- Articles Grid -->
+    @if (filteredArticles().length > 0) {
+      <div class="articles-grid">
+        @for (article of filteredArticles(); track article.slug) {
+          <app-article-card [article]="article" />
+        }
+      </div>
+    } @else {
+      <div class="empty-filter-state">
+        <div class="empty-icon-wrap" aria-hidden="true">
+          <ng-icon name="heroSparkles" />
+        </div>
+        <h3>No published insights in this domain yet</h3>
+        <p>
+          We are preparing new practical guides and frameworks for this domain. Explore our other
+          domains or return to all published insights.
+        </p>
+        <button type="button" class="button" (click)="setFilter('all')">
+          View All Published Insights
+        </button>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- Final CTA Section -->
+<section class="final-cta final-cta-surface section" aria-labelledby="all-cta-title">
+  <div class="shell cta-grid">
+    <div>
+      <p class="eyebrow">Have a technology challenge to solve?</p>
+      <h2 id="all-cta-title">Let’s discuss what you are trying to build.</h2>
+    </div>
+    <div class="cta-copy">
+      <p>
+        Tell us what you are trying to build, improve, automate or understand. SunSolv can help you
+        assess the opportunity and define a practical way forward.
+      </p>
+      <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }">
+        Start a conversation <ng-icon name="heroArrowRight" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+</section>

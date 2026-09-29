@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" fill="none">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#071a33"/>
+      <stop offset="50%" stop-color="#0c2340"/>
+      <stop offset="100%" stop-color="#071424"/>
+    </linearGradient>
+    <linearGradient id="cardGrad2" x1="0" y1="0" x2="0" y2="1" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="rgba(255, 255, 255, 0.08)"/>
+      <stop offset="100%" stop-color="rgba(255, 255, 255, 0.02)"/>
+    </linearGradient>
+    <linearGradient id="hybridGrad" x1="0" y1="0" x2="1" y2="1" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="rgba(37, 99, 235, 0.25)"/>
+      <stop offset="100%" stop-color="rgba(32, 197, 216, 0.25)"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#bgGrad2)"/>
+
+  <!-- Subtle Blueprint Grid -->
+  <g stroke="rgba(255, 255, 255, 0.04)" stroke-width="1">
+    <line x1="200" y1="0" x2="200" y2="675"/>
+    <line x1="600" y1="0" x2="600" y2="675"/>
+    <line x1="1000" y1="0" x2="1000" y2="675"/>
+    <line x1="0" y1="160" x2="1200" y2="160"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+  </g>
+
+  <!-- Title Badge -->
+  <rect x="80" y="44" width="220" height="28" rx="14" fill="rgba(37, 99, 235, 0.15)" stroke="#2563eb" stroke-width="1"/>
+  <text x="190" y="63" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="#93c5fd" text-anchor="middle">DECISION ARCHITECTURE</text>
+
+  <!-- Title -->
+  <text x="80" y="112" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="28" font-weight="750" fill="#ffffff" letter-spacing="-0.5">Traditional Automation vs AI vs Hybrid Workflow</text>
+  <text x="80" y="142" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="14" font-weight="400" fill="#94a3b8">Choosing the simplest effective technology approach based on input variability and decision predictability.</text>
+
+  <!-- Left Column: Traditional Automation -->
+  <g transform="translate(80, 190)">
+    <rect width="320" height="420" rx="12" fill="url(#cardGrad2)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"/>
+    <rect x="24" y="24" width="40" height="40" rx="8" fill="rgba(255, 255, 255, 0.08)"/>
+    <circle cx="44" cy="44" r="8" stroke="#94a3b8" stroke-width="2"/>
+    <text x="76" y="42" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="18" font-weight="700" fill="#ffffff">Traditional Automation</text>
+    <text x="76" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11" font-weight="600" fill="#94a3b8">RULES-BASED &amp; DETERMINISTIC</text>
+
+    <text x="24" y="100" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="13" font-weight="400" fill="#cbd5e1" line-height="1.5">
+      Executes pre-programmed logic with 100% predictability when inputs and outcomes are structured.
+    </text>
+
+    <!-- Key Attributes -->
+    <g transform="translate(24, 150)">
+      <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" font-weight="700" fill="#20c5d8">Best for:</text>
+      <text x="0" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">• Scheduled data syncs &amp; ETL</text>
+      <text x="0" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">• Strict accounting calculations</text>
+      <text x="0" y="66" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">• Validated form submissions</text>
+      <text x="0" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">• Deterministic event triggers</text>
+
+      <rect x="0" y="120" width="272" height="60" rx="8" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.08)"/>
+      <text x="16" y="144" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11.5" font-weight="600" fill="#e2e8f0">Advantage: Zero hallucination,</text>
+      <text x="16" y="162" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11.5" fill="#94a3b8">low cost, auditable execution.</text>
+    </g>
+  </g>
+
+  <!-- Middle Column: Artificial Intelligence -->
+  <g transform="translate(440, 190)">
+    <rect width="320" height="420" rx="12" fill="url(#cardGrad2)" stroke="rgba(37, 99, 235, 0.3)" stroke-width="1"/>
+    <rect x="24" y="24" width="40" height="40" rx="8" fill="rgba(37, 99, 235, 0.2)"/>
+    <circle cx="44" cy="44" r="8" stroke="#60a5fa" stroke-width="2"/>
+    <text x="76" y="42" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="18" font-weight="700" fill="#ffffff">Artificial Intelligence</text>
+    <text x="76" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11" font-weight="600" fill="#93c5fd">PROBABILISTIC &amp; ADAPTIVE</text>
+
+    <text x="24" y="100" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="13" font-weight="400" fill="#cbd5e1" line-height="1.5">
+      Interprets patterns, extracts unstructured signals, and generates responses under high variability.
+    </text>
+
+    <!-- Key Attributes -->
+    <g transform="translate(24, 150)">
+      <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" font-weight="700" fill="#20c5d8">Best for:</text>
+      <text x="0" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">• Unstructured document parsing</text>
+      <text x="0" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">• Natural language comprehension</text>
+      <text x="0" y="66" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">• Predictive anomaly detection</text>
+      <text x="0" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8">• Computer vision &amp; tagging</text>
+
+      <rect x="0" y="120" width="272" height="60" rx="8" fill="rgba(37, 99, 235, 0.1)" stroke="rgba(37, 99, 235, 0.25)"/>
+      <text x="16" y="144" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11.5" font-weight="600" fill="#93c5fd">Advantage: Handles variability</text>
+      <text x="16" y="162" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11.5" fill="#94a3b8">and unstructured information.</text>
+    </g>
+  </g>
+
+  <!-- Right Column: The Hybrid Approach -->
+  <g transform="translate(800, 190)">
+    <rect width="320" height="420" rx="12" fill="url(#hybridGrad)" stroke="#20c5d8" stroke-width="1.5"/>
+    <rect x="24" y="24" width="40" height="40" rx="8" fill="rgba(32, 197, 216, 0.25)"/>
+    <circle cx="44" cy="44" r="8" stroke="#20c5d8" stroke-width="2"/>
+    <text x="76" y="42" font-family="-apple-system, BlinkMacSystemFont, 'Manrope', sans-serif" font-size="18" font-weight="700" fill="#ffffff">The Hybrid Pattern</text>
+    <text x="76" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11" font-weight="600" fill="#20c5d8">ENTERPRISE BEST PRACTICE</text>
+
+    <text x="24" y="100" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="13" font-weight="400" fill="#cbd5e1" line-height="1.5">
+      AI interprets and normalizes inputs; deterministic automation executes operations and audits results.
+    </text>
+
+    <!-- Key Attributes -->
+    <g transform="translate(24, 150)">
+      <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" font-weight="700" fill="#20c5d8">Workflow Flow:</text>
+      <text x="0" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#e2e8f0">1. Intake raw, varied inputs</text>
+      <text x="0" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#e2e8f0">2. AI extracts &amp; scores confidence</text>
+      <text x="0" y="66" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#e2e8f0">3. Human review on low confidence</text>
+      <text x="0" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#e2e8f0">4. Rules-based core execution</text>
+
+      <rect x="0" y="120" width="272" height="60" rx="8" fill="rgba(7, 26, 51, 0.6)" stroke="#20c5d8" stroke-width="1"/>
+      <text x="16" y="144" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11.5" font-weight="700" fill="#20c5d8">Outcome: Maximum resilience,</text>
+      <text x="16" y="162" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11.5" fill="#ffffff">reduced cost &amp; total governance.</text>
+    </g>
+  </g>
+</svg>

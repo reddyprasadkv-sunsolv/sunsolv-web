@@ -1,0 +1,68 @@
+@if (category(); as cat) {
+  <section class="category-hero" aria-labelledby="category-title">
+    <div class="shell category-hero-inner">
+      <div class="category-hero-copy">
+        <app-insights-breadcrumbs [items]="breadcrumbs()" />
+        <p class="eyebrow">Category Perspectives</p>
+        <h1 id="category-title">{{ cat.title }}</h1>
+        <p class="hero-lede">{{ cat.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section category-content-section">
+    <div class="shell">
+      @if (articles().length > 0) {
+        <div class="section-heading">
+          <p class="eyebrow">Published Articles</p>
+          <h2>Practical Guides in {{ cat.title }}</h2>
+        </div>
+        <div class="articles-grid">
+          @for (article of articles(); track article.slug) {
+            <app-article-card [article]="article" />
+          }
+        </div>
+      } @else {
+        <div class="empty-state-card">
+          <div class="empty-icon-wrap" aria-hidden="true">
+            <ng-icon name="heroSparkles" />
+          </div>
+          <h3>Upcoming Guides &amp; Frameworks</h3>
+          <p class="empty-desc">
+            New insights in this area will be added as we publish practical guidance and
+            perspectives.
+          </p>
+          <p class="empty-sub">
+            In the meantime, explore our connected services or start a conversation with our
+            technology team to discuss your specific operational challenges.
+          </p>
+          <div class="empty-actions">
+            <a routerLink="/services" class="button button-secondary"> Explore Our Services </a>
+            <a routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }" class="button">
+              Start a Conversation <ng-icon name="heroArrowRight" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Final CTA Surface -->
+  <section class="final-cta final-cta-surface section" aria-labelledby="category-cta-title">
+    <div class="shell cta-grid">
+      <div>
+        <p class="eyebrow">Have a challenge in {{ cat.title }}?</p>
+        <h2 id="category-cta-title">Let’s discuss your operational goals.</h2>
+      </div>
+      <div class="cta-copy">
+        <p>
+          Tell us what you are trying to build, improve, automate or understand. SunSolv can help
+          you assess the opportunity and define a practical way forward.
+        </p>
+        <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }">
+          Start a conversation <ng-icon name="heroArrowRight" aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+  </section>
+}

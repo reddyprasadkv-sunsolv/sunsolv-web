@@ -23,7 +23,8 @@ export class SeoService {
       .subscribe(() => {
         const routeData = this.deepest(this.router.routerState.snapshot.root).data;
         this.apply(
-          (routeData['serviceData'] ??
+          (routeData['articleData'] ??
+            routeData['serviceData'] ??
             routeData['industryData'] ??
             routeData['pageData'] ??
             routeData) as PageData,
@@ -38,7 +39,10 @@ export class SeoService {
   private apply(data: PageData): void {
     if (!data?.seo) return;
     const seo: SeoData = data.seo;
-    const canonical = seo.path ? `${canonicalOrigin}/${seo.path}` : `${canonicalOrigin}/`;
+    const normalizedPath = seo.path.startsWith('/') ? seo.path.slice(1) : seo.path;
+    const canonical = normalizedPath
+      ? `${canonicalOrigin}/${normalizedPath}`
+      : `${canonicalOrigin}/`;
     const socialImage = seo.image
       ? `${canonicalOrigin}${seo.image}`
       : `${canonicalOrigin}/images/sunsolv-technology-progress-hero.webp`;
@@ -173,6 +177,72 @@ export class SeoService {
         ],
       };
     }
+    if (data.schemaType === 'Article') {
+      const organizationId = `${canonicalOrigin}/#organization`;
+      const authorId = `${canonicalOrigin}/about-us#founder`;
+      const articleId = `${canonical}#article`;
+      return {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Article',
+            '@id': articleId,
+            isPartOf: {
+              '@type': 'WebPage',
+              '@id': canonical,
+              name: data.structuredPageName ?? data.title,
+              url: canonical,
+            },
+            headline: data.structuredArticleHeadline ?? data.title,
+            description: data.seo.description,
+            image: data.seo.image ? `${canonicalOrigin}${data.seo.image}` : undefined,
+            datePublished: data.structuredArticlePublished,
+            dateModified: data.structuredArticleModified ?? data.structuredArticlePublished,
+            mainEntityOfPage: canonical,
+            author: {
+              '@type': 'Person',
+              '@id': authorId,
+              name: data.structuredArticleAuthor ?? 'Reddy Prasad K V',
+              jobTitle: 'Founder & CEO',
+              url: `${canonicalOrigin}/about-us#founder`,
+            },
+            publisher: {
+              '@type': 'Organization',
+              '@id': organizationId,
+              name: 'SunSolv Technologies',
+              url: canonicalOrigin,
+              logo: `${canonicalOrigin}/images/sunsolv-logo.webp`,
+            },
+            ...(data.structuredArticleKeywords?.length
+              ? { keywords: data.structuredArticleKeywords.join(', ') }
+              : {}),
+            ...(data.structuredArticleSection
+              ? { articleSection: data.structuredArticleSection }
+              : {}),
+          },
+          ...(data.structuredBreadcrumbs?.length
+            ? [
+                {
+                  '@type': 'BreadcrumbList',
+                  itemListElement: data.structuredBreadcrumbs.map((breadcrumb, index) => {
+                    const breadcrumbPath = breadcrumb.path.startsWith('/')
+                      ? breadcrumb.path.slice(1)
+                      : breadcrumb.path;
+                    return {
+                      '@type': 'ListItem',
+                      position: index + 1,
+                      name: breadcrumb.name,
+                      item: breadcrumbPath
+                        ? `${canonicalOrigin}/${breadcrumbPath}`
+                        : `${canonicalOrigin}/`,
+                    };
+                  }),
+                },
+              ]
+            : []),
+        ],
+      };
+    }
     if (
       data.schemaType === 'CollectionPage' &&
       (data.structuredItems?.length ||
@@ -201,14 +271,19 @@ export class SeoService {
             ? [
                 {
                   '@type': 'BreadcrumbList',
-                  itemListElement: data.structuredBreadcrumbs.map((breadcrumb, index) => ({
-                    '@type': 'ListItem',
-                    position: index + 1,
-                    name: breadcrumb.name,
-                    item: breadcrumb.path
-                      ? `${canonicalOrigin}/${breadcrumb.path}`
-                      : `${canonicalOrigin}/`,
-                  })),
+                  itemListElement: data.structuredBreadcrumbs.map((breadcrumb, index) => {
+                    const breadcrumbPath = breadcrumb.path.startsWith('/')
+                      ? breadcrumb.path.slice(1)
+                      : breadcrumb.path;
+                    return {
+                      '@type': 'ListItem',
+                      position: index + 1,
+                      name: breadcrumb.name,
+                      item: breadcrumbPath
+                        ? `${canonicalOrigin}/${breadcrumbPath}`
+                        : `${canonicalOrigin}/`,
+                    };
+                  }),
                 },
               ]
             : []),

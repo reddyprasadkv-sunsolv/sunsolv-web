@@ -16,6 +16,8 @@ import {
   heroUsers,
 } from '@ng-icons/heroicons/outline';
 import { industries, services } from '../../core/site-data';
+import { getAllArticles } from '../../core/insights.data';
+import { ArticleCardComponent } from '../insights/components/article-card/article-card.component';
 
 const serviceSummaries: Record<string, string> = {
   'it-consulting': 'Make technology decisions with greater clarity and confidence.',
@@ -31,7 +33,7 @@ const serviceSummaries: Record<string, string> = {
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, NgIcon],
+  imports: [RouterLink, NgIcon, ArticleCardComponent],
   providers: [
     provideIcons({
       heroArrowRight,
@@ -53,6 +55,8 @@ const serviceSummaries: Record<string, string> = {
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
+  readonly latestInsights = getAllArticles().slice(0, 3);
+
   readonly homepageServices = services.map((service) => ({
     ...service,
     summary: serviceSummaries[service.slug] ?? service.positioning,

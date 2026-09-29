@@ -22,6 +22,12 @@ export interface PageData {
   structuredFaqs?: readonly StructuredFaq[];
   structuredItems?: readonly StructuredItem[];
   structuredItemListName?: string;
+  structuredArticleHeadline?: string;
+  structuredArticlePublished?: string;
+  structuredArticleModified?: string;
+  structuredArticleAuthor?: string;
+  structuredArticleKeywords?: readonly string[];
+  structuredArticleSection?: string;
 }
 
 export interface StructuredBreadcrumb {
@@ -315,6 +321,57 @@ export const pageRouteData = {
       { name: 'Terms & Conditions', path: 'terms-and-conditions' },
     ],
   },
+  insights: {
+    ...page(
+      'insights/',
+      'SunSolv Insights',
+      'Insights',
+      'SunSolv Insights | Technology Strategy, AI & Cloud Knowledge Hub',
+      [],
+      'Explore practical perspectives, guides and insights across technology strategy, AI, cloud, digital transformation and software engineering.',
+      'CollectionPage',
+      '/images/insights/sunsolv-insights-hub.webp',
+    ),
+    structuredPageName: 'SunSolv Insights | Practical Technology Guidance',
+    structuredItemListName: 'SunSolv Insights Categories',
+    structuredItems: [
+      { name: 'AI & Automation' },
+      { name: 'Cloud & Infrastructure' },
+      { name: 'Digital Transformation' },
+      { name: 'Software Engineering' },
+      { name: 'Technology Strategy' },
+      { name: 'Digital Experience' },
+      { name: 'Industry Insights' },
+    ],
+    structuredBreadcrumbs: [
+      { name: 'Home', path: '' },
+      { name: 'Insights', path: 'insights/' },
+    ],
+  },
+  insightsAll: {
+    ...page(
+      'insights/all/',
+      'All Insights',
+      'All Insights & Articles',
+      'All Insights & Articles | SunSolv Knowledge Hub',
+      [],
+      'Browse all practical technology guides, frameworks and engineering articles published by SunSolv Technologies.',
+      'CollectionPage',
+      '/images/insights/sunsolv-insights-hub.webp',
+    ),
+    structuredPageName: 'All Insights | SunSolv Technologies',
+    structuredItemListName: 'Published Insights Articles',
+    structuredItems: [
+      { name: 'How to Identify the Right AI Use Case for Your Business' },
+      { name: 'AI vs Automation: Which Does Your Business Actually Need?' },
+      { name: 'Cloud Readiness Assessment: A Practical Framework for Businesses' },
+    ],
+    structuredBreadcrumbs: [
+      { name: 'Home', path: '' },
+      { name: 'Insights', path: 'insights/' },
+      { name: 'All Insights', path: 'insights/all/' },
+    ],
+  },
   notFound: {
     eyebrow: '404',
     title: 'Page not found',
@@ -386,3 +443,20 @@ export const publicPaths = [
   '/cookie-policy',
   '/terms-and-conditions',
 ] as const;
+
+export const insightPaths = [
+  '/insights',
+  '/insights/ai-automation',
+  '/insights/cloud-infrastructure',
+  '/insights/digital-transformation',
+  '/insights/software-engineering',
+  '/insights/technology-strategy',
+  '/insights/digital-experience',
+  '/insights/industries',
+  '/insights/all',
+  '/insights/ai-automation/how-to-identify-the-right-ai-use-case-for-your-business',
+  '/insights/ai-automation/ai-vs-automation-which-does-your-business-actually-need',
+  '/insights/cloud-infrastructure/cloud-readiness-assessment-a-practical-framework',
+] as const;
+
+export const allPublicPaths = [...publicPaths, ...insightPaths] as const;
