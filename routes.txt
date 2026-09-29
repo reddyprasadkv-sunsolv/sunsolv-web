@@ -34,3 +34,8 @@
 /insights/ai-automation/how-to-identify-the-right-ai-use-case-for-your-business
 /insights/ai-automation/ai-vs-automation-which-does-your-business-actually-need
 /insights/cloud-infrastructure/cloud-readiness-assessment-a-practical-framework
+/insights/digital-transformation/what-should-a-digital-transformation-roadmap-include
+/insights/software-engineering/custom-software-vs-saas-how-should-businesses-decide
+/insights/technology-strategy/how-to-build-a-practical-technology-roadmap
+/insights/digital-experience/what-makes-a-high-performing-digital-experience
+/insights/industries/how-digital-assessment-platforms-can-improve-education-workflows

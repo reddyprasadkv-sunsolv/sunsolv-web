@@ -4,7 +4,13 @@ import { provideRouter, Router } from '@angular/router';
 import { describe, expect, it } from 'vitest';
 import { routes } from '../../app.routes';
 import { App } from '../../app';
-import { getAllArticles, getAllCategories, getArticleBySlug } from '../../core/insights.data';
+import {
+  categoryToPageData,
+  getAllArticles,
+  getAllCategories,
+  getArticleBySlug,
+  InsightCategory,
+} from '../../core/insights.data';
 
 describe('SunSolv Insights Module', () => {
   async function setupApp(initialUrl = '/insights') {
@@ -47,13 +53,18 @@ describe('SunSolv Insights Module', () => {
       }
     });
 
-    it('defines the three launch articles with complete required metadata', () => {
+    it('defines all eight published articles with complete required metadata', () => {
       const articles = getAllArticles();
-      expect(articles).toHaveLength(3);
+      expect(articles).toHaveLength(8);
       const expectedSlugs = [
         'how-to-identify-the-right-ai-use-case-for-your-business',
         'ai-vs-automation-which-does-your-business-actually-need',
         'cloud-readiness-assessment-a-practical-framework',
+        'what-should-a-digital-transformation-roadmap-include',
+        'custom-software-vs-saas-how-should-businesses-decide',
+        'how-to-build-a-practical-technology-roadmap',
+        'what-makes-a-high-performing-digital-experience',
+        'how-digital-assessment-platforms-can-improve-education-workflows',
       ];
       expect(articles.map((a) => a.slug)).toEqual(expectedSlugs);
 
@@ -73,7 +84,7 @@ describe('SunSolv Insights Module', () => {
         expect(article.relatedServices.length).toBeGreaterThanOrEqual(1);
       }
 
-      // Verify exact image paths and user-specified alt text
+      // Verify exact image paths and alt text for all 8 articles
       const article1 = getArticleBySlug('how-to-identify-the-right-ai-use-case-for-your-business');
       expect(article1?.featuredImage).toBe('/images/insights/sunsolv-ai-use-case-evaluation.webp');
       expect(article1?.featuredImageAlt).toBe(
@@ -95,6 +106,34 @@ describe('SunSolv Insights Module', () => {
       expect(article3?.featuredImageAlt).toBe(
         'Infrastructure and data systems assessed before a phased cloud migration',
       );
+
+      const article4 = getArticleBySlug('what-should-a-digital-transformation-roadmap-include');
+      expect(article4?.featuredImage).toBe(
+        '/images/insights/sunsolv-digital-transformation-roadmap.webp',
+      );
+      expect(article4?.featuredImageAlt).toContain('digital transformation roadmap');
+
+      const article5 = getArticleBySlug('custom-software-vs-saas-how-should-businesses-decide');
+      expect(article5?.featuredImage).toBe('/images/insights/sunsolv-custom-software-vs-saas.webp');
+      expect(article5?.featuredImageAlt).toContain('custom software');
+
+      const article6 = getArticleBySlug('how-to-build-a-practical-technology-roadmap');
+      expect(article6?.featuredImage).toBe('/images/insights/sunsolv-technology-roadmap.webp');
+      expect(article6?.featuredImageAlt).toContain('technology roadmap');
+
+      const article7 = getArticleBySlug('what-makes-a-high-performing-digital-experience');
+      expect(article7?.featuredImage).toBe(
+        '/images/insights/sunsolv-digital-experience-architecture.webp',
+      );
+      expect(article7?.featuredImageAlt).toContain('Digital experience');
+
+      const article8 = getArticleBySlug(
+        'how-digital-assessment-platforms-can-improve-education-workflows',
+      );
+      expect(article8?.featuredImage).toBe(
+        '/images/insights/sunsolv-digital-assessment-workflows.webp',
+      );
+      expect(article8?.featuredImageAlt).toContain('digital assessment');
     });
   });
 
@@ -157,7 +196,7 @@ describe('SunSolv Insights Module', () => {
 
       // Latest Insights
       const articleCards = compiled.querySelectorAll('.latest-insights-section app-article-card');
-      expect(articleCards.length).toBe(3);
+      expect(articleCards.length).toBe(8);
     });
   });
 
@@ -182,7 +221,7 @@ describe('SunSolv Insights Module', () => {
 
       // Articles
       const articles = compiled.querySelectorAll('app-article-card');
-      expect(articles.length).toBe(3);
+      expect(articles.length).toBe(8);
     });
   });
 
@@ -203,18 +242,30 @@ describe('SunSolv Insights Module', () => {
       expect(articles.length).toBe(2);
     });
 
-    it('renders professional informative state and sets noindex,follow for categories without articles yet', async () => {
+    it('renders category with articles and sets index, follow for populated categories', async () => {
       const { compiled, document } = await setupApp('/insights/software-engineering');
 
       expect(compiled.querySelector('h1')?.textContent?.trim()).toBe('Software Engineering');
-      const emptyState = compiled.querySelector('.empty-state-card');
-      expect(emptyState).toBeTruthy();
-      expect(emptyState?.textContent).toContain(
-        'New insights in this area will be added as we publish practical guidance and perspectives.',
-      );
+      const articles = compiled.querySelectorAll('app-article-card');
+      expect(articles.length).toBe(1);
 
       const robots = document.querySelector('meta[name="robots"]')?.getAttribute('content');
-      expect(robots).toBe('noindex,follow');
+      expect(robots).toBe('index, follow');
+    });
+
+    it('sets noindex,follow dynamically when a category has no published articles in categoryToPageData', () => {
+      const emptyCat: InsightCategory = {
+        slug: 'hypothetical-empty',
+        title: 'Hypothetical Empty',
+        shortTitle: 'Empty',
+        description: 'Test description',
+        icon: 'heroSparkles',
+        route: '/insights/hypothetical-empty/',
+        seoTitle: 'Empty | SunSolv',
+        metaDescription: 'Empty meta',
+      };
+      const pageData = categoryToPageData(emptyCat);
+      expect(pageData.seo.robots).toBe('noindex,follow');
     });
 
     it('sets index, follow for categories with published articles', async () => {
@@ -517,27 +568,172 @@ describe('SunSolv Insights Module', () => {
       );
     });
 
-    it('sets noindex,follow for all five empty categories', async () => {
-      const { router, document, fixture } = await setupApp('/insights/digital-transformation');
+    it('sets index, follow for all seven populated categories', async () => {
+      const { router, document, fixture } = await setupApp('/insights/ai-automation');
       expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
-        'noindex,follow',
+        'index, follow',
       );
 
-      const remainingEmptyCategories = [
+      const remainingCategories = [
+        '/insights/cloud-infrastructure',
+        '/insights/digital-transformation',
         '/insights/software-engineering',
         '/insights/technology-strategy',
         '/insights/digital-experience',
         '/insights/industries',
       ];
-      for (const catUrl of remainingEmptyCategories) {
+      for (const catUrl of remainingCategories) {
         await router.navigateByUrl(catUrl);
         fixture.detectChanges();
         await fixture.whenStable();
         fixture.detectChanges();
         expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
-          'noindex,follow',
+          'index, follow',
         );
       }
+    });
+  });
+
+  describe('Article 4: Digital Transformation Roadmap', () => {
+    const route =
+      '/insights/digital-transformation/what-should-a-digital-transformation-roadmap-include';
+
+    it('renders complete article content, 7-dimension framework, checklist, and metadata', async () => {
+      const { compiled, document } = await setupApp(route);
+
+      expect(compiled.querySelector('h1')?.textContent).toContain(
+        'What Should a Digital Transformation Roadmap Include?',
+      );
+      const summary = compiled.querySelector('.executive-summary-card');
+      expect(summary).toBeTruthy();
+      expect(summary?.textContent).toContain('Executive Summary');
+
+      // Framework
+      expect(compiled.textContent).toContain(
+        'The SunSolv Digital Transformation Roadmap Framework',
+      );
+      expect(compiled.querySelectorAll('.dimension-card').length).toBe(7);
+
+      // Checklist & Key Takeaway
+      expect(compiled.querySelector('.checklist-card')).toBeTruthy();
+      expect(compiled.querySelector('.key-takeaway-card')).toBeTruthy();
+
+      // Canonical URL
+      const canonical = document.querySelector('link[rel="canonical"]')?.getAttribute('href');
+      expect(canonical).toBe(
+        'https://www.sunsolv.in/insights/digital-transformation/what-should-a-digital-transformation-roadmap-include/',
+      );
+    });
+  });
+
+  describe('Article 5: Custom Software vs SaaS', () => {
+    const route =
+      '/insights/software-engineering/custom-software-vs-saas-how-should-businesses-decide';
+
+    it('renders 8-dimension framework, comparison table with SaaS/Custom Software, and checklist', async () => {
+      const { compiled, document } = await setupApp(route);
+
+      expect(compiled.querySelector('h1')?.textContent).toContain(
+        'Custom Software vs SaaS: How Should Businesses Decide?',
+      );
+      expect(compiled.textContent).toContain('SunSolv Build-or-Buy Decision Framework');
+      expect(compiled.querySelectorAll('.dimension-card').length).toBe(8);
+
+      // Comparison table
+      const table = compiled.querySelector('.comparison-section table');
+      expect(table).toBeTruthy();
+      const headers = compiled.querySelectorAll('.comparison-section th[scope="col"]');
+      expect(headers.length).toBe(3);
+      expect(headers[0]?.textContent?.trim()).toBe('Factor');
+      expect(headers[1]?.textContent?.trim()).toBe('SaaS');
+      expect(headers[2]?.textContent?.trim()).toBe('Custom Software');
+
+      // 9 rows in table
+      const rows = compiled.querySelectorAll('.comparison-section tbody tr');
+      expect(rows.length).toBe(9);
+
+      // Checklist & Key Takeaway
+      expect(compiled.querySelector('.checklist-card')).toBeTruthy();
+      expect(compiled.querySelector('.key-takeaway-card')).toBeTruthy();
+
+      const canonical = document.querySelector('link[rel="canonical"]')?.getAttribute('href');
+      expect(canonical).toBe(
+        'https://www.sunsolv.in/insights/software-engineering/custom-software-vs-saas-how-should-businesses-decide/',
+      );
+    });
+  });
+
+  describe('Article 6: Practical Technology Roadmap', () => {
+    const route = '/insights/technology-strategy/how-to-build-a-practical-technology-roadmap';
+
+    it('renders 8-dimension framework, checklist, and related services', async () => {
+      const { compiled, document } = await setupApp(route);
+
+      expect(compiled.querySelector('h1')?.textContent).toContain(
+        'How to Build a Practical Technology Roadmap for Your Business',
+      );
+      expect(compiled.textContent).toContain('SunSolv Technology Roadmap Framework');
+      expect(compiled.querySelectorAll('.dimension-card').length).toBe(8);
+
+      expect(compiled.querySelector('.checklist-card')).toBeTruthy();
+      expect(compiled.querySelector('.key-takeaway-card')).toBeTruthy();
+
+      const canonical = document.querySelector('link[rel="canonical"]')?.getAttribute('href');
+      expect(canonical).toBe(
+        'https://www.sunsolv.in/insights/technology-strategy/how-to-build-a-practical-technology-roadmap/',
+      );
+    });
+  });
+
+  describe('Article 7: High-Performing Digital Experience', () => {
+    const route = '/insights/digital-experience/what-makes-a-high-performing-digital-experience';
+
+    it('renders 8-dimension framework, checklist, and key takeaway', async () => {
+      const { compiled, document } = await setupApp(route);
+
+      expect(compiled.querySelector('h1')?.textContent).toContain(
+        'What Makes a High-Performing Digital Experience?',
+      );
+      expect(compiled.textContent).toContain('SunSolv Digital Experience Framework');
+      expect(compiled.querySelectorAll('.dimension-card').length).toBe(8);
+
+      expect(compiled.querySelector('.checklist-card')).toBeTruthy();
+      expect(compiled.querySelector('.key-takeaway-card')).toBeTruthy();
+
+      const canonical = document.querySelector('link[rel="canonical"]')?.getAttribute('href');
+      expect(canonical).toBe(
+        'https://www.sunsolv.in/insights/digital-experience/what-makes-a-high-performing-digital-experience/',
+      );
+    });
+  });
+
+  describe('Article 8: Digital Assessment Platforms in Education', () => {
+    const route =
+      '/insights/industries/how-digital-assessment-platforms-can-improve-education-workflows';
+
+    it('renders 7-stage framework, case study callout card, checklist, and key takeaway', async () => {
+      const { compiled, document } = await setupApp(route);
+
+      expect(compiled.querySelector('h1')?.textContent).toContain(
+        'How Digital Assessment Platforms Can Improve Education Workflows',
+      );
+      expect(compiled.textContent).toContain('SunSolv Digital Assessment Lifecycle Framework');
+      expect(compiled.querySelectorAll('.dimension-card').length).toBe(7);
+
+      // Case study callout card
+      const caseStudyCard = compiled.querySelector('#related-case-study');
+      expect(caseStudyCard).toBeTruthy();
+      expect(caseStudyCard?.textContent).toContain('Centralized Digital Assessment Platform');
+      const csLink = caseStudyCard?.querySelector('a');
+      expect(csLink?.getAttribute('href')).toBe('/case-studies');
+
+      expect(compiled.querySelector('.checklist-card')).toBeTruthy();
+      expect(compiled.querySelector('.key-takeaway-card')).toBeTruthy();
+
+      const canonical = document.querySelector('link[rel="canonical"]')?.getAttribute('href');
+      expect(canonical).toBe(
+        'https://www.sunsolv.in/insights/industries/how-digital-assessment-platforms-can-improve-education-workflows/',
+      );
     });
   });
 });

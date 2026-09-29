@@ -81,6 +81,21 @@ const routeSources = {
   '/insights/cloud-infrastructure/cloud-readiness-assessment-a-practical-framework': [
     'src/app/core/insights.data.ts',
   ],
+  '/insights/digital-transformation/what-should-a-digital-transformation-roadmap-include': [
+    'src/app/core/insights.data.ts',
+  ],
+  '/insights/software-engineering/custom-software-vs-saas-how-should-businesses-decide': [
+    'src/app/core/insights.data.ts',
+  ],
+  '/insights/technology-strategy/how-to-build-a-practical-technology-roadmap': [
+    'src/app/core/insights.data.ts',
+  ],
+  '/insights/digital-experience/what-makes-a-high-performing-digital-experience': [
+    'src/app/core/insights.data.ts',
+  ],
+  '/insights/industries/how-digital-assessment-platforms-can-improve-education-workflows': [
+    'src/app/core/insights.data.ts',
+  ],
 };
 
 function getRouteLastmod(route) {

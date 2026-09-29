@@ -128,7 +128,7 @@
             id="comparison-table"
             aria-labelledby="comparison-heading"
           >
-            <h2 id="comparison-heading">Detailed Comparison Table</h2>
+            <h2 id="comparison-heading">{{ table.title || 'Detailed Comparison Table' }}</h2>
             <div class="table-wrap">
               <table class="cookie-table comparison-table">
                 <caption class="table-caption">
@@ -149,11 +149,17 @@
                       <th scope="row">
                         <strong>{{ row.factor }}</strong>
                       </th>
-                      <td>{{ row.automation }}</td>
-                      <td>{{ row.ai }}</td>
-                      <td>
-                        <strong>{{ row.hybrid }}</strong>
-                      </td>
+                      @if (row.values) {
+                        @for (val of row.values; track $index) {
+                          <td>{{ val }}</td>
+                        }
+                      } @else {
+                        <td>{{ row.automation }}</td>
+                        <td>{{ row.ai }}</td>
+                        <td>
+                          <strong>{{ row.hybrid }}</strong>
+                        </td>
+                      }
                     </tr>
                   }
                 </tbody>
@@ -205,6 +211,19 @@
           </div>
           <p class="takeaway-content">{{ art.keyTakeaway.content }}</p>
         </div>
+
+        <!-- Related Case Study Callout (if applicable) -->
+        @if (art.caseStudy; as cs) {
+          <div class="case-study-callout-card" id="related-case-study">
+            <span class="eyebrow">Relevant Case Study</span>
+            <h3>{{ cs.title }}</h3>
+            <p>{{ cs.summary }}</p>
+            <a [routerLink]="cs.route" class="service-link">
+              <span>{{ cs.linkText || 'View Case Study' }}</span>
+              <ng-icon name="heroArrowRight" aria-hidden="true" />
+            </a>
+          </div>
+        }
 
         <!-- Full Author Profile Card -->
         <div class="author-full-profile">
