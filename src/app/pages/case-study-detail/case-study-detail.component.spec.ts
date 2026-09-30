@@ -40,6 +40,19 @@ describe('Case Study Detail Component', () => {
       expect(breadcrumbs[1].textContent?.trim()).toBe('Case Studies');
       expect(breadcrumbs[2].textContent?.trim()).toBe(study.title);
 
+      // Accessible Table of Contents
+      const toc = page.querySelector<HTMLElement>('nav.case-study-toc');
+      expect(toc).toBeTruthy();
+      expect(toc?.getAttribute('aria-label')).toBe('Contents');
+      const tocLinks = page.querySelectorAll('nav.case-study-toc .toc-link');
+      expect(tocLinks.length).toBe(study.toc.length);
+      for (const link of Array.from(tocLinks)) {
+        const href = link.getAttribute('href');
+        expect(href?.startsWith('#')).toBe(true);
+        const targetId = href?.slice(1);
+        expect(page.querySelector(`#${targetId}`)).toBeTruthy();
+      }
+
       // Core sections
       expect(page.querySelector('.challenge-section')).not.toBeNull();
       expect(page.querySelector('.constraints-section')).not.toBeNull();
@@ -75,7 +88,10 @@ describe('Case Study Detail Component', () => {
 
       // Contact CTA
       const contactBtn = page.querySelector('.case-cta-section a.button');
-      expect(contactBtn?.getAttribute('href')).toBe('/contact-us?enquiry=project');
+      expect(contactBtn?.getAttribute('href')).toContain('/contact-us?enquiry=project');
+      expect(contactBtn?.getAttribute('href')).toContain(
+        `caseStudy=${encodeURIComponent(study.title)}`,
+      );
     });
   }
 });

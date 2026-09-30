@@ -185,4 +185,35 @@ describe('Contact enquiry form', () => {
     expect(img?.getAttribute('width')).toBe('1024');
     expect(img?.getAttribute('height')).toBe('576');
   });
+
+  it('transparently carries originating case study into enquiry flow with editable message and dismissible badge', () => {
+    component.form.controls.service.setValue('');
+    component.form.controls.message.setValue('');
+    query.next(
+      convertToParamMap({
+        enquiry: 'project',
+        caseStudy: 'Centralized Digital Assessment Platform',
+      }),
+    );
+    fixture.detectChanges();
+
+    expect(component.caseStudyContext()).toBe('Centralized Digital Assessment Platform');
+    expect(component.form.controls.service.value).toBe('Custom Software Development');
+    expect(component.form.controls.message.value).toContain(
+      'Centralized Digital Assessment Platform',
+    );
+
+    const badge = fixture.nativeElement.querySelector('.case-study-badge');
+    expect(badge).toBeTruthy();
+    expect(badge.textContent).toContain('Centralized Digital Assessment Platform');
+
+    component.clearCaseStudyContext();
+    fixture.detectChanges();
+    expect(component.caseStudyContext()).toBe('');
+    expect(fixture.nativeElement.querySelector('.case-study-badge')).toBeNull();
+    // Message is still editable and retained
+    expect(component.form.controls.message.value).toContain(
+      'Centralized Digital Assessment Platform',
+    );
+  });
 });

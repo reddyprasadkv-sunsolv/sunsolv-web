@@ -181,12 +181,91 @@
   border-color: #ffffff;
 }
 
+.hero-actions .button-action-link {
+  background: rgba(98, 220, 224, 0.15);
+  color: #9feaf2;
+  border: 1px solid rgba(98, 220, 224, 0.4);
+}
+
+.hero-actions .button-action-link:hover {
+  background: rgba(98, 220, 224, 0.25);
+  border-color: #62dce0;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Table of Contents Sticky Bar
+   ========================================================================== */
+.case-study-toc {
+  background: rgba(241, 245, 249, 0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #cbd5e1;
+  padding: 12px 0;
+  position: sticky;
+  top: 88px;
+  z-index: 40;
+}
+
+.toc-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  padding-bottom: 2px;
+}
+
+.toc-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.toc-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.toc-list a {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #334155;
+  padding: 5px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  transition: all 150ms ease;
+}
+
+.toc-list a:hover {
+  color: #0284c7;
+  border-color: #0284c7;
+  background: #f8fafc;
+}
+
+.toc-list a:focus-visible {
+  outline: 2px solid #0284c7;
+  outline-offset: 2px;
+}
+
 /* ==========================================================================
    Generic Case Sections & Typography
    ========================================================================== */
-.case-section {
+.case-section,
+.takeaways-section {
   padding-block: clamp(64px, 8vw, 96px);
   border-bottom: 1px solid #e2e8f0;
+  scroll-margin-top: 150px;
 }
 
 .case-section .section-intro {

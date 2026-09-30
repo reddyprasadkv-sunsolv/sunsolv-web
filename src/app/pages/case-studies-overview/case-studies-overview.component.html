@@ -133,6 +133,16 @@
             <a class="button button-case-study" [routerLink]="study.route">
               View Case Study <ng-icon name="heroArrowRight" aria-hidden="true" />
             </a>
+            @if (study.externalAction; as ext) {
+              <a
+                class="button button-external"
+                [href]="ext.url"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {{ ext.label }} <span aria-hidden="true">↗</span>
+              </a>
+            }
             @if (study.industry) {
               <a class="study-industry-tag" [routerLink]="study.industry.route">
                 {{ study.industry.title }}

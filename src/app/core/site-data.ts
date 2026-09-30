@@ -45,6 +45,8 @@ export interface StructuredFaq {
 
 export interface StructuredItem {
   name: string;
+  url?: string;
+  item?: string;
 }
 
 export interface ServiceDefinition {

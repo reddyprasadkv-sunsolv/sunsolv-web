@@ -44,6 +44,17 @@ export interface CaseStudyRelatedInsight {
   readonly readingTime: string;
 }
 
+export interface CaseStudyTocItem {
+  readonly id: string;
+  readonly label: string;
+}
+
+export interface CaseStudyActionLink {
+  readonly label: string;
+  readonly url: string;
+  readonly external?: boolean;
+}
+
 export interface DedicatedCaseStudy {
   readonly id: string;
   readonly slug: string;
@@ -57,6 +68,8 @@ export interface DedicatedCaseStudy {
   readonly canonicalPath: string;
   readonly summaryParagraphs: readonly string[];
   readonly badges: readonly { label: string; value: string }[];
+  readonly toc: readonly CaseStudyTocItem[];
+  readonly actionLink?: CaseStudyActionLink;
   readonly challenge: {
     readonly eyebrow: string;
     readonly heading: string;
@@ -97,6 +110,7 @@ export interface DedicatedCaseStudy {
     readonly width: number;
     readonly height: number;
     readonly caption: string;
+    readonly externalLink?: { label: string; url: string };
   };
   readonly implementationApproach: {
     readonly eyebrow: string;
@@ -131,23 +145,40 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
     seoTitle: 'Digital Assessment Platform Case Study | SunSolv Technologies',
     metaDescription:
       'See how SunSolv designed a digital assessment platform to support question management, assessment delivery, evaluation, reporting and academic workflows.',
-    canonicalPath: 'case-studies/digital-assessment-platform/',
+    canonicalPath: 'case-studies/digital-assessment-platform',
     badges: [
       { label: 'Domain', value: 'Education Technology' },
       { label: 'Focus', value: 'Assessment Lifecycle' },
       { label: 'Architecture', value: 'Angular · TypeScript · Node.js' },
     ],
+    toc: [
+      { id: 'challenge', label: 'The Challenge' },
+      { id: 'context', label: 'Operational Context' },
+      { id: 'approach', label: 'Implementation Philosophy' },
+      { id: 'solution', label: 'Delivered Architecture' },
+      { id: 'capabilities', label: 'Platform Capabilities' },
+      { id: 'workflow', label: 'Workflow & Visuals' },
+      { id: 'implementation', label: 'Delivery Framework' },
+      { id: 'outcomes', label: 'Operational Value' },
+      { id: 'takeaways', label: 'Key Takeaway' },
+      { id: 'ecosystem', label: 'Connected Services' },
+    ],
+    actionLink: {
+      label: 'View Public Workflow Overview',
+      url: 'https://digitalassessment.sunsolv.in/#workflow',
+      external: true,
+    },
     summaryParagraphs: [
-      'Assessment workflows can involve multiple stages including question preparation, assessment creation, student assignment, test delivery, evaluation, result publication and reporting.',
-      'When these activities are managed through disconnected tools or manual processes, institutions can face duplicated effort, limited visibility and difficulty maintaining a consistent workflow.',
-      'SunSolv engineered an end-to-end web assessment platform built with Angular, TypeScript, and Node.js that brings assessment creation, delivery, evaluation and reporting into a unified digital workflow.',
+      'Managing assessments across multiple programs involves question authoring, test scheduling, candidate participation, grading, and grade reporting.',
+      'SunSolv engineered a centralized web assessment platform built with Angular, TypeScript, and Node.js that brings assessment creation, test delivery, rubric evaluation, and score reporting into a coherent workflow.',
+      'The platform separates administrative oversight from student testing and faculty evaluation, creating a dependable, responsive environment for academic operations.',
     ],
     challenge: {
       eyebrow: 'The Operational Challenge',
       heading: 'Overcoming Fragmented Academic Examination Workflows',
       paragraphs: [
-        'Assessment workflows can involve multiple stages including question preparation, assessment creation, student assignment, test delivery, evaluation, result publication and reporting. When these activities are managed through disconnected tools or manual processes, institutions can face duplicated effort, limited visibility and difficulty maintaining a consistent workflow.',
-        'Academic institutions and training organizations frequently coordinate testing across disparate spreadsheets, document templates, email threads, and independent grading sheets. This operational fragmentation increases the risk of paper handling errors, introduces scheduling bottlenecks, and delays result turnaround for students and administrators.',
+        'Academic institutions and training organizations frequently coordinate testing across disparate spreadsheets, document templates, email threads, and independent grading sheets.',
+        'This operational fragmentation increases the risk of paper handling errors, introduces scheduling bottlenecks, and delays result turnaround for students and administrators.',
       ],
       frictionPoints: [
         {
@@ -177,12 +208,12 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
       heading: 'How the Process Operated Before Implementation',
       paragraphs: [
         'Prior to implementing a centralized assessment platform, examination processes were split across distinct administrative silos. Faculty members drafted questions in local text documents and emailed them to department chairs for compilation.',
-        'Administrative staff manually compiled test papers, distributed schedules via noticeboards or separate portal announcements, and collected physical or form-based submissions. Following testing, instructors graded answer scripts individually, manually calculated percentage scores, and submitted paper ledgers to registrars for final tabulation.',
+        'Administrative staff manually compiled test papers, distributed schedules via noticeboards or separate portal announcements, and collected physical or form-based submissions. Following testing, instructors graded answer scripts individually, calculated scores manually, and submitted physical ledgers to registrars for final tabulation.',
       ],
       constraints: [
         'Lack of centralized question versioning and difficulty preventing unauthorized distribution prior to test sessions.',
         'High administrative labor hours required to assemble, schedule, and distribute unique assessments across different student cohorts.',
-        'Absence of automated session recovery for candidates experiencing client-side connection drops during timed examinations.',
+        'Risk of progress loss for candidates experiencing client-side connection drops during timed examinations without local state recovery.',
         'Multi-week turnaround times to manually grade subjective answers, compute aggregate statistics, and publish official records.',
       ],
     },
@@ -202,7 +233,7 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
         {
           title: 'Resilient Test Sessions',
           description:
-            'Implement local state autosave and heartbeat validation so candidate progress is continuously preserved against network interruptions.',
+            'Implement local state autosave to help preserve candidate progress against temporary network interruptions.',
         },
         {
           title: 'Role-Based Clarity',
@@ -210,9 +241,9 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
             'Provide distinct, distraction-free interfaces tailored to the exact responsibilities of Administrators, Authors, Students, and Evaluators.',
         },
         {
-          title: 'Auditable Evaluation',
+          title: 'Structured Evaluation',
           description:
-            'Combine instant automated scoring for objective questions with structured rubric guidelines for descriptive answers.',
+            'Combine instant automated scoring for objective questions with standardized rubric guidelines for descriptive answers.',
         },
       ],
     },
@@ -246,79 +277,76 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
         {
           title: 'Secure Timed Delivery with Autosave',
           description:
-            'Provide students with a clean, focused testing interface featuring real-time countdown enforcement, local state autosave, and session recovery.',
+            'Provide students with a clean, focused testing interface featuring real-time countdown enforcement and local state autosave to help recover responses if disconnected.',
         },
         {
-          title: 'Rubric-Based Evaluation Workflows',
+          title: 'Rubric-Based Evaluation & Score Computation',
           description:
-            'Enable educators to review descriptive responses against standardized scoring rubrics with inline feedback and annotation tools.',
+            'Enable evaluators to review descriptive submissions against standardized rubric criteria while automated scoring handles objective question types.',
         },
         {
-          title: 'Automated Score Computation',
+          title: 'Institutional Grade Reports & Export',
           description:
-            'Calculate objective question scores automatically upon test submission while tallying composite marks across weighted sections.',
+            'Generate class performance analytics, grade distributions, and downloadable CSV/Excel ledgers for registrar systems.',
         },
         {
-          title: 'Role-Based Access Control',
+          title: 'Role-Based Authorization',
           description:
-            'Enforce granular authorization boundaries across Institutional Administrators, Question Authors, Evaluators, and Students.',
-        },
-        {
-          title: 'Academic Reporting & Data Export',
-          description:
-            'Generate institutional performance summaries, sectional difficulty analyses, and structured grade sheet exports.',
+            'Enforce strict permission boundaries separating Super Administrators, Institution Coordinators, Faculty Authors, Evaluators, and Students.',
         },
       ],
     },
     workflowDiagram: {
       eyebrow: 'Process Architecture',
-      heading: 'End-to-End Assessment Process Flow',
+      heading: 'The End-to-End Assessment Workflow',
       description:
-        'The platform connects educators, administrators, candidates, and evaluators through a continuous digital workflow.',
+        'The platform connects the complete lifecycle from institutional setup through review and reporting.',
       stages: [
         {
           number: '01',
-          title: 'Question Bank',
-          subtitle: 'Authoring & Tagging',
-          role: 'Educators & Authors',
-          description:
-            'Multi-format question drafting, tagging by difficulty, and editorial review.',
+          title: 'Institution & Program Setup',
+          subtitle: 'Administrative Onboarding',
+          role: 'Admin',
+          description: 'Configure institutional settings, academic departments, and grading rules.',
         },
         {
           number: '02',
-          title: 'Assessment Assembly',
-          subtitle: 'Rules & Rubrics',
-          role: 'Administrators',
+          title: 'Team & Faculty Allocation',
+          subtitle: 'Role & Subject Assignment',
+          role: 'Coordinator',
           description:
-            'Timing configuration, section weighting, scoring criteria, and rubric definitions.',
+            'Designate subject leads, question authors, and assigned evaluation faculty.',
         },
         {
           number: '03',
-          title: 'Student Assignment',
-          subtitle: 'Cohorts & Access',
-          role: 'Administrators',
-          description: 'Cohort enrollment, credential distribution, and scheduling windows.',
+          title: 'Assessment Configuration',
+          subtitle: 'Bank Selection & Timing',
+          role: 'Faculty Author',
+          description: 'Select question modules, set time limits, and define scoring rubrics.',
         },
         {
           number: '04',
-          title: 'Assessment Delivery',
-          subtitle: 'Timed Test Session',
-          role: 'Students',
-          description: 'Secure browser session with local state autosave and time enforcement.',
+          title: 'Cohort & Access Control',
+          subtitle: 'Student Enrollment',
+          role: 'Coordinator',
+          description:
+            'Assign eligible student batches, generate unique access keys, and schedule windows.',
         },
         {
           number: '05',
-          title: 'Evaluation & Scoring',
-          subtitle: 'Rubrics & Automation',
-          role: 'Evaluators & Engine',
-          description: 'Instant objective scoring combined with structured descriptive review.',
+          title: 'Examination Delivery',
+          subtitle: 'Timed Candidate Testing',
+          role: 'Student',
+          description:
+            'Complete timed tests with automated state preservation and countdown timers.',
         },
         {
           number: '06',
-          title: 'Results & Reporting',
-          subtitle: 'Analytics & Export',
-          role: 'Leadership & Registrars',
-          description: 'Performance breakdowns, grade publication, and curriculum insights.',
+          title: 'Evaluation & Reporting',
+          subtitle: 'Rubrics & Publication',
+          role: 'Evaluator / Admin',
+          description:
+            'Grade subjective responses, compile cumulative statistics, and export transcripts.',
         },
       ],
     },
@@ -328,109 +356,123 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
       width: 1440,
       height: 1000,
       caption:
-        'Public product-page workflow overview. No student or institution records are shown.',
+        'Public product-page workflow overview from https://digitalassessment.sunsolv.in/#workflow. Demonstrates the conceptual six-stage lifecycle; does not display actual student data, examination interfaces, or institutional dashboards.',
+      externalLink: {
+        label: 'View public workflow overview',
+        url: 'https://digitalassessment.sunsolv.in/#workflow',
+      },
     },
     implementationApproach: {
       eyebrow: 'Delivery Methodology',
-      heading: 'Practical Delivery in Four Disciplined Stages',
+      heading: 'A Phased Implementation Approach',
       steps: [
         {
           number: '01',
           title: 'Discover',
           description:
-            'Mapped institutional examination regulations, user personas, evaluation criteria, and academic data privacy requirements.',
+            'Engage academic stakeholders to map existing examination guidelines, rubric structures, question formats, and cohort scheduling requirements.',
         },
         {
           number: '02',
           title: 'Define',
           description:
-            'Structured schemas for multi-format questions, rubric criteria, scoring algorithms, and client-side autosave persistence models.',
+            'Establish data models for multi-format questions, state recovery architectures, timing constraints, and permission boundaries across user tiers.',
         },
         {
           number: '03',
           title: 'Deliver',
           description:
-            'Engineered responsive Angular frontend components, secure Node.js backend services, and dedicated evaluator dashboards.',
+            'Engineer the responsive Angular interface, robust Node.js backend services, local autosave mechanisms, and rubric evaluation dashboards.',
         },
         {
           number: '04',
           title: 'Evolve',
           description:
-            'Monitored test session reliability under concurrency, gathered faculty review feedback, and refined export reporting formats.',
+            'Gather evaluator feedback, analyze session timing patterns, refine rubric grading workflows, and optimize high-concurrency performance.',
         },
       ],
     },
     outcomes: {
-      eyebrow: 'Demonstrated Outcomes',
-      heading: 'Factual Operational Value Delivered',
+      eyebrow: 'Operational Benefits',
+      heading: 'Delivered Capabilities and Operational Value',
       items: [
         {
-          title: 'Unified Examination Lifecycle',
+          title: 'Centralized Administrative Control',
           description:
-            'The solution brings assessment creation, delivery, evaluation and reporting into a unified digital workflow.',
+            'Institutions manage question curation, scheduling, and results from a single secure environment rather than scattered documents.',
         },
         {
-          title: 'Role-Based Operational Clarity',
+          title: 'Streamlined Examination Turnaround',
           description:
-            'Role-based functionality helps different users work within the same platform while accessing the capabilities relevant to their responsibilities.',
+            'Automated objective scoring and standardized rubric tools substantially accelerate grading cycles for faculty and students.',
         },
         {
-          title: 'Centralized Institutional Data',
+          title: 'Resilient Testing Experience',
           description:
-            'Centralized assessment data creates a stronger foundation for reporting and future workflow improvements.',
+            'Local autosave reduces the impact of intermittent client connectivity disruptions during live examination sessions.',
         },
         {
-          title: 'Resilient Candidate Experience',
+          title: 'Auditability and Grade Governance',
           description:
-            'Local state autosave and session recovery prevent test progress loss during temporary client-side network interruptions.',
+            'Comprehensive audit logs for submissions, evaluations, and score revisions ensure transparency throughout academic grading.',
         },
       ],
     },
     keyTakeaways: {
-      eyebrow: 'Key Takeaway',
-      heading: 'What This Implementation Demonstrates',
+      eyebrow: 'Strategic Takeaway',
+      heading: 'Process Continuity Over Point Tools',
       takeaway:
-        'A successful education technology implementation does not merely digitize a paper examination; it connects authoring, delivery, evaluation, and reporting into a cohesive operational workflow that reduces administrative burden while maintaining rigorous academic integrity.',
+        'Educational technology succeeds when it treats assessment as a continuous academic workflow rather than an isolated testing event. Connecting question curation, secure delivery, structured rubric evaluation, and institutional reporting creates a dependable operational foundation for educators and students alike.',
     },
     relatedServices: [
       {
         slug: 'custom-software-development',
         title: 'Custom Software Development',
-        description: 'Software shaped around your specific operational workflows.',
+        description:
+          'Purpose-built web platforms tailored to specialized institutional and business workflows.',
         route: '/services/custom-software-development',
       },
       {
         slug: 'web-mobile-development',
         title: 'Web & Mobile Development',
-        description: 'High-performing, responsive digital experiences built to scale.',
+        description:
+          'Responsive, high-performance web applications engineered for cross-device dependability.',
         route: '/services/web-mobile-development',
       },
       {
-        slug: 'digital-transformation',
-        title: 'Digital Transformation',
-        description: 'Modernize critical operations without disrupting ongoing delivery.',
-        route: '/services/digital-transformation',
+        slug: 'cloud-solutions',
+        title: 'Cloud Solutions',
+        description:
+          'Scalable cloud infrastructure supporting resilient web delivery and data persistence.',
+        route: '/services/cloud-solutions',
       },
     ],
     relatedIndustry: {
       title: 'Education',
       route: '/industries/education',
       description:
-        'Explore SunSolv technology solutions for learning institutions, platforms, and academic workflows.',
+        'Explore how SunSolv builds accessible learning platforms, student management workflows, and digital assessment tools for education.',
     },
     relatedInsights: [
       {
-        title: 'How Digital Assessment Platforms Can Improve Education Workflows',
+        title:
+          'How Digital Assessment Platforms Can Improve Education Workflows (Without Adding Friction)',
         route:
           '/insights/industries/how-digital-assessment-platforms-can-improve-education-workflows/',
-        categoryTitle: 'Industry Insights',
-        readingTime: '9 min read',
+        categoryTitle: 'Industries',
+        readingTime: '8 min read',
       },
       {
         title: 'Custom Software vs SaaS: How Should Businesses Decide?',
         route:
           '/insights/software-engineering/custom-software-vs-saas-how-should-businesses-decide/',
         categoryTitle: 'Software Engineering',
+        readingTime: '8 min read',
+      },
+      {
+        title: 'What Makes a High-Performing Digital Experience?',
+        route: '/insights/digital-experience/what-makes-a-high-performing-digital-experience/',
+        categoryTitle: 'Digital Experience',
         readingTime: '8 min read',
       },
     ],
@@ -447,44 +489,61 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
     seoTitle: 'Business Solution Finder Case Study | SunSolv Technologies',
     metaDescription:
       'Explore how SunSolv structured a guided digital solution to help users identify relevant technology approaches based on business needs and challenges.',
-    canonicalPath: 'case-studies/business-solution-finder/',
+    canonicalPath: 'case-studies/business-solution-finder',
     badges: [
       { label: 'Domain', value: 'Service Discovery' },
       { label: 'Focus', value: 'Interactive Diagnostics' },
-      { label: 'Architecture', value: 'Angular Reactive · Privacy-First' },
+      { label: 'Architecture', value: 'Angular Reactive · In-Memory State' },
     ],
+    toc: [
+      { id: 'challenge', label: 'The Challenge' },
+      { id: 'context', label: 'Operational Context' },
+      { id: 'approach', label: 'Implementation Philosophy' },
+      { id: 'solution', label: 'Delivered Architecture' },
+      { id: 'capabilities', label: 'Platform Capabilities' },
+      { id: 'workflow', label: 'Workflow & Visuals' },
+      { id: 'implementation', label: 'Delivery Framework' },
+      { id: 'outcomes', label: 'Operational Value' },
+      { id: 'takeaways', label: 'Key Takeaway' },
+      { id: 'ecosystem', label: 'Connected Services' },
+    ],
+    actionLink: {
+      label: 'Try Business Solution Finder',
+      url: 'https://solutionfinder.sunsolv.in/',
+      external: true,
+    },
     summaryParagraphs: [
-      'Organizations often know the operational issues they want to address—such as reducing repetitive work, modernizing legacy systems, or moving infrastructure to the cloud—but may not know which technology service or architectural approach is appropriate.',
-      'SunSolv designed and developed the Business Solution Finder, an interactive, responsive diagnostic web application built with Angular Reactive Architecture that helps decision-makers explore and articulate their technical requirements.',
-      'Through a guided discovery questionnaire across 12 operational categories, the application connects user priorities to defined architecture patterns and suggests focused solution tracks with actionable next steps.',
+      'Organizations often understand the operational friction they want to address—such as manual work, outdated systems, or cloud migration—but may not know which technology service or architectural pattern is best suited.',
+      'SunSolv developed the Business Solution Finder, a responsive diagnostic web application built with Angular Reactive Architecture that helps decision-makers explore and clarify their technical requirements.',
+      'Through a guided discovery questionnaire across 12 operational categories, the application evaluates user priorities and suggests focused solution tracks with concrete next steps.',
     ],
     challenge: {
       eyebrow: 'The Operational Challenge',
       heading: 'Bridging the Gap Between Business Problems and Technical Scoping',
       paragraphs: [
-        'Business users may describe challenges in operational terms rather than technical requirements. For example: reducing repetitive work, improving customer experience, modernizing an outdated system, connecting disconnected applications, improving reporting, or exploring artificial intelligence. The challenge is turning those needs into a structured technology conversation.',
-        'Prospective clients frequently struggled to translate high-level business goals into specific technical requirements, often resulting in ambiguous project briefs, misaligned initial discussions, and protracted scoping cycles.',
+        'Business users describe problems in operational terms: reducing administrative time, improving customer experience, connecting siloed applications, or modernizing legacy software. Translating those operational needs into a clear technical scope often requires extensive early discovery.',
+        'Without a structured framework, initial discussions frequently stall on ambiguous requirements, leading to prolonged scoping discussions and delayed project initiation.',
       ],
       frictionPoints: [
         {
           title: 'Vocabulary Mismatch',
           description:
-            'Business leaders frame needs around operational bottlenecks, while technology teams require architectural parameters.',
+            'Business leaders articulate goals in operational terms, while engineering teams require functional parameters.',
         },
         {
           title: 'Ambiguous Initial Briefs',
           description:
-            'Generic contact forms fail to collect sufficient context regarding existing systems, data volume, and timeline urgency.',
+            'Generic web forms fail to collect sufficient context regarding operational workflows, integration needs, and scale.',
         },
         {
-          title: 'Protracted Scoping Meetings',
+          title: 'Protracted Scoping Cycles',
           description:
-            'Multiple introductory sessions were often needed just to identify which technology practice area a project fell under.',
+            'Multiple introductory sessions were often needed just to identify which engineering practice area a project fell under.',
         },
         {
           title: 'Premature Technology Selection',
           description:
-            'Organizations risked committing to specific tools before clarifying whether their challenge required software, cloud, or automation.',
+            'Organizations risked committing to specific tools before clarifying whether their challenge required custom development, cloud modernization, or process automation.',
         },
       ],
     },
@@ -492,22 +551,22 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
       eyebrow: 'Operational Context',
       heading: 'How Requirements Scoping Typically Operated',
       paragraphs: [
-        'Traditionally, organizations seeking technology services begin by submitting basic web contact forms or scheduling unstructured discovery calls. Without interactive guidance, inquiries frequently arrive with incomplete context, such as asking for "an AI solution" without specifying the underlying workflow, data maturity, or operational constraints.',
-        'Technology consulting teams had to conduct multiple discovery interviews simply to categorize the request, determine if cloud migration, custom software, or process automation was appropriate, and draft a high-level scoping document.',
+        'Traditionally, organizations seeking technology services begin by submitting basic contact inquiries or scheduling unstructured introductory calls. Inquiries often arrive with minimal context, such as asking for "an automation system" without specifying user workflows or existing software integrations.',
+        'Consulting teams were required to conduct repetitive exploratory calls simply to categorize requests and determine whether cloud migration, custom software, or process automation was appropriate before drafting an initial scope.',
       ],
       constraints: [
-        'Reliance on freeform text inquiries provided inconsistent information for evaluating technical feasibility.',
-        'Decision-makers often lacked visibility into alternative architectural patterns that could solve their core operational issue more effectively.',
-        'Extended multi-week delays between initial inquiry and receiving a structured, aligned technology proposal.',
-        'Potential privacy concerns when prospective clients hesitate to share internal systems details on unguided public forms.',
+        'Freeform inquiries provided inconsistent information for evaluating technical feasibility and project scope.',
+        'Decision-makers had limited visibility into alternative architectural patterns that could address their operational friction.',
+        'Multi-week delays often occurred between initial inquiry submission and receiving an aligned technology roadmap.',
+        'Hesitation by prospective clients to share detailed internal systems context on unguided web forms.',
       ],
     },
     approach: {
       eyebrow: 'Implementation Philosophy',
       heading: 'Structuring a Guided Discovery Journey',
       paragraphs: [
-        'SunSolv structured the discovery approach around an intuitive progression: Business Need → Diagnostic Questions → Context → Technology Options → Suggested Solution Path.',
-        'The experience is designed to support initial discovery and help users frame the problem more clearly. Complex technology decisions may still require deeper assessment, and the tool serves as a structured entry point rather than a replacement for engineering consultation.',
+        'SunSolv structured the discovery approach around a progressive diagnostic journey: Business Need → Diagnostic Questions → Context → Technology Options → Suggested Solution Path.',
+        'The experience is designed to support initial discovery and help users frame problems clearly. Complex technology decisions still benefit from deeper consultation, and the tool serves as an interactive starting point rather than a replacement for engineering advisory.',
       ],
       principles: [
         {
@@ -521,12 +580,12 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
             'Present lightweight, conditional questions tailored specifically to the operational domain selected by the user.',
         },
         {
-          title: 'Privacy-First Architecture',
+          title: 'Client-Side Privacy Controls',
           description:
-            'Run entirely client-side using in-memory state; no user responses or identifying details are stored without explicit consultation submission.',
+            'Run the diagnostic flow in browser memory; user responses are not stored in tracking databases during questionnaire exploration.',
         },
         {
-          title: 'Transparent Next Steps',
+          title: 'Actionable Next Steps',
           description:
             'Provide immediate architectural context and synthesize a structured brief that can directly inform subsequent consulting conversations.',
         },
@@ -536,7 +595,7 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
       eyebrow: 'Delivered Architecture',
       heading: 'A Responsive, Reactive Diagnostic Web Application',
       paragraphs: [
-        'SunSolv engineered a responsive diagnostic application using Angular Reactive Architecture. The application guides users through an interactive 12-category discovery questionnaire, evaluates their answers against verified architectural patterns, and synthesizes tailored service recommendations with concrete next steps.',
+        'SunSolv engineered a responsive diagnostic application using Angular Reactive Architecture. The application guides users through an interactive 12-category discovery questionnaire, evaluates their answers against defined architectural patterns, and synthesizes tailored service recommendations with concrete next steps.',
         'The interface maintains instant responsiveness, providing real-time visual progress as users refine their requirements. Upon completion, users receive a synthesized project overview that cleanly translates operational challenges into technical tracks.',
       ],
     },
@@ -565,62 +624,70 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
             'Consolidates user selections into an actionable project brief highlighting recommended technology services and delivery priorities.',
         },
         {
-          title: 'Zero-Storage Privacy Architecture',
+          title: 'In-Memory Client-Side State',
           description:
-            'Operates in-memory without persistent cookies or tracking databases, ensuring complete client confidentiality during exploration.',
+            'User responses remain in client-side component memory during the discovery steps without persistent tracking databases or advertising cookies; details are only transmitted if the visitor chooses to submit an enquiry.',
         },
         {
-          title: 'Seamless Consultation Handoff',
+          title: 'Structured Consultation Handoff',
           description:
-            'Enables users to attach their synthesized diagnostic brief directly to project inquiry submissions for focused initial discussions.',
+            'Enables users to carry their synthesized diagnostic summary directly into project inquiry submissions for focused initial discussions.',
         },
       ],
     },
     workflowDiagram: {
       eyebrow: 'Process Architecture',
-      heading: 'Guided Solution Discovery Workflow',
+      heading: 'The Discovery-to-Action User Journey',
       description:
-        'How the application translates business goals into structured technology delivery tracks.',
+        'How the application guides users from initial challenge exploration through to actionable project scoping.',
       stages: [
         {
           number: '01',
-          title: 'Business Need',
-          subtitle: 'Category Selection',
-          role: 'Decision-Maker',
+          title: 'Category Selection',
+          subtitle: 'Operational Focus',
+          role: 'Decision Maker',
           description:
-            'Identify the primary operational challenge across 12 core business domains.',
+            'Choose from 12 operational domains including modernization, cloud, software, or AI.',
         },
         {
           number: '02',
-          title: 'Diagnostic Questions',
-          subtitle: 'Operational Context',
-          role: 'Interactive UI',
+          title: 'Context Diagnostics',
+          subtitle: 'Operational Questions',
+          role: 'Decision Maker',
           description:
-            'Answer adaptive questions regarding workflow complexity, users, and constraints.',
+            'Answer contextual prompts detailing current systems, team size, and integration points.',
         },
         {
           number: '03',
-          title: 'Requirement Mapping',
-          subtitle: 'Pattern Matching',
-          role: 'Reactive Engine',
+          title: 'Priority Calibration',
+          subtitle: 'Timeline & Scale',
+          role: 'Decision Maker',
           description:
-            'Evaluate answers against established software, cloud, and AI architecture patterns.',
+            'Indicate delivery urgency, compliance constraints, and expected user scale.',
         },
         {
           number: '04',
-          title: 'Solution Tracks',
-          subtitle: 'Tailored Direction',
-          role: 'Diagnostic Output',
+          title: 'Pattern Evaluation',
+          subtitle: 'Architecture Matching',
+          role: 'Engine',
           description:
-            'Present aligned service tracks with clear technical and architectural rationale.',
+            'Evaluate entered criteria against verified architecture patterns and delivery models.',
         },
         {
           number: '05',
-          title: 'Consultation Brief',
-          subtitle: 'Handoff & Next Steps',
-          role: 'User & SunSolv',
+          title: 'Track Recommendation',
+          subtitle: 'Tailored Services',
+          role: 'Engine',
           description:
-            'Generate a structured brief ready for focused initial engineering assessment.',
+            'Synthesize primary and secondary technology tracks best suited to the operational need.',
+        },
+        {
+          number: '06',
+          title: 'Brief Synthesis & Action',
+          subtitle: 'Consultation Brief',
+          role: 'User & Advisory',
+          description:
+            'Export or submit the structured brief to initiate focused engineering scoping.',
         },
       ],
     },
@@ -630,103 +697,104 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
       width: 1425,
       height: 990,
       caption:
-        'Live application, opening category-selection step. No responses or contact details have been entered.',
+        'Live application opening category-selection step from https://solutionfinder.sunsolv.in/. Displays the initial 12-category discovery wizard before responses are entered; no customer or contact details are present.',
+      externalLink: {
+        label: 'Try Business Solution Finder',
+        url: 'https://solutionfinder.sunsolv.in/',
+      },
     },
     implementationApproach: {
       eyebrow: 'Delivery Methodology',
-      heading: 'Designing and Iterating the Diagnostic Framework',
+      heading: 'A Focused Engineering Process',
       steps: [
         {
           number: '01',
           title: 'Discover',
           description:
-            'Cataloged recurring client scoping questions across cloud migration, software development, IT consulting, and data automation engagements.',
+            'Catalog common business challenges across client inquiries and establish a taxonomic model mapping organizational problems to technology disciplines.',
         },
         {
           number: '02',
           title: 'Define',
           description:
-            'Established the 12-category matrix and wrote adaptive diagnostic questions linking non-technical problem descriptions to engineering capabilities.',
+            'Design the diagnostic questionnaire flows, decision-tree branching logic, in-memory state contracts, and recommendation synthesis rules.',
         },
         {
           number: '03',
           title: 'Deliver',
           description:
-            'Built an accessible, reactive Angular frontend interface with immediate visual state feedback and zero data persistence overhead.',
+            'Develop the reactive Angular application, responsive interaction flows, real-time brief generator, and privacy-preserving client architecture.',
         },
         {
           number: '04',
           title: 'Evolve',
           description:
-            'Refined question phrasing and service mapping based on consultation feedback to maximize clarity for non-technical leadership.',
+            'Evaluate user interaction patterns, refine diagnostic questions based on user clarity, and continuously update recommended technology tracks.',
         },
       ],
     },
     outcomes: {
-      eyebrow: 'Demonstrated Outcomes',
-      heading: 'Factual Operational Value Delivered',
+      eyebrow: 'Operational Benefits',
+      heading: 'Delivered Capabilities and Operational Value',
       items: [
         {
-          title: 'Structured Scoping Entry Point',
+          title: 'Clearer Requirements Upfront',
           description:
-            'The solution creates a structured entry point for users who may understand their business problem but not yet know which technology approach to explore.',
+            'Prospective clients frame their operational needs with greater structure, reducing ambiguity in early conversations.',
         },
         {
-          title: 'Bridge for Technical Communication',
+          title: 'Accelerated Scoping Conversations',
           description:
-            'It connects business language with relevant technology capabilities and provides a clearer path toward further assessment.',
+            'Initial consulting sessions start with an established baseline of constraints, scale, and recommended technology services.',
         },
         {
-          title: 'Pre-Scoping Clarity',
+          title: 'Transparent Self-Service Exploration',
           description:
-            'Decision-makers gain upfront clarity regarding their operational scope, reducing back-and-forth ambiguity and accelerating the path to focused technology delivery.',
+            'Decision-makers explore potential technology tracks independently and comfortably before initiating formal discussions.',
         },
         {
-          title: 'Client Data Protection',
+          title: 'Privacy-Preserving User Experience',
           description:
-            'Zero-storage architecture ensures prospective clients can explore technical options without confidentiality risks.',
+            'In-memory state management ensures visitors explore options without premature data persistence or tracking friction.',
         },
       ],
     },
     keyTakeaways: {
-      eyebrow: 'Key Takeaway',
-      heading: 'What This Implementation Demonstrates',
+      eyebrow: 'Strategic Takeaway',
+      heading: 'Clarity at the Point of Entry',
       takeaway:
-        'Interactive diagnostic experiences bridge the gap between high-level business objectives and concrete technical execution, empowering non-technical decision-makers to structure their requirements and engage in focused, productive engineering conversations.',
+        'Early clarity in software and consulting engagements substantially reduces scoping cycles. By providing a guided, privacy-first diagnostic experience, organizations can translate complex business challenges into structured technical roadmaps before committing engineering resources.',
     },
     relatedServices: [
       {
         slug: 'it-consulting',
         title: 'IT Consulting',
-        description: 'Make confident, well-structured technology decisions.',
+        description:
+          'Technology strategy, enterprise architecture reviews, and actionable implementation roadmaps.',
         route: '/services/it-consulting',
+      },
+      {
+        slug: 'custom-software-development',
+        title: 'Custom Software Development',
+        description:
+          'Bespoke software platforms engineered around specialized organizational workflows.',
+        route: '/services/custom-software-development',
       },
       {
         slug: 'digital-transformation',
         title: 'Digital Transformation',
-        description: 'Modernize operational workflows with clear alignment.',
+        description:
+          'Modernize operational processes, eliminate bottlenecks, and connect disparate systems.',
         route: '/services/digital-transformation',
-      },
-      {
-        slug: 'web-mobile-development',
-        title: 'Web & Mobile Development',
-        description: 'Responsive, user-centric web applications built for speed.',
-        route: '/services/web-mobile-development',
       },
     ],
     relatedIndustry: {
-      title: 'SaaS',
+      title: 'SaaS & Digital Platforms',
       route: '/industries/saas',
       description:
-        'Explore how SunSolv supports software enterprises with product engineering, modern architecture, and customer experience.',
+        'Digital products and SaaS platforms benefit from self-service discovery workflows that help users assess their requirements and navigate complex service offerings.',
     },
     relatedInsights: [
-      {
-        title: 'How to Identify the Right AI Use Case for Your Business',
-        route: '/insights/ai-automation/how-to-identify-the-right-ai-use-case-for-your-business/',
-        categoryTitle: 'AI & Automation',
-        readingTime: '8 min read',
-      },
       {
         title: 'How to Build a Practical Technology Roadmap',
         route: '/insights/technology-strategy/how-to-build-a-practical-technology-roadmap/',
@@ -734,10 +802,18 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
         readingTime: '8 min read',
       },
       {
-        title: 'AI vs Automation: Which Does Your Business Actually Need?',
-        route: '/insights/ai-automation/ai-vs-automation-which-does-your-business-actually-need/',
-        categoryTitle: 'AI & Automation',
+        title: 'Custom Software vs SaaS: How Should Businesses Decide?',
+        route:
+          '/insights/software-engineering/custom-software-vs-saas-how-should-businesses-decide/',
+        categoryTitle: 'Software Engineering',
         readingTime: '8 min read',
+      },
+      {
+        title: 'What Should a Digital Transformation Roadmap Include?',
+        route:
+          '/insights/digital-transformation/what-should-a-digital-transformation-roadmap-include/',
+        categoryTitle: 'Digital Transformation',
+        readingTime: '9 min read',
       },
     ],
   },
@@ -753,44 +829,56 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
     seoTitle: 'Invoice & Project Management System Case Study | SunSolv',
     metaDescription:
       'See how SunSolv designed an integrated system for managing projects, invoices, payments, vendor assignments and business reporting.',
-    canonicalPath: 'case-studies/invoice-project-management-system/',
+    canonicalPath: 'case-studies/invoice-project-management-system',
     badges: [
       { label: 'Domain', value: 'Operations & Billing' },
-      { label: 'Focus', value: 'Delivery-Billing Sync' },
-      { label: 'Architecture', value: 'Node.js · Express · Relational DB' },
+      { label: 'Focus', value: 'Project & Invoice Tracking' },
+      { label: 'Architecture', value: 'Relational Web Application' },
+    ],
+    toc: [
+      { id: 'challenge', label: 'The Challenge' },
+      { id: 'context', label: 'Operational Context' },
+      { id: 'approach', label: 'Implementation Philosophy' },
+      { id: 'solution', label: 'Delivered Architecture' },
+      { id: 'capabilities', label: 'Platform Capabilities' },
+      { id: 'workflow', label: 'Workflow & Visuals' },
+      { id: 'implementation', label: 'Delivery Framework' },
+      { id: 'outcomes', label: 'Operational Value' },
+      { id: 'takeaways', label: 'Key Takeaway' },
+      { id: 'ecosystem', label: 'Connected Services' },
     ],
     summaryParagraphs: [
-      'Project-based businesses often need to connect information that is managed separately across customer records, project delivery, invoices, vendor costs and payment tracking.',
-      'When these workflows are separated, teams may have difficulty obtaining a consolidated view of project status, outstanding payments and project-level financial performance.',
-      'SunSolv architected a unified operations web application utilizing Node.js, Express, relational data persistence, and secure token-based authentication to synchronize delivery milestones and billing workflows into a single verifiable system.',
+      'Project-based businesses often struggle when customer records, milestone deliverables, invoices, developer costs, and payment receipts live in fragmented tools.',
+      'SunSolv designed an integrated operations web application that brings project tracking, developer assignments, invoice creation, payment recording, and financial reporting into one coherent operational workflow.',
+      'The platform enables project leads and operational administrators to track work from initial project setup through deliverable completion, billing, and balance reconciliation.',
     ],
     challenge: {
       eyebrow: 'The Operational Challenge',
       heading: 'Overcoming Fragmented Project Billing and Resource Tracking',
       paragraphs: [
-        'Project-based businesses often need to connect information that is managed separately across customer records, project delivery, invoices, vendor costs and payment tracking. When these workflows are separated, teams may have difficulty obtaining a consolidated view of project status, outstanding payments and project-level financial performance.',
-        'Operational workflows were disjointed across independent spreadsheets, manual invoicing tools, and chat channels. Project progress, billable developer hours, payment tracking, and outstanding receivables lacked real-time synchronization.',
+        'Managing professional projects across independent spreadsheets, manual invoicing software, and email threads creates administrative bottlenecks. Key information regarding project deliverables, resource allocation, and billing milestones becomes difficult to consolidate.',
+        'Without an integrated workflow, teams experience delays between milestone completion and invoice issuance, uncertainty around outstanding balances, and lack of clarity on project-level financial performance.',
       ],
       frictionPoints: [
         {
           title: 'Disconnected Tracking Sheets',
           description:
-            'Customer details, project deliverables, and contractor invoices lived in separate documents, requiring frequent manual consolidation.',
+            'Client details, project deliverables, and contractor invoices lived in separate documents, requiring repetitive manual consolidation.',
         },
         {
-          title: 'Billing Lag & Missed Milestones',
+          title: 'Billing Lag & Milestone Visibility',
           description:
-            'Without direct linkage between delivery completion and invoice generation, completed milestones often experienced billing delays.',
+            'Without direct connection between delivery sign-offs and invoice creation, completed milestones often experienced administrative billing delays.',
         },
         {
           title: 'Opaque Cost Attribution',
           description:
-            'Developer allocations and vendor payments were not synchronized against project revenue, obscuring actual project-level gross margins.',
+            'Developer allocations and vendor payments were not synchronized against project revenue, complicating project margin tracking.',
         },
         {
-          title: 'Manual Reconciliation Errors',
+          title: 'Manual Reconciliation Friction',
           description:
-            'Tracking received vs. pending balances across disparate spreadsheets created double-entry errors and reconciliation friction.',
+            'Tracking received vs. pending balances across disparate spreadsheets created clerical reconciliation overhead.',
         },
       ],
     },
@@ -798,12 +886,12 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
       eyebrow: 'Operational Context',
       heading: 'The Typical Complexity of Separated Operational Tools',
       paragraphs: [
-        'In typical project-based operational setups, project leads manage tasks and milestones in one tool, while billing personnel handle invoicing in standalone word processing or accounting software. Subcontractor or developer billable hours are submitted via email or messaging apps, and payments are tracked in another spreadsheet.',
-        'This fragmented workflow requires administrative personnel to constantly cross-verify details across spreadsheets before issuing invoices, leading to avoidable clerical errors, missed billables, and delayed financial insights for business leadership.',
+        'In typical project-based operational setups, project leads manage tasks and milestones in one tool, while billing personnel handle invoicing in standalone word processing or accounting software. Resource allocations are managed via messages, and payments are logged in another spreadsheet.',
+        'This fragmented workflow requires administrative personnel to constantly cross-verify details across spreadsheets before issuing invoices, leading to avoidable clerical errors, missed billables, and delayed financial visibility for leadership.',
       ],
       constraints: [
-        'Client profile records and billing details lacked central validation, causing invoice re-issuance due to incorrect billing entities or GST details.',
-        'Project managers had no immediate visibility into whether milestone payments were received before commencing subsequent phases.',
+        'Client profile records and billing details lacked central validation, causing invoice re-issuance due to incorrect billing entities or tax details.',
+        'Project managers had limited immediate visibility into whether milestone payments were received before commencing subsequent phases.',
         'Finance teams lacked real-time awareness of completed milestone deliverables, creating an artificial lag in invoice issuance.',
         'Calculating project-level profitability required tedious end-of-month manual tallying across developer costs and payment receipts.',
       ],
@@ -813,37 +901,37 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
       heading: 'Aligning Project Execution Directly with Financial Tracking',
       paragraphs: [
         'SunSolv designed the solution around the principle that project delivery and financial billing are intrinsically linked activities that belong in a continuous operational workflow.',
-        'Rather than managing invoicing as an isolated administrative chore weeks after work is completed, the architecture links developer assignments and milestone sign-offs directly to automated invoice creation, payment recording, and real-time cash flow reporting.',
+        'Rather than managing invoicing as an isolated administrative chore weeks after work is completed, the architecture links developer assignments and milestone sign-offs directly to structured invoice creation, payment recording, and financial reporting.',
       ],
       principles: [
         {
-          title: 'Milestone-Driven Invoicing',
+          title: 'Milestone-Linked Invoicing',
           description:
-            'Anchor invoice generation directly to verified project milestones, ensuring prompt billing upon deliverable approval.',
+            'Anchor invoice creation directly to verified project milestones, ensuring prompt billing upon deliverable approval.',
         },
         {
           title: 'Integrated Resource Costing',
           description:
-            'Track developer assignments, billable commitments, and vendor costs alongside project revenue for accurate margin visibility.',
+            'Track developer assignments and resource allocations alongside project budgets for clear margin visibility.',
         },
         {
-          title: 'Immutable Audit Trail',
+          title: 'Traceable Payment History',
           description:
-            'Maintain transparent, chronological records for every invoice state change, received payment, and balance reconciliation.',
+            'Maintain chronological records for invoice status updates, received payments, and balance reconciliation.',
         },
         {
-          title: 'Role-Based Operational Security',
+          title: 'Role-Based Access Control',
           description:
-            'Enforce discrete authorization tiers so team members view information appropriate to project management, delivery, or financial oversight.',
+            'Enforce discrete authorization tiers so team members view information appropriate to project management, delivery, or financial administration.',
         },
       ],
     },
     solution: {
       eyebrow: 'Delivered Architecture',
-      heading: 'A Unified Operations Platform Built with Node.js and Relational Persistence',
+      heading: 'A Unified Web Application for Project and Billing Workflows',
       paragraphs: [
-        'SunSolv architected a unified operations web application utilizing Node.js, Express, relational data persistence, and secure token-based authentication. The system directly links developer task assignments and billable milestones to automated invoice generation, payment reconciliation, and real-time financial reporting.',
-        'The application provides intuitive management modules for companies, clients, projects, developer assignments, invoices, payments, and operational cash-flow reports, replacing scattered spreadsheets with a single, verifiable source of operational truth.',
+        'SunSolv engineered a centralized operations web application built on a relational data model with authenticated role-based access control. The platform connects client account management, project milestones, developer assignments, invoice creation, and payment reconciliation into one structured system.',
+        'The application provides purpose-built management modules for client profiles, project delivery phases, resource assignments, invoice generation, payment records, and operational cash-flow reports.',
       ],
     },
     capabilities: {
@@ -853,42 +941,42 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
         {
           title: 'Company & Client Profile Management',
           description:
-            'Maintain customer records, billing addresses, tax registration information, and agreed payment terms in a centralized repository.',
+            'Centralize customer records, billing addresses, tax identifiers, and payment terms in one verified repository.',
         },
         {
           title: 'Project Lifecycle & Milestone Tracking',
           description:
-            'Track project scopes, milestone deliverables, approved contract values, and real-time completion progress.',
+            'Define project scopes, milestone deliverables, approved contract values, and real-time completion progress.',
         },
         {
-          title: 'Developer & Vendor Cost Tracking',
+          title: 'Developer & Resource Allocation',
           description:
             'Assign delivery resources to specific projects, record estimated and finalized costs, and manage advances.',
         },
         {
-          title: 'Automated Invoice Generation & PDF Export',
+          title: 'Structured Invoice Generation & PDF Export',
           description:
-            'Generate structured invoices automatically from approved milestone data with professional PDF export capabilities.',
+            'Generate itemized invoices from approved milestone data with professional PDF export capabilities.',
         },
         {
           title: 'GST & Tax Handling',
           description:
-            'Support applicable regional GST scenarios and tax calculations based on client registration configurations.',
+            'Support structured tax calculations and GST scenarios based on configured client billing entities.',
         },
         {
           title: 'Payment Tracking & Reconciliation',
           description:
-            'Record payment receipts, track invoiced, received, and pending balances, and maintain an audit log of all financial events.',
+            'Record payment receipts, track invoiced, received, and pending balances, and maintain chronological transaction records.',
         },
         {
           title: 'Project Financial & Margin Views',
           description:
-            'Compare project revenue directly against allocated delivery costs to monitor project profitability in real time.',
+            'Compare project revenue against allocated delivery costs to monitor project profitability.',
         },
         {
           title: 'Role-Based Authentication & Permissions',
           description:
-            'Enforce secure token-based access controls for leadership, project managers, and finance administrators.',
+            'Enforce authenticated access controls for leadership, project managers, and finance administrators.',
         },
       ],
     },
@@ -916,10 +1004,10 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
         {
           number: '03',
           title: 'Developer Assignment',
-          subtitle: 'Cost Tracking',
+          subtitle: 'Resource Costing',
           role: 'Operations Lead',
           description:
-            'Assign internal developers or external vendors with cost tracking and advance logs.',
+            'Assign developers or specialists with recorded cost allocations and advance tracking.',
         },
         {
           number: '04',
@@ -932,10 +1020,10 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
         {
           number: '05',
           title: 'Invoice Generation',
-          subtitle: 'Automated PDF',
-          role: 'Billing System',
+          subtitle: 'Structured Invoices',
+          role: 'Billing Admin',
           description:
-            'Compile verified milestone details into structured, GST-compliant PDF invoices.',
+            'Prepare itemized invoices from verified milestone deliverables with PDF export.',
         },
         {
           number: '06',
@@ -948,100 +1036,103 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
         {
           number: '07',
           title: 'Operational Reporting',
-          subtitle: 'Margins & Cash Flow',
+          subtitle: 'Margin Insights',
           role: 'Leadership',
           description:
-            'Review consolidated cash flow, outstanding receivables, and project profitability.',
+            'Analyze cash-flow trends, outstanding balances, and project-level gross margins.',
         },
       ],
     },
     implementationApproach: {
       eyebrow: 'Delivery Methodology',
-      heading: 'Phased Implementation of Operational Infrastructure',
+      heading: 'A Phased Implementation Approach',
       steps: [
         {
           number: '01',
           title: 'Discover',
           description:
-            'Mapped operational workflows from contract signing through milestone completion, invoice issuance, and payment receipt.',
+            'Analyze existing operational spreadsheets, invoicing templates, milestone structures, and approval workflows across management and finance teams.',
         },
         {
           number: '02',
           title: 'Define',
           description:
-            'Designed relational database models linking clients, projects, milestones, invoices, line items, and payment transactions.',
+            'Design a normalized relational schema connecting clients, projects, milestones, resource costs, invoices, and payment events under role-based security rules.',
         },
         {
           number: '03',
           title: 'Deliver',
           description:
-            'Implemented authenticated Node.js/Express API services, PDF generation pipeline, and intuitive operational management dashboard.',
+            'Build the core web application modules, PDF generation pipeline, payment recording interfaces, and operational reporting views.',
         },
         {
           number: '04',
           title: 'Evolve',
           description:
-            'Extended financial reporting views, streamlined multi-project search, and refined role permissions based on operational feedback.',
+            'Review operational adoption, refine milestone workflows based on team usage, and expand reporting capabilities as business requirements expand.',
         },
       ],
     },
     outcomes: {
-      eyebrow: 'Demonstrated Outcomes',
-      heading: 'Factual Operational Value Delivered',
+      eyebrow: 'Operational Benefits',
+      heading: 'Delivered Capabilities and Operational Value',
       items: [
         {
-          title: 'Connected Operations Workflow',
+          title: 'Centralized Operational Records',
           description:
-            'The application brings project information, invoices, collection tracking and delivery costs into a connected workflow.',
+            'Project managers and administrators work from a single operational source rather than disjointed spreadsheets.',
         },
         {
-          title: 'Financial Visibility',
+          title: 'Streamlined Billing Workflows',
           description:
-            'Project-level financial information provides greater visibility into amounts invoiced, received, pending and associated delivery costs.',
+            'Connecting deliverable sign-offs with invoice creation reduces administrative delays in billing.',
         },
         {
-          title: 'Consolidated Reporting',
+          title: 'Clear Payment & Receivable Tracking',
           description:
-            'Centralized reporting reduces the need to review separate project and billing records independently.',
+            'Immediate visibility into issued invoices, received payments, and pending balances across all active projects.',
         },
         {
-          title: 'Elimination of Billing Lag',
+          title: 'Resource & Cost Visibility',
           description:
-            'Directly linking delivery milestones with invoice generation eliminates double-entry errors and minimizes billing lag.',
+            'Better insight into developer assignments and project allocations to support operational planning and margin analysis.',
         },
       ],
     },
     keyTakeaways: {
-      eyebrow: 'Key Takeaway',
-      heading: 'What This Implementation Demonstrates',
+      eyebrow: 'Strategic Takeaway',
+      heading: 'Operational Cohesion Over Administrative Silos',
       takeaway:
-        'Connecting project execution directly with financial invoicing eliminates data silos, ensures billing accuracy, and provides business leaders with an immediate, verifiable view of operational cash flow and project profitability.',
+        'Project delivery and financial billing are fundamentally intertwined. When project leads, developers, and finance administrators share a synchronized operational platform, businesses eliminate administrative overhead, improve billing timeliness, and gain dependable visibility into project profitability.',
     },
     relatedServices: [
       {
         slug: 'custom-software-development',
         title: 'Custom Software Development',
-        description: 'Software shaped around your specific business operations.',
+        description:
+          'Purpose-built business platforms engineered to streamline operational and billing workflows.',
         route: '/services/custom-software-development',
       },
       {
         slug: 'digital-transformation',
         title: 'Digital Transformation',
-        description: 'Modernize legacy administrative processes with connected systems.',
+        description:
+          'Modernize operational workflows and replace disconnected spreadsheet tools with coherent web systems.',
         route: '/services/digital-transformation',
       },
       {
-        slug: 'it-consulting',
-        title: 'IT Consulting',
-        description: 'Make confident, well-aligned technology and operational decisions.',
-        route: '/services/it-consulting',
+        slug: 'cloud-solutions',
+        title: 'Cloud Solutions',
+        description:
+          'Reliable cloud hosting and managed relational data persistence for internal business applications.',
+        route: '/services/cloud-solutions',
       },
     ],
     relatedIndustry: {
-      title: 'Real Estate',
-      route: '/industries/real-estate',
+      title: 'Professional Services',
+      route: '/industries',
       description:
-        'Explore how SunSolv modernizes operational, property, and transaction workflows.',
+        'Professional services organizations and project-based consulting teams require unified workflows linking project delivery, developer assignments, milestone invoicing, and payment reconciliation.',
     },
     relatedInsights: [
       {

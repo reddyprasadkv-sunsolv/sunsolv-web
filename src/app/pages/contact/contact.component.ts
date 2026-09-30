@@ -52,6 +52,7 @@ export class ContactComponent {
   readonly deliveryReady = signal<boolean | null>(null);
   readonly siteKey = signal('');
   private readonly verification = viewChild(TurnstileComponent);
+  readonly caseStudyContext = signal('');
   readonly statusMessage = signal('');
   readonly form = this.fb.nonNullable.group({
     enquiryType: ['project', Validators.required],
@@ -142,6 +143,19 @@ export class ContactComponent {
       const service = query.get('service');
       if (service && (service === 'Other' || services.some((item) => item.title === service)))
         this.form.controls.service.setValue(service);
+      const caseStudy = query.get('caseStudy');
+      if (caseStudy) {
+        const cleanCs = caseStudy.trim();
+        this.caseStudyContext.set(cleanCs);
+        if (!this.form.controls.service.value) {
+          this.form.controls.service.setValue('Custom Software Development');
+        }
+        if (!this.form.controls.message.value) {
+          this.form.controls.message.setValue(
+            `I am interested in discussing a project similar to the "${cleanCs}" case study. `,
+          );
+        }
+      }
       this.form.patchValue({
         utmSource: query.get('utm_source') ?? '',
         utmMedium: query.get('utm_medium') ?? '',
@@ -259,10 +273,15 @@ export class ContactComponent {
   startNewEnquiry(): void {
     const enquiryType = this.form.controls.enquiryType.value;
     this.form.reset({ enquiryType, privacyConsent: false, sourcePage: '/contact-us' });
+    this.caseStudyContext.set('');
     this.reference.set('');
     this.statusMessage.set('');
     this.state.set('idle');
     setTimeout(() => this.document.getElementById('enquiryType')?.focus(), 0);
+  }
+
+  clearCaseStudyContext(): void {
+    this.caseStudyContext.set('');
   }
   invalid(control: FormControl<unknown>): boolean {
     return control.invalid && (control.touched || control.dirty);

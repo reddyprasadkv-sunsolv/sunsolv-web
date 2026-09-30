@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { afterNextRender, ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroArrowRight, heroChevronDown } from '@ng-icons/heroicons/outline';
@@ -14,6 +15,7 @@ import { DedicatedCaseStudy, getCaseStudyBySlug } from '../../core/case-studies.
 })
 export class CaseStudyDetailComponent {
   private readonly route = inject(ActivatedRoute);
+  private readonly document = inject(DOCUMENT);
 
   readonly study: DedicatedCaseStudy = (() => {
     const data =
@@ -30,4 +32,47 @@ export class CaseStudyDetailComponent {
     }
     return resolved;
   })();
+
+  constructor() {
+    afterNextRender(() => {
+      const fragment =
+        this.route.snapshot.fragment ||
+        (typeof window !== 'undefined' ? window.location.hash.replace('#', '') : '');
+      if (fragment) {
+        setTimeout(() => {
+          const el = this.document.getElementById(fragment);
+          if (el) {
+            if (typeof el.scrollIntoView === 'function') {
+              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            el.setAttribute('tabindex', '-1');
+            if (typeof el.focus === 'function') {
+              el.focus({ preventScroll: true });
+            }
+          }
+        }, 100);
+      }
+    });
+  }
+
+  scrollToSection(event: Event, id: string): void {
+    event.preventDefault();
+    const el = this.document.getElementById(id);
+    if (el) {
+      if (typeof el.scrollIntoView === 'function') {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      if (typeof window !== 'undefined' && window.history) {
+        window.history.pushState(
+          null,
+          '',
+          `${window.location.pathname}${window.location.search}#${id}`,
+        );
+      }
+      el.setAttribute('tabindex', '-1');
+      if (typeof el.focus === 'function') {
+        el.focus({ preventScroll: true });
+      }
+    }
+  }
 }

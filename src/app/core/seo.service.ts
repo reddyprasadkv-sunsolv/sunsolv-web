@@ -37,13 +37,22 @@ export class SeoService {
     return route.firstChild ? this.deepest(route.firstChild) : route;
   }
 
+  private formatCanonical(path?: string): string {
+    if (!path) return `${canonicalOrigin}/`;
+    const clean = path.startsWith('/') ? path.slice(1) : path;
+    return `${canonicalOrigin}/${clean}`;
+  }
+
+  private formatBreadcrumbItem(path?: string): string {
+    if (!path) return `${canonicalOrigin}/`;
+    const clean = path.startsWith('/') ? path.slice(1) : path;
+    return `${canonicalOrigin}/${clean}`;
+  }
+
   private apply(data: PageData): void {
     if (!data?.seo) return;
     const seo: SeoData = data.seo;
-    const normalizedPath = seo.path.startsWith('/') ? seo.path.slice(1) : seo.path;
-    const canonical = normalizedPath
-      ? `${canonicalOrigin}/${normalizedPath}`
-      : `${canonicalOrigin}/`;
+    const canonical = this.formatCanonical(seo.path);
     const socialImage = seo.image
       ? `${canonicalOrigin}${seo.image}`
       : `${canonicalOrigin}/images/sunsolv-technology-progress-hero.webp`;
@@ -113,9 +122,7 @@ export class SeoService {
                     '@type': 'ListItem',
                     position: index + 1,
                     name: breadcrumb.name,
-                    item: breadcrumb.path
-                      ? `${canonicalOrigin}/${breadcrumb.path}`
-                      : `${canonicalOrigin}/`,
+                    item: this.formatBreadcrumbItem(breadcrumb.path),
                   })),
                 },
               ]
@@ -156,9 +163,7 @@ export class SeoService {
                     '@type': 'ListItem',
                     position: index + 1,
                     name: breadcrumb.name,
-                    item: breadcrumb.path
-                      ? `${canonicalOrigin}/${breadcrumb.path}`
-                      : `${canonicalOrigin}/`,
+                    item: this.formatBreadcrumbItem(breadcrumb.path),
                   })),
                 },
               ]
@@ -225,19 +230,12 @@ export class SeoService {
             ? [
                 {
                   '@type': 'BreadcrumbList',
-                  itemListElement: data.structuredBreadcrumbs.map((breadcrumb, index) => {
-                    const breadcrumbPath = breadcrumb.path.startsWith('/')
-                      ? breadcrumb.path.slice(1)
-                      : breadcrumb.path;
-                    return {
-                      '@type': 'ListItem',
-                      position: index + 1,
-                      name: breadcrumb.name,
-                      item: breadcrumbPath
-                        ? `${canonicalOrigin}/${breadcrumbPath}`
-                        : `${canonicalOrigin}/`,
-                    };
-                  }),
+                  itemListElement: data.structuredBreadcrumbs.map((breadcrumb, index) => ({
+                    '@type': 'ListItem',
+                    position: index + 1,
+                    name: breadcrumb.name,
+                    item: this.formatBreadcrumbItem(breadcrumb.path),
+                  })),
                 },
               ]
             : []),
@@ -260,11 +258,15 @@ export class SeoService {
                   '@type': 'ItemList',
                   name: data.structuredItemListName ?? 'Industries served by SunSolv Technologies',
                   numberOfItems: data.structuredItems.length,
-                  itemListElement: data.structuredItems.map((item, index) => ({
-                    '@type': 'ListItem',
-                    position: index + 1,
-                    name: item.name,
-                  })),
+                  itemListElement: data.structuredItems.map((item, index) => {
+                    const itemUrl = item.url ?? item.item;
+                    return {
+                      '@type': 'ListItem',
+                      position: index + 1,
+                      name: item.name,
+                      ...(itemUrl ? { url: itemUrl, item: itemUrl } : {}),
+                    };
+                  }),
                 },
               ]
             : []),
@@ -272,19 +274,12 @@ export class SeoService {
             ? [
                 {
                   '@type': 'BreadcrumbList',
-                  itemListElement: data.structuredBreadcrumbs.map((breadcrumb, index) => {
-                    const breadcrumbPath = breadcrumb.path.startsWith('/')
-                      ? breadcrumb.path.slice(1)
-                      : breadcrumb.path;
-                    return {
-                      '@type': 'ListItem',
-                      position: index + 1,
-                      name: breadcrumb.name,
-                      item: breadcrumbPath
-                        ? `${canonicalOrigin}/${breadcrumbPath}`
-                        : `${canonicalOrigin}/`,
-                    };
-                  }),
+                  itemListElement: data.structuredBreadcrumbs.map((breadcrumb, index) => ({
+                    '@type': 'ListItem',
+                    position: index + 1,
+                    name: breadcrumb.name,
+                    item: this.formatBreadcrumbItem(breadcrumb.path),
+                  })),
                 },
               ]
             : []),
@@ -326,19 +321,12 @@ export class SeoService {
           },
           {
             '@type': 'BreadcrumbList',
-            itemListElement: data.structuredBreadcrumbs.map((breadcrumb, index) => {
-              const breadcrumbPath = breadcrumb.path.startsWith('/')
-                ? breadcrumb.path.slice(1)
-                : breadcrumb.path;
-              return {
-                '@type': 'ListItem',
-                position: index + 1,
-                name: breadcrumb.name,
-                item: breadcrumbPath
-                  ? `${canonicalOrigin}/${breadcrumbPath}`
-                  : `${canonicalOrigin}/`,
-              };
-            }),
+            itemListElement: data.structuredBreadcrumbs.map((breadcrumb, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: breadcrumb.name,
+              item: this.formatBreadcrumbItem(breadcrumb.path),
+            })),
           },
         ],
       };

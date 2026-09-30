@@ -143,7 +143,7 @@ const xmlEntries = filteredRoutes.map((route) => {
   const loc =
     route === '/'
       ? `${canonicalOrigin}/`
-      : route.startsWith('/insights') || route.startsWith('/case-studies')
+      : route.startsWith('/insights')
       ? `${canonicalOrigin}${route}/`
       : `${canonicalOrigin}${route}`;
   const priority = getPriority(route);

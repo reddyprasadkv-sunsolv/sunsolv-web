@@ -1,4 +1,4 @@
-import { PageData, pageRouteData, services } from '../../core/site-data';
+import { canonicalOrigin, PageData, pageRouteData, services } from '../../core/site-data';
 
 export interface CaseStudy {
   id: string;
@@ -13,7 +13,15 @@ export interface CaseStudy {
   capabilities: readonly string[];
   value: string;
   serviceSlugs: readonly string[];
-  image?: { src: string; alt: string; width: number; height: number; caption: string };
+  image?: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    caption: string;
+    externalLink?: { label: string; url: string };
+  };
+  externalAction?: { label: string; url: string };
 }
 
 export const caseStudies: readonly CaseStudy[] = [
@@ -28,20 +36,20 @@ export const caseStudies: readonly CaseStudy[] = [
     },
     title: 'Centralized Digital Assessment Platform',
     summary:
-      'Education technology connecting assessment administration, student participation and evaluation workflows.',
+      'Connecting assessment administration, student testing and rubric evaluation into a unified digital workflow.',
     challenge:
-      'Institutions faced fragmented workflows between question bank authoring, exam scheduling, remote student participation, and manual grading turnaround, leading to administrative bottlenecks and delayed results.',
+      'Coordinating examinations across spreadsheets and paper documents caused administrative delays and grading bottlenecks.',
     solution:
-      'Engineered an end-to-end web assessment platform built with Angular, TypeScript, and Node.js. It unifies multi-format question authoring (MCQ, coding, short answer), secure timed testing sessions with local state autosave, and standardized rubric-based evaluation workflows with automated score computation.',
+      'A web platform built with Angular, TypeScript, and Node.js uniting question banking, timed sessions with autosave, and rubric evaluation.',
     capabilities: [
       'Assessment administration & scheduling',
-      'Student participation with session recovery',
+      'Student testing with local autosave',
       'Rubric-based evaluation workflows',
-      'Automated grade computation & export',
-      'Role-based access control (Admin, Evaluator, Student)',
+      'Score calculation & grade export',
+      'Role-based access control',
     ],
     value:
-      'Streamlines the entire examination lifecycle from setup to review, eliminates paper handling and manual transcription errors, and ensures students and evaluators have a reliable, responsive interface.',
+      'Helps institutions streamline examination lifecycles, reduce administrative paper handling, and provide students and faculty with a dependable interface.',
     serviceSlugs: ['custom-software-development', 'web-mobile-development'],
     image: {
       src: '/images/case-studies/digital-assessment-workflow.png',
@@ -49,7 +57,11 @@ export const caseStudies: readonly CaseStudy[] = [
       width: 1440,
       height: 1000,
       caption:
-        'Public product-page workflow overview. No student or institution records are shown.',
+        'Public product-page workflow overview from https://digitalassessment.sunsolv.in/#workflow. Demonstrates the conceptual six-stage lifecycle; does not display actual student data, examination interfaces, or institutional dashboards.',
+      externalLink: {
+        label: 'View public workflow overview',
+        url: 'https://digitalassessment.sunsolv.in/#workflow',
+      },
     },
   },
   {
@@ -58,24 +70,24 @@ export const caseStudies: readonly CaseStudy[] = [
     route: '/case-studies/business-solution-finder',
     category: 'Digital service discovery',
     industry: {
-      title: 'Professional Services',
-      route: '/industries',
+      title: 'SaaS',
+      route: '/industries/saas',
     },
     title: 'Business Solution Finder',
     summary:
-      'A guided digital experience that helps organizations understand their needs and identify relevant technology services.',
+      'A guided digital experience that helps organizations assess their needs and identify relevant technology services.',
     challenge:
-      'Prospective clients frequently struggled to translate high-level business goals into specific technical requirements, often resulting in ambiguous project briefs, misaligned initial discussions, and protracted scoping cycles.',
+      'Translating high-level business goals into concrete technical requirements often led to ambiguous briefs and protracted scoping.',
     solution:
-      'Developed a responsive, interactive diagnostic application built with Angular Reactive Architecture. It guides decision-makers through an intuitive 12-category discovery questionnaire, evaluates organizational priorities against defined architecture patterns, and synthesizes tailored service tracks with actionable next steps.',
+      'A responsive diagnostic application built with Angular Reactive Architecture that maps user priorities to verified technology tracks.',
     capabilities: [
       'Interactive 12-category needs discovery',
-      'Requirements mapping & service recommendation engine',
+      'Requirements mapping to technology tracks',
       'Structured project brief synthesis',
-      'Zero-storage privacy-compliant client interaction',
+      'Client-side in-memory state architecture',
     ],
     value:
-      'Enables organizations to clearly articulate technical needs and operational scope upfront, reducing back-and-forth ambiguity and accelerating the path to focused technology delivery.',
+      'Enables organizations to frame technical requirements upfront, reducing scoping ambiguity and accelerating project initiation.',
     serviceSlugs: ['it-consulting', 'web-mobile-development'],
     image: {
       src: '/images/case-studies/business-solution-finder.png',
@@ -83,7 +95,15 @@ export const caseStudies: readonly CaseStudy[] = [
       width: 1425,
       height: 990,
       caption:
-        'Live application, opening category-selection step. No responses or contact details have been entered.',
+        'Live application opening category-selection step from https://solutionfinder.sunsolv.in/. Displays the initial 12-category discovery wizard before responses are entered; no customer or contact details are present.',
+      externalLink: {
+        label: 'Try Business Solution Finder',
+        url: 'https://solutionfinder.sunsolv.in/',
+      },
+    },
+    externalAction: {
+      label: 'Try Solution Finder',
+      url: 'https://solutionfinder.sunsolv.in/',
     },
   },
   {
@@ -92,25 +112,25 @@ export const caseStudies: readonly CaseStudy[] = [
     route: '/case-studies/invoice-project-management-system',
     category: 'Business operations software',
     industry: {
-      title: 'Real Estate & Construction',
-      route: '/industries/real-estate',
+      title: 'Professional Services',
+      route: '/industries',
     },
     title: 'Custom Invoice and Project Management System',
     summary:
-      'A secure operational application bringing invoicing, projects, payments, developers and reporting into one connected workflow.',
+      'An operational web application bringing project delivery, developer assignments, invoicing, and payment tracking into one workflow.',
     challenge:
-      'Operational workflows were disjointed across independent spreadsheets, manual invoicing tools, and chat channels. Project progress, billable developer hours, payment tracking, and outstanding receivables lacked real-time synchronization.',
+      'Disconnected spreadsheets for projects, developer assignments, and billing created administrative friction and delayed invoicing.',
     solution:
-      'Architected a unified operations web application utilizing Node.js, Express, relational data persistence, and secure token-based authentication. The system directly links developer task assignments and billable milestones to automated invoice generation, payment reconciliation, and real-time financial reporting.',
+      'A centralized relational web application with authenticated role-based access connecting project milestones, resource allocations, structured invoicing, and payment records.',
     capabilities: [
-      'Project milestone & developer assignment tracking',
-      'Automated invoice generation & PDF export',
-      'Payment recording & reconciliation audit trail',
-      'Operational cash-flow & receivable reporting',
-      'Authenticated role-based access controls',
+      'Project & milestone tracking',
+      'Developer & resource allocation',
+      'Structured invoice creation & PDF export',
+      'Payment recording & reconciliation',
+      'Role-based access control',
     ],
     value:
-      'Provides leadership and project leads with a single, verifiable operational view. Replaces manual spreadsheet consolidation, eliminates double-entry billing errors, and aligns delivery progress directly with billing milestones.',
+      'Provides leadership and project leads with unified operational records, linking deliverable progress directly to billing workflows.',
     serviceSlugs: ['custom-software-development', 'digital-transformation'],
   },
 ];
@@ -119,7 +139,11 @@ export const caseStudiesPageData: PageData = {
   ...pageRouteData.caseStudies,
   structuredPageName: 'Case Studies',
   structuredItemListName: 'Selected SunSolv case studies',
-  structuredItems: caseStudies.map(({ title }) => ({ name: title })),
+  structuredItems: caseStudies.map(({ title, route }) => ({
+    name: title,
+    url: `${canonicalOrigin}${route}`,
+    item: `${canonicalOrigin}${route}`,
+  })),
   structuredBreadcrumbs: [
     { name: 'Home', path: '' },
     { name: 'Case Studies', path: 'case-studies' },

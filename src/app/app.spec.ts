@@ -76,4 +76,28 @@ describe('App', () => {
       'Logistics & Supply Chain',
     ]);
   });
+
+  it('activates skip to content without navigating away from the current route', async () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/case-studies/invoice-project-management-system');
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const skipLink = compiled.querySelector<HTMLAnchorElement>('.skip-link');
+    expect(skipLink).toBeTruthy();
+    expect(skipLink?.textContent?.trim()).toBe('Skip to content');
+
+    const main = compiled.querySelector<HTMLElement>('#main-content');
+    expect(main).toBeTruthy();
+
+    const event = new MouseEvent('click', { cancelable: true });
+    skipLink?.dispatchEvent(event);
+    fixture.detectChanges();
+
+    // Verify current route is preserved and not redirected to /#main-content
+    expect(router.url).toContain('/case-studies/invoice-project-management-system');
+  });
 });

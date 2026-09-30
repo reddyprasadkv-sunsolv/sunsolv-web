@@ -23,12 +23,12 @@
 - [SaaS](https://www.sunsolv.in/industries/saas): Multi-tenant SaaS product engineering, subscription billing, API architecture, and scalable infrastructure.
 - [Logistics & Supply Chain](https://www.sunsolv.in/industries/logistics-supply-chain): Fleet visibility, warehouse tracking, carrier integrations, and logistics operations portals.
 
-## Verified Case Studies
+## Case Studies
 
-- [Case Studies Overview](https://www.sunsolv.in/case-studies): Verified solutions demonstrating real-world operational impact.
-- **Centralized Digital Assessment Platform**: Education technology platform built with Angular, TypeScript, and Node.js that unifies exam creation, real-time candidate testing, and automated evaluation rubrics across institutions.
-- **Business Solution Finder**: Diagnostic web application built with Angular Reactive Architecture that assesses organizational technology challenges and maps them to tailored service tracks.
-- **Custom Invoice and Project Management System**: Enterprise operations portal built with Node.js, Express, and PostgreSQL integrating contractor timesheets, milestone billing, and payment tracking.
+- [Case Studies Overview](https://www.sunsolv.in/case-studies): Portfolio of delivered systems and diagnostic tools addressing institutional workflows, client assessment, and operations management.
+- [Digital Assessment Platform](https://www.sunsolv.in/case-studies/digital-assessment-platform): Multi-role assessment delivery web application engineered for institutions, featuring structured question bank authoring, candidate testing interfaces, real-time submission tracking, and centralized score compilation.
+- [Business Solution Finder](https://www.sunsolv.in/case-studies/business-solution-finder): Interactive client-side diagnostic tool providing privacy-focused organizational evaluation, mapping business challenges to tailored service tracks with zero client tracking cookies or persistent data retention prior to consultation request.
+- [Custom Invoice and Project Management System](https://www.sunsolv.in/case-studies/invoice-project-management-system): Purpose-built relational business operations portal featuring role-based access control, project milestone tracking, developer assignments, structured invoice generation with PDF export, and payment reconciliation.
 
 ## Company Identity & Verification
 

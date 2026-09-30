@@ -243,6 +243,60 @@ fieldset {
 .field {
   min-width: 0;
 }
+.case-study-badge {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  background: rgba(30, 86, 160, 0.08);
+  border: 1px solid rgba(30, 86, 160, 0.22);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: var(--navy);
+
+  .cs-badge-label {
+    color: var(--slate);
+    font-weight: 500;
+  }
+
+  .cs-badge-title {
+    font-weight: 650;
+    color: var(--blue);
+  }
+
+  .cs-badge-dismiss {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin-left: 4px;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    color: var(--slate);
+    cursor: pointer;
+    font-size: 0.85rem;
+    line-height: 1;
+    transition:
+      background 0.15s ease,
+      color 0.15s ease;
+
+    &:hover {
+      background: rgba(30, 86, 160, 0.14);
+      color: var(--navy);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 1px;
+    }
+  }
+}
+
 .field label {
   display: block;
   margin-bottom: 8px;

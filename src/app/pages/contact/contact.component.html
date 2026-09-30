@@ -228,6 +228,20 @@
               }
             </div>
             <div class="field full">
+              @if (caseStudyContext(); as cs) {
+                <div class="case-study-badge" role="status">
+                  <span class="cs-badge-label">Referenced case study:</span>
+                  <span class="cs-badge-title">{{ cs }}</span>
+                  <button
+                    type="button"
+                    class="cs-badge-dismiss"
+                    (click)="clearCaseStudyContext()"
+                    aria-label="Remove case study reference"
+                  >
+                    ✕
+                  </button>
+                </div>
+              }
               <label for="message">Your message *</label>
               <p id="message-hint" class="hint">{{ messageHint }}</p>
               <textarea
