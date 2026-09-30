@@ -18,7 +18,7 @@ export const softwareEngineeringArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-30',
     dateModified: '2026-09-30',
     formattedDate: 'September 30, 2026',
-    readingTime: '7 min read',
+    readingTime: '8 min read',
     featuredImage: '/images/insights/sunsolv-custom-software-vs-saas.webp',
     featuredImageAlt:
       'System architecture diagram outlining functional boundaries and interface specifications',
@@ -109,7 +109,7 @@ export const softwareEngineeringArticles: readonly InsightArticle[] = [
         directAnswer:
           "Projects rarely fail because engineers don't know how to code; they fail because stakeholders and developers hold conflicting interpretations of what is being built.",
         paragraphs: [
-          'Industry data from the Standish Group CHAOS Report indicates that over 65% of custom software projects experience severe budget overruns or fail to deliver expected outcomes. When post-mortems are conducted, the root cause is almost universally traced back to ambiguous early requirements.',
+          'Longitudinal industry data from [The Standish Group CHAOS Research](https://www.standishgroup.com/) indicates that approximately 65% to 70% of enterprise custom software projects experience budget or timeline overruns or fail to achieve their defined scope. When project post-mortems are conducted across multi-industry benchmarks, ambiguous early requirements, untracked scope creep, and unvalidated third-party dependencies are consistently identified as the primary drivers of project distress.',
           'When requirements are stated in vague language—such as "the system should have a user-friendly reporting dashboard" or "managers should be able to manage client accounts"—everyone in the room nods in agreement. However, the business executive envisions automated AI forecasting with PDF exports, while the junior developer envisions a basic HTML table showing three database columns.',
           'Disciplined software scoping replaces subjective adjectives with deterministic workflows, verifiable input/output schemas, and explicit boundary exclusions. Clarity at the start saves tens of thousands of dollars in rework downstream.',
           'Before initiating a custom build, leaders should evaluate [custom software vs SaaS trade-offs](/insights/software-engineering/custom-software-vs-saas-how-should-businesses-decide/) to confirm that proprietary development is the best path forward.',
@@ -573,7 +573,7 @@ export const softwareEngineeringArticles: readonly InsightArticle[] = [
           'Microservices introduce enormous operational and networking overhead that only large organizations with hundreds of engineers can amortize effectively.',
         paragraphs: [
           'Over the past decade, microservices became the default architectural aspiration for software teams. Tech giants like Netflix, Amazon, and Uber famously published architectures featuring hundreds of independent services. Many engineering leaders assumed that adopting microservices was the prerequisite for writing "modern" enterprise software.',
-          'In recent years, however, a major industry re-evaluation has taken hold. Tech companies including Amazon Prime Video and Shopify published high-profile case studies detailing how consolidating microservices back into consolidated modular monoliths reduced infrastructure costs by up to 90% and eliminated complex distributed race conditions.',
+          'In recent years, however, a major industry re-evaluation has taken hold. Engineering organizations including [Amazon Prime Video](https://www.primevideotech.com/video-streaming/scaling-up-the-prime-video-audio-video-monitoring-service-and-reducing-costs-by-90) and [Shopify](https://shopify.engineering/deconstructing-the-monolith-designing-software-that-maximizes-developer-productivity) published detailed architectural reports showing how consolidating fragmented microservices back into cohesive modular monoliths eliminated complex distributed race conditions and, in Prime Video\’s monitoring platform, reduced infrastructure expenses by up to 90%.',
           'The lesson is clear: microservices are not a badge of engineering excellence. They are an organizational compromise designed to solve team communication bottlenecks at massive scale, purchased at the cost of intense distributed systems complexity.',
           "A project's target architectural topology should be locked in during discovery, as outlined in our guide on [how to scope a custom software project before development](/insights/software-engineering/how-to-scope-a-custom-software-project-before-development/).",
         ],

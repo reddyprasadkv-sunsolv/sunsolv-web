@@ -31,6 +31,7 @@ export interface TextSpan {
   readonly type: 'text' | 'bold' | 'code' | 'link';
   readonly text: string;
   readonly link?: string;
+  readonly isExternal?: boolean;
 }
 
 export interface ContentBlock {
@@ -70,7 +71,8 @@ export function parseInlineSpans(raw: string): readonly TextSpan[] {
       spans.push({ type: 'text', text: raw.slice(lastIndex, match.index) });
     }
     if (match[1] !== undefined && match[2] !== undefined) {
-      spans.push({ type: 'link', text: match[1], link: match[2] });
+      const isExternal = match[2].startsWith('http://') || match[2].startsWith('https://');
+      spans.push({ type: 'link', text: match[1], link: match[2], isExternal });
     } else if (match[3] !== undefined) {
       spans.push({ type: 'bold', text: match[3] });
     } else if (match[4] !== undefined) {

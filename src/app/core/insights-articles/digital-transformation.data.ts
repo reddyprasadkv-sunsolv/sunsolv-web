@@ -330,7 +330,7 @@ export const digitalTransformationArticles: readonly InsightArticle[] = [
         directAnswer:
           'Complete system rewrites fail when they attempt to replicate decades of undocumented edge-case business rules at once.',
         paragraphs: [
-          'Martin Fowler, a recognized authority on software architecture, describes the big-bang rewrite as an anti-pattern that almost always runs over budget and behind schedule. In any system that has run for ten years, thousands of bug fixes, tax rule edge cases, and client-specific pricing overrides have been encoded into the software—often without documentation.',
+          'Software architect [Martin Fowler describes the big-bang rewrite as a high-risk anti-pattern](https://martinfowler.com/bliki/StranglerFigApplication.html) that almost always encounters severe budget overruns and schedule delays. In any system that has run for ten years, thousands of bug fixes, tax rule edge cases, and client-specific pricing overrides have been encoded into the software—often without documentation. Longitudinal enterprise modernization research, including data from [The Standish Group](https://www.standishgroup.com/), similarly demonstrates that full-replacement initiatives face high failure rates compared to incremental modernisation.',
           'When an engineering team attempts to rebuild everything from scratch in a new platform, these hidden business rules are discovered only when production launches and critical transactions fail. If replacement is unavoidable, employ the "Strangler Fig Pattern": migrate small functional modules one by one until the legacy system can be safely decommissioned.',
         ],
       },
@@ -410,7 +410,7 @@ export const digitalTransformationArticles: readonly InsightArticle[] = [
     keyTakeaway: {
       title: 'Preserve Business Logic, Modernize User Experience',
       content:
-        'A mature legacy system represents millions of dollars of embedded operational wisdom. Before discarding it in a risky big-bang rewrite, explore API wrapping and selective frontend modernization. You can deliver 80% of the benefits of a modern cloud application at a fraction of the cost, timeline, and operational risk.',
+        'A mature legacy system represents significant embedded operational wisdom. Before discarding it in a risky big-bang rewrite, explore API wrapping and selective frontend modernization. Teams can capture the primary self-service and modern integration capabilities of contemporary cloud platforms while preserving validated business rules, containing capital expenditure, and avoiding unnecessary operational exposure.',
     },
     relatedServices: [
       {

@@ -185,7 +185,17 @@
                     } @else if (span.type === 'code') {
                       <code>{{ span.text }}</code>
                     } @else if (span.type === 'link') {
-                      <a [routerLink]="span.link" class="article-prose-link">{{ span.text }}</a>
+                      @if (span.isExternal) {
+                        <a
+                          [href]="span.link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="article-prose-link"
+                          >{{ span.text }}</a
+                        >
+                      } @else {
+                        <a [routerLink]="span.link" class="article-prose-link">{{ span.text }}</a>
+                      }
                     } @else {
                       <span>{{ span.text }}</span>
                     }
@@ -201,7 +211,19 @@
                         } @else if (span.type === 'code') {
                           <code>{{ span.text }}</code>
                         } @else if (span.type === 'link') {
-                          <a [routerLink]="span.link" class="article-prose-link">{{ span.text }}</a>
+                          @if (span.isExternal) {
+                            <a
+                              [href]="span.link"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="article-prose-link"
+                              >{{ span.text }}</a
+                            >
+                          } @else {
+                            <a [routerLink]="span.link" class="article-prose-link">{{
+                              span.text
+                            }}</a>
+                          }
                         } @else {
                           <span>{{ span.text }}</span>
                         }
@@ -219,7 +241,19 @@
                         } @else if (span.type === 'code') {
                           <code>{{ span.text }}</code>
                         } @else if (span.type === 'link') {
-                          <a [routerLink]="span.link" class="article-prose-link">{{ span.text }}</a>
+                          @if (span.isExternal) {
+                            <a
+                              [href]="span.link"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="article-prose-link"
+                              >{{ span.text }}</a
+                            >
+                          } @else {
+                            <a [routerLink]="span.link" class="article-prose-link">{{
+                              span.text
+                            }}</a>
+                          }
                         } @else {
                           <span>{{ span.text }}</span>
                         }

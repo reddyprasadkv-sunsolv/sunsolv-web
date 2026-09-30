@@ -306,7 +306,7 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
         directAnswer:
           'Every additional second of load time directly erodes conversion rates and increases bounce rates.',
         paragraphs: [
-          'Extensive empirical research from Google and Akamai demonstrates that page speed directly dictates commercial outcomes. A delay of just 100 milliseconds in page load time can reduce conversion rates by 7%. When page load stretches from 1 second to 3 seconds, the probability of a mobile visitor bouncing increases by 32%.',
+          "Extensive empirical research from [Google Consumer Insights](https://www.thinkwithgoogle.com/marketing-strategies/app-and-software/mobile-page-speed-new-benchmarks/) and [Akamai Technologies](https://www.akamai.com/newsroom/press-release/akamai-releases-spring-2017-state-of-online-retail-performance-report) demonstrates that page speed directly dictates commercial outcomes. According to Akamai's online retail performance data, a delay of just 100 milliseconds in page load time can reduce conversion rates by 7%. Furthermore, Google's neural network benchmark of mobile landing pages revealed that as page load stretches from 1 second to 3 seconds, the probability of a mobile visitor bouncing increases by 32%.",
           'Furthermore, Google has integrated Core Web Vitals directly into its search ranking algorithm. Slow websites that fail Largest Contentful Paint (LCP) or exhibit severe layout shifts (CLS) are systematically penalized in organic search results, diminishing top-of-funnel acquisition.',
         ],
       },
@@ -503,7 +503,7 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
           'B2B contact forms often read like loan applications, driving high-intent prospects away to competitors.',
         paragraphs: [
           'A prospective client spends 15 minutes reviewing your case studies, approves of your capabilities, and clicks "Contact Us." They arrive at an inquiry page demanding 14 mandatory fields: Full Name, Job Title, Company Name, Work Email, Phone Number, Company Size, Annual Revenue, Current Tech Stack, Timeline, Estimated Budget, Country, State, and a 500-word description of their project.',
-          'To the sales operations team, this data looks fantastic for automated lead scoring. But to the prospective client, it feels like an intrusive interrogation before any relationship has been established. Over 60% of high-intent visitors abandon the page without typing a word.',
+          'To the sales operations team, excessive mandatory fields look attractive for automated lead scoring. But to prospective clients, it creates friction before any advisory relationship has been established. Industry lead generation benchmarks show that long, demanding forms frequently trigger bounce rates exceeding 60% among otherwise qualified prospects.',
           'Frictionless form design recognizes that the primary purpose of an initial inquiry form is not to qualify out 95% of leads, but to establish a frictionless communication channel between two human beings.',
           'Pinpointing form drop-offs should be a core component of your broader [website journey audit](/insights/digital-experience/how-to-audit-a-website-journey-before-redesigning-it/), uncovering where prospects hesitate before converting.',
         ],
@@ -514,7 +514,7 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
         directAnswer:
           'Ask only for the minimum information required to initiate a meaningful human conversation: Name, Email, and Project Overview.',
         paragraphs: [
-          'Multiple conversion studies, including research by Unbounce and HubSpot, demonstrate a direct inverse correlation between form field count and submission rates. Reducing form fields from 9 to 4 can increase completion rates by over 50%.',
+          'Extensive conversion analytics, including research published by [HubSpot](https://blog.hubspot.com/blog/tabid/6307/bid/6746/which-types-of-form-fields-lower-landing-page-conversion-rates.aspx) and [Unbounce](https://unbounce.com/conversion-benchmark-report/), demonstrate a direct inverse correlation between form field friction and submission rates. Across landing page datasets, reducing form fields from 9 to 4 was associated with an average relative completion rate increase of approximately 50%, as unnecessary qualification barriers were deferred to subsequent consultative conversations.',
           'Evaluate every single input field with this test: "Can we discover this information ourselves through LinkedIn, Google, or our introductory discovery call?" If the answer is yes, delete the field from the form. You do not need company size, industry classification, or mailing address on an initial contact form.',
         ],
       },

@@ -144,7 +144,7 @@ export const cloudInfrastructureArticles: readonly InsightArticle[] = [
         directAnswer:
           'Continuous database replication using Change Data Capture allows you to sync gigabytes or terabytes of data over weeks before executing a near-instantaneous cutover.',
         paragraphs: [
-          'The primary bottleneck in any operational migration is the database. Attempting to dump, transfer, and restore a production database during a maintenance window guarantees hours of downtime for datasets larger than a few gigabytes.',
+          'The primary bottleneck in any operational migration is the database cutover strategy. While a naive dump-and-restore during a maintenance window can lead to extended downtime, actual downtime duration is not fixed: it depends heavily on workload architecture, total data volume, available network transfer capacity, continuous replication mechanisms, consistency requirements, and migration tooling.',
           'The professional solution is log-based Change Data Capture (CDC) utilizing tools like Debezium, AWS Database Migration Service (DMS), or Datastream. An initial baseline snapshot is copied to the cloud database while production continues unhindered.',
           'Simultaneously, the replication engine reads the legacy database write-ahead log (WAL) and replays every insert, update, and delete to the target cloud replica in near-real-time. By the time cutover day arrives, the cloud database is already running within milliseconds of the on-premises primary.',
         ],
@@ -403,7 +403,7 @@ export const cloudInfrastructureArticles: readonly InsightArticle[] = [
           'Automated object lifecycle policies move aged data to cold archive storage tiers, reducing storage costs by up to 80%.',
         paragraphs: [
           'Storage costs tend to grow monotonically because teams rarely delete anything. Application logs, system snapshots, export files, and user uploads accumulate in high-performance "hot" storage classes indefinitely.',
-          'Modern cloud providers offer multiple storage tiers with dramatic price differences. In AWS S3, for instance, standard storage costs approximately $0.023 per GB/month, while S3 Glacier Flexible Retrieval costs $0.0036 per GB/month—an 84% reduction.',
+          'Modern cloud providers offer multiple storage tiers with dramatic price differences. In the AWS US East (N. Virginia, us-east-1) region, official [Amazon S3 Pricing documentation](https://aws.amazon.com/s3/pricing/) benchmarks S3 Standard at $0.023 per GB/month (for the first 50 TB/month) and S3 Glacier Flexible Retrieval at $0.0036 per GB/month—an 84.3% storage tier reduction. However, teams must model total lifecycle costs: Glacier tiers carry minimum 90-day storage commitments and per-thousand request and per-GB retrieval fees, making them ideal for infrequent compliance archives rather than active assets.',
           'Organizations should configure automated lifecycle rules: transition raw application logs and database snapshots to infrequent-access tiers after 30 days, move them to deep archive after 90 days, and permanently purge unneeded operational logs after 365 days unless statutory compliance mandates otherwise.',
         ],
       },

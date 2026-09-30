@@ -152,7 +152,7 @@ export const technologyStrategyArticles: readonly InsightArticle[] = [
         directAnswer:
           'Neglected technical debt acts as compounding high-interest financial debt on engineering velocity.',
         paragraphs: [
-          'When capital is tight, postponing architectural maintenance appears to save money. However, unaddressed technical debt compounds exponentially. Every workaround added to a fragile monolithic backend increases the development time of future features by 20% to 40%.',
+          'When capital is tight, postponing architectural maintenance appears to save money. However, unaddressed technical debt compounds exponentially. Every workaround added to a fragile backend compounds operational friction and noticeably prolongs the delivery and testing cycles of subsequent features.',
           'Furthermore, high developer turnover frequently traces back to frustrating, unmaintainable legacy codebases. When evaluating investment options, calculate the true cost of inaction: how many engineering hours are currently wasted each sprint working around obsolete architectures?',
           'Allocating a dedicated 15% to 20% of every engineering cycle to technical debt remediation keeps delivery velocity high and avoids catastrophic rewrite crises later.',
         ],
@@ -239,7 +239,7 @@ export const technologyStrategyArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-30',
     dateModified: '2026-09-30',
     formattedDate: 'September 30, 2026',
-    readingTime: '5 min read',
+    readingTime: '6 min read',
     featuredImage: '/images/insights/sunsolv-it-investment-alignment.webp',
     featuredImageAlt:
       'Cross-functional engineering team mapping system requirements, API boundaries, and architecture blueprints on a collaborative workshop board',
@@ -291,8 +291,9 @@ export const technologyStrategyArticles: readonly InsightArticle[] = [
         paragraphs: [
           'Jumping directly into software engineering without a structured discovery phase is like commissioning a skyscraper without architectural blueprints. In the early stages of any digital initiative, stakeholders have divergent perspectives: business leaders see revenue opportunities, end-users see daily frustrations, and developers see database schemas.',
           'A technology discovery workshop convenes cross-functional stakeholders for a focused 1- to 3-week engagement to align on problem definitions, interrogate operational edge cases, test third-party API capabilities, and establish clear project boundaries.',
-          "Investing 8% to 12% of a project's total budget in a rigorous discovery engagement routinely cuts subsequent development timeline variances by over 50% and prevents costly architectural rewrites.",
+          'Empirical systems engineering research by [Eric Honour (INCOSE / University of South Australia)](https://incose.onlinelibrary.wiley.com/doi/abs/10.1002/j.2334-5837.2004.tb00504.x) evaluating 43 software-intensive and aerospace programs showed that projects allocating 8% to 12% of total effort to front-end definition and discovery reduced average schedule and cost overruns by more than 50% (compressing cost overruns from a median ~80% down to under 25%). In commercial software engineering, investing in structured front-end scoping prevents expensive architectural rewrites and aligns stakeholders before full capital allocation.',
           "The insights produced during discovery provide the essential inputs for an organization's multi-quarter [technology roadmap](/insights/technology-strategy/how-to-build-a-practical-technology-roadmap/).",
+          'Primary Reference: Honour, E. C. (2004). "Understanding the Value of Systems Engineering." [Proceedings of the INCOSE International Symposium, 14(1), 1231–1246](https://incose.onlinelibrary.wiley.com/doi/abs/10.1002/j.2334-5837.2004.tb00504.x). (Sample context: Evaluated 43 software-intensive programs to establish empirical ROI on requirements definition, architectural trade studies, and early discovery).',
         ],
       },
       {

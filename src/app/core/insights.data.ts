@@ -484,7 +484,7 @@ export const insightCategories: readonly InsightCategory[] = [
       {
         title: 'Evaluate your options',
         description:
-          'Identify administrative healthcare automation opportunities safely without clinical risk, and connect project costs with invoicing in services firms.',
+          'Identify administrative healthcare automation opportunities to reduce administrative friction while maintaining safety, privacy and governance controls, and connect project costs with invoicing in services firms.',
         articleSlugs: [
           'how-healthcare-organizations-can-identify-administrative-automation-opportunities',
           'how-professional-services-firms-can-connect-project-costs-invoices-and-collections',
