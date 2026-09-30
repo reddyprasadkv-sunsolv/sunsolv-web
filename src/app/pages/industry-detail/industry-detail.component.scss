@@ -486,3 +486,53 @@
     border-bottom: 1px solid var(--line);
   }
 }
+
+.industry-case-study {
+  background: #edf7f7;
+  padding-block: 56px;
+}
+
+.industry-case-study-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 28px;
+  background: #ffffff;
+  border: 1px solid #bbd3da;
+  border-left: 5px solid #188c9a;
+  border-radius: 12px;
+  padding: 36px 40px;
+  box-shadow: 0 8px 24px rgba(7, 26, 51, 0.04);
+}
+
+.case-study-copy {
+  max-width: 720px;
+}
+
+.case-study-copy .eyebrow {
+  color: #188c9a;
+  margin: 0 0 8px;
+}
+
+.case-study-copy h2 {
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.25;
+  color: #081426;
+  margin: 0 0 12px;
+}
+
+.case-study-summary {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: #334155;
+  margin: 0;
+}
+
+.button-case-study-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  font-weight: 600;
+}

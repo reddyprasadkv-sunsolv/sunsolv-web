@@ -192,6 +192,29 @@
   </div>
 </section>
 
+@if (data.relatedCaseStudy; as cs) {
+  <section
+    class="section industry-case-study"
+    [attr.aria-labelledby]="data.pageId + '-case-study-title'"
+  >
+    <div class="shell">
+      <div class="industry-case-study-card">
+        <div class="case-study-copy">
+          <p class="eyebrow">{{ cs.eyebrow }}</p>
+          <h2 [id]="data.pageId + '-case-study-title'">{{ cs.title }}</h2>
+          <p class="case-study-summary">{{ cs.summary }}</p>
+        </div>
+        <div class="case-study-action">
+          <a class="button button-case-study-cta" [routerLink]="cs.route">
+            {{ cs.ctaText || 'View Case Study' }}
+            <ng-icon name="heroArrowRight" aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+}
+
 <section class="section faq-section" [attr.aria-labelledby]="data.pageId + '-faq-title'">
   <div class="shell faq-layout">
     <header>

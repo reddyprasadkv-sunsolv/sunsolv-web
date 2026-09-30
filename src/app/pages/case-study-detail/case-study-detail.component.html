@@ -1,0 +1,373 @@
+<!-- Case Study Hero -->
+<section class="case-study-hero" aria-labelledby="case-study-heading">
+  <div class="shell">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/case-studies">Case Studies</a></li>
+        <li aria-current="page">{{ study.title }}</li>
+      </ol>
+    </nav>
+
+    <div class="hero-header">
+      <div class="hero-kicker">
+        <p class="eyebrow">{{ study.eyebrow }}</p>
+        <span class="category-badge">{{ study.category }}</span>
+      </div>
+      <h1 id="case-study-heading">{{ study.h1 }}</h1>
+      <p class="hero-supporting">{{ study.supportingHeadline }}</p>
+    </div>
+
+    <div class="hero-badges" aria-label="Project Attributes">
+      @for (badge of study.badges; track badge.label) {
+        <div class="badge-item">
+          <span class="badge-label">{{ badge.label }}</span>
+          <span class="badge-value">{{ badge.value }}</span>
+        </div>
+      }
+    </div>
+
+    <div class="hero-summary-block">
+      <div class="summary-content">
+        @for (para of study.summaryParagraphs; track para) {
+          <p>{{ para }}</p>
+        }
+      </div>
+      <div class="hero-actions">
+        <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }">
+          Start a Conversation <ng-icon name="heroArrowRight" aria-hidden="true" />
+        </a>
+        <a class="button button-secondary" routerLink="/case-studies"> Explore All Case Studies </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Challenge Section -->
+<section class="section case-section challenge-section" aria-labelledby="challenge-heading">
+  <div class="shell">
+    <div class="section-intro">
+      <p class="eyebrow">{{ study.challenge.eyebrow }}</p>
+      <h2 id="challenge-heading">{{ study.challenge.heading }}</h2>
+    </div>
+    <div class="content-split">
+      <div class="prose-column">
+        @for (para of study.challenge.paragraphs; track para) {
+          <p>{{ para }}</p>
+        }
+      </div>
+      <div class="friction-grid" aria-label="Operational Friction Points">
+        @for (point of study.challenge.frictionPoints; track point.title) {
+          <div class="friction-card">
+            <h3 class="friction-title">{{ point.title }}</h3>
+            <p>{{ point.description }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Existing Workflow & Constraints Section -->
+<section class="section case-section constraints-section" aria-labelledby="constraints-heading">
+  <div class="shell">
+    <div class="section-intro">
+      <p class="eyebrow">{{ study.existingWorkflow.eyebrow }}</p>
+      <h2 id="constraints-heading">{{ study.existingWorkflow.heading }}</h2>
+    </div>
+    <div class="constraints-grid">
+      <div class="prose-column">
+        @for (para of study.existingWorkflow.paragraphs; track para) {
+          <p>{{ para }}</p>
+        }
+      </div>
+      <div class="constraints-card">
+        <h3>Structural Operational Constraints</h3>
+        <ul class="bullet-list">
+          @for (constraint of study.existingWorkflow.constraints; track constraint) {
+            <li>{{ constraint }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SunSolv Approach Section -->
+<section class="section case-section approach-section" aria-labelledby="approach-heading">
+  <div class="shell">
+    <div class="section-intro">
+      <p class="eyebrow">{{ study.approach.eyebrow }}</p>
+      <h2 id="approach-heading">{{ study.approach.heading }}</h2>
+    </div>
+    <div class="content-split">
+      <div class="prose-column">
+        @for (para of study.approach.paragraphs; track para) {
+          <p>{{ para }}</p>
+        }
+      </div>
+      <div class="principles-grid" aria-label="Core Implementation Principles">
+        @for (principle of study.approach.principles; track principle.title) {
+          <div class="principle-card">
+            <h3>{{ principle.title }}</h3>
+            <p>{{ principle.description }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Solution Section -->
+<section class="section case-section solution-section" aria-labelledby="solution-heading">
+  <div class="shell">
+    <div class="section-intro">
+      <p class="eyebrow">{{ study.solution.eyebrow }}</p>
+      <h2 id="solution-heading">{{ study.solution.heading }}</h2>
+    </div>
+    <div class="solution-prose">
+      @for (para of study.solution.paragraphs; track para) {
+        <p>{{ para }}</p>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Key Capabilities Section -->
+<section class="section case-section capabilities-section" aria-labelledby="capabilities-heading">
+  <div class="shell">
+    <div class="section-intro">
+      <p class="eyebrow">{{ study.capabilities.eyebrow }}</p>
+      <h2 id="capabilities-heading">{{ study.capabilities.heading }}</h2>
+    </div>
+    <div class="capability-grid">
+      @for (item of study.capabilities.items; track item.title; let i = $index) {
+        <article class="capability-card">
+          <span class="card-number" aria-hidden="true">0{{ i + 1 }}</span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Workflow Architecture Diagram Section -->
+<section class="section case-section workflow-section" aria-labelledby="workflow-heading">
+  <div class="shell">
+    <div class="section-intro">
+      <p class="eyebrow">{{ study.workflowDiagram.eyebrow }}</p>
+      <h2 id="workflow-heading">{{ study.workflowDiagram.heading }}</h2>
+      <p class="workflow-description">{{ study.workflowDiagram.description }}</p>
+    </div>
+
+    <!-- Structured Process Flow Diagram -->
+    <div class="workflow-flow-diagram" aria-label="Structured Workflow Stages">
+      <ol class="flow-stages-list">
+        @for (stage of study.workflowDiagram.stages; track stage.number; let last = $last) {
+          <li class="flow-stage-item">
+            <div class="flow-stage-card">
+              <span class="stage-badge">{{ stage.number }}</span>
+              <h3 class="stage-title">{{ stage.title }}</h3>
+              @if (stage.subtitle) {
+                <p class="stage-subtitle">{{ stage.subtitle }}</p>
+              }
+              @if (stage.role) {
+                <span class="stage-role-pill">{{ stage.role }}</span>
+              }
+              @if (stage.description) {
+                <p class="stage-desc">{{ stage.description }}</p>
+              }
+            </div>
+            @if (!last) {
+              <div class="flow-connector" aria-hidden="true">
+                <span class="connector-line"></span>
+                <span class="connector-arrow">↓</span>
+              </div>
+            }
+          </li>
+        }
+      </ol>
+    </div>
+
+    @if (study.image; as img) {
+      <figure class="project-screenshot-figure">
+        <div class="browser-frame">
+          <div class="browser-bar" aria-hidden="true">
+            <span></span><span></span><span></span>
+            <span class="frame-label">{{ study.category }}</span>
+          </div>
+          <img
+            [src]="img.src"
+            [alt]="img.alt"
+            [width]="img.width"
+            [height]="img.height"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <figcaption>
+          {{ img.caption }}
+          <a
+            [href]="img.src"
+            target="_blank"
+            rel="noopener"
+            [attr.aria-label]="
+              'View full-size screenshot of ' + study.title + ' (opens in a new tab)'
+            "
+          >
+            View full-size screenshot <span aria-hidden="true">↗</span>
+          </a>
+        </figcaption>
+      </figure>
+    }
+  </div>
+</section>
+
+<!-- Implementation Approach Section -->
+<section
+  class="section case-section implementation-section"
+  aria-labelledby="implementation-heading"
+>
+  <div class="shell">
+    <div class="section-intro">
+      <p class="eyebrow">{{ study.implementationApproach.eyebrow }}</p>
+      <h2 id="implementation-heading">{{ study.implementationApproach.heading }}</h2>
+    </div>
+    <ol class="implementation-grid">
+      @for (step of study.implementationApproach.steps; track step.number) {
+        <li class="step-card">
+          <span class="step-badge">{{ step.number }}</span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<!-- Outcomes Section -->
+<section class="section case-section outcomes-section" aria-labelledby="outcomes-heading">
+  <div class="shell">
+    <div class="section-intro">
+      <p class="eyebrow">{{ study.outcomes.eyebrow }}</p>
+      <h2 id="outcomes-heading">{{ study.outcomes.heading }}</h2>
+    </div>
+    <div class="outcomes-grid">
+      @for (outcome of study.outcomes.items; track outcome.title) {
+        <div class="outcome-card">
+          <div class="outcome-header">
+            <span class="outcome-indicator" aria-hidden="true"></span>
+            <h3>{{ outcome.title }}</h3>
+          </div>
+          <p>{{ outcome.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Key Takeaways Section -->
+<section class="section case-section takeaways-section" aria-labelledby="takeaways-heading">
+  <div class="shell">
+    <div class="takeaway-callout">
+      <p class="eyebrow">{{ study.keyTakeaways.eyebrow }}</p>
+      <h2 id="takeaways-heading">{{ study.keyTakeaways.heading }}</h2>
+      <p class="takeaway-text">{{ study.keyTakeaways.takeaway }}</p>
+    </div>
+  </div>
+</section>
+
+<!-- Connected Ecosystem: Services, Industry, Insights -->
+<section class="section case-section ecosystem-section" aria-labelledby="ecosystem-heading">
+  <div class="shell">
+    <div class="section-intro">
+      <p class="eyebrow">Connected Expertise</p>
+      <h2 id="ecosystem-heading">Services, Industry & Relevant Insights</h2>
+      <p class="ecosystem-sub">
+        Explore the foundational capabilities and strategic analysis related to this case study.
+      </p>
+    </div>
+
+    <!-- Related Services -->
+    <div class="ecosystem-block">
+      <h3 class="ecosystem-group-title">Related Core Services</h3>
+      <div class="services-cards-grid">
+        @for (srv of study.relatedServices; track srv.slug) {
+          <a class="ecosystem-card service-card-link" [routerLink]="srv.route">
+            <div class="card-inner">
+              <span class="eyebrow">Service</span>
+              <h4>{{ srv.title }}</h4>
+              <p>{{ srv.description }}</p>
+            </div>
+            <span class="card-cta">
+              Explore Service <ng-icon name="heroArrowRight" aria-hidden="true" />
+            </span>
+          </a>
+        }
+      </div>
+    </div>
+
+    <!-- Related Industry -->
+    <div class="ecosystem-block">
+      <h3 class="ecosystem-group-title">Related Industry Sector</h3>
+      <div class="industry-single-card">
+        <a class="ecosystem-card industry-card-link" [routerLink]="study.relatedIndustry.route">
+          <div class="card-inner">
+            <span class="eyebrow">Industry Sector</span>
+            <h4>{{ study.relatedIndustry.title }}</h4>
+            <p>{{ study.relatedIndustry.description }}</p>
+          </div>
+          <span class="card-cta">
+            View {{ study.relatedIndustry.title }} Solutions
+            <ng-icon name="heroArrowRight" aria-hidden="true" />
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Related Insights -->
+    @if (study.relatedInsights.length > 0) {
+      <div class="ecosystem-block">
+        <h3 class="ecosystem-group-title">Related Strategic Insights</h3>
+        <div class="insights-cards-grid">
+          @for (article of study.relatedInsights; track article.route) {
+            <a class="ecosystem-card insight-card-link" [routerLink]="article.route">
+              <div class="card-inner">
+                <div class="insight-meta">
+                  <span class="eyebrow">{{ article.categoryTitle }}</span>
+                  <span class="read-time">{{ article.readingTime }}</span>
+                </div>
+                <h4>{{ article.title }}</h4>
+              </div>
+              <span class="card-cta">
+                Read Article <ng-icon name="heroArrowRight" aria-hidden="true" />
+              </span>
+            </a>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- Final Contact CTA -->
+<section class="section case-cta-section" aria-labelledby="contact-cta-heading">
+  <div class="shell">
+    <div class="cta-inner-layout">
+      <div class="cta-copy">
+        <p class="eyebrow">Next Steps</p>
+        <h2 id="contact-cta-heading">Have a similar technology challenge?</h2>
+        <p class="cta-body">
+          Tell us what you are trying to build, modernize, automate or improve. SunSolv can help
+          assess the requirement and define a practical way forward.
+        </p>
+      </div>
+      <div class="cta-action">
+        <a class="button" routerLink="/contact-us" [queryParams]="{ enquiry: 'project' }">
+          Start a Conversation <ng-icon name="heroArrowRight" aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -103,10 +103,28 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.sunsolv.in/case-studies</loc>
+    <loc>https://www.sunsolv.in/case-studies/</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.sunsolv.in/case-studies/digital-assessment-platform/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.sunsolv.in/case-studies/business-solution-finder/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.sunsolv.in/case-studies/invoice-project-management-system/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sunsolv.in/partnerships</loc>
@@ -146,7 +164,7 @@
   </url>
   <url>
     <loc>https://www.sunsolv.in/insights/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -200,49 +218,49 @@
   </url>
   <url>
     <loc>https://www.sunsolv.in/insights/ai-automation/how-to-identify-the-right-ai-use-case-for-your-business/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sunsolv.in/insights/ai-automation/ai-vs-automation-which-does-your-business-actually-need/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sunsolv.in/insights/cloud-infrastructure/cloud-readiness-assessment-a-practical-framework/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sunsolv.in/insights/digital-transformation/what-should-a-digital-transformation-roadmap-include/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sunsolv.in/insights/software-engineering/custom-software-vs-saas-how-should-businesses-decide/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sunsolv.in/insights/technology-strategy/how-to-build-a-practical-technology-roadmap/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sunsolv.in/insights/digital-experience/what-makes-a-high-performing-digital-experience/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sunsolv.in/insights/industries/how-digital-assessment-platforms-can-improve-education-workflows/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

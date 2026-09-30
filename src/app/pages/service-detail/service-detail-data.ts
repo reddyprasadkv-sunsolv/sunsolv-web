@@ -5,6 +5,14 @@ export interface ServiceDetailItem {
   description: string;
 }
 
+export interface ServiceRelatedCaseStudy {
+  eyebrow: string;
+  title: string;
+  summary: string;
+  route: string;
+  ctaText?: string;
+}
+
 export interface ServiceDetailPageData extends PageData {
   hero: {
     supportingContent: string;
@@ -83,4 +91,5 @@ export interface ServiceDetailPageData extends PageData {
     supportingContent: string;
     button: string;
   };
+  relatedCaseStudy?: ServiceRelatedCaseStudy;
 }

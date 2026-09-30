@@ -2,7 +2,10 @@ import { PageData, pageRouteData, services } from '../../core/site-data';
 
 export interface CaseStudy {
   id: string;
+  slug: string;
+  route: string;
   category: string;
+  industry: { title: string; route: string };
   title: string;
   summary: string;
   challenge: string;
@@ -16,7 +19,13 @@ export interface CaseStudy {
 export const caseStudies: readonly CaseStudy[] = [
   {
     id: 'digital-assessment',
+    slug: 'digital-assessment-platform',
+    route: '/case-studies/digital-assessment-platform',
     category: 'Education technology',
+    industry: {
+      title: 'Education',
+      route: '/industries/education',
+    },
     title: 'Centralized Digital Assessment Platform',
     summary:
       'Education technology connecting assessment administration, student participation and evaluation workflows.',
@@ -45,7 +54,13 @@ export const caseStudies: readonly CaseStudy[] = [
   },
   {
     id: 'business-solution-finder',
+    slug: 'business-solution-finder',
+    route: '/case-studies/business-solution-finder',
     category: 'Digital service discovery',
+    industry: {
+      title: 'Professional Services',
+      route: '/industries',
+    },
     title: 'Business Solution Finder',
     summary:
       'A guided digital experience that helps organizations understand their needs and identify relevant technology services.',
@@ -73,7 +88,13 @@ export const caseStudies: readonly CaseStudy[] = [
   },
   {
     id: 'invoice-project-management',
+    slug: 'invoice-project-management-system',
+    route: '/case-studies/invoice-project-management-system',
     category: 'Business operations software',
+    industry: {
+      title: 'Real Estate & Construction',
+      route: '/industries/real-estate',
+    },
     title: 'Custom Invoice and Project Management System',
     summary:
       'A secure operational application bringing invoicing, projects, payments, developers and reporting into one connected workflow.',

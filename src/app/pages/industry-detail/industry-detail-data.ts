@@ -11,6 +11,14 @@ export interface IndustryServiceLink {
   description?: string;
 }
 
+export interface IndustryRelatedCaseStudy {
+  eyebrow: string;
+  title: string;
+  summary: string;
+  route: string;
+  ctaText?: string;
+}
+
 export interface IndustryDetailPageData extends PageData {
   pageId: string;
   breadcrumbLabel: string;
@@ -78,4 +86,5 @@ export interface IndustryDetailPageData extends PageData {
     supportingContent: string;
     button: string;
   };
+  relatedCaseStudy?: IndustryRelatedCaseStudy;
 }

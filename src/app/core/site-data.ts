@@ -29,6 +29,8 @@ export interface PageData {
   structuredArticleAuthor?: string;
   structuredArticleKeywords?: readonly string[];
   structuredArticleSection?: string;
+  structuredOrganizationId?: string;
+  structuredAboutId?: string;
 }
 
 export interface StructuredBreadcrumb {
@@ -445,6 +447,12 @@ export const publicPaths = [
   '/terms-and-conditions',
 ] as const;
 
+export const caseStudyPaths = [
+  '/case-studies/digital-assessment-platform',
+  '/case-studies/business-solution-finder',
+  '/case-studies/invoice-project-management-system',
+] as const;
+
 export const insightPaths = [
   '/insights',
   '/insights/ai-automation',
@@ -460,4 +468,4 @@ export const insightPaths = [
   '/insights/cloud-infrastructure/cloud-readiness-assessment-a-practical-framework',
 ] as const;
 
-export const allPublicPaths = [...publicPaths, ...insightPaths] as const;
+export const allPublicPaths = [...publicPaths, ...caseStudyPaths, ...insightPaths] as const;

@@ -275,4 +275,12 @@ export const digitalTransformationPageData: ServiceDetailPageData = {
       'Tell us where processes, systems or customer experiences are creating unnecessary difficulty. We will help you identify a practical transformation path.',
     button: 'Start Your Transformation',
   },
+  relatedCaseStudy: {
+    eyebrow: 'Featured Case Study',
+    title: 'Digital Assessment Platform',
+    summary:
+      'Unifying question management, assessment delivery, evaluation workflows and reporting into a centralized platform.',
+    route: '/case-studies/digital-assessment-platform',
+    ctaText: 'View Case Study',
+  },
 };

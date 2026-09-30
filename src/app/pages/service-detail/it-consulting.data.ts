@@ -267,4 +267,12 @@ export const itConsultingPageData: ServiceDetailPageData = {
       'Tell us what you are evaluating, improving or trying to resolve. We will help you bring structure to the decision and identify a practical way forward.',
     button: 'Talk to a Consultant',
   },
+  relatedCaseStudy: {
+    eyebrow: 'Featured Case Study',
+    title: 'Business Solution Finder',
+    summary:
+      'Translating ambiguous operational challenges into structured technology solution paths through an interactive diagnostic experience.',
+    route: '/case-studies/business-solution-finder',
+    ctaText: 'View Case Study',
+  },
 };

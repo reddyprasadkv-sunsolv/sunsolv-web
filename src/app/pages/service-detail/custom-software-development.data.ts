@@ -268,4 +268,12 @@ export const customSoftwareDevelopmentPageData: ServiceDetailPageData = {
       'Tell us about the process, application or operational challenge you want to improve. We will help you define a practical software direction and the next step toward delivery.',
     button: 'Start a Project',
   },
+  relatedCaseStudy: {
+    eyebrow: 'Featured Case Study',
+    title: 'Custom Invoice & Project Management System',
+    summary:
+      'Connecting project delivery, milestone invoicing, developer assignments, and operational financial reporting in one structured system.',
+    route: '/case-studies/invoice-project-management-system',
+    ctaText: 'View Case Study',
+  },
 };

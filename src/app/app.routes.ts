@@ -8,6 +8,7 @@ import {
   getArticleBySlug,
   getCategoryBySlug,
 } from './core/insights.data';
+import { caseStudyToPageData, getAllCaseStudies } from './core/case-studies.data';
 
 export const routes: Routes = [
   {
@@ -192,6 +193,17 @@ export const routes: Routes = [
         ),
     },
   },
+  ...getAllCaseStudies().map((study): Route => ({
+    path: `case-studies/${study.slug}`,
+    loadComponent: () =>
+      import('./pages/case-study-detail/case-study-detail.component').then(
+        (m) => m.CaseStudyDetailComponent,
+      ),
+    data: {
+      caseStudyData: caseStudyToPageData(study),
+      study,
+    },
+  })),
   {
     path: 'partnerships',
     loadComponent: () =>

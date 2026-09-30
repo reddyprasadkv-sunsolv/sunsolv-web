@@ -18,6 +18,7 @@ function getPriority(route) {
   if (
     route.startsWith('/services/') ||
     route.startsWith('/industries/') ||
+    route.startsWith('/case-studies/') ||
     route.startsWith('/insights/')
   )
     return '0.8';
@@ -31,6 +32,7 @@ function getChangeFreq(route) {
   if (
     route.startsWith('/services/') ||
     route.startsWith('/industries/') ||
+    route.startsWith('/case-studies/') ||
     route.startsWith('/insights/')
   )
     return 'monthly';
@@ -57,6 +59,9 @@ const routeSources = {
   '/industries/saas': ['src/app/pages/industry-detail/saas.data.ts'],
   '/industries/logistics-supply-chain': ['src/app/pages/industry-detail/logistics-supply-chain.data.ts'],
   '/case-studies': ['src/app/pages/case-studies-overview/'],
+  '/case-studies/digital-assessment-platform': ['src/app/core/case-studies.data.ts'],
+  '/case-studies/business-solution-finder': ['src/app/core/case-studies.data.ts'],
+  '/case-studies/invoice-project-management-system': ['src/app/core/case-studies.data.ts'],
   '/partnerships': ['src/app/pages/partnerships/'],
   '/careers': ['src/app/pages/careers/', 'src/app/core/site-data.ts'],
   '/contact-us': ['src/app/pages/contact/'],
@@ -138,7 +143,7 @@ const xmlEntries = filteredRoutes.map((route) => {
   const loc =
     route === '/'
       ? `${canonicalOrigin}/`
-      : route.startsWith('/insights')
+      : route.startsWith('/insights') || route.startsWith('/case-studies')
       ? `${canonicalOrigin}${route}/`
       : `${canonicalOrigin}${route}`;
   const priority = getPriority(route);

@@ -16,6 +16,9 @@
 /industries/saas
 /industries/logistics-supply-chain
 /case-studies
+/case-studies/digital-assessment-platform
+/case-studies/business-solution-finder
+/case-studies/invoice-project-management-system
 /partnerships
 /careers
 /contact-us

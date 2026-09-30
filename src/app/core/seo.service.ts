@@ -23,7 +23,8 @@ export class SeoService {
       .subscribe(() => {
         const routeData = this.deepest(this.router.routerState.snapshot.root).data;
         this.apply(
-          (routeData['articleData'] ??
+          (routeData['caseStudyData'] ??
+            routeData['articleData'] ??
             routeData['serviceData'] ??
             routeData['industryData'] ??
             routeData['pageData'] ??
@@ -309,17 +310,35 @@ export class SeoService {
       return {
         '@context': 'https://schema.org',
         '@graph': [
-          { ...base, description: data.seo.description },
+          {
+            ...base,
+            description: data.seo.description,
+            ...(data.structuredOrganizationId
+              ? {
+                  publisher: {
+                    '@type': 'Organization',
+                    '@id': data.structuredOrganizationId,
+                    name: 'SunSolv Technologies',
+                    url: canonicalOrigin,
+                  },
+                }
+              : {}),
+          },
           {
             '@type': 'BreadcrumbList',
-            itemListElement: data.structuredBreadcrumbs.map((breadcrumb, index) => ({
-              '@type': 'ListItem',
-              position: index + 1,
-              name: breadcrumb.name,
-              item: breadcrumb.path
-                ? `${canonicalOrigin}/${breadcrumb.path}`
-                : `${canonicalOrigin}/`,
-            })),
+            itemListElement: data.structuredBreadcrumbs.map((breadcrumb, index) => {
+              const breadcrumbPath = breadcrumb.path.startsWith('/')
+                ? breadcrumb.path.slice(1)
+                : breadcrumb.path;
+              return {
+                '@type': 'ListItem',
+                position: index + 1,
+                name: breadcrumb.name,
+                item: breadcrumbPath
+                  ? `${canonicalOrigin}/${breadcrumbPath}`
+                  : `${canonicalOrigin}/`,
+              };
+            }),
           },
         ],
       };

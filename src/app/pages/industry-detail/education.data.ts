@@ -283,4 +283,12 @@ export const educationPageData: IndustryDetailPageData = {
       'Tell us about the students, teams, processes or systems you want to support. We will help you identify a practical technology direction and the right next step.',
     button: 'Start a Project',
   },
+  relatedCaseStudy: {
+    eyebrow: 'Related Case Study',
+    title: 'Digital Assessment Platform',
+    summary:
+      'See how SunSolv structured assessment creation, delivery, evaluation and reporting within a unified digital workflow.',
+    route: '/case-studies/digital-assessment-platform',
+    ctaText: 'View Case Study',
+  },
 };

@@ -1965,6 +1965,13 @@ export const insightArticles: readonly InsightArticle[] = [
       content:
         'The best software decision is not automatically SaaS or custom development. Choose the simplest approach that meets the business requirement without creating unnecessary long-term constraints. Use SaaS where standardization is sufficient. Consider custom software where specialized workflows, differentiation, integrations or control create meaningful business value. And where appropriate, combine the two.',
     },
+    caseStudy: {
+      title: 'Invoice & Project Management System',
+      summary:
+        'See how SunSolv designed an integrated operational application connecting project milestones, automated invoicing, developer assignments, and business reporting in one system.',
+      route: '/case-studies/invoice-project-management-system',
+      linkText: 'View Invoice & Project Management Case Study',
+    },
     relatedServices: [
       {
         title: 'Custom Software Development',
@@ -2313,6 +2320,13 @@ export const insightArticles: readonly InsightArticle[] = [
       title: 'Clarity, Sequence, and Disciplined Execution',
       content:
         'A practical technology roadmap should provide clarity and sequence, not simply ambition. It connects business goals to technology capabilities, identifies constraints, prioritizes investments and makes dependencies visible. The strongest roadmaps help organizations understand not only what to implement, but also what not to implement yet.',
+    },
+    caseStudy: {
+      title: 'Business Solution Finder',
+      summary:
+        'Explore how SunSolv structured a guided digital solution helping organizations translate operational challenges into clearer technology solution paths.',
+      route: '/case-studies/business-solution-finder',
+      linkText: 'View Business Solution Finder Case Study',
     },
     relatedServices: [
       {
