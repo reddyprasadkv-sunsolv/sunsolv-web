@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  PLATFORM_ID,
+  afterNextRender,
+  inject,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
@@ -44,9 +52,59 @@ import { InsightsBreadcrumbsComponent } from '../components/breadcrumbs/breadcru
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InsightsHomeComponent {
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly destroyRef = inject(DestroyRef);
+
+  constructor() {
+    if (isPlatformBrowser(this.platformId)) {
+      const onPopState = () => {
+        const hash = window.location.hash ? window.location.hash.slice(1) : '';
+        if (hash === 'topics' || hash === 'categories') {
+          const el = document.getElementById(hash);
+          if (el) {
+            el.scrollIntoView?.({ behavior: 'smooth' });
+          }
+        } else if (!hash) {
+          window.scrollTo?.({ top: 0, behavior: 'smooth' });
+        }
+      };
+
+      window.addEventListener('popstate', onPopState);
+      this.destroyRef.onDestroy(() => {
+        window.removeEventListener('popstate', onPopState);
+      });
+
+      afterNextRender(() => {
+        const initialHash = window.location.hash ? window.location.hash.slice(1) : '';
+        if (initialHash === 'topics' || initialHash === 'categories') {
+          setTimeout(() => {
+            const el = document.getElementById(initialHash);
+            if (el) {
+              el.scrollIntoView?.({ behavior: 'smooth' });
+            }
+          }, 80);
+        }
+      });
+    }
+  }
+
   readonly categories: readonly InsightCategory[] = getAllCategories();
   readonly articles: readonly InsightArticle[] = getAllArticles();
   readonly challenges: readonly InsightChallenge[] = insightChallenges;
   readonly featuredArticle: InsightArticle = this.articles[0];
   readonly breadcrumbs = [{ label: 'Home', url: '/' }, { label: 'Insights' }] as const;
+
+  onBrowseTopicsClick(event: MouseEvent): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    event.preventDefault();
+
+    const target = document.getElementById('topics') ?? document.getElementById('categories');
+    const newUrl = `${window.location.pathname}${window.location.search}#topics`;
+    history.pushState(null, '', newUrl);
+
+    if (target) {
+      target.scrollIntoView?.({ behavior: 'smooth' });
+      target.focus?.({ preventScroll: true });
+    }
+  }
 }

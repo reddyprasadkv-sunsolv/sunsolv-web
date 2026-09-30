@@ -41,7 +41,9 @@
         <a class="button" routerLink="/insights/all/">
           Explore All Insights <ng-icon name="heroArrowRight" aria-hidden="true" />
         </a>
-        <a class="button button-secondary" href="#categories">Browse by Topic</a>
+        <a class="button button-secondary" href="#topics" (click)="onBrowseTopicsClick($event)">
+          Browse Topics
+        </a>
       </div>
     </div>
   </div>
@@ -90,8 +92,14 @@
   </div>
 </section>
 
-<!-- Categories Section -->
-<section id="categories" class="section categories-section" aria-labelledby="categories-title">
+<!-- Topics / Categories Section -->
+<section
+  id="topics"
+  data-legacy-id="categories"
+  class="section categories-section"
+  aria-labelledby="categories-title"
+  tabindex="-1"
+>
   <div class="shell">
     <div class="section-heading">
       <p class="eyebrow">Topic Areas</p>

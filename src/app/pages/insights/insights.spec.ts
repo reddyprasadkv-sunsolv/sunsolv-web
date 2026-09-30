@@ -198,6 +198,32 @@ describe('SunSolv Insights Module', () => {
       // Latest Insights
       const articleCards = compiled.querySelectorAll('.latest-insights-section app-article-card');
       expect(articleCards.length).toBe(8);
+
+      // Hero CTA Actions: Explore All Insights & Browse Topics
+      const heroActions = compiled.querySelector('.hero-actions');
+      expect(heroActions).toBeTruthy();
+
+      const allInsightsBtn = heroActions?.querySelector('a.button:not(.button-secondary)');
+      expect(allInsightsBtn?.textContent).toContain('Explore All Insights');
+      expect(allInsightsBtn?.getAttribute('routerlink')).toBe('/insights/all/');
+
+      const browseTopicsBtn = heroActions?.querySelector(
+        'a.button.button-secondary',
+      ) as HTMLAnchorElement;
+      expect(browseTopicsBtn).toBeTruthy();
+      expect(browseTopicsBtn?.textContent?.trim()).toBe('Browse Topics');
+      expect(browseTopicsBtn?.getAttribute('href')).toBe('#topics');
+
+      // Verify the Topics section exists with id="topics"
+      const topicsSection = compiled.querySelector('section#topics');
+      expect(topicsSection).toBeTruthy();
+      expect(topicsSection?.getAttribute('data-legacy-id')).toBe('categories');
+      expect(topicsSection?.classList.contains('categories-section')).toBe(true);
+
+      // Clicking Browse Topics must prevent default to avoid base-href jump to homepage
+      const clickEvent = new MouseEvent('click', { cancelable: true, bubbles: true });
+      browseTopicsBtn.dispatchEvent(clickEvent);
+      expect(clickEvent.defaultPrevented).toBe(true);
     });
   });
 

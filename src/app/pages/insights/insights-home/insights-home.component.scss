@@ -168,9 +168,15 @@
   display: block;
 }
 
-/* Categories Grid */
+/* Topics / Categories Grid */
+#topics,
 .categories-section {
   background: #ffffff;
+  scroll-margin-top: var(--header-offset, 110px);
+}
+
+#topics:focus {
+  outline: none;
 }
 
 .section-heading {
