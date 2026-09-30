@@ -79,7 +79,7 @@ export const caseStudies: readonly CaseStudy[] = [
     challenge:
       'Translating high-level business goals into concrete technical requirements often led to ambiguous briefs and protracted scoping.',
     solution:
-      'A responsive diagnostic application built with Angular Reactive Architecture that maps user priorities to verified technology tracks.',
+      'A responsive diagnostic application built with Angular Reactive Architecture that maps user priorities to tailored technology tracks.',
     capabilities: [
       'Interactive 12-category needs discovery',
       'Requirements mapping to technology tracks',

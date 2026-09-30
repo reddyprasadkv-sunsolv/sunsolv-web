@@ -671,7 +671,7 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
           subtitle: 'Architecture Matching',
           role: 'Engine',
           description:
-            'Evaluate entered criteria against verified architecture patterns and delivery models.',
+            'Evaluate entered criteria against established architecture patterns and delivery models.',
         },
         {
           number: '05',
@@ -907,7 +907,7 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
         {
           title: 'Milestone-Linked Invoicing',
           description:
-            'Anchor invoice creation directly to verified project milestones, ensuring prompt billing upon deliverable approval.',
+            'Anchor invoice creation directly to approved project milestones, ensuring prompt billing upon deliverable approval.',
         },
         {
           title: 'Integrated Resource Costing',
@@ -941,7 +941,7 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
         {
           title: 'Company & Client Profile Management',
           description:
-            'Centralize customer records, billing addresses, tax identifiers, and payment terms in one verified repository.',
+            'Centralize customer records, billing addresses, tax identifiers, and payment terms in one unified repository.',
         },
         {
           title: 'Project Lifecycle & Milestone Tracking',
@@ -1023,7 +1023,7 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
           subtitle: 'Structured Invoices',
           role: 'Billing Admin',
           description:
-            'Prepare itemized invoices from verified milestone deliverables with PDF export.',
+            'Prepare itemized invoices from approved milestone deliverables with PDF export.',
         },
         {
           number: '06',
@@ -1103,7 +1103,7 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
       eyebrow: 'Strategic Takeaway',
       heading: 'Operational Cohesion Over Administrative Silos',
       takeaway:
-        'Project delivery and financial billing are fundamentally intertwined. When project leads, developers, and finance administrators share a synchronized operational platform, businesses eliminate administrative overhead, improve billing timeliness, and gain dependable visibility into project profitability.',
+        'Project delivery and financial billing are fundamentally intertwined. A connected operational platform can reduce administrative overhead, support timely billing, and improve visibility into project profitability.',
     },
     relatedServices: [
       {
