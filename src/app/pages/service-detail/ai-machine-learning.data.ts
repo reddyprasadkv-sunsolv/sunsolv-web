@@ -296,4 +296,56 @@ export const aiMachineLearningPageData: ServiceDetailPageData = {
       'Tell us what you want to predict, automate, understand or improve. We will help you assess the opportunity, clarify the data requirements and define a responsible way forward.',
     button: 'Start a Project',
   },
+  relatedInsights: {
+    eyebrow: 'AI & Automation Perspectives',
+    heading: 'Related Insights on AI Adoption & Feasibility',
+    description:
+      'Practical evaluation frameworks to identify viable AI use cases, prepare data pipelines, and distinguish between deterministic rules and machine learning.',
+    items: [
+      {
+        title: 'How to Identify the Right AI Use Case for Your Business',
+        route: '/insights/ai-automation/how-to-identify-the-right-ai-use-case-for-your-business/',
+        categoryTitle: 'AI & Automation',
+        readingTime: '13 min read',
+        summary:
+          'Learn how to evaluate business problems, data availability, value, risk, and integration requirements for pragmatic AI initiatives.',
+      },
+      {
+        title: 'AI vs Automation: Which Does Your Business Actually Need?',
+        route: '/insights/ai-automation/ai-vs-automation-which-does-your-business-actually-need/',
+        categoryTitle: 'AI & Automation',
+        readingTime: '9 min read',
+        summary:
+          'Understand when deterministic rule-based workflows are superior to probabilistic machine learning models in speed and cost.',
+      },
+      {
+        title: 'Is Your Business Data Ready for AI?',
+        route: '/insights/ai-automation/is-your-business-data-ready-for-ai/',
+        categoryTitle: 'AI & Automation',
+        readingTime: '8 min read',
+        summary:
+          'Assess data freshness, completeness, governance, and labeling before committing budget to complex model training.',
+      },
+    ],
+  },
+  relatedIndustries: [
+    {
+      title: 'Healthcare',
+      route: '/industries/healthcare',
+      description:
+        'Support nonclinical administrative workflows, document processing, and data governance boundaries designed with human oversight.',
+    },
+    {
+      title: 'Retail & E-Commerce',
+      route: '/industries/retail-ecommerce',
+      description:
+        'Deploy catalog classification, demand forecasting frameworks, and tailored customer journey recommendations.',
+    },
+    {
+      title: 'SaaS',
+      route: '/industries/saas',
+      description:
+        'Integrate search workflows, structured recommendation scoring, and assistive workflow features.',
+    },
+  ],
 };

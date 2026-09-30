@@ -271,4 +271,58 @@ export const cloudSolutionsPageData: ServiceDetailPageData = {
       'Tell us about your applications, infrastructure and priorities. We will help you identify a secure and practical cloud direction.',
     button: 'Start a Cloud Conversation',
   },
+  relatedInsights: {
+    eyebrow: 'Infrastructure Perspectives',
+    heading: 'Related Insights on Cloud Planning & Resilience',
+    description:
+      'Practical guidance on executing cloud migrations, controlling runaway infrastructure spend, and designing business continuity safeguards.',
+    items: [
+      {
+        title: 'How to Plan a Cloud Migration Without Disrupting Operations',
+        route:
+          '/insights/cloud-infrastructure/how-to-plan-a-cloud-migration-without-disrupting-operations/',
+        categoryTitle: 'Cloud Infrastructure',
+        readingTime: '9 min read',
+        summary:
+          'A phase-by-phase framework for workload assessment, dependency mapping, data cutover, and post-migration validation.',
+      },
+      {
+        title: 'How to Control Cloud Costs Before They Grow',
+        route: '/insights/cloud-infrastructure/how-to-control-cloud-costs-before-they-grow/',
+        categoryTitle: 'Cloud Infrastructure',
+        readingTime: '8 min read',
+        summary:
+          'Identify the primary drivers of cloud bill expansion and establish proactive tagging, sizing, and governance mechanisms.',
+      },
+      {
+        title: 'Cloud Backup vs Disaster Recovery: What Should Businesses Plan?',
+        route:
+          '/insights/cloud-infrastructure/cloud-backup-vs-disaster-recovery-what-should-businesses-plan/',
+        categoryTitle: 'Cloud Infrastructure',
+        readingTime: '8 min read',
+        summary:
+          'Distinguish between routine data retention and rapid system recovery to define realistic RTO and RPO objectives.',
+      },
+    ],
+  },
+  relatedIndustries: [
+    {
+      title: 'SaaS',
+      route: '/industries/saas',
+      description:
+        'Plan reliable, cost-governed cloud environments with appropriate tenant isolation and scaling policies.',
+    },
+    {
+      title: 'Logistics & Supply Chain',
+      route: '/industries/logistics-supply-chain',
+      description:
+        'Deploy cloud telemetry ingestion, vehicle tracking architectures, and planned, low-disruption system migrations.',
+    },
+    {
+      title: 'Education',
+      route: '/industries/education',
+      description:
+        'Deploy dependable cloud hosting designed to support institutional scheduling and examination web traffic.',
+    },
+  ],
 };

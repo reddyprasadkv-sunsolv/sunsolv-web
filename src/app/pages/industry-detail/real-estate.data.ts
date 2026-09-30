@@ -289,4 +289,37 @@ export const realEstatePageData: IndustryDetailPageData = {
       'Tell us about the properties, users, processes or systems you want to improve. We will help you identify a practical technology direction and the right next step.',
     button: 'Start a Project',
   },
+  relatedInsights: {
+    eyebrow: 'Property Technology Insights',
+    heading: 'Related Insights for Real Estate & PropTech Firms',
+    description:
+      'Guidance on optimizing high-intent property enquiry forms, auditing listing portals, and prioritizing digital transformation.',
+    items: [
+      {
+        title: 'How to Design B2B Enquiry Forms That Reduce Friction',
+        route: '/insights/digital-experience/how-to-design-b2b-enquiry-forms-that-reduce-friction/',
+        categoryTitle: 'Digital Experience',
+        readingTime: '8 min read',
+        summary:
+          'Capture high-intent investor, tenant, and buyer leads with progressive disclosure, reducing drop-off rates across listing workflows.',
+      },
+      {
+        title: 'How to Audit a Website Journey Before Redesigning It',
+        route: '/insights/digital-experience/how-to-audit-a-website-journey-before-redesigning-it/',
+        categoryTitle: 'Digital Experience',
+        readingTime: '8 min read',
+        summary:
+          'Analyze user friction, search intent, and tenant/broker journeys before initiating a property portal redesign.',
+      },
+      {
+        title: 'How to Prioritize Processes for Digital Transformation',
+        route:
+          '/insights/digital-transformation/how-to-prioritize-processes-for-digital-transformation/',
+        categoryTitle: 'Digital Transformation',
+        readingTime: '9 min read',
+        summary:
+          'Evaluate lease administration, maintenance ticketing, and portfolio management to identify immediate transformation opportunities.',
+      },
+    ],
+  },
 };

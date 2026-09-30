@@ -284,4 +284,45 @@ export const saasPageData: IndustryDetailPageData = {
       'Tell us about the users, workflows, platform foundations or operational systems you want to improve. We will help you identify a practical technology direction and the right next step.',
     button: 'Start a Project',
   },
+  relatedCaseStudy: {
+    eyebrow: 'Related Case Study',
+    title: 'Business Solution Finder',
+    summary:
+      'See how SunSolv designed an interactive diagnostic tool that translates business requirements into targeted technology recommendations through guided decision logic.',
+    route: '/case-studies/business-solution-finder',
+    ctaText: 'View Case Study',
+  },
+  relatedInsights: {
+    eyebrow: 'SaaS Engineering Insights',
+    heading: 'Related Insights for SaaS Founders & Engineering Leaders',
+    description:
+      'Architecture trade-offs, cloud cost containment, and discovery planning for modern multi-tenant software platforms.',
+    items: [
+      {
+        title: 'Modular Monolith vs Microservices: What Fits Your Application?',
+        route:
+          '/insights/software-engineering/modular-monolith-vs-microservices-what-fits-your-application/',
+        categoryTitle: 'Software Engineering',
+        readingTime: '9 min read',
+        summary:
+          'Avoid premature distributed system complexity and evaluate team size and domain boundaries before splitting SaaS codebases.',
+      },
+      {
+        title: 'How to Control Cloud Costs Before They Grow',
+        route: '/insights/cloud-infrastructure/how-to-control-cloud-costs-before-they-grow/',
+        categoryTitle: 'Cloud Infrastructure',
+        readingTime: '8 min read',
+        summary:
+          'Maintain healthy gross margins by implementing multi-tenant cost tracking, resource tagging, and auto-scaling governance.',
+      },
+      {
+        title: 'What Should a Technology Discovery Workshop Deliver?',
+        route: '/insights/technology-strategy/what-should-a-technology-discovery-workshop-deliver/',
+        categoryTitle: 'Technology Strategy',
+        readingTime: '9 min read',
+        summary:
+          'De-risk your SaaS product roadmap by validating technical feasibility, data schemas, and user journeys before engineering sprints.',
+      },
+    ],
+  },
 };

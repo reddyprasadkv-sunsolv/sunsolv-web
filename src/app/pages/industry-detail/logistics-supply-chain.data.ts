@@ -291,4 +291,39 @@ export const logisticsSupplyChainPageData: IndustryDetailPageData = {
       'Tell us about the goods, teams, facilities, partners or systems you want to connect. We will help you identify a practical technology direction and the right next step.',
     button: 'Start a Project',
   },
+  relatedInsights: {
+    eyebrow: 'Supply Chain Perspectives',
+    heading: 'Related Insights for Logistics & Supply Chain Leaders',
+    description:
+      'Architecture principles for resilient integrations, cloud reliability, and legacy dispatch modernization.',
+    items: [
+      {
+        title: 'How to Plan Reliable API Integrations Between Business Systems',
+        route:
+          '/insights/software-engineering/how-to-plan-reliable-api-integrations-between-business-systems/',
+        categoryTitle: 'Software Engineering',
+        readingTime: '8 min read',
+        summary:
+          'Design resilient data pipelines for warehouse management, EDI carriers, and ERP freight tracking.',
+      },
+      {
+        title: 'How to Plan a Cloud Migration Without Disrupting Operations',
+        route:
+          '/insights/cloud-infrastructure/how-to-plan-a-cloud-migration-without-disrupting-operations/',
+        categoryTitle: 'Cloud Infrastructure',
+        readingTime: '9 min read',
+        summary:
+          'Phase workload migrations to maintain uninterrupted freight visibility and continuous dispatch operations.',
+      },
+      {
+        title: 'Modernize, Integrate, or Replace? A Guide to Legacy Systems',
+        route:
+          '/insights/digital-transformation/modernize-integrate-or-replace-a-guide-to-legacy-systems/',
+        categoryTitle: 'Digital Transformation',
+        readingTime: '8 min read',
+        summary:
+          'Evaluate whether to build wrapper APIs around aging terminal software or replace core dispatch consoles entirely.',
+      },
+    ],
+  },
 };

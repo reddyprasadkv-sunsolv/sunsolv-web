@@ -283,6 +283,67 @@
   </section>
 }
 
+@if (data.relatedIndustries; as relevantInds) {
+  <section
+    class="section service-industries-section"
+    aria-labelledby="service-relevant-industries-title"
+  >
+    <div class="shell">
+      <header class="section-heading">
+        <p class="eyebrow">Industry Applications</p>
+        <h2 class="detail-section-title" id="service-relevant-industries-title">
+          Sector Applications &amp; Focus Areas
+        </h2>
+        <p class="section-intro">
+          Explore how this service addresses sector-specific workflows, compliance considerations,
+          and operational constraints.
+        </p>
+      </header>
+      <div class="service-industries-grid">
+        @for (item of relevantInds; track item.route) {
+          <a class="service-industry-card" [routerLink]="item.route">
+            <span class="eyebrow">Sector</span>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+            <span class="card-cta">
+              View Sector Solutions <ng-icon name="heroArrowRight" aria-hidden="true" />
+            </span>
+          </a>
+        }
+      </div>
+    </div>
+  </section>
+}
+
+@if (data.relatedInsights; as insightsSection) {
+  <section class="section service-insights-section" aria-labelledby="service-insights-title">
+    <div class="shell">
+      <header class="section-heading">
+        <p class="eyebrow">{{ insightsSection.eyebrow }}</p>
+        <h2 class="detail-section-title" id="service-insights-title">
+          {{ insightsSection.heading }}
+        </h2>
+        <p class="section-intro">{{ insightsSection.description }}</p>
+      </header>
+      <div class="service-insights-grid">
+        @for (insight of insightsSection.items; track insight.route) {
+          <article class="service-insight-card">
+            <div class="card-meta">
+              <span class="category-badge">{{ insight.categoryTitle }}</span>
+              <span class="reading-time">{{ insight.readingTime }}</span>
+            </div>
+            <h3>{{ insight.title }}</h3>
+            <p>{{ insight.summary }}</p>
+            <a class="card-link" [routerLink]="insight.route">
+              Read Article <ng-icon name="heroArrowRight" aria-hidden="true" />
+            </a>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+}
+
 <section class="section faq-section" aria-labelledby="faq-title">
   <div class="shell faq-layout two-column-layout">
     <header>

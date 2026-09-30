@@ -72,6 +72,49 @@
     </div>
   </section>
 
+  <!-- Connected Capabilities & Relevant Work -->
+  @if (cat.connectedService || cat.connectedCaseStudy) {
+    <section
+      class="section category-connected-section"
+      aria-labelledby="category-connected-heading"
+    >
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Practical Execution</p>
+          <h2 id="category-connected-heading">Connected Capabilities &amp; Relevant Work</h2>
+          <p class="section-intro">
+            Move from strategic guidance to production execution with SunSolv's dedicated service
+            capabilities and demonstrated client solutions.
+          </p>
+        </div>
+        <div class="connected-cards-grid">
+          @if (cat.connectedService; as svc) {
+            <article class="connected-card">
+              <span class="card-badge">Service Capability</span>
+              <h3>{{ svc.title }}</h3>
+              <p>{{ svc.description }}</p>
+              <a [routerLink]="svc.route" class="card-link">
+                <span>Explore {{ svc.title }}</span>
+                <ng-icon name="heroArrowRight" aria-hidden="true" />
+              </a>
+            </article>
+          }
+          @if (cat.connectedCaseStudy; as cs) {
+            <article class="connected-card">
+              <span class="card-badge">Case Study</span>
+              <h3>{{ cs.title }}</h3>
+              <p>{{ cs.description }}</p>
+              <a [routerLink]="cs.route" class="card-link">
+                <span>View Case Study</span>
+                <ng-icon name="heroArrowRight" aria-hidden="true" />
+              </a>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+  }
+
   <!-- Final CTA Surface -->
   <section class="final-cta final-cta-surface section" aria-labelledby="category-cta-title">
     <div class="shell cta-grid">

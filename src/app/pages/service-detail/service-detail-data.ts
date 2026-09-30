@@ -13,6 +13,27 @@ export interface ServiceRelatedCaseStudy {
   ctaText?: string;
 }
 
+export interface ServiceRelatedInsight {
+  readonly title: string;
+  readonly route: string;
+  readonly categoryTitle: string;
+  readonly readingTime: string;
+  readonly summary: string;
+}
+
+export interface ServiceRelatedIndustryLink {
+  readonly title: string;
+  readonly route: string;
+  readonly description: string;
+}
+
+export interface ServiceRelatedInsightsSection {
+  readonly eyebrow: string;
+  readonly heading: string;
+  readonly description: string;
+  readonly items: readonly ServiceRelatedInsight[];
+}
+
 export interface ServiceDetailPageData extends PageData {
   hero: {
     supportingContent: string;
@@ -92,4 +113,6 @@ export interface ServiceDetailPageData extends PageData {
     button: string;
   };
   relatedCaseStudy?: ServiceRelatedCaseStudy;
+  relatedInsights?: ServiceRelatedInsightsSection;
+  relatedIndustries?: readonly ServiceRelatedIndustryLink[];
 }

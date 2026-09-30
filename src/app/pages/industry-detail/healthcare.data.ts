@@ -279,4 +279,38 @@ export const healthcarePageData: IndustryDetailPageData = {
       'Tell us about the people, processes or systems you want to improve. We will help you identify a practical technology direction and the right next step.',
     button: 'Start a Project',
   },
+  relatedInsights: {
+    eyebrow: 'Healthcare Perspectives',
+    heading: 'Related Insights for Healthcare Organizations',
+    description:
+      'Practical guidance on healthcare automation, clinician-in-the-loop workflows, and operational prioritization.',
+    items: [
+      {
+        title: 'How Healthcare Organizations Can Identify Administrative Automation Opportunities',
+        route:
+          '/insights/industries/how-healthcare-organizations-can-identify-administrative-automation-opportunities/',
+        categoryTitle: 'Industry Insights',
+        readingTime: '9 min read',
+        summary:
+          'Systematically audit nonclinical administrative workflows to alleviate staff documentation burdens while preserving patient safety.',
+      },
+      {
+        title: 'Where Human Review Belongs in AI-Assisted Workflows',
+        route: '/insights/ai-automation/where-human-review-belongs-in-ai-assisted-workflows/',
+        categoryTitle: 'AI & Automation',
+        readingTime: '8 min read',
+        summary:
+          'Establish non-negotiable human review checkpoints for high-stakes healthcare operational and decision workflows.',
+      },
+      {
+        title: 'How to Prioritize Processes for Digital Transformation',
+        route:
+          '/insights/digital-transformation/how-to-prioritize-processes-for-digital-transformation/',
+        categoryTitle: 'Digital Transformation',
+        readingTime: '9 min read',
+        summary:
+          'Evaluate patient impact, regulatory risk, and operational readiness to sequence clinical workflow modernizations safely.',
+      },
+    ],
+  },
 };

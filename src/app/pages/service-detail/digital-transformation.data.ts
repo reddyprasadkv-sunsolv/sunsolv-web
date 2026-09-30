@@ -277,10 +277,65 @@ export const digitalTransformationPageData: ServiceDetailPageData = {
   },
   relatedCaseStudy: {
     eyebrow: 'Featured Case Study',
-    title: 'Digital Assessment Platform',
+    title: 'Custom Invoice & Project Management System',
     summary:
-      'Unifying question management, assessment delivery, evaluation workflows and reporting into a centralized platform.',
-    route: '/case-studies/digital-assessment-platform',
+      'Connecting project delivery, milestone invoicing, developer assignments, and operational financial reporting in one structured system.',
+    route: '/case-studies/invoice-project-management-system',
     ctaText: 'View Case Study',
   },
+  relatedInsights: {
+    eyebrow: 'Transformation Guides',
+    heading: 'Related Insights on Modernization & Operational Workflows',
+    description:
+      'Explore actionable methodologies for evaluating legacy systems, prioritizing workflow improvements, and designing unified operational platforms.',
+    items: [
+      {
+        title: 'What Should a Digital Transformation Roadmap Include?',
+        route:
+          '/insights/digital-transformation/what-should-a-digital-transformation-roadmap-include/',
+        categoryTitle: 'Digital Transformation',
+        readingTime: '9 min read',
+        summary:
+          'Learn how to establish clear operational horizons, assess organizational readiness, and pace technology change effectively.',
+      },
+      {
+        title: 'Modernize, Integrate, or Replace? A Guide to Legacy Systems',
+        route:
+          '/insights/digital-transformation/modernize-integrate-or-replace-a-guide-to-legacy-systems/',
+        categoryTitle: 'Digital Transformation',
+        readingTime: '8 min read',
+        summary:
+          'Evaluate technical debt, operational friction, and replacement risk to select the most prudent path for aging core software.',
+      },
+      {
+        title: 'How to Connect Project Delivery, Invoicing, and Payment Tracking',
+        route:
+          '/insights/digital-transformation/how-to-connect-project-delivery-invoicing-and-payment-tracking/',
+        categoryTitle: 'Digital Transformation',
+        readingTime: '8 min read',
+        summary:
+          'Eliminate manual reconciliation and billing delays by bridging task completions with finance and milestone invoicing.',
+      },
+    ],
+  },
+  relatedIndustries: [
+    {
+      title: 'Logistics & Supply Chain',
+      route: '/industries/logistics-supply-chain',
+      description:
+        'Digitize carrier dispatch, automate multi-system inventory reconciliation, and connect warehouse operations to enterprise ERPs.',
+    },
+    {
+      title: 'Retail & E-Commerce',
+      route: '/industries/retail-ecommerce',
+      description:
+        'Unify order orchestration, inventory updates, and multi-channel checkout workflows across merchant platforms.',
+    },
+    {
+      title: 'Healthcare',
+      route: '/industries/healthcare',
+      description:
+        'Eliminate paper-driven clerical bottlenecks, automate patient intake coordination, and modernize administrative healthcare workflows.',
+    },
+  ],
 };

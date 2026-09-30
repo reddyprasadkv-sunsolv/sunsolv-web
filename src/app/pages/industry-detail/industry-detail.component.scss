@@ -536,3 +536,99 @@
   white-space: nowrap;
   font-weight: 600;
 }
+
+.industry-insights-section {
+  background: #fbfbfd;
+  border-top: 1px solid #cbdedc;
+  padding-block: 64px;
+
+  .section-intro {
+    max-width: 680px;
+    margin-top: 12px;
+    color: #475569;
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+}
+
+.industry-insights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.industry-insight-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #d8e5e4;
+  border-radius: 12px;
+  padding: 28px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+    border-color: #188c9a;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    font-size: 0.82rem;
+  }
+
+  .category-badge {
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #188c9a;
+  }
+
+  .reading-time {
+    color: #64748b;
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    line-height: 1.35;
+    color: #0f172a;
+    margin: 0 0 12px;
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #475569;
+    margin: 0 0 20px;
+    flex-grow: 1;
+  }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #188c9a;
+    text-decoration: none;
+    transition:
+      color 0.2s ease,
+      gap 0.2s ease;
+
+    &:hover {
+      color: #116873;
+      gap: 10px;
+    }
+  }
+}

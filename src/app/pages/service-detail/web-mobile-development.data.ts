@@ -271,4 +271,65 @@ export const webMobileDevelopmentPageData: ServiceDetailPageData = {
       'Tell us what your users need to accomplish and what the product must support. We will help you define a practical way forward.',
     button: 'Start Your Project',
   },
+  relatedCaseStudy: {
+    eyebrow: 'Featured Case Study',
+    title: 'Centralized Digital Assessment Platform',
+    summary:
+      'Engineering a responsive, multi-role web application delivering question authoring, candidate testing, and structured rubric grading.',
+    route: '/case-studies/digital-assessment-platform',
+    ctaText: 'View Case Study',
+  },
+  relatedInsights: {
+    eyebrow: 'Experience Perspectives',
+    heading: 'Related Insights on Performance & User Experience',
+    description:
+      'Explore principles for balancing visual richness with speed, auditing user journeys, and building intuitive conversion flows.',
+    items: [
+      {
+        title: 'What Makes a High-Performing Digital Experience?',
+        route: '/insights/digital-experience/what-makes-a-high-performing-digital-experience/',
+        categoryTitle: 'Digital Experience',
+        readingTime: '8 min read',
+        summary:
+          'Why Core Web Vitals, structural stability, and responsive interface controls form the true foundation of user retention.',
+      },
+      {
+        title: 'Website Performance vs Visual Complexity: Finding the Right Balance',
+        route:
+          '/insights/digital-experience/website-performance-vs-visual-complexity-finding-the-right-balance/',
+        categoryTitle: 'Digital Experience',
+        readingTime: '8 min read',
+        summary:
+          'Practical trade-offs between rich interactive animations and rapid initial load times across desktop and mobile devices.',
+      },
+      {
+        title: 'How to Design B2B Enquiry Forms That Reduce Friction',
+        route: '/insights/digital-experience/how-to-design-b2b-enquiry-forms-that-reduce-friction/',
+        categoryTitle: 'Digital Experience',
+        readingTime: '8 min read',
+        summary:
+          'Structure high-intent conversion forms with smart defaults, contextual validation, and minimal cognitive friction.',
+      },
+    ],
+  },
+  relatedIndustries: [
+    {
+      title: 'Retail & E-Commerce',
+      route: '/industries/retail-ecommerce',
+      description:
+        'Deliver mobile catalog browsing, smooth cart transitions, and user-friendly checkout flows.',
+    },
+    {
+      title: 'Education',
+      route: '/industries/education',
+      description:
+        'Build accessible digital test-taker interfaces, teacher grading dashboards, and interactive learning tools designed for dependable use.',
+    },
+    {
+      title: 'Real Estate',
+      route: '/industries/real-estate',
+      description:
+        'Create interactive property showcase portals, mobile-first listing search tools, and high-conversion client enquiry experiences.',
+    },
+  ],
 };

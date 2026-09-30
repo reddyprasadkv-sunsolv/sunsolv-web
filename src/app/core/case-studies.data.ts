@@ -42,6 +42,7 @@ export interface CaseStudyRelatedInsight {
   readonly route: string;
   readonly categoryTitle: string;
   readonly readingTime: string;
+  readonly description?: string;
 }
 
 export interface CaseStudyTocItem {
@@ -439,13 +440,6 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
           'Responsive, high-performance web applications engineered for cross-device dependability.',
         route: '/services/web-mobile-development',
       },
-      {
-        slug: 'cloud-solutions',
-        title: 'Cloud Solutions',
-        description:
-          'Scalable cloud infrastructure supporting resilient web delivery and data persistence.',
-        route: '/services/cloud-solutions',
-      },
     ],
     relatedIndustry: {
       title: 'Education',
@@ -455,12 +449,21 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
     },
     relatedInsights: [
       {
-        title:
-          'How Digital Assessment Platforms Can Improve Education Workflows (Without Adding Friction)',
+        title: 'How Digital Assessment Platforms Can Improve Education Workflows',
         route:
           '/insights/industries/how-digital-assessment-platforms-can-improve-education-workflows/',
-        categoryTitle: 'Industries',
-        readingTime: '8 min read',
+        categoryTitle: 'Industry Insights',
+        readingTime: '10 min read',
+        description:
+          'Explores the workflow architecture required to connect authoring, exam administration, grading, and reporting into one unified platform.',
+      },
+      {
+        title: 'How Schools Can Structure a Reusable Digital Question Bank',
+        route: '/insights/industries/how-schools-can-structure-a-reusable-digital-question-bank/',
+        categoryTitle: 'Industry Insights',
+        readingTime: '6 min read',
+        description:
+          'Explains how modular curriculum taxonomies and cognitive depth tagging preserve faculty effort and enable fair student evaluations.',
       },
       {
         title: 'Custom Software vs SaaS: How Should Businesses Decide?',
@@ -468,12 +471,8 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
           '/insights/software-engineering/custom-software-vs-saas-how-should-businesses-decide/',
         categoryTitle: 'Software Engineering',
         readingTime: '8 min read',
-      },
-      {
-        title: 'What Makes a High-Performing Digital Experience?',
-        route: '/insights/digital-experience/what-makes-a-high-performing-digital-experience/',
-        categoryTitle: 'Digital Experience',
-        readingTime: '8 min read',
+        description:
+          'Analyzes why strict institutional security and evaluation workflows often justify bespoke software over off-the-shelf software.',
       },
     ],
   },
@@ -796,24 +795,28 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
     },
     relatedInsights: [
       {
+        title: 'What Should a Technology Discovery Workshop Deliver?',
+        route: '/insights/technology-strategy/what-should-a-technology-discovery-workshop-deliver/',
+        categoryTitle: 'Technology Strategy',
+        readingTime: '9 min read',
+        description:
+          'Covers the diagnostic framework used to unearth underlying operational constraints before proposing software architecture.',
+      },
+      {
         title: 'How to Build a Practical Technology Roadmap',
         route: '/insights/technology-strategy/how-to-build-a-practical-technology-roadmap/',
         categoryTitle: 'Technology Strategy',
         readingTime: '8 min read',
+        description:
+          'Guides how multi-phase technical roadmaps prioritize high-impact capabilities while controlling delivery risk.',
       },
       {
-        title: 'Custom Software vs SaaS: How Should Businesses Decide?',
-        route:
-          '/insights/software-engineering/custom-software-vs-saas-how-should-businesses-decide/',
-        categoryTitle: 'Software Engineering',
-        readingTime: '8 min read',
-      },
-      {
-        title: 'What Should a Digital Transformation Roadmap Include?',
-        route:
-          '/insights/digital-transformation/what-should-a-digital-transformation-roadmap-include/',
-        categoryTitle: 'Digital Transformation',
+        title: 'AI vs Automation: Which Does Your Business Actually Need?',
+        route: '/insights/ai-automation/ai-vs-automation-which-does-your-business-actually-need/',
+        categoryTitle: 'AI & Automation',
         readingTime: '9 min read',
+        description:
+          'Explains why transparent, deterministic logic was chosen over probabilistic AI models for consistent diagnostic recommendations.',
       },
     ],
   },
@@ -1120,13 +1123,6 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
           'Modernize operational workflows and replace disconnected spreadsheet tools with coherent web systems.',
         route: '/services/digital-transformation',
       },
-      {
-        slug: 'cloud-solutions',
-        title: 'Cloud Solutions',
-        description:
-          'Reliable cloud hosting and managed relational data persistence for internal business applications.',
-        route: '/services/cloud-solutions',
-      },
     ],
     relatedIndustry: {
       title: 'Professional Services',
@@ -1136,24 +1132,32 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
     },
     relatedInsights: [
       {
-        title: 'Custom Software vs SaaS: How Should Businesses Decide?',
+        title:
+          'How Professional Services Firms Can Connect Project Costs, Invoices and Collections',
         route:
-          '/insights/software-engineering/custom-software-vs-saas-how-should-businesses-decide/',
-        categoryTitle: 'Software Engineering',
-        readingTime: '8 min read',
+          '/insights/industries/how-professional-services-firms-can-connect-project-costs-invoices-and-collections/',
+        categoryTitle: 'Industry Insights',
+        readingTime: '7 min read',
+        description:
+          'Directly addresses how service organizations link time tracking and deliverable sign-offs to timely billing.',
       },
       {
-        title: 'How to Build a Practical Technology Roadmap',
-        route: '/insights/technology-strategy/how-to-build-a-practical-technology-roadmap/',
-        categoryTitle: 'Technology Strategy',
-        readingTime: '8 min read',
-      },
-      {
-        title: 'What Should a Digital Transformation Roadmap Include?',
+        title: 'How to Connect Project Delivery, Invoicing, and Payment Tracking',
         route:
-          '/insights/digital-transformation/what-should-a-digital-transformation-roadmap-include/',
+          '/insights/digital-transformation/how-to-connect-project-delivery-invoicing-and-payment-tracking/',
         categoryTitle: 'Digital Transformation',
-        readingTime: '9 min read',
+        readingTime: '8 min read',
+        description:
+          'Details the process architecture required to eliminate friction between delivery managers and finance teams.',
+      },
+      {
+        title: 'Modernize, Integrate, or Replace? A Guide to Legacy Systems',
+        route:
+          '/insights/digital-transformation/modernize-integrate-or-replace-a-guide-to-legacy-systems/',
+        categoryTitle: 'Digital Transformation',
+        readingTime: '8 min read',
+        description:
+          'Explains the decision framework that led to replacing disconnected operational spreadsheets with a tailored internal system.',
       },
     ],
   },

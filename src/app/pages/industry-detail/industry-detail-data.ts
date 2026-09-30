@@ -19,6 +19,21 @@ export interface IndustryRelatedCaseStudy {
   ctaText?: string;
 }
 
+export interface IndustryRelatedInsight {
+  readonly title: string;
+  readonly route: string;
+  readonly categoryTitle: string;
+  readonly readingTime: string;
+  readonly summary: string;
+}
+
+export interface IndustryRelatedInsightsSection {
+  readonly eyebrow: string;
+  readonly heading: string;
+  readonly description: string;
+  readonly items: readonly IndustryRelatedInsight[];
+}
+
 export interface IndustryDetailPageData extends PageData {
   pageId: string;
   breadcrumbLabel: string;
@@ -87,4 +102,5 @@ export interface IndustryDetailPageData extends PageData {
     button: string;
   };
   relatedCaseStudy?: IndustryRelatedCaseStudy;
+  relatedInsights?: IndustryRelatedInsightsSection;
 }

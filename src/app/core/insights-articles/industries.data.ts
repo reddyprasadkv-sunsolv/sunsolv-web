@@ -115,7 +115,7 @@ export const industryArticles: readonly InsightArticle[] = [
         paragraphs: [
           'In many primary and secondary schools, teachers spend dozens of hours each semester authoring unit tests, midterms, and quizzes in Microsoft Word or Google Docs. These files remain locked on individual laptops or scattered across shared drive folders without consistent naming conventions.',
           'When a teacher departs, their years of curated assessment items leave with them. Furthermore, without standardized question tagging, different classrooms within the same grade are evaluated against widely differing standards of difficulty, making it impossible to measure student academic progress fairly.',
-          'A centralized, digital question bank transforms ephemeral exam sheets into a compounding institutional asset. By structuring assessment items with structured taxonomies, schools empower teachers to generate balanced, high-quality assessments in minutes while gathering longitudinal data on student learning outcomes.',
+          'Across modern [education institutions](/industries/education), a centralized digital question bank transforms ephemeral exam sheets into a compounding institutional asset. By structuring assessment items with structured taxonomies, schools empower teachers to generate balanced, high-quality assessments in minutes while gathering longitudinal data on student learning outcomes.',
           'Structuring questions for long-term institutional reuse is one facet of [how digital assessment platforms improve education workflows](/insights/industries/how-digital-assessment-platforms-can-improve-education-workflows/), connecting authoring, delivery, and analytics into a cohesive system.',
         ],
       },
@@ -352,7 +352,7 @@ export const industryArticles: readonly InsightArticle[] = [
         directAnswer:
           'Administrative automation must never participate in clinical diagnosis, triage decisions, or treatment planning.',
         paragraphs: [
-          'A non-negotiable rule when implementing automation in healthcare is maintaining a strict operational boundary: administrative systems manage logistical data, not medical judgment.',
+          'A non-negotiable rule when implementing automation across [healthcare organizations](/industries/healthcare) is maintaining a strict operational boundary: administrative systems manage logistical data, not medical judgment.',
           'Automated tools must never provide diagnostic advice, alter medication dosages, or prioritize emergency patient care. Triage and medical evaluation belong exclusively to licensed healthcare clinicians. Confining automation strictly to nonclinical domains—such as room booking, registration paperwork, and billing notifications—delivers substantial efficiency gains while mitigating clinical safety hazards; however, practices must still maintain rigorous HIPAA, privacy, and data governance compliance.',
         ],
       },

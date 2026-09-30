@@ -291,4 +291,38 @@ export const educationPageData: IndustryDetailPageData = {
     route: '/case-studies/digital-assessment-platform',
     ctaText: 'View Case Study',
   },
+  relatedInsights: {
+    eyebrow: 'Education Technology Insights',
+    heading: 'Related Insights for Educational Institutions',
+    description:
+      'Explore frameworks on modernizing digital assessment workflows, architecting reusable item banks, and evaluating edtech platforms.',
+    items: [
+      {
+        title: 'How Digital Assessment Platforms Can Improve Education Workflows',
+        route:
+          '/insights/industries/how-digital-assessment-platforms-can-improve-education-workflows/',
+        categoryTitle: 'Industry Insights',
+        readingTime: '10 min read',
+        summary:
+          'Unify examination authoring, secure administration, auto-grading, and institutional analytics across academic departments.',
+      },
+      {
+        title: 'How Schools Can Structure a Reusable Digital Question Bank',
+        route: '/insights/industries/how-schools-can-structure-a-reusable-digital-question-bank/',
+        categoryTitle: 'Industry Insights',
+        readingTime: '6 min read',
+        summary:
+          'Standardize curriculum taxonomies, cognitive depth tagging, and role-based review workflows for lasting pedagogical value.',
+      },
+      {
+        title: 'Custom Software vs SaaS: How Should Businesses Decide?',
+        route:
+          '/insights/software-engineering/custom-software-vs-saas-how-should-businesses-decide/',
+        categoryTitle: 'Software Engineering',
+        readingTime: '8 min read',
+        summary:
+          'Evaluate when off-the-shelf LMS/testing software is sufficient versus when bespoke educational software protects academic integrity.',
+      },
+    ],
+  },
 };

@@ -275,4 +275,56 @@ export const itConsultingPageData: ServiceDetailPageData = {
     route: '/case-studies/business-solution-finder',
     ctaText: 'View Case Study',
   },
+  relatedInsights: {
+    eyebrow: 'Strategic Perspectives',
+    heading: 'Related Insights on Strategy & Technology Decisions',
+    description:
+      'Practical frameworks to guide technology planning, stakeholder alignment, and delivery partner evaluation.',
+    items: [
+      {
+        title: 'What Should a Technology Discovery Workshop Deliver?',
+        route: '/insights/technology-strategy/what-should-a-technology-discovery-workshop-deliver/',
+        categoryTitle: 'Technology Strategy',
+        readingTime: '9 min read',
+        summary:
+          'Understand how structured discovery sessions define architecture, isolate constraints, and prevent expensive engineering rework.',
+      },
+      {
+        title: 'How to Build a Practical Technology Roadmap',
+        route: '/insights/technology-strategy/how-to-build-a-practical-technology-roadmap/',
+        categoryTitle: 'Technology Strategy',
+        readingTime: '8 min read',
+        summary:
+          'Balance immediate operational priorities with long-term technical architecture using a phased, value-driven roadmap.',
+      },
+      {
+        title: 'How to Evaluate a Software Development Partner',
+        route: '/insights/technology-strategy/how-to-evaluate-a-software-development-partner/',
+        categoryTitle: 'Technology Strategy',
+        readingTime: '8 min read',
+        summary:
+          'Look beyond sales presentations to assess architectural discipline, communication cadence, and true delivery ownership.',
+      },
+    ],
+  },
+  relatedIndustries: [
+    {
+      title: 'Healthcare',
+      route: '/industries/healthcare',
+      description:
+        'Audit legacy clinical architectures, plan interoperable health data exchanges, and align technology roadmaps with patient care standards.',
+    },
+    {
+      title: 'SaaS',
+      route: '/industries/saas',
+      description:
+        'Evaluate multi-tenant architectures, plan modular service boundaries, and optimize cloud infrastructure costs for scaling software products.',
+    },
+    {
+      title: 'Education',
+      route: '/industries/education',
+      description:
+        'Assess institutional learning workflows, structure scalable examination platforms, and design sustainable edtech modernization roadmaps.',
+    },
+  ],
 };

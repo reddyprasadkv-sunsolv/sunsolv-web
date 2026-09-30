@@ -412,6 +412,13 @@ export const digitalTransformationArticles: readonly InsightArticle[] = [
       content:
         'A mature legacy system represents significant embedded operational wisdom. Before discarding it in a risky big-bang rewrite, explore API wrapping and selective frontend modernization. Teams can capture the primary self-service and modern integration capabilities of contemporary cloud platforms while preserving validated business rules, containing capital expenditure, and avoiding unnecessary operational exposure.',
     },
+    caseStudy: {
+      title: 'Invoice & Project Management Platform Case Study',
+      summary:
+        'Discover how SunSolv unified fragmented spreadsheet tracking, manual invoicing, and milestone verification into an integrated operational software system.',
+      route: '/case-studies/invoice-project-management-system',
+      linkText: 'Explore the Project & Invoicing Case Study',
+    },
     relatedServices: [
       {
         title: 'Custom Software Development',

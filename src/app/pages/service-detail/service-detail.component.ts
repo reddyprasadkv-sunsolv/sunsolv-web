@@ -25,4 +25,16 @@ export class ServiceDetailComponent {
     event.preventDefault();
     this.toggleFaq(index);
   }
+
+  getIndustryRoute(industryName: string): string {
+    const slugMap: Record<string, string> = {
+      Healthcare: '/industries/healthcare',
+      Education: '/industries/education',
+      'Retail & E-Commerce': '/industries/retail-ecommerce',
+      'Real Estate': '/industries/real-estate',
+      SaaS: '/industries/saas',
+      'Logistics & Supply Chain': '/industries/logistics-supply-chain',
+    };
+    return slugMap[industryName] || '/industries';
+  }
 }

@@ -257,4 +257,57 @@ export const digitalMarketingPageData: ServiceDetailPageData = {
       'Tell us about your audience, current marketing activity and growth priorities. We will help you define a connected digital marketing direction and a practical next step.',
     button: 'Start a Project',
   },
+  relatedInsights: {
+    eyebrow: 'Conversion & Growth Insights',
+    heading: 'Related Insights on Digital Journeys & Performance',
+    description:
+      'Learn how to audit existing customer journeys, eliminate conversion friction, and build high-intent lead acquisition pathways.',
+    items: [
+      {
+        title: 'How to Audit a Website Journey Before Redesigning It',
+        route: '/insights/digital-experience/how-to-audit-a-website-journey-before-redesigning-it/',
+        categoryTitle: 'Digital Experience',
+        readingTime: '8 min read',
+        summary:
+          'Evaluate drop-off points, search intent alignment, and conversion funnels with empirical behavioral data before redesigning.',
+      },
+      {
+        title: 'Website Performance vs Visual Complexity: Finding the Right Balance',
+        route:
+          '/insights/digital-experience/website-performance-vs-visual-complexity-finding-the-right-balance/',
+        categoryTitle: 'Digital Experience',
+        readingTime: '8 min read',
+        summary:
+          'Ensure marketing landing pages convert by balancing interactive visual appeal with rapid mobile load times.',
+      },
+      {
+        title: 'How to Design B2B Enquiry Forms That Reduce Friction',
+        route: '/insights/digital-experience/how-to-design-b2b-enquiry-forms-that-reduce-friction/',
+        categoryTitle: 'Digital Experience',
+        readingTime: '8 min read',
+        summary:
+          'Structure high-intent conversion forms with progressive disclosure, reducing abandonment without sacrificing lead qualification.',
+      },
+    ],
+  },
+  relatedIndustries: [
+    {
+      title: 'Real Estate',
+      route: '/industries/real-estate',
+      description:
+        'Drive qualified buyer and tenant inquiries through localized technical SEO, optimized landing journeys, and conversion testing.',
+    },
+    {
+      title: 'Retail & E-Commerce',
+      route: '/industries/retail-ecommerce',
+      description:
+        'Accelerate storefront customer acquisition through search visibility, performance audits, and high-converting checkout flows.',
+    },
+    {
+      title: 'SaaS',
+      route: '/industries/saas',
+      description:
+        'Scale inbound trial sign-ups and demo bookings with search intent alignment, technical content discovery, and funnel optimization.',
+    },
+  ],
 };

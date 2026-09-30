@@ -13,6 +13,18 @@ export interface ReadingGroup {
   readonly articleSlugs: readonly string[];
 }
 
+export interface CategoryConnectedService {
+  readonly title: string;
+  readonly description: string;
+  readonly route: string;
+}
+
+export interface CategoryConnectedCaseStudy {
+  readonly title: string;
+  readonly description: string;
+  readonly route: string;
+}
+
 export interface InsightCategory {
   slug: string;
   title: string;
@@ -25,6 +37,8 @@ export interface InsightCategory {
   metaDescription: string;
   refreshedIntro?: string;
   readingGroups?: readonly ReadingGroup[];
+  connectedService?: CategoryConnectedService;
+  connectedCaseStudy?: CategoryConnectedCaseStudy;
 }
 
 export interface InsightChallenge {
@@ -243,6 +257,18 @@ export const insightCategories: readonly InsightCategory[] = [
     seoTitle: 'AI & Automation Insights & Practical Guides | SunSolv',
     metaDescription:
       'Practical perspectives and evaluation frameworks on artificial intelligence, workflow automation, machine learning readiness and responsible implementation.',
+    connectedService: {
+      title: 'AI & Machine Learning Services',
+      description:
+        'Explore how SunSolv designs, evaluates, and deploys practical machine learning models, intelligent workflows, and data pipelines with continuous human oversight.',
+      route: '/services/ai-machine-learning',
+    },
+    connectedCaseStudy: {
+      title: 'Business Solution Finder Case Study',
+      description:
+        'See how deterministic decision trees and structured questionnaire branching automate the initial service recommendation process.',
+      route: '/case-studies/business-solution-finder',
+    },
     readingGroups: [
       {
         title: 'Start here',
@@ -256,7 +282,7 @@ export const insightCategories: readonly InsightCategory[] = [
       {
         title: 'Evaluate your options',
         description:
-          'Audit your proprietary business data for AI suitability and architect human-in-the-loop oversight to detect, contain, and minimize operational hallucinations.',
+          'Audit your proprietary business data for AI suitability and design human-in-the-loop oversight to verify outputs and handle edge cases.',
         articleSlugs: [
           'is-your-business-data-ready-for-ai',
           'where-human-review-belongs-in-ai-assisted-workflows',
@@ -277,13 +303,19 @@ export const insightCategories: readonly InsightCategory[] = [
     description:
       'Practical guidance on cloud readiness, migration, architecture, security, resilience, performance and responsible cloud cost management.',
     refreshedIntro:
-      'Strategic engineering frameworks for assessing cloud readiness, executing zero-downtime migrations, controlling infrastructure costs with FinOps governance, and planning resilient disaster recovery.',
+      'Strategic engineering frameworks for assessing cloud readiness, planning low-disruption migrations, controlling infrastructure costs with FinOps governance, and designing resilient disaster recovery.',
     ctaText: 'Explore Cloud & Infrastructure',
     icon: 'heroCloud',
     route: '/insights/cloud-infrastructure/',
     seoTitle: 'Cloud & Infrastructure Guidance & Architecture | SunSolv',
     metaDescription:
       'Guidance for organizations evaluating cloud readiness, migration strategy, cloud cost management, architecture resilience and security.',
+    connectedService: {
+      title: 'Cloud Solutions & Architecture',
+      description:
+        'Discover our engineering practices for cloud readiness assessments, phased migrations, FinOps governance, and resilient multi-region infrastructure.',
+      route: '/services/cloud-solutions',
+    },
     readingGroups: [
       {
         title: 'Start here',
@@ -322,6 +354,18 @@ export const insightCategories: readonly InsightCategory[] = [
     seoTitle: 'Digital Transformation Perspectives & Strategy | SunSolv',
     metaDescription:
       'Learn how organizations modernize legacy applications, streamline operations and improve digital workflows without unnecessary disruption.',
+    connectedService: {
+      title: 'Digital Transformation Consulting',
+      description:
+        'Learn how SunSolv helps organizations modernize legacy systems, streamline high-friction workflows, and connect disconnected enterprise platforms.',
+      route: '/services/digital-transformation',
+    },
+    connectedCaseStudy: {
+      title: 'Invoice & Project Management System',
+      description:
+        'See how a custom operational platform eliminated manual spreadsheet tracking, accelerated invoice generation, and secured billing-to-cash workflows.',
+      route: '/case-studies/invoice-project-management-system',
+    },
     readingGroups: [
       {
         title: 'Start here',
@@ -360,6 +404,18 @@ export const insightCategories: readonly InsightCategory[] = [
     seoTitle: 'Software Engineering & Architecture Perspectives | SunSolv',
     metaDescription:
       'Practical guidance on custom software engineering, API architecture, frontend performance, maintainability and technical debt management.',
+    connectedService: {
+      title: 'Custom Software Development',
+      description:
+        'Explore how we engineer dependable custom web and mobile applications, resilient APIs, and maintainable software systems tailored to unique business workflows.',
+      route: '/services/custom-software-development',
+    },
+    connectedCaseStudy: {
+      title: 'Digital Assessment Platform Case Study',
+      description:
+        'Review how modular architecture delivered secure question banking, automated test paper assembly, and intuitive exam management.',
+      route: '/case-studies/digital-assessment-platform',
+    },
     readingGroups: [
       {
         title: 'Start here',
@@ -398,6 +454,18 @@ export const insightCategories: readonly InsightCategory[] = [
     seoTitle: 'Technology Strategy & Investment Guidance | SunSolv',
     metaDescription:
       'Strategic frameworks and leadership guidance on technology roadmaps, platform selection, modernization priorities and IT governance.',
+    connectedService: {
+      title: 'IT Consulting & Strategy',
+      description:
+        'Partner with SunSolv for pragmatic technology roadmaps, platform evaluations, software partner assessments, and focused discovery workshops.',
+      route: '/services/it-consulting',
+    },
+    connectedCaseStudy: {
+      title: 'Business Solution Finder Case Study',
+      description:
+        'Explore how interactive decision frameworks help business leaders evaluate options, avoid costly trial-and-error, and select suitable software.',
+      route: '/case-studies/business-solution-finder',
+    },
     readingGroups: [
       {
         title: 'Start here',
@@ -436,6 +504,18 @@ export const insightCategories: readonly InsightCategory[] = [
     seoTitle: 'Digital Experience & Product Design Perspectives | SunSolv',
     metaDescription:
       'Approaches to engineering high-performing, accessible, user-focused web and mobile applications that drive measurable customer outcomes.',
+    connectedService: {
+      title: 'Web & Mobile Development',
+      description:
+        'Discover our approach to building accessible, responsive, and performant digital products with high Core Web Vitals and streamlined user journeys.',
+      route: '/services/web-mobile-development',
+    },
+    connectedCaseStudy: {
+      title: 'Digital Assessment Platform Case Study',
+      description:
+        'See how responsive, distraction-free interface design enabled seamless exam authoring, administration, and student testing across desktop and mobile devices.',
+      route: '/case-studies/digital-assessment-platform',
+    },
     readingGroups: [
       {
         title: 'Start here',
@@ -474,6 +554,18 @@ export const insightCategories: readonly InsightCategory[] = [
     seoTitle: 'Industry Technology Insights & Sector Analysis | SunSolv',
     metaDescription:
       'Sector-focused analysis on how healthcare, education, retail, real estate, logistics and SaaS businesses leverage modern technology.',
+    connectedService: {
+      title: 'Industry-Specific Technology Solutions',
+      description:
+        'Explore our specialized consulting and custom software engineering capabilities tailored to education, healthcare, professional services, and SaaS.',
+      route: '/industries',
+    },
+    connectedCaseStudy: {
+      title: 'Digital Assessment Platform Case Study',
+      description:
+        'See how domain-specific engineering transformed assessment workflows, test generation, and question management for academic institutions.',
+      route: '/case-studies/digital-assessment-platform',
+    },
     readingGroups: [
       {
         title: 'Start here',
@@ -1153,6 +1245,13 @@ export const insightArticles: readonly InsightArticle[] = [
       title: 'Key Takeaway',
       content:
         'Traditional automation and artificial intelligence are not opposing technologies; they are complementary tools designed for different computational tasks. Use deterministic automation for predictable, rules-based operational execution where accuracy and speed must be absolute. Use AI at the boundaries to interpret unstructured, varied, and subjective inputs. Combine both in a hybrid architecture to achieve scalable enterprise automation with complete governance.',
+    },
+    caseStudy: {
+      title: 'Business Solution Finder Case Study',
+      summary:
+        'Illustrates how deterministic rule-based evaluation and decision trees solve structured discovery workflows where predictable outputs are required.',
+      route: '/case-studies/business-solution-finder',
+      linkText: 'Explore Business Solution Finder Case Study',
     },
     relatedServices: [
       {
@@ -2957,6 +3056,13 @@ export const insightArticles: readonly InsightArticle[] = [
       content:
         'A strong digital experience is not defined by visual design alone. It emerges from the combination of useful content, intuitive journeys, understandable interfaces, good performance, accessibility, trust and ongoing measurement. Design should ultimately make it easier for users to accomplish something meaningful.',
     },
+    caseStudy: {
+      title: 'Digital Assessment Platform Case Study',
+      summary:
+        'See how clean interface design, responsive layouts, and zero-distraction workflows delivered a seamless digital testing experience for educators and students.',
+      route: '/case-studies/digital-assessment-platform',
+      linkText: 'Explore Digital Assessment Case Study',
+    },
     relatedServices: [
       {
         title: 'Web & Mobile Development',
@@ -3136,7 +3242,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'Before selecting technology, institutions must thoroughly map their existing assessment lifecycle from question authoring through evaluation to student feedback.',
         paragraphs: [
           'A typical institutional assessment process encompasses a complex sequence of academic activities: defining learning outcomes, preparing question sets, conducting peer reviews, assembling exam papers, scheduling testing windows, assigning student cohorts, administering tests, evaluating objective and subjective responses, publishing verified results, analyzing performance data, and providing constructive feedback.',
-          'Different educational institutions manage these activities differently. Before choosing or building software, the current operational workflow must be thoroughly understood.',
+          'Across modern [education institutions](/industries/education), these assessment activities are managed differently. Before choosing or building software, the current operational workflow must be thoroughly understood.',
         ],
       },
       {

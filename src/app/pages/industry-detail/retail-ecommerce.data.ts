@@ -292,4 +292,38 @@ export const retailEcommercePageData: IndustryDetailPageData = {
       'Tell us about the customers, channels, systems or operational processes you want to improve. We will help you identify a practical technology direction and the right next step.',
     button: 'Start a Project',
   },
+  relatedInsights: {
+    eyebrow: 'Commerce Technology Insights',
+    heading: 'Related Insights for Retail & E-Commerce Leaders',
+    description:
+      'Proven principles for optimizing digital storefront performance, multi-system API integrations, and conversion flows.',
+    items: [
+      {
+        title: 'What Makes a High-Performing Digital Experience?',
+        route: '/insights/digital-experience/what-makes-a-high-performing-digital-experience/',
+        categoryTitle: 'Digital Experience',
+        readingTime: '8 min read',
+        summary:
+          'Ensure catalog responsiveness, stable layouts, and responsive cart interactions to support online checkout.',
+      },
+      {
+        title: 'Website Performance vs Visual Complexity: Finding the Right Balance',
+        route:
+          '/insights/digital-experience/website-performance-vs-visual-complexity-finding-the-right-balance/',
+        categoryTitle: 'Digital Experience',
+        readingTime: '8 min read',
+        summary:
+          'Balance rich media product imagery and merchandising with rapid mobile loading speeds.',
+      },
+      {
+        title: 'How to Plan Reliable API Integrations Between Business Systems',
+        route:
+          '/insights/software-engineering/how-to-plan-reliable-api-integrations-between-business-systems/',
+        categoryTitle: 'Software Engineering',
+        readingTime: '8 min read',
+        summary:
+          'Maintain data consistency across ERPs, inventory repositories, order management systems, and shipping gateways.',
+      },
+    ],
+  },
 };

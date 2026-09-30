@@ -276,4 +276,59 @@ export const customSoftwareDevelopmentPageData: ServiceDetailPageData = {
     route: '/case-studies/invoice-project-management-system',
     ctaText: 'View Case Study',
   },
+  relatedInsights: {
+    eyebrow: 'Engineering Perspectives',
+    heading: 'Related Insights on Custom Software Architecture',
+    description:
+      'Explore frameworks for scoping custom builds, evaluating SaaS trade-offs, and engineering dependable system integrations.',
+    items: [
+      {
+        title: 'Custom Software vs SaaS: How Should Businesses Decide?',
+        route:
+          '/insights/software-engineering/custom-software-vs-saas-how-should-businesses-decide/',
+        categoryTitle: 'Software Engineering',
+        readingTime: '8 min read',
+        summary:
+          'A decision framework comparing subscription rigidity and recurring costs against bespoke system control and long-term ownership.',
+      },
+      {
+        title: 'How to Scope a Custom Software Project Before Development',
+        route:
+          '/insights/software-engineering/how-to-scope-a-custom-software-project-before-development/',
+        categoryTitle: 'Software Engineering',
+        readingTime: '8 min read',
+        summary:
+          'Define clear operational boundaries, user stories, and acceptance criteria to protect project budgets and ensure rapid delivery.',
+      },
+      {
+        title: 'How to Plan Reliable API Integrations Between Business Systems',
+        route:
+          '/insights/software-engineering/how-to-plan-reliable-api-integrations-between-business-systems/',
+        categoryTitle: 'Software Engineering',
+        readingTime: '8 min read',
+        summary:
+          'Design fault-tolerant data pipelines with idempotency, automated retry mechanisms, and robust error observability.',
+      },
+    ],
+  },
+  relatedIndustries: [
+    {
+      title: 'Education',
+      route: '/industries/education',
+      description:
+        'Engineer custom exam authoring engines, cognitive taxonomy tagging, and automated scoring workflows tailored to institutional curricula.',
+    },
+    {
+      title: 'SaaS',
+      route: '/industries/saas',
+      description:
+        'Build scalable B2B software products with custom business rules, robust authorization models, and programmatic API integrations.',
+    },
+    {
+      title: 'Logistics & Supply Chain',
+      route: '/industries/logistics-supply-chain',
+      description:
+        'Develop bespoke warehouse tracking systems, shipment allocation tools, and operational dispatch consoles.',
+    },
+  ],
 };

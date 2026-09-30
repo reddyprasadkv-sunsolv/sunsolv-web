@@ -411,6 +411,9 @@
                   <span class="read-time">{{ insight.readingTime }}</span>
                 </div>
                 <h4>{{ insight.title }}</h4>
+                @if (insight.description) {
+                  <p class="insight-card-desc">{{ insight.description }}</p>
+                }
               </div>
               <span class="card-cta">
                 Read Article <ng-icon name="heroArrowRight" aria-hidden="true" />
