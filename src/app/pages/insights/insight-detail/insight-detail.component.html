@@ -41,7 +41,7 @@
   </header>
 
   <!-- Main Article Container -->
-  <main class="article-main section-tight">
+  <div class="article-main section-tight">
     <div class="shell article-layout">
       <!-- Sticky Sidebar -->
       <aside class="article-sidebar">
@@ -52,9 +52,12 @@
               <ol>
                 @for (item of tocItems(); track item.id) {
                   <li>
-                    <a [href]="'#' + item.id" (click)="onTocClick($event, item.id)">{{
-                      item.title
-                    }}</a>
+                    <a
+                      [href]="'#' + item.id"
+                      (click)="onTocClick($event, item.id)"
+                      [class.active]="activeSectionId() === item.id"
+                      >{{ item.title }}</a
+                    >
                   </li>
                 }
               </ol>
@@ -92,11 +95,7 @@
 
         <!-- Framework Visual Showcase (if applicable) -->
         @if (art.framework; as fw) {
-          <section
-            class="framework-showcase"
-            [attr.data-legacy-id]="art.slug + '-framework'"
-            aria-labelledby="framework-heading"
-          >
+          <section class="framework-showcase" [attr.aria-labelledby]="headings().frameworkId">
             <div class="framework-header">
               <span class="eyebrow">SunSolv Framework</span>
               <h2 [id]="headings().frameworkId" tabindex="-1">{{ fw.name }}</h2>
@@ -125,11 +124,7 @@
 
         <!-- Comparison Table (if applicable) -->
         @if (art.comparisonTable; as table) {
-          <section
-            class="comparison-section"
-            [attr.data-legacy-id]="'comparison-table'"
-            aria-labelledby="comparison-heading"
-          >
+          <section class="comparison-section" [attr.aria-labelledby]="headings().comparisonId">
             <h2 [id]="headings().comparisonId" tabindex="-1">
               {{ table.title || 'Detailed Comparison Table' }}
             </h2>
@@ -173,27 +168,73 @@
         }
 
         <!-- Dynamic Article Sections -->
-        @for (sec of art.sections; track sec.heading; let idx = $index) {
-          <section
-            class="article-section"
-            [attr.data-legacy-id]="sec.id"
-            [attr.aria-labelledby]="headings().sectionIds[idx]"
-          >
-            <h2 [id]="headings().sectionIds[idx]" tabindex="-1">{{ sec.heading }}</h2>
+        @for (sec of parsedSections(); track sec.id) {
+          <section class="article-section" [attr.aria-labelledby]="sec.id">
+            <h2 [id]="sec.id" tabindex="-1">{{ sec.heading }}</h2>
             @if (sec.directAnswer) {
               <div class="direct-answer-callout">
                 <p>{{ sec.directAnswer }}</p>
               </div>
             }
-            @for (p of sec.paragraphs; track p) {
-              <p>{{ p }}</p>
+            @for (block of sec.blocks; track $index) {
+              @if (block.type === 'p') {
+                <p>
+                  @for (span of block.spans; track $index) {
+                    @if (span.type === 'bold') {
+                      <strong>{{ span.text }}</strong>
+                    } @else if (span.type === 'code') {
+                      <code>{{ span.text }}</code>
+                    } @else if (span.type === 'link') {
+                      <a [routerLink]="span.link" class="article-prose-link">{{ span.text }}</a>
+                    } @else {
+                      <span>{{ span.text }}</span>
+                    }
+                  }
+                </p>
+              } @else if (block.type === 'ul') {
+                <ul class="article-list">
+                  @for (item of block.items; track $index) {
+                    <li>
+                      @for (span of item; track $index) {
+                        @if (span.type === 'bold') {
+                          <strong>{{ span.text }}</strong>
+                        } @else if (span.type === 'code') {
+                          <code>{{ span.text }}</code>
+                        } @else if (span.type === 'link') {
+                          <a [routerLink]="span.link" class="article-prose-link">{{ span.text }}</a>
+                        } @else {
+                          <span>{{ span.text }}</span>
+                        }
+                      }
+                    </li>
+                  }
+                </ul>
+              } @else if (block.type === 'ol') {
+                <ol class="article-ordered-list">
+                  @for (item of block.items; track $index) {
+                    <li>
+                      @for (span of item; track $index) {
+                        @if (span.type === 'bold') {
+                          <strong>{{ span.text }}</strong>
+                        } @else if (span.type === 'code') {
+                          <code>{{ span.text }}</code>
+                        } @else if (span.type === 'link') {
+                          <a [routerLink]="span.link" class="article-prose-link">{{ span.text }}</a>
+                        } @else {
+                          <span>{{ span.text }}</span>
+                        }
+                      }
+                    </li>
+                  }
+                </ol>
+              }
             }
           </section>
         }
 
         <!-- Practical Checklist (if applicable) -->
         @if (art.checklist; as cl) {
-          <div class="checklist-card" [attr.data-legacy-id]="'decision-checklist'">
+          <div class="checklist-card" [attr.aria-labelledby]="headings().checklistId">
             <h2 class="checklist-heading" [id]="headings().checklistId" tabindex="-1">
               {{ cl.title }}
             </h2>
@@ -210,7 +251,7 @@
         }
 
         <!-- Key Takeaway Box -->
-        <div class="key-takeaway-card" [attr.data-legacy-id]="'key-takeaway'">
+        <div class="key-takeaway-card" [attr.aria-labelledby]="headings().keyTakeawayId">
           <div class="takeaway-header">
             <span class="takeaway-badge">Conclusion</span>
             <h2 [id]="headings().keyTakeawayId" tabindex="-1">{{ art.keyTakeaway.title }}</h2>
@@ -260,7 +301,7 @@
         </div>
       </article>
     </div>
-  </main>
+  </div>
 
   <!-- Related Services Section -->
   @if (art.relatedServices.length > 0) {

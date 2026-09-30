@@ -18,7 +18,7 @@ export const softwareEngineeringArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-30',
     dateModified: '2026-09-30',
     formattedDate: 'September 30, 2026',
-    readingTime: '9 min read',
+    readingTime: '7 min read',
     featuredImage: '/images/insights/sunsolv-custom-software-vs-saas.webp',
     featuredImageAlt:
       'System architecture diagram outlining functional boundaries and interface specifications',
@@ -112,6 +112,7 @@ export const softwareEngineeringArticles: readonly InsightArticle[] = [
           'Industry data from the Standish Group CHAOS Report indicates that over 65% of custom software projects experience severe budget overruns or fail to deliver expected outcomes. When post-mortems are conducted, the root cause is almost universally traced back to ambiguous early requirements.',
           'When requirements are stated in vague language—such as "the system should have a user-friendly reporting dashboard" or "managers should be able to manage client accounts"—everyone in the room nods in agreement. However, the business executive envisions automated AI forecasting with PDF exports, while the junior developer envisions a basic HTML table showing three database columns.',
           'Disciplined software scoping replaces subjective adjectives with deterministic workflows, verifiable input/output schemas, and explicit boundary exclusions. Clarity at the start saves tens of thousands of dollars in rework downstream.',
+          'Before initiating a custom build, leaders should evaluate [custom software vs SaaS trade-offs](/insights/software-engineering/custom-software-vs-saas-how-should-businesses-decide/) to confirm that proprietary development is the best path forward.',
         ],
       },
       {
@@ -155,6 +156,7 @@ export const softwareEngineeringArticles: readonly InsightArticle[] = [
         paragraphs: [
           'Non-functional requirements (NFRs) are the hidden icebergs of software development. An application that functions perfectly for 5 internal testers can collapse entirely when subjected to 500 concurrent users on launch day if concurrency was never specified.',
           'Every scope must specify: (1) Maximum peak concurrent users, (2) 95th-percentile response time for key API endpoints (e.g., < 300ms), (3) Supported browser and device profiles, (4) Data backup retention schedules and RTO/RPO expectations, and (5) Regulatory compliance mandates (e.g., GDPR, SOC 2, HIPAA).',
+          'Architectural decisions at this stage also determine whether to build a [modular monolith vs microservices](/insights/software-engineering/modular-monolith-vs-microservices-what-fits-your-application/), balancing team bandwidth against deployment decoupling.',
         ],
       },
       {
@@ -188,23 +190,6 @@ export const softwareEngineeringArticles: readonly InsightArticle[] = [
         paragraphs: [
           'One common trap is attempting to anticipate every possible edge case that might occur five years from now. Designing speculative database schemas for hypothetical future business models adds immense complexity today for zero current value.',
           'Another trap is scoping without the actual end-users in the room. If requirements are dictated solely by senior executives without consulting the operations clerks who will use the software 8 hours a day, the resulting tool will miss critical daily workflow nuances.',
-        ],
-      },
-      {
-        id: 'project-scoping-checklist',
-        heading: 'Custom Software Scoping Checklist',
-        directAnswer:
-          'Audit your project specification against these objective readiness criteria.',
-        paragraphs: [
-          'Use this checklist to ensure your project scope is robust, aligned, and ready for engineering.',
-        ],
-      },
-      {
-        id: 'key-takeaway',
-        heading: 'Key Takeaway',
-        directAnswer: 'Software scoping establishes boundaries around the core business problem.',
-        paragraphs: [
-          'Isolating high-impact workflows, writing unambiguous acceptance criteria, and explicitly deferring secondary enhancements protects budgets, accelerates time-to-value, and sets engineering teams up for dependable delivery.',
         ],
       },
     ],
@@ -271,7 +256,7 @@ export const softwareEngineeringArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-30',
     dateModified: '2026-09-30',
     formattedDate: 'September 30, 2026',
-    readingTime: '9 min read',
+    readingTime: '7 min read',
     featuredImage:
       '/images/services/custom-software-development/sunsolv-custom-software-development.webp',
     featuredImageAlt:
@@ -363,6 +348,7 @@ export const softwareEngineeringArticles: readonly InsightArticle[] = [
           'In junior software tutorials, integrating an API is portrayed as making a simple HTTP POST request and processing the JSON response. In enterprise production, this naive assumption creates constant operational outages.',
           'Distributed computing pioneer L. Peter Deutsch famously coined the "Fallacies of Distributed Computing"—the first of which is "The network is reliable." In reality, third-party APIs experience intermittent packet loss, maintenance windows, DNS resolution timeouts, database lockouts, and sudden rate-limit throttling.',
           'If your application makes synchronous HTTP calls to external billing, CRM, or shipping services in the middle of a user checkout workflow without timeout budgets and retry buffers, any hiccup in an external vendor immediately takes down your own user interface.',
+          'When evaluating whether to build customized integration pipelines versus buying off-the-shelf connectors, review our analysis of [custom software vs SaaS](/insights/software-engineering/custom-software-vs-saas-how-should-businesses-decide/).',
         ],
       },
       {
@@ -434,23 +420,6 @@ export const softwareEngineeringArticles: readonly InsightArticle[] = [
           'System B consumes that event whenever it is ready. If System B undergoes a 20-minute maintenance upgrade, messages simply queue safely in the broker, ready to be processed as soon as System B returns.',
         ],
       },
-      {
-        id: 'api-reliability-checklist',
-        heading: 'API Integration Reliability Checklist',
-        directAnswer:
-          'Audit every third-party integration against these fundamental resilience controls.',
-        paragraphs: [
-          'Review this checklist before signing off on any production API integration architecture.',
-        ],
-      },
-      {
-        id: 'key-takeaway',
-        heading: 'Key Takeaway',
-        directAnswer: 'Reliable integrations assume failure is inevitable and design around it.',
-        paragraphs: [
-          'Designing API connections with idempotency, exponential backoff, circuit breakers, and asynchronous message buffers ensures that external partner interruptions never compromise internal operational continuity.',
-        ],
-      },
     ],
     checklist: {
       title: 'API Integration Reliability Checklist',
@@ -507,7 +476,7 @@ export const softwareEngineeringArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-30',
     dateModified: '2026-09-30',
     formattedDate: 'September 30, 2026',
-    readingTime: '9 min read',
+    readingTime: '7 min read',
     featuredImage:
       '/images/services/web-mobile-development/sunsolv-responsive-product-development.webp',
     featuredImageAlt:
@@ -606,6 +575,7 @@ export const softwareEngineeringArticles: readonly InsightArticle[] = [
           'Over the past decade, microservices became the default architectural aspiration for software teams. Tech giants like Netflix, Amazon, and Uber famously published architectures featuring hundreds of independent services. Many engineering leaders assumed that adopting microservices was the prerequisite for writing "modern" enterprise software.',
           'In recent years, however, a major industry re-evaluation has taken hold. Tech companies including Amazon Prime Video and Shopify published high-profile case studies detailing how consolidating microservices back into consolidated modular monoliths reduced infrastructure costs by up to 90% and eliminated complex distributed race conditions.',
           'The lesson is clear: microservices are not a badge of engineering excellence. They are an organizational compromise designed to solve team communication bottlenecks at massive scale, purchased at the cost of intense distributed systems complexity.',
+          "A project's target architectural topology should be locked in during discovery, as outlined in our guide on [how to scope a custom software project before development](/insights/software-engineering/how-to-scope-a-custom-software-project-before-development/).",
         ],
       },
       {
@@ -674,23 +644,6 @@ export const softwareEngineeringArticles: readonly InsightArticle[] = [
           "After an architectural review, leadership recognized that managing 8 independent CI/CD pipelines, Kubernetes clusters, and distributed Saga orchestrations would consume more than half of the engineering team's daily capacity.",
           'Veridian chose a disciplined Modular Monolith built with NestJS and PostgreSQL. They enforced strict module boundaries using TypeScript access barriers and private database schemas for each bounded context. All inter-module communication used in-process domain events.',
           'The platform launched in four months instead of nine. Because all financial transfers ran inside atomic PostgreSQL transactions, the company experienced zero ledger reconciliation anomalies. When the team later expanded to 45 engineers, they extracted only their document conversion pipeline to a serverless worker pool while keeping the core transactional engine clean and unified.',
-        ],
-      },
-      {
-        id: 'architectural-decision-rubric',
-        heading: 'Architectural Decision Rubric',
-        directAnswer:
-          'Evaluate your current team scale, domain maturity, and deployment requirements against this objective matrix.',
-        paragraphs: [
-          'Use this rubric during architectural reviews to determine whether microservices are justified or premature.',
-        ],
-      },
-      {
-        id: 'key-takeaway',
-        heading: 'Key Takeaway',
-        directAnswer: 'Start with a disciplined modular monolith until team size forces a split.',
-        paragraphs: [
-          'Prematurely adopting microservices creates distributed systems pain without business upside. A well-designed modular monolith provides clean boundaries, fast local development, and strong data integrity—while keeping your options open to extract standalone services when empirical scaling thresholds demand it.',
         ],
       },
     ],

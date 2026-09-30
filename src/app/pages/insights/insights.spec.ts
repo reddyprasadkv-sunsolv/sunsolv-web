@@ -199,7 +199,7 @@ describe('SunSolv Insights Module', () => {
 
       // Latest Insights
       const articleCards = compiled.querySelectorAll('.latest-insights-section app-article-card');
-      expect(articleCards.length).toBe(29);
+      expect(articleCards.length).toBe(6);
 
       // Hero CTA Actions: Explore All Insights & Browse Topics
       const heroActions = compiled.querySelector('.hero-actions');

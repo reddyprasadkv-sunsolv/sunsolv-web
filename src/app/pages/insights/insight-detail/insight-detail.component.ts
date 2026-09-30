@@ -6,6 +6,7 @@ import {
   DestroyRef,
   inject,
   PLATFORM_ID,
+  signal,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -26,6 +27,25 @@ import {
 import { ArticleCardComponent } from '../components/article-card/article-card.component';
 import { InsightsBreadcrumbsComponent } from '../components/breadcrumbs/breadcrumbs.component';
 
+export interface TextSpan {
+  readonly type: 'text' | 'bold' | 'code' | 'link';
+  readonly text: string;
+  readonly link?: string;
+}
+
+export interface ContentBlock {
+  readonly type: 'p' | 'ul' | 'ol';
+  readonly spans?: readonly TextSpan[];
+  readonly items?: readonly (readonly TextSpan[])[];
+}
+
+export interface RenderedSection {
+  readonly id: string;
+  readonly heading: string;
+  readonly directAnswer?: string;
+  readonly blocks: readonly ContentBlock[];
+}
+
 export interface TocItem {
   readonly id: string;
   readonly title: string;
@@ -37,6 +57,88 @@ export interface ArticleHeadingIds {
   readonly checklistId?: string;
   readonly keyTakeawayId: string;
   readonly sectionIds: readonly string[];
+}
+
+export function parseInlineSpans(raw: string): readonly TextSpan[] {
+  const spans: TextSpan[] = [];
+  const regex = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|`([^`]+)`/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = regex.exec(raw)) !== null) {
+    if (match.index > lastIndex) {
+      spans.push({ type: 'text', text: raw.slice(lastIndex, match.index) });
+    }
+    if (match[1] !== undefined && match[2] !== undefined) {
+      spans.push({ type: 'link', text: match[1], link: match[2] });
+    } else if (match[3] !== undefined) {
+      spans.push({ type: 'bold', text: match[3] });
+    } else if (match[4] !== undefined) {
+      spans.push({ type: 'code', text: match[4] });
+    }
+    lastIndex = regex.lastIndex;
+  }
+
+  if (lastIndex < raw.length) {
+    spans.push({ type: 'text', text: raw.slice(lastIndex) });
+  }
+
+  return spans.length > 0 ? spans : [{ type: 'text', text: raw }];
+}
+
+export function parseParagraphsToBlocks(paragraphs: readonly string[]): readonly ContentBlock[] {
+  const blocks: ContentBlock[] = [];
+  let currentUl: (readonly TextSpan[])[] | null = null;
+  let currentOl: (readonly TextSpan[])[] | null = null;
+
+  for (const raw of paragraphs) {
+    const trimmed = raw.trim();
+
+    // Check for bullet list item: starts with • or - followed by space
+    const bulletMatch = trimmed.match(/^[•\-]\s+(.*)$/);
+    if (bulletMatch) {
+      if (currentOl) {
+        blocks.push({ type: 'ol', items: currentOl });
+        currentOl = null;
+      }
+      if (!currentUl) {
+        currentUl = [];
+      }
+      currentUl.push(parseInlineSpans(bulletMatch[1]));
+      continue;
+    }
+
+    // Check for ordered list item: starts with 1. or 2. etc.
+    const orderedMatch = trimmed.match(/^\d+\.\s+(.*)$/);
+    if (orderedMatch) {
+      if (currentUl) {
+        blocks.push({ type: 'ul', items: currentUl });
+        currentUl = null;
+      }
+      if (!currentOl) {
+        currentOl = [];
+      }
+      currentOl.push(parseInlineSpans(orderedMatch[1]));
+      continue;
+    }
+
+    // Regular paragraph
+    if (currentUl) {
+      blocks.push({ type: 'ul', items: currentUl });
+      currentUl = null;
+    }
+    if (currentOl) {
+      blocks.push({ type: 'ol', items: currentOl });
+      currentOl = null;
+    }
+
+    blocks.push({ type: 'p', spans: parseInlineSpans(trimmed) });
+  }
+
+  if (currentUl) blocks.push({ type: 'ul', items: currentUl });
+  if (currentOl) blocks.push({ type: 'ol', items: currentOl });
+
+  return blocks;
 }
 
 @Component({
@@ -53,6 +155,8 @@ export class InsightDetailComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly destroyRef = inject(DestroyRef);
+
+  readonly activeSectionId = signal<string>('');
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
@@ -83,6 +187,29 @@ export class InsightDetailComponent {
             }
           }, 80);
         }
+
+        if (typeof IntersectionObserver !== 'undefined') {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              for (const entry of entries) {
+                if (entry.isIntersecting) {
+                  this.activeSectionId.set(entry.target.id);
+                }
+              }
+            },
+            {
+              rootMargin: '-80px 0px -65% 0px',
+              threshold: 0,
+            },
+          );
+
+          const headingEls = document.querySelectorAll('.article-body-col h2[id]');
+          headingEls.forEach((el) => observer.observe(el));
+
+          this.destroyRef.onDestroy(() => {
+            observer.disconnect();
+          });
+        }
       });
     }
   }
@@ -112,123 +239,46 @@ export class InsightDetailComponent {
     ];
   });
 
-  readonly tocItems = computed<readonly TocItem[]>(() => {
-    const art = this.article();
-    if (!art) return [];
-
-    if (art.tableOfContents && art.tableOfContents.length > 0) {
-      const counts = new Map<string, number>();
-      return art.tableOfContents.map((item) => {
-        let titleForSlug = item.title;
-        if (
-          art.framework &&
-          (item.title.toLowerCase().includes('framework') ||
-            item.title.toLowerCase().includes(art.framework.name.toLowerCase()) ||
-            slugifyHeading(item.title) === slugifyHeading(art.framework.name) ||
-            slugifyHeading(item.title) === `the-${slugifyHeading(art.framework.name)}`)
-        ) {
-          titleForSlug = art.framework.name;
-        } else if (
-          art.comparisonTable &&
-          (item.title.toLowerCase().includes('comparison') ||
-            (art.comparisonTable.title &&
-              item.title.toLowerCase().includes(art.comparisonTable.title.toLowerCase())))
-        ) {
-          titleForSlug = art.comparisonTable.title || item.title;
-        } else if (
-          item.title.toLowerCase().includes('takeaway') ||
-          item.title.toLowerCase() === 'key takeaway'
-        ) {
-          titleForSlug = 'Key Takeaway';
-        }
-
-        const baseSlug = slugifyHeading(titleForSlug);
-        const count = counts.get(baseSlug) ?? 0;
-        counts.set(baseSlug, count + 1);
-        const id = count === 0 ? baseSlug : `${baseSlug}-${count + 1}`;
-        return { id, title: item.title };
-      });
-    }
-
-    // Auto-generate Table of Contents from headings for future articles
-    const items: TocItem[] = [];
-    const counts = new Map<string, number>();
-    const addItem = (title: string) => {
-      const baseSlug = slugifyHeading(title);
-      const count = counts.get(baseSlug) ?? 0;
-      counts.set(baseSlug, count + 1);
-      const id = count === 0 ? baseSlug : `${baseSlug}-${count + 1}`;
-      items.push({ id, title });
-    };
-
-    if (art.framework) addItem(art.framework.name);
-    if (art.comparisonTable) addItem(art.comparisonTable.title || 'Comparison');
-    for (const sec of art.sections) addItem(sec.heading);
-    if (art.checklist) addItem(art.checklist.title);
-    addItem('Key Takeaway');
-
-    return items;
-  });
-
   readonly headings = computed<ArticleHeadingIds>(() => {
     const art = this.article();
     if (!art) {
       return { keyTakeawayId: 'key-takeaway', sectionIds: [] };
     }
 
-    const toc = this.tocItems();
-
-    // Special block matching
-    let frameworkId: string | undefined;
-    if (art.framework) {
-      const fwSlug = slugifyHeading(art.framework.name);
-      const fwItem = toc.find(
-        (t) =>
-          t.id === fwSlug ||
-          t.id === `the-${fwSlug}` ||
-          t.title.toLowerCase().includes('framework'),
-      );
-      frameworkId = fwItem ? fwItem.id : fwSlug;
-    }
+    const frameworkId = art.framework ? slugifyHeading(art.framework.name) : undefined;
 
     let comparisonId: string | undefined;
     if (art.comparisonTable) {
-      const cmpItem = toc.find(
+      const isSectionId = (id: string) => art.sections.some((s) => s.id === id);
+      const tocItem = art.tableOfContents?.find(
         (t) =>
-          t.title.toLowerCase().includes('comparison') ||
-          (art.comparisonTable!.title &&
-            (t.id === slugifyHeading(art.comparisonTable!.title) ||
-              t.title.toLowerCase().includes(art.comparisonTable!.title.toLowerCase()))) ||
-          t.title === 'Custom Software vs SaaS',
+          !isSectionId(t.id) &&
+          (t.id === 'comparison' ||
+            t.id.includes('comparison') ||
+            t.title.toLowerCase().includes('comparison') ||
+            t.id.endsWith('-table') ||
+            t.title.toLowerCase().includes('table') ||
+            t.title.toLowerCase().includes('matrix') ||
+            t.title.toLowerCase().includes('rubric')),
       );
-      comparisonId = cmpItem
-        ? cmpItem.id
-        : slugifyHeading(art.comparisonTable.title || 'Detailed Comparison Table');
+      comparisonId = tocItem
+        ? slugifyHeading(tocItem.title)
+        : slugifyHeading(art.comparisonTable.title || 'comparison-table');
     }
 
     let checklistId: string | undefined;
     if (art.checklist) {
-      const clSlug = slugifyHeading(art.checklist.title);
-      const clItem = toc.find(
-        (t) => t.id === clSlug || t.title.toLowerCase().includes('checklist'),
+      const isSectionId = (id: string) => art.sections.some((s) => s.id === id);
+      const tocItem = art.tableOfContents?.find(
+        (t) =>
+          !isSectionId(t.id) &&
+          (t.id.includes('checklist') || t.title.toLowerCase().includes('checklist')),
       );
-      checklistId = clItem ? clItem.id : clSlug;
+      checklistId = tocItem ? slugifyHeading(tocItem.title) : slugifyHeading(art.checklist.title);
     }
 
     const keyTakeawayId = 'key-takeaway';
-
-    const specialIds = new Set(
-      [frameworkId, comparisonId, checklistId, keyTakeawayId].filter(Boolean),
-    );
-    const sectionTocItems = toc.filter((t) => !specialIds.has(t.id));
-
-    const sectionIds = art.sections.map((sec, idx) => {
-      const secSlug = slugifyHeading(sec.heading);
-      const exactMatch = sectionTocItems.find((t) => t.id === secSlug);
-      if (exactMatch) return exactMatch.id;
-      if (idx < sectionTocItems.length) return sectionTocItems[idx].id;
-      return secSlug;
-    });
+    const sectionIds = art.sections.map((s) => s.id);
 
     return {
       frameworkId,
@@ -237,6 +287,90 @@ export class InsightDetailComponent {
       keyTakeawayId,
       sectionIds,
     };
+  });
+
+  readonly tocItems = computed<readonly TocItem[]>(() => {
+    const art = this.article();
+    if (!art) return [];
+
+    const h = this.headings();
+    const items: TocItem[] = [];
+
+    if (art.framework && h.frameworkId) {
+      const fwToc = art.tableOfContents?.find(
+        (t) =>
+          t.id === h.frameworkId ||
+          t.id === `the-${h.frameworkId}` ||
+          (t.title.toLowerCase().includes('framework') && !art.sections.some((s) => s.id === t.id)),
+      );
+      items.push({
+        id: h.frameworkId,
+        title: fwToc ? fwToc.title : art.framework.name,
+      });
+    }
+
+    if (art.comparisonTable && h.comparisonId) {
+      const isSectionId = (id: string) => art.sections.some((s) => s.id === id);
+      const cmpToc = art.tableOfContents?.find(
+        (t) =>
+          !isSectionId(t.id) &&
+          (t.id === h.comparisonId ||
+            slugifyHeading(t.title) === h.comparisonId ||
+            t.id === 'comparison' ||
+            t.id.includes('comparison') ||
+            t.title.toLowerCase().includes('comparison') ||
+            t.id.endsWith('-table') ||
+            t.title.toLowerCase().includes('table') ||
+            t.title.toLowerCase().includes('matrix') ||
+            t.title.toLowerCase().includes('rubric')),
+      );
+      items.push({
+        id: h.comparisonId,
+        title: cmpToc ? cmpToc.title : art.comparisonTable.title || 'Comparison Table',
+      });
+    }
+
+    for (const sec of art.sections) {
+      const secToc = art.tableOfContents?.find((t) => t.id === sec.id);
+      items.push({
+        id: sec.id,
+        title: secToc ? secToc.title : sec.heading,
+      });
+    }
+
+    if (art.checklist && h.checklistId) {
+      const isSectionId = (id: string) => art.sections.some((s) => s.id === id);
+      const clToc = art.tableOfContents?.find(
+        (t) =>
+          !isSectionId(t.id) &&
+          (t.id === h.checklistId ||
+            slugifyHeading(t.title) === h.checklistId ||
+            t.id.includes('checklist') ||
+            t.title.toLowerCase().includes('checklist')),
+      );
+      items.push({
+        id: h.checklistId,
+        title: clToc ? clToc.title : art.checklist.title,
+      });
+    }
+
+    items.push({
+      id: h.keyTakeawayId,
+      title: 'Key Takeaway',
+    });
+
+    return items;
+  });
+
+  readonly parsedSections = computed<readonly RenderedSection[]>(() => {
+    const art = this.article();
+    if (!art) return [];
+    return art.sections.map((sec) => ({
+      id: sec.id,
+      heading: sec.heading,
+      directAnswer: sec.directAnswer,
+      blocks: parseParagraphsToBlocks(sec.paragraphs),
+    }));
   });
 
   findTargetElement(id: string): HTMLElement | null {

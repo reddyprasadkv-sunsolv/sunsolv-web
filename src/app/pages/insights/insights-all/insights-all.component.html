@@ -22,7 +22,7 @@
         [class.active]="selectedCategory() === 'all'"
         (click)="setFilter('all')"
       >
-        All Domains
+        All Domains ({{ allArticles.length }})
       </button>
       @for (category of categories; track category.slug) {
         <button
@@ -31,7 +31,7 @@
           [class.active]="selectedCategory() === category.slug"
           (click)="setFilter(category.slug)"
         >
-          {{ category.shortTitle }}
+          {{ category.shortTitle }} ({{ getCategoryArticleCount(category.slug) }})
         </button>
       }
     </div>

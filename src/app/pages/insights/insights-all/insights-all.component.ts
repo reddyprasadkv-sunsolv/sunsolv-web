@@ -39,4 +39,8 @@ export class InsightsAllComponent {
   setFilter(slug: string): void {
     this.selectedCategory.set(slug);
   }
+
+  getCategoryArticleCount(categorySlug: string): number {
+    return this.allArticles.filter((article) => article.categorySlug === categorySlug).length;
+  }
 }

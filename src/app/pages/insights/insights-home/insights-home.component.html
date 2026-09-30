@@ -201,7 +201,7 @@
     </div>
 
     <div class="articles-grid">
-      @for (article of articles; track article.slug) {
+      @for (article of recentArticles; track article.slug) {
         <app-article-card [article]="article" />
       }
     </div>

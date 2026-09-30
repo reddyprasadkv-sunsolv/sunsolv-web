@@ -138,6 +138,96 @@ export function slugifyHeading(title: string): string {
     .replace(/^-+|-+$/g, '');
 }
 
+/**
+ * Calculates estimated reading time for an article based on readable content only.
+ * Documented rate: 200 words per minute.
+ * Rounding rule: Math.max(1, Math.ceil(totalWords / 200)).
+ * Excludes navigation, header, author biography, case studies, and related cards.
+ */
+export function calculateReadingTime(art: {
+  readonly executiveSummary?: string;
+  readonly framework?: {
+    readonly name: string;
+    readonly subtitle?: string;
+    readonly description?: string;
+    readonly dimensions: readonly {
+      readonly name: string;
+      readonly question?: string;
+      readonly description?: string;
+      readonly keyConsiderations?: readonly string[];
+    }[];
+  };
+  readonly comparisonTable?: {
+    readonly title?: string;
+    readonly caption?: string;
+    readonly headers?: readonly string[];
+    readonly rows: readonly {
+      readonly factor: string;
+      readonly values?: readonly string[];
+      readonly automation?: string;
+      readonly ai?: string;
+      readonly hybrid?: string;
+    }[];
+  };
+  readonly sections: readonly {
+    readonly heading: string;
+    readonly directAnswer?: string;
+    readonly paragraphs: readonly string[];
+  }[];
+  readonly checklist?: {
+    readonly title: string;
+    readonly description?: string;
+    readonly items: readonly string[];
+  };
+  readonly keyTakeaway?: {
+    readonly title: string;
+    readonly content: string;
+  };
+}): string {
+  let text = '';
+  if (art.executiveSummary) text += ' ' + art.executiveSummary;
+  if (art.framework) {
+    text += ' ' + art.framework.name;
+    if (art.framework.subtitle) text += ' ' + art.framework.subtitle;
+    if (art.framework.description) text += ' ' + art.framework.description;
+    for (const d of art.framework.dimensions) {
+      text += ' ' + d.name;
+      if (d.question) text += ' ' + d.question;
+      if (d.description) text += ' ' + d.description;
+      if (d.keyConsiderations) text += ' ' + d.keyConsiderations.join(' ');
+    }
+  }
+  if (art.comparisonTable) {
+    if (art.comparisonTable.title) text += ' ' + art.comparisonTable.title;
+    if (art.comparisonTable.caption) text += ' ' + art.comparisonTable.caption;
+    if (art.comparisonTable.headers) text += ' ' + art.comparisonTable.headers.join(' ');
+    for (const r of art.comparisonTable.rows) {
+      text += ' ' + r.factor;
+      if (r.values) text += ' ' + r.values.join(' ');
+      if (r.automation) text += ' ' + r.automation;
+      if (r.ai) text += ' ' + r.ai;
+      if (r.hybrid) text += ' ' + r.hybrid;
+    }
+  }
+  for (const s of art.sections) {
+    text += ' ' + s.heading;
+    if (s.directAnswer) text += ' ' + s.directAnswer;
+    text += ' ' + s.paragraphs.join(' ');
+  }
+  if (art.checklist) {
+    text += ' ' + art.checklist.title;
+    if (art.checklist.description) text += ' ' + art.checklist.description;
+    text += ' ' + art.checklist.items.join(' ');
+  }
+  if (art.keyTakeaway) {
+    text += ' ' + art.keyTakeaway.title + ' ' + art.keyTakeaway.content;
+  }
+
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  const minutes = Math.max(1, Math.ceil(words / 200));
+  return `${minutes} min read`;
+}
+
 export const insightCategories: readonly InsightCategory[] = [
   {
     slug: 'ai-automation',
@@ -166,7 +256,7 @@ export const insightCategories: readonly InsightCategory[] = [
       {
         title: 'Evaluate your options',
         description:
-          'Audit your proprietary business data for AI suitability and architect human-in-the-loop oversight to eliminate operational hallucinations.',
+          'Audit your proprietary business data for AI suitability and architect human-in-the-loop oversight to detect, contain, and minimize operational hallucinations.',
         articleSlugs: [
           'is-your-business-data-ready-for-ai',
           'where-human-review-belongs-in-ai-assisted-workflows',
@@ -473,7 +563,7 @@ export const insightArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-29',
     dateModified: '2026-09-29',
     formattedDate: 'September 29, 2026',
-    readingTime: '9 min read',
+    readingTime: '13 min read',
     featuredImage: '/images/insights/sunsolv-ai-use-case-evaluation.webp',
     featuredImageAlt: 'Business documents passing through evaluation and review stages',
     route: '/insights/ai-automation/how-to-identify-the-right-ai-use-case-for-your-business/',
@@ -664,7 +754,7 @@ export const insightArticles: readonly InsightArticle[] = [
           '2. Quality and Consistency: Are data fields clean, consistent, and standardized, or are there widespread discrepancies, missing values, and corrupted entries?',
           '3. Volume and Diversity: Is there enough historical volume reflecting real-world edge cases, seasonality, and unusual exceptions to properly validate the system?',
           '4. Governance and Rights: Does the organization possess the explicit contractual and regulatory right to feed this data to cloud models or internal inference engines?',
-          'If data preparation requires a multi-year restructuring of all enterprise databases, starting a complex AI project immediately will lead to frustration. In such scenarios, modernizing data pipelines is the necessary prerequisite.',
+          'If data preparation requires a multi-year restructuring of all enterprise databases, starting a complex AI project immediately will lead to frustration. In such scenarios, [evaluating whether your data is ready for AI](/insights/ai-automation/is-your-business-data-ready-for-ai/) and modernizing data pipelines is the necessary prerequisite.',
         ],
       },
       {
@@ -695,7 +785,7 @@ export const insightArticles: readonly InsightArticle[] = [
         directAnswer:
           'Designing human-in-the-loop workflows ensures employees maintain accountability while benefiting from automated velocity.',
         paragraphs: [
-          'Practical enterprise AI solutions rarely attempt 100% end-to-end autonomous execution. Instead, they implement human-in-the-loop (HITL) architecture.',
+          'Practical enterprise AI solutions rarely attempt 100% end-to-end autonomous execution. Instead, understanding [where human review belongs in AI-assisted workflows](/insights/ai-automation/where-human-review-belongs-in-ai-assisted-workflows/) and implementing human-in-the-loop (HITL) architecture ensures reliability.',
           'Under this model, the AI performs heavy cognitive lifting: parsing unstructured text, aggregating data, scoring possibilities, and drafting outputs. The system assigns an explicit confidence score to its output. When confidence exceeds an agreed threshold (for instance, 96%), the workflow proceeds automatically. When confidence falls below the threshold, the case is routed to an experienced human reviewer with the relevant sections highlighted.',
           'This keeps human expertise focused exactly where ambiguity and risk reside, rather than forcing skilled staff to process thousands of routine entries manually.',
         ],
@@ -731,7 +821,7 @@ export const insightArticles: readonly InsightArticle[] = [
         directAnswer:
           'Test the solution on a bounded, representative subset of real work before undertaking enterprise-wide rollout.',
         paragraphs: [
-          'Rather than attempting an organization-wide transformation in a single release, deploy the AI capability as a controlled pilot. Limit the scope to one department, one document type, or one customer segment.',
+          'Rather than attempting an organization-wide transformation in a single release, deploy the AI capability as a controlled pilot. Learning [how to run an AI pilot with clear success criteria](/insights/ai-automation/how-to-run-an-ai-pilot-with-clear-success-criteria/) allows teams to test hypotheses on bounded, representative subsets of real operational work.',
           'Run the pilot in shadow mode initially: let the AI generate extractions or recommendations while staff continue their normal workflow, comparing system outputs against human decisions in real time.',
           'A controlled pilot uncovers unforeseen edge cases, data quirks, and workflow bottlenecks in a safe environment where errors carry no operational penalties.',
         ],
@@ -817,7 +907,7 @@ export const insightArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-29',
     dateModified: '2026-09-29',
     formattedDate: 'September 29, 2026',
-    readingTime: '8 min read',
+    readingTime: '11 min read',
     featuredImage: '/images/insights/sunsolv-ai-vs-automation-workflow.webp',
     featuredImageAlt: 'Structured automation and adaptive AI paths converging into one workflow',
     route: '/insights/ai-automation/ai-vs-automation-which-does-your-business-actually-need/',
@@ -986,7 +1076,7 @@ export const insightArticles: readonly InsightArticle[] = [
         paragraphs: [
           'In mature enterprise architectures, AI and conventional automation are not competitors; they are complementary stages of a single unified workflow.',
           'The hybrid architecture pattern functions as follows: Artificial intelligence sits at the unstructured intake boundary, reading raw emails, scans, and user inquiries. The AI extracts key information, normalizes it into a strict JSON schema, and outputs an explicit confidence score.',
-          'Next, deterministic rules engines validate the structured payload against business logic (e.g., verifying that the customer ID exists, the invoice math adds up, and the vendor is approved). If confidence is high and rules pass, standard automated integrations write directly to the ERP. If confidence is low or business rules fail, the item is placed in an exception queue for human review.',
+          'Next, deterministic rules engines validate the structured payload against business logic (e.g., verifying that the customer ID exists, the invoice math adds up, and the vendor is approved). If confidence is high and rules pass, standard automated integrations write directly to the ERP. If confidence is low or business rules fail, the item is placed in an exception queue for human review. Establishing clear governance around [where human review belongs in AI-assisted workflows](/insights/ai-automation/where-human-review-belongs-in-ai-assisted-workflows/) ensures that expert intervention is applied efficiently.',
           'This hybrid design gives organizations the flexibility of AI alongside the reliability, auditability, and speed of traditional automation.',
         ],
       },
@@ -1019,7 +1109,7 @@ export const insightArticles: readonly InsightArticle[] = [
         paragraphs: [
           'Traditional automation requires only an understanding of data formats—API schemas, column definitions, and validation rules. It does not require historical sample datasets or labeling.',
           'AI systems require representative data to be effective. Foundation models need carefully engineered contextual data (via Retrieval-Augmented Generation or prompt grounding) to reflect company-specific rules and avoid generic advice. Specialized models require clean, labeled training sets and validation benchmarks.',
-          'If an organization does not possess clean, organized internal documentation or data feeds, conventional automation is significantly faster to implement.',
+          'If an organization does not possess clean, organized internal documentation or data feeds, conventional automation is significantly faster to implement. Before committing to complex model fine-tuning, [evaluating whether your business data is ready for AI](/insights/ai-automation/is-your-business-data-ready-for-ai/) is a critical first step.',
         ],
       },
       {
@@ -1041,7 +1131,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'When designing modern business workflows, treat artificial intelligence as a specialized capability rather than the default tool. Follow a straightforward rule of thumb:',
           '1. Can this be achieved through existing native features in our software? If yes, use them.',
           '2. Can this be built using standard APIs and deterministic rules? If yes, build it.',
-          '3. Does the workflow encounter unstructured, ambiguous, or predictive requirements that break deterministic rules? If yes, integrate AI within a bounded hybrid pattern.',
+          '3. Does the workflow encounter unstructured, ambiguous, or predictive requirements that break deterministic rules? If yes, integrate AI within a bounded hybrid pattern. In such cases, [structuring an AI pilot with quantitative success criteria](/insights/ai-automation/how-to-run-an-ai-pilot-with-clear-success-criteria/) provides a controlled way to validate value before scaling.',
         ],
       },
     ],
@@ -1107,7 +1197,7 @@ export const insightArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-29',
     dateModified: '2026-09-29',
     formattedDate: 'September 29, 2026',
-    readingTime: '10 min read',
+    readingTime: '11 min read',
     featuredImage: '/images/insights/sunsolv-cloud-readiness-assessment.webp',
     featuredImageAlt: 'Infrastructure and data systems assessed before a phased cloud migration',
     route: '/insights/cloud-infrastructure/cloud-readiness-assessment-a-practical-framework/',
@@ -1312,7 +1402,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'Define explicit Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) to guide high-availability architecture.',
         paragraphs: [
           'High availability does not happen automatically by placing a server in the cloud. Cloud providers provide multiple Availability Zones (AZs) and regions, but applications must be architected to leverage them.',
-          'Define what downtime is tolerable: What is your acceptable Recovery Time Objective (how quickly must the system recover after an outage) and Recovery Point Objective (how much data loss is acceptable in a disaster)? These metrics determine whether you require active-active multi-zone deployments, automated failover, or simpler scheduled snapshot backups.',
+          'Define what downtime is tolerable: What is your acceptable Recovery Time Objective (how quickly must the system recover after an outage) and Recovery Point Objective (how much data loss is acceptable in a disaster)? Understanding the trade-offs between [cloud backup vs disaster recovery planning](/insights/cloud-infrastructure/cloud-backup-vs-disaster-recovery-what-should-businesses-plan/) helps determine whether you require active-active multi-zone deployments, automated failover, or simpler scheduled snapshot backups.',
         ],
       },
       {
@@ -1332,7 +1422,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'Without active cost governance, cloud expenditure can quickly exceed on-premises infrastructure budgets.',
         paragraphs: [
           'One of the most common surprises for migrating businesses is the cloud invoice. In an on-premises data center, servers are paid for upfront; cloud services generally use consumption-based pricing models, with billing units and commercial terms varying by provider and service.',
-          'To maintain financial control, organizations must establish FinOps governance from the beginning: enforcing resource tagging by department, configuring automated spending budget alerts, shutting down non-production environments outside business hours, and taking advantage of committed-use discounts, reserved capacity or other provider-specific pricing models for predictable steady-state workloads.',
+          'To maintain financial control, organizations should adopt proactive strategies for [controlling cloud costs before infrastructure expenses grow](/insights/cloud-infrastructure/how-to-control-cloud-costs-before-they-grow/): enforcing resource tagging by department, configuring automated spending budget alerts, shutting down non-production environments outside business hours, and taking advantage of committed-use discounts, reserved capacity or other provider-specific pricing models for predictable steady-state workloads.',
         ],
       },
       {
@@ -1365,7 +1455,7 @@ export const insightArticles: readonly InsightArticle[] = [
         directAnswer:
           'Sequence migrations in measured waves, beginning with low-risk workloads to build team confidence and refine deployment pipelines.',
         paragraphs: [
-          'Attempting a "big bang" migration where all systems are cut over simultaneously introduces unnecessary business risk. Instead, group applications into prioritized migration waves.',
+          'Attempting a "big bang" migration where all systems are cut over simultaneously introduces unnecessary business risk. Following a structured guide on [how to plan a cloud migration without disrupting operations](/insights/cloud-infrastructure/how-to-plan-a-cloud-migration-without-disrupting-operations/) helps teams group applications into prioritized migration waves.',
           'Wave 0: Foundational landing zone, identity federation, security guardrails, and hybrid networking.',
           'Wave 1: Low-risk, non-critical workloads (such as internal dev/test environments or standalone utilities) to validate migration tools and operational runbooks.',
           'Wave 2: Core business applications with well-defined dependencies.',
@@ -1457,7 +1547,7 @@ export const insightArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-29',
     dateModified: '2026-09-29',
     formattedDate: 'September 29, 2026',
-    readingTime: '8 min read',
+    readingTime: '11 min read',
     featuredImage: '/images/insights/sunsolv-digital-transformation-roadmap.webp',
     featuredImageAlt:
       'Modern enterprise digital transformation roadmap connecting business outcomes, architecture, and delivery stages',
@@ -1654,7 +1744,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'Not every process warrants the same level of investment; organizations should prioritize workflows characterized by high volume, repeated manual effort, or severe customer friction.',
         paragraphs: [
           'Good candidates for digital transformation often involve one or more recognizable operational bottlenecks: repeated manual activity, duplicated data entry, fragmented applications, spreadsheet-dependent workflows, email-based approvals, poor status visibility, excessive handoffs between teams, inconsistent reporting, avoidable customer friction, difficult integration between systems, or legacy technology that severely limits operational change.',
-          'Even when a strong opportunity is identified, it must still be evaluated against implementation complexity, organizational readiness, and direct business importance.',
+          'Even when a strong opportunity is identified, it must still be evaluated against implementation complexity, organizational readiness, and direct business importance. Following a systematic methodology for [prioritizing processes for digital transformation](/insights/digital-transformation/how-to-prioritize-processes-for-digital-transformation/) prevents organizations from spreading resources too thin across marginal workflows.',
         ],
       },
       {
@@ -1676,7 +1766,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'Transformation often exposes limitations in existing software architecture, but targeted integration or modular modernization can frequently resolve bottlenecks without high-risk wholesale replacements.',
         paragraphs: [
           'Core architectural questions to investigate include: Can existing applications integrate reliably? Are documented APIs available? Is important business logic trapped inside outdated, unsupported systems? Is master data duplicated across applications? Are integrations tightly coupled point-to-point connections? Can existing systems support anticipated transaction scale? Are there pressing security or supportability concerns?',
-          'Replacing an entire enterprise system is not always necessary or advisable. A targeted integration layer, modern API gateway, or workflow modernization initiative can often solve underlying operational problems with far less cost and disruption.',
+          'Replacing an entire enterprise system is not always necessary or advisable. A targeted integration layer, modern API gateway, or workflow modernization initiative can often solve underlying operational problems with far less cost and disruption. Understanding when to [modernize, integrate, or replace legacy systems](/insights/digital-transformation/modernize-integrate-or-replace-a-guide-to-legacy-systems/) helps teams make informed architectural trade-offs.',
         ],
       },
       {
@@ -1742,7 +1832,7 @@ export const insightArticles: readonly InsightArticle[] = [
         paragraphs: [
           'Consider a mid-sized organization where capital expenditure approvals are coordinated using spreadsheets, file shares, and email threads.',
           'The initial request from management might be: "Build an approval application." However, a transformation assessment reveals broader structural issues: requests arrive through multiple disjointed channels, information is routinely incomplete, approval ownership is ambiguous, status is impossible to track in real time, audit reporting requires manual compilation, and approved figures must later be re-keyed into accounting software.',
-          'A genuine transformation solution therefore encompasses: Standardized request capture with input validation → Structured workflow routing → Automated notifications → Role-based approval authority → Direct accounting system integration → Real-time executive reporting.',
+          'A genuine transformation solution therefore encompasses: Standardized request capture with input validation → Structured workflow routing → Automated notifications → Role-based approval authority → Direct accounting system integration → Real-time executive reporting. A similar holistic approach applies when [connecting project delivery with invoicing and payment tracking](/insights/digital-transformation/how-to-connect-project-delivery-invoicing-and-payment-tracking/) to eliminate operational silos across delivery and finance.',
           'The software application is merely one component of a modernized operating process.',
         ],
       },
@@ -1827,7 +1917,7 @@ export const insightArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-29',
     dateModified: '2026-09-29',
     formattedDate: 'September 29, 2026',
-    readingTime: '9 min read',
+    readingTime: '11 min read',
     featuredImage: '/images/insights/sunsolv-custom-software-vs-saas.webp',
     featuredImageAlt:
       'Architectural visualization comparing modular custom software and standardized SaaS platforms',
@@ -2038,7 +2128,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'Custom software becomes appropriate when an organization has unique workflows, proprietary business rules, or customer experiences that standard platforms cannot address efficiently.',
         paragraphs: [
           'Custom software becomes increasingly relevant when an organization has requirements that generic platforms cannot address efficiently. Examples include highly specialized workflows, complex industry business rules, unique customer-facing experiences, differentiated operational models, specialized multi-source reporting, deep proprietary system integrations, unique regulatory workflows, or unusual scale and throughput demands.',
-          'However, custom software must always solve a meaningful, verifiable business problem. Customization for its own sake is not a business outcome.',
+          'However, custom software must always solve a meaningful, verifiable business problem. Customization for its own sake is not a business outcome; learning [how to scope a custom software project before development](/insights/software-engineering/how-to-scope-a-custom-software-project-before-development/) ensures requirements reflect true operational priorities.',
         ],
       },
       {
@@ -2070,7 +2160,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'Applications rarely exist in isolation; integration depth across ERPs, CRMs, APIs, and data warehouses frequently dictates whether SaaS or custom software is more viable.',
         paragraphs: [
           'An application rarely operates in isolation. Modern business capabilities typically require integration with CRM systems, ERP backbones, payment gateways, identity providers, third-party APIs, enterprise data warehouses, analytics platforms, mobile apps, partner portals, and legacy databases.',
-          'A SaaS platform equipped with mature, bidirectional REST or GraphQL APIs and well-supported webhooks may integrate efficiently. Conversely, a platform with restricted API access or expensive tier gates may require complex middleware, scheduled flat-file transfers, or manual intervention.',
+          'A SaaS platform equipped with mature, bidirectional REST or GraphQL APIs and well-supported webhooks may integrate efficiently. Conversely, a platform with restricted API access or expensive tier gates may require complex middleware, scheduled flat-file transfers, or manual intervention. In either scenario, understanding [how to plan reliable API integrations between business systems](/insights/software-engineering/how-to-plan-reliable-api-integrations-between-business-systems/) is critical to avoid fragile point-to-point connections.',
           'Custom software offers complete architectural flexibility for specialized integrations, though the organization also assumes ongoing responsibility for engineering and maintaining those connectors.',
         ],
       },
@@ -2133,7 +2223,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'Modern enterprises frequently achieve the best outcome by pairing standardized SaaS utilities with tailored custom applications connected via APIs.',
         paragraphs: [
           'Organizations do not need to treat software selection as an exclusive either-or mandate. In modern enterprise architecture, hybrid models are often the most effective approach.',
-          'For example, a business might leverage an established SaaS platform for standard CRM lead tracking, engineer a custom web portal for its specialized client workflow, connect both systems via automated APIs, host the environment on managed cloud infrastructure, and synchronize data into existing enterprise accounting software.',
+          'For example, a business might leverage an established SaaS platform for standard CRM lead tracking, engineer a custom web portal for its specialized client workflow, connect both systems via automated APIs, host the environment on managed cloud infrastructure, and synchronize data into existing enterprise accounting software. When architecting the custom components, deciding between a [modular monolith vs microservices](/insights/software-engineering/modular-monolith-vs-microservices-what-fits-your-application/) helps match architectural complexity to your actual team size and deployment requirements.',
           'The strategic objective is simple: custom-build only where customization creates meaningful operational efficiency or competitive advantage, and leverage standard platforms everywhere else.',
         ],
       },
@@ -2211,7 +2301,7 @@ export const insightArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-29',
     dateModified: '2026-09-29',
     formattedDate: 'September 29, 2026',
-    readingTime: '9 min read',
+    readingTime: '10 min read',
     featuredImage: '/images/insights/sunsolv-technology-roadmap.webp',
     featuredImageAlt:
       'Strategic technology roadmap visualization showing phased horizons, infrastructure, and governance pillars',
@@ -2385,7 +2475,7 @@ export const insightArticles: readonly InsightArticle[] = [
           '• Operational improvement: Process refinements and automation that reduce friction, eliminate duplicate entry, or enhance reliability.',
           '• Strategic capability: Foundational architecture investments required for future market expansion or new product lines.',
           '• Innovation: Controlled experiments and exploratory pilots that may create future value but are not yet business-critical.',
-          'This clear distinction prevents speculative innovation projects from distracting technical teams from remediating foundational operational risks.',
+          'This clear distinction prevents speculative innovation projects from distracting technical teams from remediating foundational operational risks. For teams operating under tight capital or staffing constraints, discovering [how to prioritize technology investments with limited resources](/insights/technology-strategy/how-to-prioritize-technology-investments-with-limited-resources/) offers a practical framework to maximize business impact.',
         ],
       },
       {
@@ -2405,7 +2495,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'Balancing business value, risk reduction, effort, and dependencies creates transparent discussions rather than arbitrary prioritization.',
         paragraphs: [
           'A robust prioritization model evaluates initiatives across balanced criteria: Business value (how meaningful is the expected improvement?), Risk reduction (does the initiative address critical security, reliability, or operational exposure?), Urgency (is there an impending regulatory deadline or technical contract expiration?), Effort (how complex is engineering and organizational implementation?), Dependency (does other planned work rely on this foundational step?), and Strategic alignment (does it directly support long-term corporate direction?).',
-          'While no mechanical formula can replace executive judgement, this framework provides a transparent foundation for capital allocation decisions.',
+          'While no mechanical formula can replace executive judgement, this framework provides a transparent foundation for capital allocation decisions. When aligning stakeholders across diverse business units, understanding [what a technology discovery workshop should deliver](/insights/technology-strategy/what-should-a-technology-discovery-workshop-deliver/) helps surface operational constraints and build cross-functional consensus early.',
         ],
       },
       {
@@ -2469,7 +2559,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'Without dedicated ownership across business and technical domains, technology roadmaps devolve into shelfware.',
         paragraphs: [
           'Every major roadmap initiative requires clear, accountable ownership. Specific individuals must be responsible for defining the target business outcome, leading technical delivery, managing operational risk, driving user adoption, and tracking post-launch performance metrics.',
-          'Without unambiguous ownership, roadmaps remain static presentation slides rather than active execution tools.',
+          'Without unambiguous ownership, roadmaps remain static presentation slides rather than active execution tools. When internal engineering bandwidth is constrained and external delivery teams are needed, knowing [how to evaluate a software development partner](/insights/technology-strategy/how-to-evaluate-a-software-development-partner/) ensures your external vendors remain aligned with architectural standards and ownership models.',
         ],
       },
       {
@@ -2567,7 +2657,7 @@ export const insightArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-29',
     dateModified: '2026-09-29',
     formattedDate: 'September 29, 2026',
-    readingTime: '8 min read',
+    readingTime: '10 min read',
     featuredImage: '/images/insights/sunsolv-digital-experience-architecture.webp',
     featuredImageAlt:
       'Digital experience and user journey architecture showing multi-device interactions, accessibility, and performance telemetry',
@@ -2737,7 +2827,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'Users must be able to predict where information resides; intuitive hierarchy, consistent navigation, and plain-language labels prevent disorientation.',
         paragraphs: [
           'Users should be able to predict where information is located before clicking. Intuitive information architecture relies on clear navigation structures, meaningful menu labels, logical content groupings, consistent visual hierarchy across pages, contextually helpful internal links, and understandable page titles.',
-          'Avoid internal company jargon or acronyms that external customers and prospective clients may not recognize.',
+          'Avoid internal company jargon or acronyms that external customers and prospective clients may not recognize. Before committing to visual changes, conducting a thorough [website journey audit before redesigning](/insights/digital-experience/how-to-audit-a-website-journey-before-redesigning-it/) uncovers where navigation and content structures break down for real users.',
         ],
       },
       {
@@ -2777,7 +2867,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'Slow interfaces erode user trust and elevate abandonment; technical performance directly dictates user perception and completion rates.',
         paragraphs: [
           'Sluggish digital interfaces create immediate user friction. Performance optimization requires disciplined engineering: responsive image sizing using modern formats (WebP and AVIF), effective browser and CDN caching, efficient JavaScript bundle execution, aggressive reduction of redundant third-party tracking scripts, code-splitting routes, eliminating cumulative layout shifts, and engineering fast, reliable backend API responses.',
-          'Performance must be measured continuously in real-world production environments across diverse network conditions, rather than assumed based solely on local development builds.',
+          'Performance must be measured continuously in real-world production environments across diverse network conditions, rather than assumed based solely on local development builds. Striking the right balance between [website performance and visual complexity](/insights/digital-experience/website-performance-vs-visual-complexity-finding-the-right-balance/) ensures that aesthetic choices like custom fonts, animations, and high-resolution assets never degrade the core user experience.',
         ],
       },
       {
@@ -2798,7 +2888,7 @@ export const insightArticles: readonly InsightArticle[] = [
         paragraphs: [
           'Forms represent the critical juncture where business outcomes actually occur—where inquiries are submitted, accounts created, and orders placed.',
           'Common form failures include asking for unnecessary information, vague field labels, confusing validation errors, losing entered data when an error occurs, poor mobile keyboard handling, and lack of clear submission confirmation.',
-          'Organizations should request only the information genuinely required for the immediate next step in the relationship.',
+          'Organizations should request only the information genuinely required for the immediate next step in the relationship. Learning [how to design B2B enquiry forms that reduce friction](/insights/digital-experience/how-to-design-b2b-enquiry-forms-that-reduce-friction/) helps teams simplify field requirements, provide inline validation, and protect lead completion rates.',
         ],
       },
       {
@@ -2910,7 +3000,7 @@ export const insightArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-29',
     dateModified: '2026-09-29',
     formattedDate: 'September 29, 2026',
-    readingTime: '9 min read',
+    readingTime: '10 min read',
     featuredImage: '/images/insights/sunsolv-digital-assessment-workflows.webp',
     featuredImageAlt:
       'Modern digital assessment and examination workflow architecture showing authoring, delivery, evaluation, and feedback stages',
@@ -3066,7 +3156,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'Centralized question banks enable curriculum-aligned categorization and reuse while preserving faculty ownership of academic standards.',
         paragraphs: [
           'A centralized question bank helps educators organize and maintain questions by subject, chapter, specific topic, difficulty level, question format, learning objective, mark weighting, and historical usage patterns.',
-          'This reduces repetitive drafting effort year after year while improving institutional visibility into available testing materials. Question quality still depends entirely on educators; the platform streamlines management and reuse without replacing academic judgement.',
+          'This reduces repetitive drafting effort year after year while improving institutional visibility into available testing materials. Discovering [how schools can structure a reusable digital question bank](/insights/industries/how-schools-can-structure-a-reusable-digital-question-bank/) provides practical guidance on metadata schemas, difficulty tagging, and version control.',
         ],
       },
       {
@@ -3096,7 +3186,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'A practical platform pairs instantaneous automatic scoring for objective questions with standardized, rubric-driven educator review for subjective answers.',
         paragraphs: [
           'Objective question types—such as multiple choice and numerical inputs—can be evaluated automatically and instantaneously. Subjective, descriptive responses require educator review and academic judgement.',
-          'A practical assessment platform combines both: automatic scoring for suitable question types plus structured teacher evaluation tools with scoring rubrics for descriptive answers. While artificial intelligence may assist administrative sorting or formatting, human educator oversight remains essential—especially where high-stakes educational outcomes are involved.',
+          'A practical assessment platform combines both: automatic scoring for suitable question types plus structured teacher evaluation tools with scoring rubrics for descriptive answers. Similar workflow optimization applies across other operational domains, such as [how healthcare organizations identify administrative automation opportunities](/insights/industries/how-healthcare-organizations-can-identify-administrative-automation-opportunities/) to eliminate administrative burdens while protecting professional oversight.',
         ],
       },
       {
@@ -3166,7 +3256,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'Connecting assessment platforms with student information systems and LMS environments eliminates error-prone manual data transfers.',
         paragraphs: [
           'A modern assessment platform should integrate smoothly with existing institutional infrastructure: Student Information Systems (SIS), Learning Management Systems (LMS), campus identity providers (SSO), academic records databases, and notification services.',
-          'Integration eliminates duplicate student roster entry, automates grade book synchronization, and removes repetitive administrative overhead.',
+          'Integration eliminates duplicate student roster entry, automates grade book synchronization, and removes repetitive administrative overhead. Similar cross-functional benefits occur when [connecting project delivery with invoicing and payment tracking](/insights/digital-transformation/how-to-connect-project-delivery-invoicing-and-payment-tracking/) or examining [how professional services firms connect project costs, invoices, and collections](/insights/industries/how-professional-services-firms-can-connect-project-costs-invoices-and-collections/).',
         ],
       },
       {
@@ -3271,7 +3361,18 @@ export function getCategoryBySlug(slug: string): InsightCategory | undefined {
 }
 
 export function getAllArticles(): readonly InsightArticle[] {
-  return insightArticles;
+  return [...insightArticles].sort((a, b) => {
+    const dateDiff = new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime();
+    if (dateDiff !== 0) return dateDiff;
+    return a.slug.localeCompare(b.slug);
+  });
+}
+
+/**
+ * Returns a limited, curated selection of recent articles sorted newest first.
+ */
+export function getRecentArticles(limit = 6): readonly InsightArticle[] {
+  return getAllArticles().slice(0, limit);
 }
 
 export function getArticleBySlug(slug: string): InsightArticle | undefined {

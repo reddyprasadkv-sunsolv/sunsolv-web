@@ -23,6 +23,8 @@ import {
 import {
   getAllArticles,
   getAllCategories,
+  getArticleBySlug,
+  getRecentArticles,
   insightChallenges,
   InsightArticle,
   InsightCategory,
@@ -90,8 +92,10 @@ export class InsightsHomeComponent {
 
   readonly categories: readonly InsightCategory[] = getAllCategories();
   readonly articles: readonly InsightArticle[] = getAllArticles();
+  readonly recentArticles: readonly InsightArticle[] = getRecentArticles(6);
   readonly challenges: readonly InsightChallenge[] = insightChallenges;
-  readonly featuredArticle: InsightArticle = this.articles[0];
+  readonly featuredArticle: InsightArticle =
+    getArticleBySlug('how-to-identify-the-right-ai-use-case-for-your-business') ?? this.articles[0];
   readonly breadcrumbs = [{ label: 'Home', url: '/' }, { label: 'Insights' }] as const;
 
   onBrowseTopicsClick(event: MouseEvent): void {

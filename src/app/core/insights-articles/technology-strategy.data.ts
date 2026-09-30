@@ -18,7 +18,7 @@ export const technologyStrategyArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-30',
     dateModified: '2026-09-30',
     formattedDate: 'September 30, 2026',
-    readingTime: '9 min read',
+    readingTime: '7 min read',
     featuredImage: '/images/insights/sunsolv-it-investment-alignment.webp',
     featuredImageAlt:
       'Strategic technology investment prioritization matrix evaluating business impact versus operational implementation effort',
@@ -116,6 +116,7 @@ export const technologyStrategyArticles: readonly InsightArticle[] = [
           'In any growing mid-market organization, executive leadership is constantly bombarded by competing technology requests. The sales vice president insists on a new CRM configuration, the head of operations demands automated warehouse dispatch software, and the engineering lead warns that legacy database servers are three minor versions behind and at risk of failing.',
           'Without an objective prioritization mechanism, organizations default to "the loudest voice in the room" or distribute budgets into peanut butter-style small allocations across twenty different pet projects. The outcome is predictable: massive context switching, delayed rollouts, and stalled business momentum.',
           'Disciplined technology strategy requires treating technology not as a generic cost center, but as an investment portfolio governed by transparent return-on-investment, operational risk, and implementation velocity.',
+          'Translating these investment buckets into sequential milestones requires building a [practical technology roadmap](/insights/technology-strategy/how-to-build-a-practical-technology-roadmap/) that connects technical initiatives directly with company milestones.',
         ],
       },
       {
@@ -181,24 +182,6 @@ export const technologyStrategyArticles: readonly InsightArticle[] = [
           'Finally, beware of "sunk cost fallacy." If an ongoing technology initiative has missed three delivery milestones and shows negative early user feedback, leadership must have the courage to pause or kill the project rather than pouring good capital after bad.',
         ],
       },
-      {
-        id: 'prioritization-readiness-checklist',
-        heading: 'Technology Investment Prioritization Checklist',
-        directAnswer:
-          'Use this operational checklist to evaluate and rank your technology backlog before capital allocation.',
-        paragraphs: [
-          'Ensure your technology governance committee evaluates every capital request against these objective criteria before committing resources.',
-        ],
-      },
-      {
-        id: 'key-takeaway',
-        heading: 'Key Takeaway',
-        directAnswer:
-          'Strategic technology prioritization is an ongoing discipline of capital allocation, not an annual budgeting ritual.',
-        paragraphs: [
-          'By grouping initiatives into Run, Grow, and Transform envelopes, scoring proposals against business impact and implementation effort, and validating early return through phased rollouts, organizations maximize the real-world value of every invested dollar.',
-        ],
-      },
     ],
     checklist: {
       title: 'Technology Investment Prioritization Checklist',
@@ -256,7 +239,7 @@ export const technologyStrategyArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-30',
     dateModified: '2026-09-30',
     formattedDate: 'September 30, 2026',
-    readingTime: '8 min read',
+    readingTime: '5 min read',
     featuredImage: '/images/insights/sunsolv-it-investment-alignment.webp',
     featuredImageAlt:
       'Cross-functional engineering team mapping system requirements, API boundaries, and architecture blueprints on a collaborative workshop board',
@@ -309,6 +292,7 @@ export const technologyStrategyArticles: readonly InsightArticle[] = [
           'Jumping directly into software engineering without a structured discovery phase is like commissioning a skyscraper without architectural blueprints. In the early stages of any digital initiative, stakeholders have divergent perspectives: business leaders see revenue opportunities, end-users see daily frustrations, and developers see database schemas.',
           'A technology discovery workshop convenes cross-functional stakeholders for a focused 1- to 3-week engagement to align on problem definitions, interrogate operational edge cases, test third-party API capabilities, and establish clear project boundaries.',
           "Investing 8% to 12% of a project's total budget in a rigorous discovery engagement routinely cuts subsequent development timeline variances by over 50% and prevents costly architectural rewrites.",
+          "The insights produced during discovery provide the essential inputs for an organization's multi-quarter [technology roadmap](/insights/technology-strategy/how-to-build-a-practical-technology-roadmap/).",
         ],
       },
       {
@@ -366,24 +350,6 @@ export const technologyStrategyArticles: readonly InsightArticle[] = [
           'SunSolv developed the interactive Business Solution Finder to guide decision-makers through structured diagnostic questions across 12 business categories. Using such tools prior to a formal discovery workshop helps leadership articulate operational pain points and narrows down technical solution pathways before engineering hours are spent.',
         ],
       },
-      {
-        id: 'discovery-deliverables-checklist',
-        heading: 'Discovery Workshop Output Checklist',
-        directAnswer:
-          'Ensure your technology discovery process delivers these concrete engineering and business artifacts.',
-        paragraphs: [
-          'Review this checklist upon the conclusion of any discovery phase before authorizing production development.',
-        ],
-      },
-      {
-        id: 'key-takeaway',
-        heading: 'Key Takeaway',
-        directAnswer:
-          'A technology discovery workshop is a delivery de-risking instrument, not an optional ceremonial exercise.',
-        paragraphs: [
-          'By demanding concrete architectural diagrams, verified API contracts, explicit acceptance criteria, and prioritized delivery roadmaps, business leaders protect capital, eliminate guesswork, and empower engineering teams to build with speed and confidence.',
-        ],
-      },
     ],
     checklist: {
       title: 'Discovery Workshop Output Checklist',
@@ -401,7 +367,7 @@ export const technologyStrategyArticles: readonly InsightArticle[] = [
       ],
     },
     keyTakeaway: {
-      title: 'Clarity Upfront Protects Capital and Guarantees Velocity',
+      title: 'Clarity Upfront Protects Capital and Enables Predictable Velocity',
       content:
         'A great discovery workshop pays for itself many times over by identifying unfeasible technical assumptions, eliminating unnecessary features, and providing engineering teams with an unambiguous blueprint. Never start writing production code until discovery deliverables are signed off by both business and technical leadership.',
     },
@@ -449,7 +415,7 @@ export const technologyStrategyArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-30',
     dateModified: '2026-09-30',
     formattedDate: 'September 30, 2026',
-    readingTime: '9 min read',
+    readingTime: '7 min read',
     featuredImage: '/images/insights/sunsolv-custom-software-vs-saas.webp',
     featuredImageAlt:
       'Technical leadership team reviewing software vendor evaluation rubric, architecture standards, and code ownership agreements',
@@ -510,6 +476,7 @@ export const technologyStrategyArticles: readonly InsightArticle[] = [
           'Selecting a custom software development partner is fundamentally different from purchasing commodity hardware or buying off-the-shelf SaaS. Software development is an ongoing, collaborative engineering relationship. When that relationship breaks down, the cost to the client is catastrophic: abandoned codebases, missed business opportunities, and months of rework.',
           'Most businesses select vendors based on polished PowerPoint presentations, client logos, and low hourly bill rates. Six months later, they find themselves with unmaintainable spaghetti code, zero automated test coverage, and an offshore team that only speaks through an unresponsive account manager.',
           'To protect your organization, you must evaluate prospective software partners using the same architectural, legal, and operational rigor that top-tier technology companies apply when hiring engineering leadership.',
+          'One of the most effective ways to assess a potential partner before signing a major build contract is to commission a paid initial engagement to see [what a technology discovery workshop should deliver](/insights/technology-strategy/what-should-a-technology-discovery-workshop-deliver/).',
         ],
       },
       {
@@ -562,15 +529,6 @@ export const technologyStrategyArticles: readonly InsightArticle[] = [
         ],
       },
       {
-        id: 'vendor-evaluation-rubric-table',
-        heading: 'Software Partner Evaluation Rubric',
-        directAnswer:
-          'Compare prospective software development firms using this objective benchmark rubric.',
-        paragraphs: [
-          'Use this side-by-side comparison matrix during vendor procurement to separate commodity sweatshops from strategic engineering partners.',
-        ],
-      },
-      {
         id: 'hypothetical-example-vetting-agencies',
         heading: 'Hypothetical Example: Vetting Vendors for a Logistics Portal',
         directAnswer:
@@ -591,24 +549,6 @@ export const technologyStrategyArticles: readonly InsightArticle[] = [
         paragraphs: [
           'Watch out for agencies that promise a fixed-price quote on an ambiguous 2-page brief without insisting on a technical discovery phase. That is a guaranteed recipe for hostile change orders midway through development.',
           'Other red flags include refusing to provide references from past technical leadership, lack of automated CI/CD pipelines, demanding 50% upfront deposits before scoping, and claiming their team can build "any technology stack you want" without demonstrating depth in modern production frameworks.',
-        ],
-      },
-      {
-        id: 'partner-evaluation-checklist',
-        heading: 'Software Development Partner Evaluation Checklist',
-        directAnswer:
-          'Audit prospective software vendors against this comprehensive due diligence checklist before signing contracts.',
-        paragraphs: [
-          'Review these ten operational criteria with your executive and legal team before finalizing any master services agreement.',
-        ],
-      },
-      {
-        id: 'key-takeaway',
-        heading: 'Key Takeaway',
-        directAnswer:
-          'The right software development partner is an extension of your business leadership, not an order-taker.',
-        paragraphs: [
-          'By prioritizing transparent engineering processes, continuous repository access, verifiable automated testing, and unencumbered IP ownership, organizations forge high-trust partnerships that deliver dependable digital products on time and on budget.',
         ],
       },
     ],

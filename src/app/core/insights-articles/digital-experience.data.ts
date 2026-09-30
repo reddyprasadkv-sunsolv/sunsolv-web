@@ -18,7 +18,7 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-30',
     dateModified: '2026-09-30',
     formattedDate: 'September 30, 2026',
-    readingTime: '9 min read',
+    readingTime: '7 min read',
     featuredImage: '/images/insights/sunsolv-ux-principles-b2b.webp',
     featuredImageAlt:
       'UX researcher analyzing user journey funnel drop-offs, click heatmaps, and task completion metrics during website audit',
@@ -118,6 +118,7 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
           'Most website redesigns originate when an executive decides the company website "looks dated." An agency is hired, creates visually stunning Figma mockups filled with subtle pastel colors, giant background videos, and experimental scroll animations, and launches the new site six months later.',
           'The aftermath is frequently disappointing: conversion rates plunge by 30%, organic search traffic crashes due to broken URL structures, and sales teams complain that incoming leads are fewer and lower quality. The redesign looked modern, but it destroyed the intuitive paths buyers previously used to evaluate services and contact sales.',
           'A pre-redesign journey audit replaces guesswork with empirical diagnostic evidence. By systematically identifying where visitors get confused, where forms fail, and which pages drive revenue, you ensure your redesign preserves what works and fixes what is broken.',
+          'Before initiating structural changes, teams should study the core principles of [what makes a high-performing digital experience](/insights/digital-experience/what-makes-a-high-performing-digital-experience/) to ground design discussions in measurable user outcomes.',
         ],
       },
       {
@@ -140,6 +141,7 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
         paragraphs: [
           'Begin by auditing your conversion funnels in GA4. Map the exact journey from entry pages (homepage, search landing pages, blog insights) to conversion goals (contact inquiry, demo booking, whitepaper download).',
           'Pay special attention to mobile vs. desktop disparities. If your desktop conversion rate is 3.5% but mobile is 0.4%, your mobile navigation, font sizes, or form inputs are almost certainly broken. Use tools like Microsoft Clarity or Hotjar to inspect aggregate scroll heatmaps: are visitors missing key CTAs because they are buried below 3,000 pixels of decorative imagery?',
+          'When reviewing conversion drop-offs, paying special attention to form layout is essential; see our tactical guide on [how to design B2B enquiry forms that reduce friction](/insights/digital-experience/how-to-design-b2b-enquiry-forms-that-reduce-friction/).',
         ],
       },
       {
@@ -176,23 +178,6 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
           'During the audit, export your top 100 landing pages by organic search impressions and clicks from Google Search Console. Ensure the new site architecture retains these topical URLs, preserves internal link equity, and maintains metadata parity.',
         ],
       },
-      {
-        id: 'website-audit-checklist',
-        heading: 'Pre-Redesign Website Audit Checklist',
-        directAnswer:
-          'Use this operational checklist to evaluate your digital user journey before writing code.',
-        paragraphs: [
-          'Review these diagnostic criteria to build an evidence-based roadmap for your website redesign.',
-        ],
-      },
-      {
-        id: 'key-takeaway',
-        heading: 'Key Takeaway',
-        directAnswer: 'Diagnose before you prescribe; audit before you redesign.',
-        paragraphs: [
-          'By measuring real user drop-offs, identifying cognitive barriers through heuristic inspection, and preserving top-performing content and organic SEO equity, organizations transform website redesigns from high-risk gambles into calculated growth engines.',
-        ],
-      },
     ],
     checklist: {
       title: 'Pre-Redesign User Journey Audit Checklist',
@@ -216,10 +201,10 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
     },
     relatedServices: [
       {
-        title: 'Web Application Development',
+        title: 'Web & Mobile Development',
         description:
           'Engineer high-performance, accessible, and conversion-optimized websites and digital experiences.',
-        route: '/services/web-development',
+        route: '/services/web-mobile-development',
       },
       {
         title: 'IT Consulting & Strategy',
@@ -251,7 +236,7 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-30',
     dateModified: '2026-09-30',
     formattedDate: 'September 30, 2026',
-    readingTime: '8 min read',
+    readingTime: '6 min read',
     featuredImage: '/images/insights/sunsolv-ux-principles-b2b.webp',
     featuredImageAlt:
       'Performance engineering dashboard comparing Core Web Vitals metrics against JavaScript bundle size and visual animation rendering latency',
@@ -295,6 +280,10 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
         id: 'hypothetical-example-saas-hero',
         title: 'Hypothetical Example: Enterprise SaaS Product Landing Page',
       },
+      {
+        id: 'monitoring-field-metrics-with-rum',
+        title: 'Monitoring Field Metrics with Real User Monitoring',
+      },
       { id: 'performance-balance-checklist', title: 'Visual Performance Balance Checklist' },
       { id: 'key-takeaway', title: 'Key Takeaway' },
     ],
@@ -308,6 +297,7 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
           'In corporate design reviews, the presentation that wins the room usually features looping full-screen hero videos, 3D WebGL canvas elements, custom variable typography loaded in four weights, and complex scroll-triggered entrance animations. On high-end designer MacBooks connected to gigabit office fiber, the site feels like a high-production movie.',
           'However, when a prospective enterprise buyer visits that same website on a smartphone over a congested cellular network, the experience is agonizing. The screen remains blank for four seconds, the layout jerks violently as images load out of order, and the mobile browser becomes completely unresponsive to taps.',
           'Visual elegance and technical performance are not mutually exclusive. The most sophisticated digital experiences achieve visual impact not through brute-force asset bloat, but through disciplined typography, harmonious color systems, and lightweight, hardware-accelerated micro-interactions.',
+          'Striking this balance is a primary requirement for creating [what makes a high-performing digital experience](/insights/digital-experience/what-makes-a-high-performing-digital-experience/), where visual elegance and instant responsiveness reinforce each other.',
         ],
       },
       {
@@ -333,15 +323,6 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
         ],
       },
       {
-        id: 'visual-feature-performance-cost-table',
-        heading: 'Visual Feature Cost vs Modern Alternative Matrix',
-        directAnswer:
-          'Replace heavy multimedia bloat with modern, performant web design techniques.',
-        paragraphs: [
-          'Compare common visual design elements with modern, high-performance engineering alternatives.',
-        ],
-      },
-      {
         id: 'performance-budgets-as-design-guardrails',
         heading: 'Implementing Performance Budgets in Design',
         directAnswer:
@@ -363,20 +344,13 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
         ],
       },
       {
-        id: 'performance-balance-checklist',
-        heading: 'Visual Performance Balance Checklist',
+        id: 'monitoring-field-metrics-with-rum',
+        heading: 'Monitoring Field Metrics with Real User Monitoring',
         directAnswer:
-          'Ensure your website strikes the right equilibrium between visual design and loading speed.',
+          'Synthetic lab audits miss real-world mobile device variance; monitor 75th-percentile field data continuously.',
         paragraphs: [
-          'Review these technical criteria with your design and development teams prior to release.',
-        ],
-      },
-      {
-        id: 'key-takeaway',
-        heading: 'Key Takeaway',
-        directAnswer: 'Speed is an essential feature of great design, not an afterthought.',
-        paragraphs: [
-          'True luxury in digital design is an interface that feels instantaneous, silky smooth, and responsive. By enforcing performance budgets, optimizing assets with modern formats, and relying on native CSS capabilities, organizations create stunning websites that convert visitors effortlessly.',
+          'A common misconception in web engineering is relying solely on Lighthouse lab scores run from high-powered developer laptops on fiber connections. Synthetic tests cannot replicate low-memory Android devices, throttling 4G networks, and background battery savers.',
+          'Organizations should integrate Real User Monitoring (RUM) libraries to capture field data directly from visiting browsers. Evaluating Core Web Vitals at the 75th percentile ensures that performance decisions reflect real human experiences across all devices and connection tiers.',
         ],
       },
     ],
@@ -446,10 +420,10 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
     },
     relatedServices: [
       {
-        title: 'Web Application Development',
+        title: 'Web & Mobile Development',
         description:
           'Build blazing-fast, visually polished web applications engineered for sub-second load times and high conversions.',
-        route: '/services/web-development',
+        route: '/services/web-mobile-development',
       },
       {
         title: 'IT Consulting & Strategy',
@@ -481,7 +455,7 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-30',
     dateModified: '2026-09-30',
     formattedDate: 'September 30, 2026',
-    readingTime: '8 min read',
+    readingTime: '6 min read',
     featuredImage: '/images/insights/sunsolv-ux-principles-b2b.webp',
     featuredImageAlt:
       'UX designer wireframing accessible, frictionless multi-step B2B inquiry form with clear field validation and security indicators',
@@ -531,6 +505,7 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
           'A prospective client spends 15 minutes reviewing your case studies, approves of your capabilities, and clicks "Contact Us." They arrive at an inquiry page demanding 14 mandatory fields: Full Name, Job Title, Company Name, Work Email, Phone Number, Company Size, Annual Revenue, Current Tech Stack, Timeline, Estimated Budget, Country, State, and a 500-word description of their project.',
           'To the sales operations team, this data looks fantastic for automated lead scoring. But to the prospective client, it feels like an intrusive interrogation before any relationship has been established. Over 60% of high-intent visitors abandon the page without typing a word.',
           'Frictionless form design recognizes that the primary purpose of an initial inquiry form is not to qualify out 95% of leads, but to establish a frictionless communication channel between two human beings.',
+          'Pinpointing form drop-offs should be a core component of your broader [website journey audit](/insights/digital-experience/how-to-audit-a-website-journey-before-redesigning-it/), uncovering where prospects hesitate before converting.',
         ],
       },
       {
@@ -592,23 +567,6 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
           "Inbound inquiry submissions jumped from 8 to 22 per month. More importantly, when consultants conducted the initial phone screens, over 80% of the new leads met the firm's ideal client criteria, proving that excessive qualification forms deter genuine prospects rather than screening out bad ones.",
         ],
       },
-      {
-        id: 'form-design-checklist',
-        heading: 'B2B Enquiry Form Usability Checklist',
-        directAnswer:
-          'Audit your website inquiry and contact forms against these conversion-focused standards.',
-        paragraphs: [
-          'Use this checklist to optimize your lead generation and contact forms across mobile and desktop devices.',
-        ],
-      },
-      {
-        id: 'key-takeaway',
-        heading: 'Key Takeaway',
-        directAnswer: 'An inquiry form is an invitation to collaborate, not a gatekeeping barrier.',
-        paragraphs: [
-          'By asking only for essential contact information, supporting browser autofill, providing clear real-time feedback, and designing for mobile usability, organizations remove unnecessary friction and make initiating a partnership effortless.',
-        ],
-      },
     ],
     checklist: {
       title: 'B2B Enquiry Form Usability Checklist',
@@ -632,10 +590,10 @@ export const digitalExperienceArticles: readonly InsightArticle[] = [
     },
     relatedServices: [
       {
-        title: 'Web Application Development',
+        title: 'Web & Mobile Development',
         description:
           'Design accessible, high-converting websites, user journeys, and streamlined enquiry workflows.',
-        route: '/services/web-development',
+        route: '/services/web-mobile-development',
       },
       {
         title: 'IT Consulting & Strategy',

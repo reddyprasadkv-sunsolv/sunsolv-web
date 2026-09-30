@@ -18,7 +18,7 @@ export const industryArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-30',
     dateModified: '2026-09-30',
     formattedDate: 'September 30, 2026',
-    readingTime: '9 min read',
+    readingTime: '6 min read',
     featuredImage: '/images/insights/sunsolv-edtech-trends.webp',
     featuredImageAlt:
       'Educators and curriculum directors reviewing digital question bank taxonomy tagging difficulty levels and learning outcomes',
@@ -116,6 +116,7 @@ export const industryArticles: readonly InsightArticle[] = [
           'In many primary and secondary schools, teachers spend dozens of hours each semester authoring unit tests, midterms, and quizzes in Microsoft Word or Google Docs. These files remain locked on individual laptops or scattered across shared drive folders without consistent naming conventions.',
           'When a teacher departs, their years of curated assessment items leave with them. Furthermore, without standardized question tagging, different classrooms within the same grade are evaluated against widely differing standards of difficulty, making it impossible to measure student academic progress fairly.',
           'A centralized, digital question bank transforms ephemeral exam sheets into a compounding institutional asset. By structuring assessment items with structured taxonomies, schools empower teachers to generate balanced, high-quality assessments in minutes while gathering longitudinal data on student learning outcomes.',
+          'Structuring questions for long-term institutional reuse is one facet of [how digital assessment platforms improve education workflows](/insights/industries/how-digital-assessment-platforms-can-improve-education-workflows/), connecting authoring, delivery, and analytics into a cohesive system.',
         ],
       },
       {
@@ -173,24 +174,6 @@ export const industryArticles: readonly InsightArticle[] = [
           'Consider a hypothetical educational trust operating five secondary school campuses with 3,500 enrolled students. Previously, mathematics teachers on each campus authored separate term exams, leading to massive grading variances and parental complaints regarding inconsistent difficulty.',
           'The school network implemented a centralized digital assessment repository. Over one academic year, 18 mathematics faculty contributed 2,400 peer-reviewed questions tagged to national curriculum standards, complete with step-by-step solution explanations.',
           'When term exams were conducted, the system assembled uniform assessments across all five campuses. Teachers saved an estimated 14 hours per exam cycle on test drafting, while academic coordinators gained granular analytics identifying specific topics where student comprehension lagged, enabling timely remedial instruction.',
-        ],
-      },
-      {
-        id: 'question-bank-readiness-checklist',
-        heading: 'Institutional Question Bank Architecture Checklist',
-        directAnswer:
-          "Audit your school's digital assessment strategy against these foundational technical and curricular standards.",
-        paragraphs: [
-          'Ensure your academic technology committee evaluates these functional requirements when planning a question bank platform.',
-        ],
-      },
-      {
-        id: 'key-takeaway',
-        heading: 'Key Takeaway',
-        directAnswer:
-          'A structured question bank is an investment in institutional continuity and student equity.',
-        paragraphs: [
-          'By categorizing assessment items with rigorous curricular metadata, enforcing collaborative peer review, and generating balanced test forms dynamically, schools elevate the quality of education and gain deep, actionable insights into student learning.',
         ],
       },
     ],
@@ -258,7 +241,7 @@ export const industryArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-30',
     dateModified: '2026-09-30',
     formattedDate: 'September 30, 2026',
-    readingTime: '9 min read',
+    readingTime: '6 min read',
     featuredImage: '/images/insights/sunsolv-ai-use-cases.webp',
     featuredImageAlt:
       'Healthcare administrative leadership analyzing nonclinical workflow automation opportunities including appointment scheduling and patient intake forms',
@@ -359,6 +342,7 @@ export const industryArticles: readonly InsightArticle[] = [
         paragraphs: [
           'According to studies published in the Annals of Internal Medicine, administrative costs represent approximately 25% of total healthcare expenditures in many health systems. Front-desk personnel, billing clerks, and practice managers are overwhelmed by repetitive paperwork: transcribing handwritten clipboards, calling patients for appointment reminders, and manually verifying insurance coverage.',
           'This clerical friction leads to high staff turnover, extended patient waiting room delays, and billing errors that delay reimbursement. While clinical workflows require meticulous human expertise, back-office administrative workflows are prime candidates for structured digital automation.',
+          'When assessing which workflows to streamline, leadership should first clarify the technical boundaries between [traditional rules-based automation and artificial intelligence](/insights/ai-automation/ai-vs-automation-which-does-your-business-actually-need/) to avoid over-engineering simple notification loops.',
         ],
       },
       {
@@ -368,7 +352,7 @@ export const industryArticles: readonly InsightArticle[] = [
           'Administrative automation must never participate in clinical diagnosis, triage decisions, or treatment planning.',
         paragraphs: [
           'A non-negotiable rule when implementing automation in healthcare is maintaining a strict operational boundary: administrative systems manage logistical data, not medical judgment.',
-          'Automated tools must never provide diagnostic advice, alter medication dosages, or prioritize emergency patient care. Triage and medical evaluation belong exclusively to licensed healthcare clinicians. Confining automation strictly to nonclinical domains—such as room booking, registration paperwork, and billing notifications—delivers substantial efficiency gains while completely avoiding patient safety hazards and regulatory exposure.',
+          'Automated tools must never provide diagnostic advice, alter medication dosages, or prioritize emergency patient care. Triage and medical evaluation belong exclusively to licensed healthcare clinicians. Confining automation strictly to nonclinical domains—such as room booking, registration paperwork, and billing notifications—delivers substantial efficiency gains while mitigating clinical safety hazards; however, practices must still maintain rigorous HIPAA, privacy, and data governance compliance.',
         ],
       },
       {
@@ -413,26 +397,8 @@ export const industryArticles: readonly InsightArticle[] = [
         directAnswer:
           'Avoid forcing patients into complex app downloads and neglecting staff training on fallback procedures.',
         paragraphs: [
-          'A pervasive failure mode is requiring patients to download a dedicated mobile application simply to fill out an intake form. Over 80% of patients will refuse to install an app for a routine doctor visit. Digital forms must be lightweight, responsive web pages accessible via standard mobile browsers with zero login barriers.',
+          'A pervasive failure mode is requiring patients to download a dedicated mobile application simply to fill out an intake form. Patients are often reluctant to install an unfamiliar app and register new accounts merely for an annual or bi-annual visit. Digital forms must be lightweight, responsive web pages accessible via standard mobile browsers with zero login barriers.',
           'Another pitfall is failing to prepare staff for system outages. Clinics must maintain clear manual paper fallback protocols so that if internet connectivity fails, patient check-ins and appointments continue seamlessly.',
-        ],
-      },
-      {
-        id: 'healthcare-automation-checklist',
-        heading: 'Nonclinical Automation Readiness Checklist',
-        directAnswer:
-          'Use this operational checklist to evaluate potential healthcare administrative automation initiatives.',
-        paragraphs: [
-          'Review these criteria with clinical leadership, practice managers, and IT compliance officers before deployment.',
-        ],
-      },
-      {
-        id: 'key-takeaway',
-        heading: 'Key Takeaway',
-        directAnswer:
-          'Automating administrative workflows frees healthcare professionals to focus on human patient care.',
-        paragraphs: [
-          'By targeting repetitive clerical tasks like scheduling and intake, enforcing strict nonclinical boundaries, and upholding rigorous data governance, healthcare organizations improve operational efficiency, protect staff from burnout, and elevate the patient experience.',
         ],
       },
     ],
@@ -457,10 +423,10 @@ export const industryArticles: readonly InsightArticle[] = [
     },
     relatedServices: [
       {
-        title: 'AI & Automation Solutions',
+        title: 'AI & Machine Learning',
         description:
-          'Implement secure, rules-driven workflow automation, document routing, and customer communication pipelines.',
-        route: '/services/ai-automation',
+          'Implement secure, rules-driven workflow automation, document routing, and patient communication pipelines.',
+        route: '/services/ai-machine-learning',
       },
       {
         title: 'IT Consulting & Strategy',
@@ -493,7 +459,7 @@ export const industryArticles: readonly InsightArticle[] = [
     datePublished: '2026-09-30',
     dateModified: '2026-09-30',
     formattedDate: 'September 30, 2026',
-    readingTime: '9 min read',
+    readingTime: '7 min read',
     featuredImage: '/images/insights/sunsolv-it-investment-alignment.webp',
     featuredImageAlt:
       'Executive management team reviewing professional services financial dashboard showing project gross margins, unbilled WIP, and invoice aging',
@@ -592,6 +558,7 @@ export const industryArticles: readonly InsightArticle[] = [
         paragraphs: [
           'In law firms, design agencies, accounting practices, and engineering consultancies, billable expertise is the inventory. Yet in many firms, tracking that inventory is handled with chaotic, disconnected tools: consultants track time on spreadsheets, project managers maintain schedules in Trello or Jira, and bookkeepers generate invoices in accounting software weeks after the work is finished.',
           'This fragmentation creates severe revenue leakage. Out-of-scope work performed in good faith is never billed because delivery leads assume someone else tracked it. Invoices sit unissued for 30 to 45 days after milestones are delivered. A connected operational platform can reduce administrative overhead, support timely billing, and improve visibility into project profitability.',
+          'For a broader architectural perspective on integrating operational milestones with financial back-offices, explore our guide on [how to connect project delivery, invoicing, and payment tracking](/insights/digital-transformation/how-to-connect-project-delivery-invoicing-and-payment-tracking/).',
         ],
       },
       {
@@ -646,24 +613,6 @@ export const industryArticles: readonly InsightArticle[] = [
         paragraphs: [
           'A pervasive operational mistake is allowing staff to submit timesheets once a month. Studies show that when professionals reconstruct their hours weeks later, they under-report billable time by up to 25%, resulting in massive unbilled revenue loss.',
           'Another critical mistake is failing to enforce credit limits. When a client is 60 days overdue on Milestone 1, delivery teams often continue working on Milestone 2 hoping payment will arrive. A connected platform flags past-due accounts directly on project task boards, giving leadership clear justification to pause delivery until payments are brought current.',
-        ],
-      },
-      {
-        id: 'professional-services-billing-checklist',
-        heading: 'Professional Services Operations Checklist',
-        directAnswer:
-          "Audit your practice's project delivery, billing, and collection processes against these standards.",
-        paragraphs: [
-          'Use this operational checklist to evaluate how effectively your firm converts billable effort into realized cash.',
-        ],
-      },
-      {
-        id: 'key-takeaway',
-        heading: 'Key Takeaway',
-        directAnswer:
-          'Operating profitability is determined by the speed and accuracy of your billing pipeline.',
-        paragraphs: [
-          'By connecting project milestone deliverables, time and expense tracking, automated invoice generation, and collections into a unified operational platform, professional services firms eliminate revenue leakage, accelerate cash flow, and ensure their partners are fairly rewarded for their expertise.',
         ],
       },
     ],
