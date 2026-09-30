@@ -340,10 +340,10 @@ export const industryArticles: readonly InsightArticle[] = [
         directAnswer:
           'Healthcare administrative staff spend substantial portions of their day on repetitive manual tasks, diverting attention from patient coordination.',
         paragraphs: [
-          'According to landmark empirical health economics research by [Himmelstein et al. in the Annals of Internal Medicine](https://doi.org/10.7326/M14-0686) (analyzing hospital spending across eight OECD nations), hospital administration accounted for 25.3% of total hospital expenditures in the United States—more than double the administrative shares observed in Canada (14.3%) and Scotland (12.4%). In ambulatory clinics and health systems, front-desk personnel, billing clerks, and practice managers face intense clerical friction: transcribing handwritten intake forms, placing manual appointment reminder calls, and manually cross-referencing insurance eligibility clearinghouses.',
+          'According to landmark empirical health economics research by [Himmelstein et al. in Health Affairs](https://doi.org/10.1377/hlthaff.2013.1327) (analyzing hospital spending across eight nations), hospital administration accounted for 25.3% of total hospital expenditures in the United States—the highest proportion among all nations evaluated in the study. In ambulatory clinics and health systems, front-desk personnel, billing clerks, and practice managers face intense clerical friction: transcribing handwritten intake forms, placing manual appointment reminder calls, and manually cross-referencing insurance eligibility clearinghouses.',
           'This clerical friction leads to high staff turnover, extended patient waiting room delays, and billing errors that delay reimbursement. While clinical workflows require meticulous human expertise, back-office administrative workflows are prime candidates for structured digital automation.',
           'When assessing which workflows to streamline, leadership should first clarify the technical boundaries between [traditional rules-based automation and artificial intelligence](/insights/ai-automation/ai-vs-automation-which-does-your-business-actually-need/) to avoid over-engineering simple notification loops.',
-          'Primary Reference: Himmelstein, D. U., Jun, M., Busse, R., et al. (2014). "A Comparison of Hospital Administrative Costs in Eight Nations: U.S. Costs Exceed All Others by Far." [Annals of Internal Medicine, 161(9), 676–685](https://doi.org/10.7326/M14-0686). (Sample limitation: Focuses on acute-care hospital facilities across the US, Canada, and Western Europe; statutory billing complexity is a key driver of US administrative cost variance).',
+          'Primary Reference: Himmelstein, D. U., Jun, M., Busse, R., et al. (2014). "A Comparison of Hospital Administrative Costs in Eight Nations: US Costs Exceed All Others by Far." [Health Affairs, 33(9), 1586–1594](https://doi.org/10.1377/hlthaff.2013.1327). (Verified record: [PubMed ID 25201663](https://pubmed.ncbi.nlm.nih.gov/25201663/); sample context: Analyzed acute-care hospital administrative costs across eight OECD nations, identifying statutory billing complexity and multi-payer administration as primary drivers of US hospital expenditure variance).',
         ],
       },
       {
@@ -569,7 +569,7 @@ export const industryArticles: readonly InsightArticle[] = [
           'Unbilled Work-in-Progress is cash your business has spent on payroll that has not yet been converted into an invoice.',
         paragraphs: [
           'Work-in-Progress (WIP) represents hours worked and expenses incurred that have not yet been billed to the client. When firms manage billing on a monthly or quarterly cycle, unbilled WIP accumulates silently on the balance sheet.',
-          'The longer an invoice is delayed, the harder it is to collect. Benchmark survey data from the [Commercial Collection Agencies of America / Commercial Law League of America (CLLA)](https://www.clla.org/) indicates that the probability of full B2B commercial accounts receivable recovery drops to approximately 89% after 60 days past due, 73% after 90 days, and falls below 55% after six months. When clients receive an invoice two months after a project phase is completed, project memories have faded, sponsor personnel may have shifted, and payment approvals encounter prolonged friction.',
+          'The longer an invoice is delayed, the harder it is to collect. In commercial accounts receivable management, collection probabilities decay steadily as invoices age past due. When clients receive an invoice weeks or months after a project phase is completed, project memories have faded, sponsor personnel may have shifted to other priorities, and payment approvals encounter prolonged friction and heightened audit scrutiny. Establishing automated invoice triggers upon deliverable sign-off prevents completed work from drifting into disputed or aged arrears.',
         ],
       },
       {
@@ -598,12 +598,12 @@ export const industryArticles: readonly InsightArticle[] = [
         id: 'hypothetical-example-specialized-firm',
         heading: 'Hypothetical Example: 35-Person Structural Engineering Firm',
         directAnswer:
-          'How an engineering practice reclaimed $320,000 in unbilled work and reduced DSO from 62 days to 28 days.',
+          'How a modeled engineering practice resolved $400,000 in unbilled work and reduced DSO from 62 days to 28 days.',
         paragraphs: [
-          'Consider a hypothetical 35-person structural engineering firm handling 50 active commercial development projects. Project managers used standalone Gantt charts, engineers entered hours into monthly spreadsheets, and the office manager spent seven days every month assembling paper invoices.',
+          'In this illustrative operational scenario, consider a modeled 35-person structural engineering firm handling 50 active commercial development projects. Project managers used standalone Gantt charts, engineers entered hours into monthly spreadsheets, and the office manager spent seven days every month assembling paper invoices.',
           'The firm regularly carried over $400,000 in unbilled WIP. Billing disputes occurred constantly because clients demanded itemized proof of structural review hours before releasing payments.',
           'The leadership team deployed a unified web-based project management and invoicing application. Engineers logged time daily against specific drawing packages. When a drawing package was signed off, the platform generated a branded invoice with complete backup documentation attached.',
-          "Invoices were delivered within 48 hours of drawing release. Unbilled WIP fell by 75%, disputed invoices dropped by 80%, and Days Sales Outstanding shrank from 62 days to 28 days, injecting over $300,000 in liquid capital into the firm's operating accounts.",
+          "Invoices were delivered within 48 hours of drawing release. In this modeled turnaround, unbilled WIP fell by 75%, disputed invoices dropped by 80%, and Days Sales Outstanding shrank from 62 days to 28 days, injecting over $300,000 in liquid capital into the firm's operating accounts.",
         ],
       },
       {
@@ -612,7 +612,7 @@ export const industryArticles: readonly InsightArticle[] = [
         directAnswer:
           'Avoid delayed time entry, billing disputes without partial payment paths, and continuing work for delinquent clients.',
         paragraphs: [
-          'A pervasive operational mistake is allowing staff to submit timesheets once a month. Practice management studies published through the [American Bar Association Law Practice Division](https://www.americanbar.org/groups/law_practice/) and professional services benchmarks show that when professionals reconstruct their hours weeks later, memory decay causes them to under-report billable time by an estimated 20% to 25%, resulting in significant uncaptured revenue.',
+          'A pervasive operational mistake is allowing staff to submit timesheets once a month. When professionals reconstruct their hours retrospectively weeks after execution, natural cognitive memory decay causes substantial uncaptured billable time—especially for brief client phone calls, ad-hoc research, and iterative design reviews. Capturing time contemporaneously through integrated task tools prevents this revenue leakage and eliminates frantic end-of-month administrative reconciliations.',
           'Another critical mistake is failing to enforce credit limits. When a client is 60 days overdue on Milestone 1, delivery teams often continue working on Milestone 2 hoping payment will arrive. A connected platform flags past-due accounts directly on project task boards, giving leadership clear justification to pause delivery until payments are brought current.',
         ],
       },

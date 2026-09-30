@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { routes } from '../../app.routes';
 import { App } from '../../app';
 import {
+  calculateReadingTime,
   categoryToPageData,
   getAllArticles,
   getAllCategories,
@@ -81,6 +82,7 @@ describe('SunSolv Insights Module', () => {
         expect(article.canonicalUrl.endsWith('/')).toBe(true);
         expect(article.executiveSummary).toBeTruthy();
         expect(article.readingTime).toBeTruthy();
+        expect(article.readingTime).toBe(calculateReadingTime(article));
         expect(article.featuredImage.endsWith('.webp')).toBe(true);
         expect(article.featuredImageAlt).toBeTruthy();
         expect(article.sections.length).toBeGreaterThan(5);
