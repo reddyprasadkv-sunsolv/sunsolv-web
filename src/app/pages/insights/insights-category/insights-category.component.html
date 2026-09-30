@@ -5,14 +5,39 @@
         <app-insights-breadcrumbs [items]="breadcrumbs()" />
         <p class="eyebrow">Category Perspectives</p>
         <h1 id="category-title">{{ cat.title }}</h1>
-        <p class="hero-lede">{{ cat.description }}</p>
+        <p class="hero-lede">{{ cat.refreshedIntro ?? cat.description }}</p>
       </div>
     </div>
   </section>
 
   <section class="section category-content-section">
     <div class="shell">
-      @if (articles().length > 0) {
+      @if (readingGroupsWithArticles().length > 0) {
+        <div class="reading-groups-container">
+          @for (group of readingGroupsWithArticles(); track group.title) {
+            <div class="reading-group-block">
+              <div class="group-header">
+                <span class="group-badge">{{ group.title }}</span>
+                <h2>
+                  {{
+                    group.title === 'Start here'
+                      ? 'Start Here: Core Foundations'
+                      : group.title === 'Evaluate your options'
+                        ? 'Evaluate Options & Trade-Offs'
+                        : 'Plan Implementation & Delivery'
+                  }}
+                </h2>
+                <p class="group-desc">{{ group.description }}</p>
+              </div>
+              <div class="articles-grid">
+                @for (article of group.articles; track article.slug) {
+                  <app-article-card [article]="article" />
+                }
+              </div>
+            </div>
+          }
+        </div>
+      } @else if (articles().length > 0) {
         <div class="section-heading">
           <p class="eyebrow">Published Articles</p>
           <h2>Practical Guides in {{ cat.title }}</h2>

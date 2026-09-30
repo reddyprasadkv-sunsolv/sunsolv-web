@@ -101,6 +101,69 @@ const routeSources = {
   '/insights/industries/how-digital-assessment-platforms-can-improve-education-workflows': [
     'src/app/core/insights.data.ts',
   ],
+  '/insights/ai-automation/is-your-business-data-ready-for-ai': [
+    'src/app/core/insights-articles/ai-automation.data.ts',
+  ],
+  '/insights/ai-automation/how-to-run-an-ai-pilot-with-clear-success-criteria': [
+    'src/app/core/insights-articles/ai-automation.data.ts',
+  ],
+  '/insights/ai-automation/where-human-review-belongs-in-ai-assisted-workflows': [
+    'src/app/core/insights-articles/ai-automation.data.ts',
+  ],
+  '/insights/cloud-infrastructure/how-to-plan-a-cloud-migration-without-disrupting-operations': [
+    'src/app/core/insights-articles/cloud-infrastructure.data.ts',
+  ],
+  '/insights/cloud-infrastructure/how-to-control-cloud-costs-before-they-grow': [
+    'src/app/core/insights-articles/cloud-infrastructure.data.ts',
+  ],
+  '/insights/cloud-infrastructure/cloud-backup-vs-disaster-recovery-what-should-businesses-plan': [
+    'src/app/core/insights-articles/cloud-infrastructure.data.ts',
+  ],
+  '/insights/digital-transformation/how-to-prioritize-processes-for-digital-transformation': [
+    'src/app/core/insights-articles/digital-transformation.data.ts',
+  ],
+  '/insights/digital-transformation/modernize-integrate-or-replace-a-guide-to-legacy-systems': [
+    'src/app/core/insights-articles/digital-transformation.data.ts',
+  ],
+  '/insights/digital-transformation/how-to-connect-project-delivery-invoicing-and-payment-tracking': [
+    'src/app/core/insights-articles/digital-transformation.data.ts',
+  ],
+  '/insights/software-engineering/how-to-scope-a-custom-software-project-before-development': [
+    'src/app/core/insights-articles/software-engineering.data.ts',
+  ],
+  '/insights/software-engineering/how-to-plan-reliable-api-integrations-between-business-systems': [
+    'src/app/core/insights-articles/software-engineering.data.ts',
+  ],
+  '/insights/software-engineering/modular-monolith-vs-microservices-what-fits-your-application': [
+    'src/app/core/insights-articles/software-engineering.data.ts',
+  ],
+  '/insights/technology-strategy/how-to-prioritize-technology-investments-with-limited-resources': [
+    'src/app/core/insights-articles/technology-strategy.data.ts',
+  ],
+  '/insights/technology-strategy/what-should-a-technology-discovery-workshop-deliver': [
+    'src/app/core/insights-articles/technology-strategy.data.ts',
+  ],
+  '/insights/technology-strategy/how-to-evaluate-a-software-development-partner': [
+    'src/app/core/insights-articles/technology-strategy.data.ts',
+  ],
+  '/insights/digital-experience/how-to-audit-a-website-journey-before-redesigning-it': [
+    'src/app/core/insights-articles/digital-experience.data.ts',
+  ],
+  '/insights/digital-experience/website-performance-vs-visual-complexity-finding-the-right-balance': [
+    'src/app/core/insights-articles/digital-experience.data.ts',
+  ],
+  '/insights/digital-experience/how-to-design-b2b-enquiry-forms-that-reduce-friction': [
+    'src/app/core/insights-articles/digital-experience.data.ts',
+  ],
+  '/insights/industries/how-schools-can-structure-a-reusable-digital-question-bank': [
+    'src/app/core/insights-articles/industries.data.ts',
+  ],
+  '/insights/industries/how-healthcare-organizations-can-identify-administrative-automation-opportunities': [
+    'src/app/core/insights-articles/industries.data.ts',
+  ],
+  '/insights/industries/how-professional-services-firms-can-connect-project-costs-invoices-and-collections': [
+    'src/app/core/insights-articles/industries.data.ts',
+  ],
 };
 
 function getRouteLastmod(route) {
@@ -117,19 +180,18 @@ function getRouteLastmod(route) {
 }
 
 // Exclude empty insights categories from sitemap until they contain published content
-let emptyCategorySlugs = new Set();
-try {
-  const { getArticlesByCategory, insightCategories } = await import(
-    '../src/app/core/insights.data.ts'
-  );
-  emptyCategorySlugs = new Set(
-    insightCategories
-      .filter((c) => getArticlesByCategory(c.slug).length === 0)
-      .map((c) => c.slug),
-  );
-} catch (err) {
-  console.warn('Could not dynamically load insight categories for sitemap filtering:', err);
-}
+const knownCategorySlugs = [
+  'ai-automation',
+  'cloud-infrastructure',
+  'digital-transformation',
+  'software-engineering',
+  'technology-strategy',
+  'digital-experience',
+  'industries',
+];
+const emptyCategorySlugs = new Set(
+  knownCategorySlugs.filter((slug) => !routes.some((r) => r.startsWith(`/insights/${slug}/`))),
+);
 
 const filteredRoutes = routes.filter((route) => {
   const match = route.match(/^\/insights\/([a-z0-9-]+)$/);

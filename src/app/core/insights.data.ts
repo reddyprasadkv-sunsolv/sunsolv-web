@@ -1,4 +1,17 @@
 import type { PageData } from './site-data';
+import { aiAutomationArticles } from './insights-articles/ai-automation.data';
+import { cloudInfrastructureArticles } from './insights-articles/cloud-infrastructure.data';
+import { softwareEngineeringArticles } from './insights-articles/software-engineering.data';
+import { technologyStrategyArticles } from './insights-articles/technology-strategy.data';
+import { digitalTransformationArticles } from './insights-articles/digital-transformation.data';
+import { digitalExperienceArticles } from './insights-articles/digital-experience.data';
+import { industryArticles } from './insights-articles/industries.data';
+
+export interface ReadingGroup {
+  readonly title: string;
+  readonly description: string;
+  readonly articleSlugs: readonly string[];
+}
 
 export interface InsightCategory {
   slug: string;
@@ -10,6 +23,8 @@ export interface InsightCategory {
   route: string;
   seoTitle: string;
   metaDescription: string;
+  refreshedIntro?: string;
+  readingGroups?: readonly ReadingGroup[];
 }
 
 export interface InsightChallenge {
@@ -130,12 +145,40 @@ export const insightCategories: readonly InsightCategory[] = [
     shortTitle: 'AI & Automation',
     description:
       'Understand where artificial intelligence can create meaningful value, how to assess AI readiness, prepare data, introduce automation and implement intelligent capabilities responsibly.',
+    refreshedIntro:
+      'Explore practical, hype-free frameworks for evaluating artificial intelligence, preparing business data, designing controlled pilot deployments, and maintaining essential human operational oversight.',
     ctaText: 'Explore AI & Automation',
     icon: 'heroCpuChip',
     route: '/insights/ai-automation/',
     seoTitle: 'AI & Automation Insights & Practical Guides | SunSolv',
     metaDescription:
       'Practical perspectives and evaluation frameworks on artificial intelligence, workflow automation, machine learning readiness and responsible implementation.',
+    readingGroups: [
+      {
+        title: 'Start here',
+        description:
+          'Understand the fundamental distinctions between deterministic rules-based automation and machine learning, and identify high-value operational use cases.',
+        articleSlugs: [
+          'ai-vs-automation-which-does-your-business-actually-need',
+          'how-to-identify-the-right-ai-use-case-for-your-business',
+        ],
+      },
+      {
+        title: 'Evaluate your options',
+        description:
+          'Audit your proprietary business data for AI suitability and architect human-in-the-loop oversight to eliminate operational hallucinations.',
+        articleSlugs: [
+          'is-your-business-data-ready-for-ai',
+          'where-human-review-belongs-in-ai-assisted-workflows',
+        ],
+      },
+      {
+        title: 'Plan implementation',
+        description:
+          'Structure disciplined AI pilot programs with quantitative baselines, shadow testing, and verifiable decision gates.',
+        articleSlugs: ['how-to-run-an-ai-pilot-with-clear-success-criteria'],
+      },
+    ],
   },
   {
     slug: 'cloud-infrastructure',
@@ -143,12 +186,37 @@ export const insightCategories: readonly InsightCategory[] = [
     shortTitle: 'Cloud & Infrastructure',
     description:
       'Practical guidance on cloud readiness, migration, architecture, security, resilience, performance and responsible cloud cost management.',
+    refreshedIntro:
+      'Strategic engineering frameworks for assessing cloud readiness, executing zero-downtime migrations, controlling infrastructure costs with FinOps governance, and planning resilient disaster recovery.',
     ctaText: 'Explore Cloud & Infrastructure',
     icon: 'heroCloud',
     route: '/insights/cloud-infrastructure/',
     seoTitle: 'Cloud & Infrastructure Guidance & Architecture | SunSolv',
     metaDescription:
       'Guidance for organizations evaluating cloud readiness, migration strategy, cloud cost management, architecture resilience and security.',
+    readingGroups: [
+      {
+        title: 'Start here',
+        description:
+          'Evaluate technical architecture, system dependencies, regulatory data sovereignty, and operational readiness before cloud adoption.',
+        articleSlugs: ['cloud-readiness-assessment-a-practical-framework'],
+      },
+      {
+        title: 'Evaluate your options',
+        description:
+          'Compare snapshot backup strategies with multi-region disaster recovery, and implement automated FinOps controls to prevent cost blowouts.',
+        articleSlugs: [
+          'cloud-backup-vs-disaster-recovery-what-should-businesses-plan',
+          'how-to-control-cloud-costs-before-they-grow',
+        ],
+      },
+      {
+        title: 'Plan implementation',
+        description:
+          'Execute phased wave migrations using change data capture, dual-write validation, and non-destructive rollback strategies.',
+        articleSlugs: ['how-to-plan-a-cloud-migration-without-disrupting-operations'],
+      },
+    ],
   },
   {
     slug: 'digital-transformation',
@@ -156,12 +224,37 @@ export const insightCategories: readonly InsightCategory[] = [
     shortTitle: 'Digital Transformation',
     description:
       'Explore how organizations can modernize processes, applications and customer experiences without introducing unnecessary complexity or disruption.',
+    refreshedIntro:
+      'Pragmatic roadmaps for modernizing legacy enterprise systems, scoring high-friction business workflows, and synchronizing project delivery with billing and cash collection.',
     ctaText: 'Explore Digital Transformation',
     icon: 'heroShare',
     route: '/insights/digital-transformation/',
     seoTitle: 'Digital Transformation Perspectives & Strategy | SunSolv',
     metaDescription:
       'Learn how organizations modernize legacy applications, streamline operations and improve digital workflows without unnecessary disruption.',
+    readingGroups: [
+      {
+        title: 'Start here',
+        description:
+          'Understand the foundational components of a realistic, non-disruptive digital transformation roadmap.',
+        articleSlugs: ['what-should-a-digital-transformation-roadmap-include'],
+      },
+      {
+        title: 'Evaluate your options',
+        description:
+          'Score candidate workflows using the friction-versus-volume matrix, and choose whether to modernize in place, wrap via APIs, or replace legacy systems.',
+        articleSlugs: [
+          'how-to-prioritize-processes-for-digital-transformation',
+          'modernize-integrate-or-replace-a-guide-to-legacy-systems',
+        ],
+      },
+      {
+        title: 'Plan implementation',
+        description:
+          'Connect project delivery milestones, automated invoice generation, and real-time payment reconciliation into a unified operational platform.',
+        articleSlugs: ['how-to-connect-project-delivery-invoicing-and-payment-tracking'],
+      },
+    ],
   },
   {
     slug: 'software-engineering',
@@ -169,12 +262,37 @@ export const insightCategories: readonly InsightCategory[] = [
     shortTitle: 'Software Engineering',
     description:
       'Perspectives on application architecture, custom software development, API integration, modernization, scalability and maintainable engineering.',
+    refreshedIntro:
+      'Engineering perspectives on scoping custom software projects, designing dependable cross-system API integrations, and evaluating modular monoliths versus microservices.',
     ctaText: 'Explore Software Engineering',
     icon: 'heroCodeBracketSquare',
     route: '/insights/software-engineering/',
     seoTitle: 'Software Engineering & Architecture Perspectives | SunSolv',
     metaDescription:
       'Practical guidance on custom software engineering, API architecture, frontend performance, maintainability and technical debt management.',
+    readingGroups: [
+      {
+        title: 'Start here',
+        description:
+          'Evaluate the economic and architectural trade-offs between commercial SaaS packages and bespoke custom software applications.',
+        articleSlugs: ['custom-software-vs-saas-how-should-businesses-decide'],
+      },
+      {
+        title: 'Evaluate your options',
+        description:
+          'Compare modular monoliths against microservices architectures, and architect resilient API integrations with idempotency and circuit breakers.',
+        articleSlugs: [
+          'modular-monolith-vs-microservices-what-fits-your-application',
+          'how-to-plan-reliable-api-integrations-between-business-systems',
+        ],
+      },
+      {
+        title: 'Plan implementation',
+        description:
+          'Define clear operational boundaries, verifiable acceptance criteria, and quantitative non-functional requirements before writing code.',
+        articleSlugs: ['how-to-scope-a-custom-software-project-before-development'],
+      },
+    ],
   },
   {
     slug: 'technology-strategy',
@@ -182,12 +300,37 @@ export const insightCategories: readonly InsightCategory[] = [
     shortTitle: 'Technology Strategy',
     description:
       'Guidance for organizations making important decisions about technology investments, architecture, platforms, modernization and digital priorities.',
+    refreshedIntro:
+      'Executive frameworks for aligning IT investments with corporate goals, allocating scarce capital across competing priorities, structuring discovery workshops, and vetting software partners.',
     ctaText: 'Explore Technology Strategy',
     icon: 'heroChartBar',
     route: '/insights/technology-strategy/',
     seoTitle: 'Technology Strategy & Investment Guidance | SunSolv',
     metaDescription:
       'Strategic frameworks and leadership guidance on technology roadmaps, platform selection, modernization priorities and IT governance.',
+    readingGroups: [
+      {
+        title: 'Start here',
+        description:
+          'Build a practical technology roadmap that bridges long-term organizational goals with realistic engineering delivery horizons.',
+        articleSlugs: ['how-to-build-a-practical-technology-roadmap'],
+      },
+      {
+        title: 'Evaluate your options',
+        description:
+          'Prioritize competing technology requests with limited resources, and evaluate prospective software development partners with rigorous criteria.',
+        articleSlugs: [
+          'how-to-prioritize-technology-investments-with-limited-resources',
+          'how-to-evaluate-a-software-development-partner',
+        ],
+      },
+      {
+        title: 'Plan implementation',
+        description:
+          'Structure pre-development technology discovery workshops that deliver concrete architecture blueprints and de-risk delivery.',
+        articleSlugs: ['what-should-a-technology-discovery-workshop-deliver'],
+      },
+    ],
   },
   {
     slug: 'digital-experience',
@@ -195,12 +338,37 @@ export const insightCategories: readonly InsightCategory[] = [
     shortTitle: 'Digital Experience',
     description:
       'Explore approaches to building useful, accessible and high-performing websites, applications and digital customer experiences.',
+    refreshedIntro:
+      'Design and engineering principles for auditing user journeys, balancing high-impact aesthetics with Core Web Vitals, and architecting frictionless B2B inquiry forms.',
     ctaText: 'Explore Digital Experience',
     icon: 'heroDevicePhoneMobile',
     route: '/insights/digital-experience/',
     seoTitle: 'Digital Experience & Product Design Perspectives | SunSolv',
     metaDescription:
       'Approaches to engineering high-performing, accessible, user-focused web and mobile applications that drive measurable customer outcomes.',
+    readingGroups: [
+      {
+        title: 'Start here',
+        description:
+          'Explore foundational UX principles and cognitive conventions that guide enterprise B2B buyers through complex evaluation cycles.',
+        articleSlugs: ['what-makes-a-high-performing-digital-experience'],
+      },
+      {
+        title: 'Evaluate your options',
+        description:
+          'Diagnose conversion funnels with empirical journey audits, and strike the optimal balance between visual complexity and Core Web Vitals.',
+        articleSlugs: [
+          'how-to-audit-a-website-journey-before-redesigning-it',
+          'website-performance-vs-visual-complexity-finding-the-right-balance',
+        ],
+      },
+      {
+        title: 'Plan implementation',
+        description:
+          'Design B2B inquiry and contact forms that eliminate cognitive friction, leverage progressive disclosure, and maximize conversions.',
+        articleSlugs: ['how-to-design-b2b-enquiry-forms-that-reduce-friction'],
+      },
+    ],
   },
   {
     slug: 'industries',
@@ -208,12 +376,37 @@ export const insightCategories: readonly InsightCategory[] = [
     shortTitle: 'Industries',
     description:
       'Technology perspectives for industries including education, healthcare and other sectors where digital systems can improve operational outcomes.',
+    refreshedIntro:
+      'Domain-specific technology insights for education question banking, nonclinical healthcare administrative automation, and professional services financial visibility.',
     ctaText: 'Explore Industry Insights',
     icon: 'heroBuildingOffice2',
     route: '/insights/industries/',
     seoTitle: 'Industry Technology Insights & Sector Analysis | SunSolv',
     metaDescription:
       'Sector-focused analysis on how healthcare, education, retail, real estate, logistics and SaaS businesses leverage modern technology.',
+    readingGroups: [
+      {
+        title: 'Start here',
+        description:
+          'Examine how digital assessment platforms transform academic administration, test generation, and student learning outcomes.',
+        articleSlugs: ['how-digital-assessment-platforms-can-improve-education-workflows'],
+      },
+      {
+        title: 'Evaluate your options',
+        description:
+          'Identify administrative healthcare automation opportunities safely without clinical risk, and connect project costs with invoicing in services firms.',
+        articleSlugs: [
+          'how-healthcare-organizations-can-identify-administrative-automation-opportunities',
+          'how-professional-services-firms-can-connect-project-costs-invoices-and-collections',
+        ],
+      },
+      {
+        title: 'Plan implementation',
+        description:
+          'Structure reusable digital question banks with standardized curriculum taxonomies, difficulty tagging, and secure exam generation for students.',
+        articleSlugs: ['how-schools-can-structure-a-reusable-digital-question-bank'],
+      },
+    ],
   },
 ] as const;
 
@@ -603,7 +796,8 @@ export const insightArticles: readonly InsightArticle[] = [
     ],
     relatedArticleSlugs: [
       'ai-vs-automation-which-does-your-business-actually-need',
-      'cloud-readiness-assessment-a-practical-framework',
+      'is-your-business-data-ready-for-ai',
+      'how-to-run-an-ai-pilot-with-clear-success-criteria',
     ],
   },
   {
@@ -892,7 +1086,8 @@ export const insightArticles: readonly InsightArticle[] = [
     ],
     relatedArticleSlugs: [
       'how-to-identify-the-right-ai-use-case-for-your-business',
-      'cloud-readiness-assessment-a-practical-framework',
+      'where-human-review-belongs-in-ai-assisted-workflows',
+      'how-to-run-an-ai-pilot-with-clear-success-criteria',
     ],
   },
   {
@@ -1240,8 +1435,9 @@ export const insightArticles: readonly InsightArticle[] = [
       },
     ],
     relatedArticleSlugs: [
-      'how-to-identify-the-right-ai-use-case-for-your-business',
-      'ai-vs-automation-which-does-your-business-actually-need',
+      'how-to-plan-a-cloud-migration-without-disrupting-operations',
+      'how-to-control-cloud-costs-before-they-grow',
+      'cloud-backup-vs-disaster-recovery-what-should-businesses-plan',
     ],
   },
   {
@@ -1609,9 +1805,9 @@ export const insightArticles: readonly InsightArticle[] = [
       },
     ],
     relatedArticleSlugs: [
-      'how-to-build-a-practical-technology-roadmap',
-      'custom-software-vs-saas-how-should-businesses-decide',
-      'how-to-identify-the-right-ai-use-case-for-your-business',
+      'how-to-prioritize-processes-for-digital-transformation',
+      'modernize-integrate-or-replace-a-guide-to-legacy-systems',
+      'how-to-connect-project-delivery-invoicing-and-payment-tracking',
     ],
   },
   {
@@ -1993,9 +2189,9 @@ export const insightArticles: readonly InsightArticle[] = [
       },
     ],
     relatedArticleSlugs: [
-      'what-should-a-digital-transformation-roadmap-include',
-      'how-to-build-a-practical-technology-roadmap',
-      'what-makes-a-high-performing-digital-experience',
+      'how-to-scope-a-custom-software-project-before-development',
+      'modular-monolith-vs-microservices-what-fits-your-application',
+      'how-to-plan-reliable-api-integrations-between-business-systems',
     ],
   },
   {
@@ -2349,9 +2545,9 @@ export const insightArticles: readonly InsightArticle[] = [
       },
     ],
     relatedArticleSlugs: [
-      'what-should-a-digital-transformation-roadmap-include',
-      'custom-software-vs-saas-how-should-businesses-decide',
-      'cloud-readiness-assessment-a-practical-framework',
+      'how-to-prioritize-technology-investments-with-limited-resources',
+      'what-should-a-technology-discovery-workshop-deliver',
+      'how-to-evaluate-a-software-development-partner',
     ],
   },
   {
@@ -2692,9 +2888,9 @@ export const insightArticles: readonly InsightArticle[] = [
       },
     ],
     relatedArticleSlugs: [
-      'custom-software-vs-saas-how-should-businesses-decide',
-      'how-digital-assessment-platforms-can-improve-education-workflows',
-      'how-to-build-a-practical-technology-roadmap',
+      'how-to-audit-a-website-journey-before-redesigning-it',
+      'website-performance-vs-visual-complexity-finding-the-right-balance',
+      'how-to-design-b2b-enquiry-forms-that-reduce-friction',
     ],
   },
   {
@@ -3028,7 +3224,7 @@ export const insightArticles: readonly InsightArticle[] = [
       title: 'Centralized Digital Assessment Platform',
       summary:
         'Explore how SunSolv engineered an end-to-end web assessment platform unifying multi-format question authoring, secure timed testing sessions, and standardized rubric-based evaluation workflows.',
-      route: '/case-studies',
+      route: '/case-studies/digital-assessment-platform',
       linkText: 'View Digital Assessment Case Study',
     },
     relatedServices: [
@@ -3052,12 +3248,19 @@ export const insightArticles: readonly InsightArticle[] = [
       },
     ],
     relatedArticleSlugs: [
-      'what-makes-a-high-performing-digital-experience',
-      'custom-software-vs-saas-how-should-businesses-decide',
-      'what-should-a-digital-transformation-roadmap-include',
+      'how-schools-can-structure-a-reusable-digital-question-bank',
+      'how-healthcare-organizations-can-identify-administrative-automation-opportunities',
+      'how-professional-services-firms-can-connect-project-costs-invoices-and-collections',
     ],
   },
-] as const;
+  ...aiAutomationArticles,
+  ...cloudInfrastructureArticles,
+  ...softwareEngineeringArticles,
+  ...technologyStrategyArticles,
+  ...digitalTransformationArticles,
+  ...digitalExperienceArticles,
+  ...industryArticles,
+];
 
 export function getAllCategories(): readonly InsightCategory[] {
   return insightCategories;

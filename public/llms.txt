@@ -30,6 +30,17 @@
 - [Business Solution Finder](https://www.sunsolv.in/case-studies/business-solution-finder): Interactive client-side diagnostic tool providing privacy-focused organizational evaluation, mapping business challenges to tailored service tracks with zero client tracking cookies or persistent data retention prior to consultation request.
 - [Custom Invoice and Project Management System](https://www.sunsolv.in/case-studies/invoice-project-management-system): Purpose-built relational business operations portal featuring role-based access control, project milestone tracking, developer assignments, structured invoice generation with PDF export, and payment reconciliation.
 
+## Insights & Topic Hubs
+
+- [Insights Overview](https://www.sunsolv.in/insights): Practical guides and frameworks for technology decision-makers across architecture, engineering, and digital operations.
+- [AI & Automation](https://www.sunsolv.in/insights/ai-automation): Practical frameworks for evaluating machine learning readiness, business data preparation, pilot design, and human-in-the-loop oversight.
+- [Cloud & Infrastructure](https://www.sunsolv.in/insights/cloud-infrastructure): Guidance on cloud readiness assessments, non-disruptive migration execution, FinOps cost governance, and disaster recovery planning.
+- [Digital Transformation](https://www.sunsolv.in/insights/digital-transformation): Frameworks for legacy system modernization, workflow prioritization, and connected project delivery with invoicing.
+- [Software Engineering](https://www.sunsolv.in/insights/software-engineering): Engineering perspectives on custom software scoping, resilient API integration design, and modular monolith vs. microservices architecture.
+- [Technology Strategy](https://www.sunsolv.in/insights/technology-strategy): Strategic advisory on IT investment allocation, technology discovery deliverables, and software development partner evaluation.
+- [Digital Experience](https://www.sunsolv.in/insights/digital-experience): User experience principles, pre-redesign journey audits, Core Web Vitals optimization, and frictionless B2B inquiry form design.
+- [Industry Insights](https://www.sunsolv.in/insights/industries): Sector-specific technology perspectives on school digital question banks, nonclinical healthcare administrative automation, and professional services financial operations.
+
 ## Company Identity & Verification
 
 - **Legal Entity**: SunSolv Technologies

@@ -36,6 +36,21 @@ export class InsightsCategoryComponent {
     return cat ? getArticlesByCategory(cat.slug) : [];
   });
 
+  readonly readingGroupsWithArticles = computed(() => {
+    const cat = this.category();
+    if (!cat || !cat.readingGroups) return [];
+    const allArticles = this.articles();
+    return cat.readingGroups
+      .map((group) => ({
+        title: group.title,
+        description: group.description,
+        articles: group.articleSlugs
+          .map((slug) => allArticles.find((a) => a.slug === slug))
+          .filter((a): a is InsightArticle => a !== undefined),
+      }))
+      .filter((group) => group.articles.length > 0);
+  });
+
   readonly breadcrumbs = computed(() => {
     const cat = this.category();
     return [

@@ -36,6 +36,51 @@
   margin-bottom: 40px;
 }
 
+.reading-groups-container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(48px, 6vw, 72px);
+}
+
+.reading-group-block {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.group-header {
+  max-width: 820px;
+}
+
+.group-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--blue);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 9999px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(37, 99, 235, 0.18);
+}
+
+.group-header h2 {
+  margin: 0 0 10px;
+  font-size: clamp(1.45rem, 2.3vw, 1.95rem);
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.group-desc {
+  margin: 0;
+  color: var(--slate);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
 .articles-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

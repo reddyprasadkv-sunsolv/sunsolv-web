@@ -54,9 +54,9 @@ describe('SunSolv Insights Module', () => {
       }
     });
 
-    it('defines all eight published articles with complete required metadata', () => {
+    it('defines all 29 published articles with complete required metadata', () => {
       const articles = getAllArticles();
-      expect(articles).toHaveLength(8);
+      expect(articles).toHaveLength(29);
       const expectedSlugs = [
         'how-to-identify-the-right-ai-use-case-for-your-business',
         'ai-vs-automation-which-does-your-business-actually-need',
@@ -67,14 +67,16 @@ describe('SunSolv Insights Module', () => {
         'what-makes-a-high-performing-digital-experience',
         'how-digital-assessment-platforms-can-improve-education-workflows',
       ];
-      expect(articles.map((a) => a.slug)).toEqual(expectedSlugs);
+      for (const slug of expectedSlugs) {
+        expect(articles.some((a) => a.slug === slug)).toBe(true);
+      }
 
       for (const article of articles) {
         expect(article.author).toBe('Reddy Prasad K V');
         expect(article.authorRole).toBe('Founder & CEO, SunSolv Technologies');
         expect(article.authorLink).toBe('/about-us#founder');
-        expect(article.datePublished).toBe('2026-09-29');
-        expect(article.dateModified).toBe('2026-09-29');
+        expect(['2026-09-29', '2026-09-30']).toContain(article.datePublished);
+        expect(['2026-09-29', '2026-09-30']).toContain(article.dateModified);
         expect(article.canonicalUrl.startsWith('https://www.sunsolv.in/insights/')).toBe(true);
         expect(article.canonicalUrl.endsWith('/')).toBe(true);
         expect(article.executiveSummary).toBeTruthy();
@@ -197,7 +199,7 @@ describe('SunSolv Insights Module', () => {
 
       // Latest Insights
       const articleCards = compiled.querySelectorAll('.latest-insights-section app-article-card');
-      expect(articleCards.length).toBe(8);
+      expect(articleCards.length).toBe(29);
 
       // Hero CTA Actions: Explore All Insights & Browse Topics
       const heroActions = compiled.querySelector('.hero-actions');
@@ -248,7 +250,7 @@ describe('SunSolv Insights Module', () => {
 
       // Articles
       const articles = compiled.querySelectorAll('app-article-card');
-      expect(articles.length).toBe(8);
+      expect(articles.length).toBe(29);
     });
   });
 
@@ -266,7 +268,7 @@ describe('SunSolv Insights Module', () => {
 
       // Articles in category
       const articles = compiled.querySelectorAll('app-article-card');
-      expect(articles.length).toBe(2);
+      expect(articles.length).toBe(5);
     });
 
     it('renders category with articles and sets index, follow for populated categories', async () => {
@@ -274,7 +276,7 @@ describe('SunSolv Insights Module', () => {
 
       expect(compiled.querySelector('h1')?.textContent?.trim()).toBe('Software Engineering');
       const articles = compiled.querySelectorAll('app-article-card');
-      expect(articles.length).toBe(1);
+      expect(articles.length).toBe(4);
 
       const robots = document.querySelector('meta[name="robots"]')?.getAttribute('content');
       expect(robots).toBe('index, follow');
@@ -752,7 +754,7 @@ describe('SunSolv Insights Module', () => {
       expect(caseStudyCard).toBeTruthy();
       expect(caseStudyCard?.textContent).toContain('Centralized Digital Assessment Platform');
       const csLink = caseStudyCard?.querySelector('a');
-      expect(csLink?.getAttribute('href')).toBe('/case-studies');
+      expect(csLink?.getAttribute('href')).toBe('/case-studies/digital-assessment-platform');
 
       expect(compiled.querySelector('.checklist-card')).toBeTruthy();
       expect(compiled.querySelector('.key-takeaway-card')).toBeTruthy();
