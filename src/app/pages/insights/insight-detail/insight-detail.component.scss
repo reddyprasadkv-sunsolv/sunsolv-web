@@ -201,6 +201,27 @@
   min-width: 0;
 }
 
+/* Sticky Header Scroll Offset for Table of Contents Anchors */
+.article-body-col h2[id],
+.article-body-col h3[id],
+.article-body-col section[id],
+.article-body-col div[id] {
+  scroll-margin-top: var(--header-offset, 110px);
+}
+
+.article-body-col h2[id]:focus {
+  outline: none;
+}
+
+@media (max-width: 1060px) {
+  .article-body-col h2[id],
+  .article-body-col h3[id],
+  .article-body-col section[id],
+  .article-body-col div[id] {
+    scroll-margin-top: var(--header-offset, 92px);
+  }
+}
+
 /* Executive Summary Callout */
 .executive-summary-card {
   padding: 24px 28px;

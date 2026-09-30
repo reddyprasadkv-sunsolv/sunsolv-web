@@ -24,6 +24,7 @@
   --line: #dce4ee;
   --font-heading: 'Manrope Variable', Manrope, sans-serif;
   --font-body: 'Inter Variable', Inter, sans-serif;
+  --header-offset: 110px;
   color-scheme: light;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -207,6 +208,11 @@ p {
 }
 .services-hero[data-hero-layout='industries-aligned'] img {
   object-position: center 20%;
+}
+@media (max-width: 1060px) {
+  :root {
+    --header-offset: 92px;
+  }
 }
 @media (max-width: 1024px) {
   [data-hero-layout='industries-aligned']::after {

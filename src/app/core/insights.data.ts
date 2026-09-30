@@ -78,7 +78,7 @@ export interface InsightArticle {
   canonicalUrl: string;
   executiveSummary: string;
   keywords: readonly string[];
-  tableOfContents: readonly { id: string; title: string }[];
+  tableOfContents?: readonly { id: string; title: string }[];
   framework?: {
     name: string;
     subtitle: string;
@@ -108,6 +108,19 @@ export interface InsightArticle {
     route: string;
   }[];
   relatedArticleSlugs: readonly string[];
+}
+
+/**
+ * Generates a URL-friendly, deterministic slug from a heading title.
+ * Used identically for Table of Contents hrefs and heading element IDs.
+ */
+export function slugifyHeading(title: string): string {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 }
 
 export const insightCategories: readonly InsightCategory[] = [

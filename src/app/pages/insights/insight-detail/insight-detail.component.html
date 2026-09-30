@@ -45,14 +45,16 @@
     <div class="shell article-layout">
       <!-- Sticky Sidebar -->
       <aside class="article-sidebar">
-        @if (art.tableOfContents.length > 0) {
+        @if (tocItems().length > 0) {
           <div class="sidebar-block toc-block">
             <h2 class="sidebar-heading">Contents</h2>
             <nav aria-label="Table of contents" class="toc-nav">
               <ol>
-                @for (item of art.tableOfContents; track item.id) {
+                @for (item of tocItems(); track item.id) {
                   <li>
-                    <a [href]="'#' + item.id">{{ item.title }}</a>
+                    <a [href]="'#' + item.id" (click)="onTocClick($event, item.id)">{{
+                      item.title
+                    }}</a>
                   </li>
                 }
               </ol>
@@ -92,12 +94,12 @@
         @if (art.framework; as fw) {
           <section
             class="framework-showcase"
-            [id]="art.slug + '-framework'"
+            [attr.data-legacy-id]="art.slug + '-framework'"
             aria-labelledby="framework-heading"
           >
             <div class="framework-header">
               <span class="eyebrow">SunSolv Framework</span>
-              <h2 id="framework-heading">{{ fw.name }}</h2>
+              <h2 [id]="headings().frameworkId" tabindex="-1">{{ fw.name }}</h2>
               <p class="framework-subtitle">{{ fw.subtitle }}</p>
               <p class="framework-desc">{{ fw.description }}</p>
             </div>
@@ -125,10 +127,12 @@
         @if (art.comparisonTable; as table) {
           <section
             class="comparison-section"
-            id="comparison-table"
+            [attr.data-legacy-id]="'comparison-table'"
             aria-labelledby="comparison-heading"
           >
-            <h2 id="comparison-heading">{{ table.title || 'Detailed Comparison Table' }}</h2>
+            <h2 [id]="headings().comparisonId" tabindex="-1">
+              {{ table.title || 'Detailed Comparison Table' }}
+            </h2>
             <div class="table-wrap">
               <table class="cookie-table comparison-table">
                 <caption class="table-caption">
@@ -169,13 +173,13 @@
         }
 
         <!-- Dynamic Article Sections -->
-        @for (sec of art.sections; track sec.id) {
+        @for (sec of art.sections; track sec.heading; let idx = $index) {
           <section
-            [id]="sec.id"
             class="article-section"
-            [attr.aria-labelledby]="sec.id + '-heading'"
+            [attr.data-legacy-id]="sec.id"
+            [attr.aria-labelledby]="headings().sectionIds[idx]"
           >
-            <h2 [id]="sec.id + '-heading'">{{ sec.heading }}</h2>
+            <h2 [id]="headings().sectionIds[idx]" tabindex="-1">{{ sec.heading }}</h2>
             @if (sec.directAnswer) {
               <div class="direct-answer-callout">
                 <p>{{ sec.directAnswer }}</p>
@@ -189,8 +193,10 @@
 
         <!-- Practical Checklist (if applicable) -->
         @if (art.checklist; as cl) {
-          <div class="checklist-card" id="decision-checklist">
-            <h2 class="checklist-heading">{{ cl.title }}</h2>
+          <div class="checklist-card" [attr.data-legacy-id]="'decision-checklist'">
+            <h2 class="checklist-heading" [id]="headings().checklistId" tabindex="-1">
+              {{ cl.title }}
+            </h2>
             <p class="checklist-desc">{{ cl.description }}</p>
             <ul class="checklist-items">
               @for (item of cl.items; track item) {
@@ -204,10 +210,10 @@
         }
 
         <!-- Key Takeaway Box -->
-        <div class="key-takeaway-card" id="key-takeaway">
+        <div class="key-takeaway-card" [attr.data-legacy-id]="'key-takeaway'">
           <div class="takeaway-header">
             <span class="takeaway-badge">Conclusion</span>
-            <h2>{{ art.keyTakeaway.title }}</h2>
+            <h2 [id]="headings().keyTakeawayId" tabindex="-1">{{ art.keyTakeaway.title }}</h2>
           </div>
           <p class="takeaway-content">{{ art.keyTakeaway.content }}</p>
         </div>

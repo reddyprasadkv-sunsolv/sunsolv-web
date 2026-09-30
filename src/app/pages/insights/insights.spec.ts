@@ -10,6 +10,7 @@ import {
   getAllCategories,
   getArticleBySlug,
   InsightCategory,
+  slugifyHeading,
 } from '../../core/insights.data';
 
 describe('SunSolv Insights Module', () => {
@@ -734,6 +735,144 @@ describe('SunSolv Insights Module', () => {
       expect(canonical).toBe(
         'https://www.sunsolv.in/insights/industries/how-digital-assessment-platforms-can-improve-education-workflows/',
       );
+    });
+  });
+
+  describe('Table of Contents Navigation Regression Tests', () => {
+    it('slugifyHeading correctly transforms heading titles to deterministic URL-friendly slugs', () => {
+      expect(slugifyHeading('Key Takeaway')).toBe('key-takeaway');
+      expect(slugifyHeading('SunSolv AI Opportunity Framework')).toBe(
+        'sunsolv-ai-opportunity-framework',
+      );
+      expect(slugifyHeading('Custom Software vs SaaS')).toBe('custom-software-vs-saas');
+      expect(slugifyHeading('1. Define the Business Outcomes First')).toBe(
+        '1-define-the-business-outcomes-first',
+      );
+      expect(slugifyHeading('AI vs Automation: Detailed Comparison')).toBe(
+        'ai-vs-automation-detailed-comparison',
+      );
+      expect(slugifyHeading('Cloud Cost Considerations and FinOps Governance')).toBe(
+        'cloud-cost-considerations-and-finops-governance',
+      );
+    });
+
+    const allArticles = [
+      {
+        name: 'Article 1 (AI Use Case)',
+        route: '/insights/ai-automation/how-to-identify-the-right-ai-use-case-for-your-business',
+        fwSlug: 'sunsolv-ai-opportunity-framework',
+        checklistSlug: 'practical-decision-checklist',
+      },
+      {
+        name: 'Article 2 (AI vs Automation)',
+        route: '/insights/ai-automation/ai-vs-automation-which-does-your-business-actually-need',
+        cmpSlug: 'ai-vs-automation-detailed-comparison',
+        checklistSlug: 'decision-checklist',
+      },
+      {
+        name: 'Article 3 (Cloud Readiness)',
+        route: '/insights/cloud-infrastructure/cloud-readiness-assessment-a-practical-framework',
+        fwSlug: 'sunsolv-cloud-readiness-framework',
+        checklistSlug: 'practical-readiness-checklist',
+      },
+      {
+        name: 'Article 4 (Digital Transformation Roadmap)',
+        route:
+          '/insights/digital-transformation/what-should-a-digital-transformation-roadmap-include',
+        fwSlug: 'the-sunsolv-digital-transformation-roadmap-framework',
+        checklistSlug: 'digital-transformation-roadmap-checklist',
+      },
+      {
+        name: 'Article 5 (Custom Software vs SaaS)',
+        route:
+          '/insights/software-engineering/custom-software-vs-saas-how-should-businesses-decide',
+        fwSlug: 'sunsolv-build-or-buy-decision-framework',
+        cmpSlug: 'comparison',
+        checklistSlug: 'practical-decision-checklist',
+      },
+      {
+        name: 'Article 6 (Technology Roadmap)',
+        route: '/insights/technology-strategy/how-to-build-a-practical-technology-roadmap',
+        fwSlug: 'sunsolv-technology-roadmap-framework',
+        checklistSlug: 'technology-roadmap-checklist',
+      },
+      {
+        name: 'Article 7 (Digital Experience)',
+        route: '/insights/digital-experience/what-makes-a-high-performing-digital-experience',
+        fwSlug: 'sunsolv-digital-experience-framework',
+        checklistSlug: 'practical-digital-experience-checklist',
+      },
+      {
+        name: 'Article 8 (Digital Assessment in Education)',
+        route:
+          '/insights/industries/how-digital-assessment-platforms-can-improve-education-workflows',
+        fwSlug: 'sunsolv-digital-assessment-lifecycle-framework',
+        checklistSlug: 'digital-assessment-readiness-checklist',
+      },
+    ];
+
+    it('verifies that EVERY published article has 100% matching TOC hrefs and heading IDs with no orphaned anchors', async () => {
+      const { fixture, router, compiled } = await setupApp(allArticles[0].route);
+
+      for (const item of allArticles) {
+        await router.navigateByUrl(item.route);
+        fixture.detectChanges();
+        await fixture.whenStable();
+        fixture.detectChanges();
+
+        const tocNav = compiled.querySelector('nav.toc-nav');
+        expect(tocNav, `${item.name} should have a TOC nav element`).toBeTruthy();
+
+        const tocLinks = compiled.querySelectorAll('nav.toc-nav a');
+        expect(tocLinks.length, `${item.name} should have TOC links`).toBeGreaterThan(10);
+
+        // Every TOC link must start with # and match an existing <h2 [id]> in the article
+        for (let i = 0; i < tocLinks.length; i++) {
+          const a = tocLinks[i] as HTMLAnchorElement;
+          const href = a.getAttribute('href');
+          expect(href?.startsWith('#'), `${item.name} TOC link ${i} must start with #`).toBe(true);
+          const targetId = href!.slice(1);
+          const targetEl = compiled.querySelector(`h2[id="${targetId}"]`);
+          expect(
+            targetEl,
+            `${item.name} TOC link '${a.textContent?.trim()}' href='#${targetId}' must match an <h2 id='${targetId}'>`,
+          ).toBeTruthy();
+        }
+
+        // Verify Key Takeaway target
+        const lastLink = tocLinks[tocLinks.length - 1];
+        expect(lastLink.getAttribute('href')).toBe('#key-takeaway');
+        const takeawayH2 = compiled.querySelector('h2[id="key-takeaway"]');
+        expect(takeawayH2, `${item.name} must have <h2 id="key-takeaway">`).toBeTruthy();
+
+        // Verify Checklist target
+        const checklistH2 = compiled.querySelector(`h2[id="${item.checklistSlug}"]`);
+        expect(
+          checklistH2,
+          `${item.name} must have checklist <h2 id="${item.checklistSlug}">`,
+        ).toBeTruthy();
+
+        // Verify Framework or Comparison target if present
+        if (item.fwSlug) {
+          const fwH2 = compiled.querySelector(`h2[id="${item.fwSlug}"]`);
+          expect(fwH2, `${item.name} must have framework <h2 id="${item.fwSlug}">`).toBeTruthy();
+        }
+        if (item.cmpSlug) {
+          const cmpH2 = compiled.querySelector(`h2[id="${item.cmpSlug}"]`);
+          expect(cmpH2, `${item.name} must have comparison <h2 id="${item.cmpSlug}">`).toBeTruthy();
+        }
+
+        // Test clicking the first TOC link
+        const firstLink = tocLinks[0] as HTMLAnchorElement;
+        const clickEvent = new MouseEvent('click', { cancelable: true, bubbles: true });
+        firstLink.dispatchEvent(clickEvent);
+        // preventDefault must have been called to prevent browser following base href
+        expect(clickEvent.defaultPrevented).toBe(true);
+
+        // Router URL must remain on the current article, not navigate to homepage
+        expect(router.url).toContain(item.route.split('/').pop()!);
+        expect(router.url).not.toBe('/');
+      }
     });
   });
 });
