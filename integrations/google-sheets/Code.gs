@@ -73,7 +73,7 @@ function doPost(event) {
       data.submittedAt = new Date().toISOString();
     }
 
-    if (data.privacyConsent !== true || !['project', 'partnership', 'career', 'general'].includes(data.enquiryType) || typeof data.fullName !== 'string' || data.fullName.trim().length < 2 || typeof data.message !== 'string' || data.message.trim().length < 20 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.workEmail)) {
+    if (data.privacyConsent !== true || !['project', 'partnership', 'career', 'general'].includes(data.enquiryType) || typeof data.fullName !== 'string' || data.fullName.trim().length < 2 || typeof data.message !== 'string' || data.message.trim().length < 20 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.workEmail) || typeof data.phone !== 'string' || !data.phone.trim()) {
       return jsonResponse({ ok: false, code: 'invalid_enquiry' });
     }
 

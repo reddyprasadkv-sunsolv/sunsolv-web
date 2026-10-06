@@ -330,6 +330,236 @@ textarea {
   border-color: #b42318;
   outline-color: #b42318;
 }
+
+.country-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.country-select-trigger {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #b8c6d6;
+  border-radius: 7px;
+  padding: 12px 14px;
+  color: var(--navy);
+  background: white;
+  font: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+
+  &.placeholder .country-trigger-text {
+    color: #64748b;
+    font-weight: 400;
+  }
+
+  .country-trigger-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  .country-trigger-arrow {
+    color: var(--slate);
+    font-size: 0.85rem;
+    margin-left: 8px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  &[aria-expanded='true'] .country-trigger-arrow {
+    transform: rotate(180deg);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 1px;
+    border-color: var(--blue);
+  }
+
+  &[aria-invalid='true'] {
+    border-color: #b42318;
+    outline-color: #b42318;
+  }
+}
+
+.country-dropdown-panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 60;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(7, 26, 51, 0.16);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: dropdownFade 0.15s ease;
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.country-search-box {
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+  background: #f8fafc;
+
+  input#country-search-input {
+    width: 100%;
+    min-height: 38px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 0.88rem;
+    color: var(--navy);
+    background: white;
+
+    &:focus {
+      outline: 2px solid var(--blue);
+      outline-offset: 0;
+      border-color: var(--blue);
+    }
+  }
+}
+
+.country-options-list {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  max-height: 250px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+  }
+}
+
+.country-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  color: var(--navy);
+  cursor: pointer;
+  transition: background 0.1s ease;
+
+  &:hover,
+  &.highlighted {
+    background: #f1f5f9;
+  }
+
+  &.selected {
+    background: #e0f2fe;
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  .country-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 12px;
+  }
+
+  .country-code-pill {
+    background: rgba(7, 26, 51, 0.06);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--slate);
+    flex-shrink: 0;
+  }
+}
+
+.country-no-results {
+  padding: 18px 14px;
+  font-size: 0.85rem;
+  color: var(--slate);
+  text-align: center;
+}
+
+.visually-hidden-select {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.phone-input-group {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  position: relative;
+
+  .phone-prefix {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    min-height: 48px;
+    background: #eef3f8;
+    border: 1px solid #b8c6d6;
+    border-right: none;
+    border-radius: 7px 0 0 7px;
+    font-weight: 650;
+    color: var(--navy);
+    font-size: 0.95rem;
+    user-select: none;
+    flex-shrink: 0;
+    transition: border-color 0.15s ease;
+  }
+
+  &.has-prefix input#phone {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &.is-invalid .phone-prefix {
+    border-color: #b42318;
+  }
+
+  &.is-invalid input#phone {
+    border-color: #b42318;
+  }
+
+  input#phone:focus {
+    position: relative;
+    z-index: 1;
+    outline: 2px solid var(--blue);
+    outline-offset: 0;
+    border-color: var(--blue);
+  }
+}
 .error {
   display: block;
   margin-top: 7px;

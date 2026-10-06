@@ -169,25 +169,128 @@
                 >
               }
             </div>
-            <div class="field">
-              <label for="phone">Phone number <span>(optional)</span></label
-              ><input
-                id="phone"
-                type="tel"
-                formControlName="phone"
-                autocomplete="tel"
-                maxlength="24"
-                [attr.aria-invalid]="invalid(form.controls.phone)"
-                [attr.aria-describedby]="invalid(form.controls.phone) ? 'phone-error' : null"
-              />
-              @if (invalid(form.controls.phone)) {
-                <small id="phone-error" class="error"
-                  >Enter a phone number with 7–24 characters, including a country code if
-                  needed.</small
+            <div class="field country-field">
+              <label for="country-button">Country *</label>
+              <div class="country-select-wrapper" #countryWrapper>
+                <button
+                  id="country-button"
+                  type="button"
+                  class="country-select-trigger"
+                  [class.placeholder]="!selectedCountryCode()"
+                  [attr.aria-expanded]="isCountryOpen()"
+                  aria-haspopup="listbox"
+                  aria-controls="country-listbox"
+                  [attr.aria-invalid]="invalid(form.controls.country)"
+                  [attr.aria-describedby]="invalid(form.controls.country) ? 'country-error' : null"
+                  (click)="toggleCountryDropdown()"
+                  (keydown)="onCountryTriggerKeydown($event)"
                 >
+                  <span class="country-trigger-text">{{
+                    selectedCountryLabel() || 'Select country'
+                  }}</span>
+                  <span class="country-trigger-arrow" aria-hidden="true">▾</span>
+                </button>
+
+                @if (isCountryOpen()) {
+                  <div
+                    class="country-dropdown-panel"
+                    role="region"
+                    aria-label="Country selection list"
+                  >
+                    <div class="country-search-box">
+                      <input
+                        #countrySearchInput
+                        id="country-search-input"
+                        type="text"
+                        role="searchbox"
+                        autocomplete="off"
+                        placeholder="Search country or dial code (e.g. India, +91)…"
+                        [value]="countrySearchQuery()"
+                        (input)="onCountrySearch($any($event.target).value)"
+                        (keydown)="onCountrySearchKeydown($event)"
+                        aria-label="Search countries by name or dial code"
+                      />
+                    </div>
+                    <ul
+                      id="country-listbox"
+                      role="listbox"
+                      class="country-options-list"
+                      tabindex="-1"
+                      [attr.aria-activedescendant]="activeOptionId()"
+                    >
+                      @for (c of filteredCountries(); track c.code; let idx = $index) {
+                        <li
+                          [id]="'country-opt-' + c.code"
+                          role="option"
+                          class="country-option"
+                          [class.selected]="c.code === selectedCountryCode()"
+                          [class.highlighted]="idx === highlightedIndex()"
+                          [attr.aria-selected]="c.code === selectedCountryCode()"
+                          (click)="selectCountry(c.code)"
+                          (mouseenter)="highlightedIndex.set(idx)"
+                        >
+                          <span class="country-name">{{ c.name }}</span>
+                          <span class="country-code-pill">{{ c.dialCode }}</span>
+                        </li>
+                      }
+                      @if (filteredCountries().length === 0) {
+                        <li class="country-no-results" role="status">
+                          No countries found matching "{{ countrySearchQuery() }}"
+                        </li>
+                      }
+                    </ul>
+                  </div>
+                }
+
+                <select
+                  id="country"
+                  formControlName="country"
+                  tabindex="-1"
+                  aria-hidden="true"
+                  class="visually-hidden-select"
+                >
+                  <option value="">Select country</option>
+                  @for (c of allCountries; track c.code) {
+                    <option [value]="c.code">{{ c.label }}</option>
+                  }
+                </select>
+              </div>
+              @if (invalid(form.controls.country)) {
+                <small id="country-error" class="error">Please select your country.</small>
               }
             </div>
-            <div class="field">
+            <div class="field phone-field">
+              <label for="phone">Mobile number *</label>
+              <div
+                class="phone-input-group"
+                [class.has-prefix]="!!selectedDialCode()"
+                [class.is-invalid]="invalid(form.controls.phone)"
+              >
+                @if (selectedDialCode()) {
+                  <span class="phone-prefix" aria-hidden="true">{{ selectedDialCode() }}</span>
+                }
+                <input
+                  id="phone"
+                  type="tel"
+                  formControlName="phone"
+                  autocomplete="tel-national"
+                  inputmode="tel"
+                  [placeholder]="mobilePlaceholder()"
+                  required
+                  [attr.aria-invalid]="invalid(form.controls.phone)"
+                  [attr.aria-describedby]="phoneDescribedBy()"
+                  (paste)="onPhonePaste($event)"
+                  (blur)="onPhoneBlur()"
+                />
+              </div>
+              @if (mobileGuidance()) {
+                <small id="phone-hint" class="hint">{{ mobileGuidance() }}</small>
+              }
+              @if (invalid(form.controls.phone)) {
+                <small id="phone-error" class="error">{{ phoneErrorMessage() }}</small>
+              }
+            </div>
+            <div class="field full">
               <label for="company">Company <span>(optional)</span></label
               ><input
                 id="company"

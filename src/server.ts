@@ -5,6 +5,8 @@ import { join } from 'node:path';
 import { allPublicPaths } from './app/core/site-data';
 import bootstrap from './main.server';
 import { deliverEnquiry, deliveryConfigured } from './enquiry-delivery';
+import { validateMobile, isValidCountryCode, getDialCode } from './app/core/phone-utils';
+import { parsePhoneNumberFromString } from 'libphonenumber-js/max';
 
 const browserDistFolder = join(__dirname, '../browser');
 const canonicalHost = 'www.sunsolv.in';
@@ -203,11 +205,28 @@ function validateEnquiry(
     typeof data[key] === 'string' && (data[key] as string).length <= max
       ? (data[key] as string).trim()
       : '';
+
+  const rawCountry = text('countryCode', 10) || text('country', 10);
+  let countryCode = isValidCountryCode(rawCountry) ? rawCountry : '';
+  let dialCode = text('dialCode', 10);
+  let phone = text('phone', 40);
+
+  // Auto-detect country from E.164 phone if country was not explicitly passed
+  if (!countryCode && phone.startsWith('+')) {
+    const parsed = parsePhoneNumberFromString(phone);
+    if (parsed?.country && isValidCountryCode(parsed.country)) {
+      countryCode = parsed.country;
+      dialCode = '+' + parsed.countryCallingCode;
+    }
+  }
+
   const value = {
     enquiryType: text('enquiryType', 30),
     fullName: text('fullName', 80),
     workEmail: text('workEmail', 254),
-    phone: text('phone', 24),
+    phone,
+    countryCode,
+    dialCode: dialCode || (countryCode ? getDialCode(countryCode) : ''),
     company: text('company', 120),
     service: text('service', 80),
     message: text('message', 2000),
@@ -226,7 +245,19 @@ function validateEnquiry(
     fields.push('enquiryType');
   if (value.fullName.length < 2) fields.push('fullName');
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.workEmail)) fields.push('workEmail');
-  if (value.phone && !/^\+?[0-9 ()-]{7,24}$/.test(value.phone)) fields.push('phone');
+  if (!value.countryCode || !isValidCountryCode(value.countryCode)) {
+    fields.push('countryCode');
+  }
+  if (!value.phone) {
+    fields.push('phone');
+  } else if (value.countryCode) {
+    const phoneValidation = validateMobile(value.phone, value.countryCode);
+    if (!phoneValidation.valid || !phoneValidation.e164) {
+      fields.push('phone');
+    } else {
+      value.phone = phoneValidation.e164;
+    }
+  }
   if (value.enquiryType === 'project' && !value.service) fields.push('service');
   if (value.message.length < 20) fields.push('message');
   if (!value.privacyConsent) fields.push('privacyConsent');
@@ -279,3 +310,4 @@ if (process.env['RUN_SUNSOLV_SERVER'] === 'true' || process.env['pm_id']) {
  * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
  */
 export const reqHandler = createNodeRequestHandler(app);
+export { app, validateEnquiry };
