@@ -281,7 +281,7 @@ describe('SunSolv Insights Module', () => {
       expect(articles.length).toBe(4);
 
       const robots = document.querySelector('meta[name="robots"]')?.getAttribute('content');
-      expect(robots).toBe('index, follow');
+      expect(robots).toBe('index, follow, max-image-preview:large');
     });
 
     it('sets noindex,follow dynamically when a category has no published articles in categoryToPageData', () => {
@@ -302,7 +302,7 @@ describe('SunSolv Insights Module', () => {
     it('sets index, follow for categories with published articles', async () => {
       const { document } = await setupApp('/insights/ai-automation');
       const robots = document.querySelector('meta[name="robots"]')?.getAttribute('content');
-      expect(robots).toBe('index, follow');
+      expect(robots).toBe('index, follow, max-image-preview:large');
     });
   });
 
@@ -579,7 +579,7 @@ describe('SunSolv Insights Module', () => {
     it('sets index, follow for hub and populated categories', async () => {
       const { router, document, fixture } = await setupApp('/insights');
       expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
-        'index, follow',
+        'index, follow, max-image-preview:large',
       );
 
       await router.navigateByUrl('/insights/ai-automation');
@@ -587,7 +587,7 @@ describe('SunSolv Insights Module', () => {
       await fixture.whenStable();
       fixture.detectChanges();
       expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
-        'index, follow',
+        'index, follow, max-image-preview:large',
       );
 
       await router.navigateByUrl('/insights/cloud-infrastructure');
@@ -595,14 +595,14 @@ describe('SunSolv Insights Module', () => {
       await fixture.whenStable();
       fixture.detectChanges();
       expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
-        'index, follow',
+        'index, follow, max-image-preview:large',
       );
     });
 
     it('sets index, follow for all seven populated categories', async () => {
       const { router, document, fixture } = await setupApp('/insights/ai-automation');
       expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
-        'index, follow',
+        'index, follow, max-image-preview:large',
       );
 
       const remainingCategories = [
@@ -619,7 +619,7 @@ describe('SunSolv Insights Module', () => {
         await fixture.whenStable();
         fixture.detectChanges();
         expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
-          'index, follow',
+          'index, follow, max-image-preview:large',
         );
       }
     });
