@@ -1,4 +1,4 @@
-import { readdir, readFile, writeFile, copyFile } from 'node:fs/promises';
+import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 // Adapt the prerendered build for GitHub's project-site subdirectory when needed.
@@ -30,7 +30,8 @@ async function prepare(directory) {
     if (entry.name.endsWith('.html')) {
       let metas = '';
       if (apiOrigin) metas += `<meta name="enquiry-api-origin" content="${apiOrigin}">`;
-      if (appsScriptUrl) metas += `<meta name="enquiry-apps-script-url" content="${appsScriptUrl}">`;
+      if (appsScriptUrl)
+        metas += `<meta name="enquiry-apps-script-url" content="${appsScriptUrl}">`;
       if (metas) content = content.replace('</head>', `${metas}</head>`);
       if (base !== '/') {
         // Router links in prerendered markup must work before Angular hydrates.
@@ -46,7 +47,20 @@ async function prepare(directory) {
   }
 }
 await prepare(output);
-await copyFile(join(output, 'index.html'), join(output, '404.html'));
+// A real missing-page document prevents unknown URLs from rendering an indexable homepage.
+await writeFile(
+  join(output, '404.html'),
+  `<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow">
+<title>Page not found | SunSolv Technologies</title>
+<style>body{font:1.125rem/1.6 system-ui,sans-serif;background:#071a33;color:#fff;margin:0;padding:10vh 8vw}main{max-width:42rem}a{color:#ffca70}h1{line-height:1.2}</style>
+</head><body><main><p>SunSolv Technologies · 404</p>
+<h1>Page not found</h1><p>The page may have moved or the address may be incorrect.</p>
+<p><a href="${base}">Visit the homepage</a> · <a href="${base}services/">Explore services</a> · <a href="${base}contact-us/">Contact us</a></p>
+</main></body></html>`,
+);
 await writeFile(join(output, '.nojekyll'), '');
 await writeFile(join(output, 'CNAME'), 'www.sunsolv.in\n');
 console.log(`Prepared GitHub Pages build at ${base}`);
