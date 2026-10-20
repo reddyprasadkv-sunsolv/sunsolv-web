@@ -1,20 +1,21 @@
 User-agent: *
 Allow: /
 
-# AI Crawlers & Search Engines (Allowed for search, answer synthesis, and citation)
+# Search and user-requested retrieval. Training permissions are listed separately.
 User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: ClaudeBot
+User-agent: PerplexityBot
 Allow: /
 
-User-agent: PerplexityBot
+# Existing training permissions preserved; these are not search ranking controls.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
 Allow: /
 
 User-agent: Google-Extended
@@ -23,6 +24,6 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-# Sitemap and LLM documentation
+# Sitemap discovery
 Sitemap: https://www.sunsolv.in/sitemap.xml
-# LLMs summary: https://www.sunsolv.in/llms.txt
+# Optional descriptive resource (not a Google ranking signal): https://www.sunsolv.in/llms.txt
