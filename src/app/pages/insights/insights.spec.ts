@@ -216,7 +216,7 @@ describe('SunSolv Insights Module', () => {
       ) as HTMLAnchorElement;
       expect(browseTopicsBtn).toBeTruthy();
       expect(browseTopicsBtn?.textContent?.trim()).toBe('Browse Topics');
-      expect(browseTopicsBtn?.getAttribute('href')).toBe('#topics');
+      expect(browseTopicsBtn?.getAttribute('href')).toBe('/insights/#topics');
 
       // Verify the Topics section exists with id="topics"
       const topicsSection = compiled.querySelector('section#topics');
@@ -841,7 +841,7 @@ describe('SunSolv Insights Module', () => {
       },
     ];
 
-    it('verifies that EVERY published article has 100% matching TOC hrefs and heading IDs with no orphaned anchors', async () => {
+    it('verifies matching TOC hrefs and heading IDs for the eight original articles', async () => {
       const { fixture, router, compiled } = await setupApp(allArticles[0].route);
 
       for (const item of allArticles) {
@@ -856,12 +856,15 @@ describe('SunSolv Insights Module', () => {
         const tocLinks = compiled.querySelectorAll('nav.toc-nav a');
         expect(tocLinks.length, `${item.name} should have TOC links`).toBeGreaterThan(10);
 
-        // Every TOC link must start with # and match an existing <h2 [id]> in the article
+        // Full-page fragment URLs must resolve to this article and an existing heading.
         for (let i = 0; i < tocLinks.length; i++) {
           const a = tocLinks[i] as HTMLAnchorElement;
           const href = a.getAttribute('href');
-          expect(href?.startsWith('#'), `${item.name} TOC link ${i} must start with #`).toBe(true);
-          const targetId = href!.slice(1);
+          const target = new URL(href!, 'https://www.sunsolv.in/');
+          expect(target.pathname).toBe(
+            new URL(item.route, 'https://www.sunsolv.in/').pathname.replace(/\/?$/, '/'),
+          );
+          const targetId = target.hash.slice(1);
           const targetEl = compiled.querySelector(`h2[id="${targetId}"]`);
           expect(
             targetEl,
@@ -871,7 +874,9 @@ describe('SunSolv Insights Module', () => {
 
         // Verify Key Takeaway target
         const lastLink = tocLinks[tocLinks.length - 1];
-        expect(lastLink.getAttribute('href')).toBe('#key-takeaway');
+        expect(new URL(lastLink.getAttribute('href')!, 'https://www.sunsolv.in/').hash).toBe(
+          '#key-takeaway',
+        );
         const takeawayH2 = compiled.querySelector('h2[id="key-takeaway"]');
         expect(takeawayH2, `${item.name} must have <h2 id="key-takeaway">`).toBeTruthy();
 
