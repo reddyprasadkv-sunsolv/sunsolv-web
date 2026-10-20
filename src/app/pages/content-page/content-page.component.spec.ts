@@ -46,7 +46,7 @@ describe('ContentPageComponent', () => {
         '@type': 'ListItem',
         position: 2,
         name: 'Terms & Conditions',
-        item: 'https://www.sunsolv.in/terms-and-conditions',
+        item: 'https://www.sunsolv.in/terms-and-conditions/',
       },
     ]);
   });
@@ -79,7 +79,7 @@ describe('ContentPageComponent', () => {
         '@type': 'ListItem',
         position: 2,
         name: 'Privacy Policy',
-        item: 'https://www.sunsolv.in/privacy-policy',
+        item: 'https://www.sunsolv.in/privacy-policy/',
       },
     ]);
   });
@@ -116,7 +116,7 @@ describe('ContentPageComponent', () => {
         '@type': 'ListItem',
         position: 2,
         name: 'Cookie Policy',
-        item: 'https://www.sunsolv.in/cookie-policy',
+        item: 'https://www.sunsolv.in/cookie-policy/',
       },
     ]);
   });
