@@ -1,6 +1,8 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { filter, map } from 'rxjs';
 import { AnalyticsService } from './core/analytics.service';
 import { SeoService } from './core/seo.service';
 import { CookieConsentComponent } from './shared/cookie-consent/cookie-consent.component';
@@ -11,7 +13,9 @@ import { HeaderComponent } from './shared/header/header.component';
   selector: 'app-root',
   imports: [RouterOutlet, HeaderComponent, FooterComponent, CookieConsentComponent],
   template: `
-    <a class="skip-link" href="#main-content" (click)="onSkipToContent($event)">Skip to content</a>
+    <a class="skip-link" [href]="mainContentHref()" (click)="onSkipToContent($event)"
+      >Skip to content</a
+    >
     <app-header />
     <main id="main-content" tabindex="-1">
       <router-outlet />
@@ -23,6 +27,7 @@ import { HeaderComponent } from './shared/header/header.component';
   styleUrl: './app.scss',
 })
 export class App {
+  private readonly router = inject(Router);
   private readonly seo = inject(SeoService);
   private readonly analytics = inject(AnalyticsService);
   private readonly document = inject(DOCUMENT);
@@ -30,6 +35,14 @@ export class App {
   constructor() {
     this.analytics.init();
   }
+
+  readonly mainContentHref = toSignal(
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+      map((event) => `${event.urlAfterRedirects.split('#')[0]}#main-content`),
+    ),
+    { initialValue: '/#main-content' },
+  );
 
   onSkipToContent(event: Event): void {
     event.preventDefault();
