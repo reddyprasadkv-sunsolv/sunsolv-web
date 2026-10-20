@@ -4,7 +4,7 @@
     <div class="shell header-container">
       <app-insights-breadcrumbs [items]="breadcrumbs()" />
       <div class="header-content">
-        <a [routerLink]="['/insights', art.categorySlug + '/']" class="article-category-badge">
+        <a [routerLink]="['/insights', art.categorySlug]" class="article-category-badge">
           {{ art.categoryTitle }}
         </a>
         <h1 id="article-title" class="article-main-title">{{ art.title }}</h1>
@@ -53,7 +53,7 @@
                 @for (item of tocItems(); track item.id) {
                   <li>
                     <a
-                      [href]="'#' + item.id"
+                      [href]="art.canonicalUrl + '#' + item.id"
                       (click)="onTocClick($event, item.id)"
                       [class.active]="activeSectionId() === item.id"
                       >{{ item.title }}</a
