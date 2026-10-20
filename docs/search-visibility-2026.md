@@ -1,6 +1,6 @@
 # SunSolv search visibility implementation — 20 October 2026
 
-Status: implemented locally on `codex/seo-aeo-geo-2026`; production deployment and account-level verification are outstanding.
+Status: implemented in draft PR #21 on `codex/seo-aeo-geo-2026`; release-readiness corrections are documented in [the audit report](pr21-release-readiness.md). Production deployment and account-level verification are outstanding.
 
 ## Findings and changes
 
@@ -12,7 +12,7 @@ The live homepage, AI service, contact, case studies and one cloud article were 
 | Homepage organization lacked the ID referenced by service providers | Stable organization ID on homepage and full matching provider definitions on service pages | Built graph identity assertions |
 | Article author references pointed to a missing `founder` fragment | Added the visible leadership section anchor; aligned Person ID and author URLs | Built About document assertion |
 | Static `404.html` was a copy of the homepage | Dedicated noindex missing-page document with working recovery links | Built 404 assertion; confirm HTTP 404 after release |
-| Homepage introduction described broad outcomes without clearly enumerating services | Added a concise description of the actual consulting, development, cloud and AI offering | Prerendered heading/content checks |
+| Homepage copy was changed in the initial draft | Restored the main-branch wording during release audit to preserve content meaning | Rendered content parity across 65 pages |
 | Article-only social metadata was absent | Publish/modify/author properties, cleared on navigation to other page types | Unit tests and build |
 | Sitemap date calculation returned the first source dependency date and fabricated a fallback date | Latest Git date across dependencies; omit unknown dates | Generated sitemap review |
 | Crawler comments conflated search retrieval and model training | Clarified comments; preserved all existing permissions | robots.txt review |
