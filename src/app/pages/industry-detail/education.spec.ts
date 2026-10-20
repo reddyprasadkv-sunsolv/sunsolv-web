@@ -157,7 +157,7 @@ describe('Education industry page', () => {
       'Improve learning and administration with SunSolv education technology solutions for digital platforms, connected systems, cloud, automation and analytics.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/industries/education',
+      'https://www.sunsolv.in/industries/education/',
     );
     expect(scripts).toHaveLength(1);
     expect(graph.map((item) => item['@type'])).toEqual([
@@ -167,7 +167,7 @@ describe('Education industry page', () => {
       'FAQPage',
     ]);
     expect(page?.name).toBe('Education Technology Solutions');
-    expect(page?.url).toBe('https://www.sunsolv.in/industries/education');
+    expect(page?.url).toBe('https://www.sunsolv.in/industries/education/');
     expect(service?.name).toBe('Education Technology Solutions');
     expect(service?.serviceType).toBe('Education technology consulting and digital solutions');
     expect(service?.provider?.['@id']).toBe('https://www.sunsolv.in/#organization');
