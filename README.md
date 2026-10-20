@@ -85,3 +85,10 @@ verified findings, implemented changes, release checks and content/measurement r
 After building, run `node scripts/prepare-pages.mjs` followed by `npm run check:seo`
 to validate canonical URLs, sitemap coverage, structured identity and the static 404 document.
 The GitHub Pages workflow runs this check before uploading the deployment artifact.
+
+The [PR #21 release-readiness report](docs/pr21-release-readiness.md) records the
+full-route audit and production verification still required. To compare a separate
+main-branch build with the current build, run
+`node scripts/check-release-parity.mjs /absolute/path/to/main/dist/sunsolv-redesign/browser`.
+Run the server and mocked delivery smoke checks with
+`node --test scripts/server-smoke.test.mjs scripts/enquiry-delivery.test.mjs`.
