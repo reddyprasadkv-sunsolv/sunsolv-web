@@ -10,7 +10,7 @@ export const legalContent = {
   privacy: [
     {
       title: '1. Introduction',
-      html: '<p>SunSolv Technologies (“SunSolv”, “we”, “our” or “us”) respects your privacy and is committed to handling personal data responsibly, transparently and securely.</p><p>This Privacy Policy explains how we collect, use, store, share and protect personal data when you:</p><ul><li>visit <a href="/">sunsolv.in</a>;</li><li>contact or communicate with us;</li><li>submit an enquiry;</li><li>request information about our services;</li><li>discuss or engage us for a project;</li><li>apply for an opportunity with SunSolv; or</li><li>otherwise interact with our website or business.</li></ul><p>This Privacy Policy should be read together with our <a href="/cookie-policy">Cookie Policy</a> and <a href="/terms-and-conditions">Terms &amp; Conditions</a>.</p><p>By accessing our website, you acknowledge that you have had an opportunity to read this Privacy Policy. Where applicable law requires consent for a particular processing activity, we will seek that consent separately.</p><p><em>Effective Date: 28 September 2026 &bull; Last Updated: 28 September 2026</em></p>',
+      html: '<p>SunSolv Technologies (“SunSolv”, “we”, “our” or “us”) respects your privacy and is committed to handling personal data responsibly, transparently and securely.</p><p>This Privacy Policy explains how we collect, use, store, share and protect personal data when you:</p><ul><li>visit <a href="/">sunsolv.in</a>;</li><li>contact or communicate with us;</li><li>submit an enquiry;</li><li>request information about our services;</li><li>discuss or engage us for a project;</li><li>apply for an opportunity with SunSolv; or</li><li>otherwise interact with our website or business.</li></ul><p>This Privacy Policy should be read together with our <a href="/cookie-policy/">Cookie Policy</a> and <a href="/terms-and-conditions/">Terms &amp; Conditions</a>.</p><p>By accessing our website, you acknowledge that you have had an opportunity to read this Privacy Policy. Where applicable law requires consent for a particular processing activity, we will seek that consent separately.</p><p><em>Effective Date: 28 September 2026 &bull; Last Updated: 28 September 2026</em></p>',
     },
     {
       title: '2. Scope of This Privacy Policy',
@@ -50,7 +50,7 @@ export const legalContent = {
     },
     {
       title: '11. Cookies and Similar Technologies',
-      html: '<p>SunSolv may use cookies and similar technologies for:</p><ul><li>essential website functionality;</li><li>security;</li><li>remembering privacy choices;</li><li>website preferences;</li><li>analytics;</li><li>website performance measurement; and</li><li>marketing or advertising measurement where applicable.</li></ul><p>Non-essential technologies will be managed according to your cookie preferences where consent is required.</p><p>For more information, please read our <a href="/cookie-policy">Cookie Policy</a>.</p>',
+      html: '<p>SunSolv may use cookies and similar technologies for:</p><ul><li>essential website functionality;</li><li>security;</li><li>remembering privacy choices;</li><li>website preferences;</li><li>analytics;</li><li>website performance measurement; and</li><li>marketing or advertising measurement where applicable.</li></ul><p>Non-essential technologies will be managed according to your cookie preferences where consent is required.</p><p>For more information, please read our <a href="/cookie-policy/">Cookie Policy</a>.</p>',
     },
     {
       title: '12. How We Share Personal Data',
@@ -113,7 +113,7 @@ export const legalContent = {
   cookie: [
     {
       title: '1. Introduction',
-      html: '<p>This Cookie Policy explains how SunSolv Technologies (“SunSolv”, “we”, “our” or “us”) uses cookies and similar technologies when you visit <a href="/">sunsolv.in</a>.</p><p>This Cookie Policy should be read together with our <a href="/privacy-policy">Privacy Policy</a>.</p><p><em>Effective Date: 28 September 2026 &bull; Last Updated: 28 September 2026</em></p>',
+      html: '<p>This Cookie Policy explains how SunSolv Technologies (“SunSolv”, “we”, “our” or “us”) uses cookies and similar technologies when you visit <a href="/">sunsolv.in</a>.</p><p>This Cookie Policy should be read together with our <a href="/privacy-policy/">Privacy Policy</a>.</p><p><em>Effective Date: 28 September 2026 &bull; Last Updated: 28 September 2026</em></p>',
     },
     {
       title: '2. What Are Cookies?',
@@ -224,7 +224,7 @@ export const legalContent = {
     },
     {
       title: '9. Information Submitted to SunSolv',
-      html: '<p>When you submit information through our website, you represent that:</p><ul><li>the information is accurate to the best of your knowledge;</li><li>you are authorised to provide it;</li><li>its submission does not violate applicable law; and</li><li>its submission does not infringe the rights of another person or organisation.</li></ul><p>Personal data submitted to SunSolv will be handled in accordance with our <a href="/privacy-policy">Privacy Policy</a>.</p>',
+      html: '<p>When you submit information through our website, you represent that:</p><ul><li>the information is accurate to the best of your knowledge;</li><li>you are authorised to provide it;</li><li>its submission does not violate applicable law; and</li><li>its submission does not infringe the rights of another person or organisation.</li></ul><p>Personal data submitted to SunSolv will be handled in accordance with our <a href="/privacy-policy/">Privacy Policy</a>.</p>',
     },
     {
       title: '10. Confidential Information',
@@ -280,11 +280,11 @@ export const legalContent = {
     },
     {
       title: '23. Privacy',
-      html: '<p>Our processing of personal data in connection with the website is described in our <a href="/privacy-policy">Privacy Policy</a>.</p>',
+      html: '<p>Our processing of personal data in connection with the website is described in our <a href="/privacy-policy/">Privacy Policy</a>.</p>',
     },
     {
       title: '24. Cookies',
-      html: '<p>Information regarding cookies and similar technologies is available in our <a href="/cookie-policy">Cookie Policy</a>.</p><p>Visitors can manage optional cookie choices through Cookie Settings where available.</p>',
+      html: '<p>Information regarding cookies and similar technologies is available in our <a href="/cookie-policy/">Cookie Policy</a>.</p><p>Visitors can manage optional cookie choices through Cookie Settings where available.</p>',
     },
     {
       title: '25. Website Security',
