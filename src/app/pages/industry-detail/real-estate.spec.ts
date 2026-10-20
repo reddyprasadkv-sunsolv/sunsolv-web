@@ -196,7 +196,7 @@ describe('Real Estate industry page', () => {
       'Connect property marketing, sales and operations with SunSolv real estate technology solutions for digital platforms, integrations, cloud and automation.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/industries/real-estate',
+      'https://www.sunsolv.in/industries/real-estate/',
     );
     expect(scripts).toHaveLength(1);
     expect(graph.map((item) => item['@type'])).toEqual([
@@ -206,7 +206,7 @@ describe('Real Estate industry page', () => {
       'FAQPage',
     ]);
     expect(page?.name).toBe('Real Estate Technology Solutions');
-    expect(page?.url).toBe('https://www.sunsolv.in/industries/real-estate');
+    expect(page?.url).toBe('https://www.sunsolv.in/industries/real-estate/');
     expect(service?.name).toBe('Real Estate Technology Solutions');
     expect(service?.serviceType).toBe('Real estate technology consulting and digital solutions');
     expect(service?.provider?.['@id']).toBe('https://www.sunsolv.in/#organization');
