@@ -3558,7 +3558,8 @@ export function categoryToPageData(category: InsightCategory): PageData {
       description: category.metaDescription,
       path: `insights/${category.slug}/`,
       image: '/images/insights/sunsolv-insights-hub.webp',
-      robots: publishedArticles.length > 0 ? 'index, follow' : 'noindex,follow',
+      robots:
+        publishedArticles.length > 0 ? 'index, follow, max-image-preview:large' : 'noindex,follow',
     },
   };
 }
