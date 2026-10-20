@@ -103,7 +103,7 @@ describe('ServicesOverviewComponent', () => {
       'Explore SunSolv’s IT consulting, cloud, custom software, web and mobile, AI, digital transformation and marketing services.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/services',
+      'https://www.sunsolv.in/services/',
     );
     expect(document.querySelector('meta[property="og:image"]')?.getAttribute('content')).toBe(
       'https://www.sunsolv.in/images/services/sunsolv-services-technology-consulting.webp',
