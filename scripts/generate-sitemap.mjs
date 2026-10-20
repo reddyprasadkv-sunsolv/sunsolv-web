@@ -1,4 +1,4 @@
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -36,7 +36,8 @@ function getChangeFreq(route) {
     route.startsWith('/insights/')
   )
     return 'monthly';
-  if (['/privacy-policy', '/cookie-policy', '/terms-and-conditions'].includes(route)) return 'yearly';
+  if (['/privacy-policy', '/cookie-policy', '/terms-and-conditions'].includes(route))
+    return 'yearly';
   return 'monthly';
 }
 
@@ -45,10 +46,16 @@ const routeSources = {
   '/about-us': ['src/app/pages/about/'],
   '/services': ['src/app/pages/services-overview/'],
   '/services/it-consulting': ['src/app/pages/service-detail/it-consulting.data.ts'],
-  '/services/digital-transformation': ['src/app/pages/service-detail/digital-transformation.data.ts'],
+  '/services/digital-transformation': [
+    'src/app/pages/service-detail/digital-transformation.data.ts',
+  ],
   '/services/cloud-solutions': ['src/app/pages/service-detail/cloud-solutions.data.ts'],
-  '/services/web-mobile-development': ['src/app/pages/service-detail/web-mobile-development.data.ts'],
-  '/services/custom-software-development': ['src/app/pages/service-detail/custom-software-development.data.ts'],
+  '/services/web-mobile-development': [
+    'src/app/pages/service-detail/web-mobile-development.data.ts',
+  ],
+  '/services/custom-software-development': [
+    'src/app/pages/service-detail/custom-software-development.data.ts',
+  ],
   '/services/ai-machine-learning': ['src/app/pages/service-detail/ai-machine-learning.data.ts'],
   '/services/digital-marketing': ['src/app/pages/service-detail/digital-marketing.data.ts'],
   '/industries': ['src/app/pages/industries-overview/'],
@@ -57,7 +64,9 @@ const routeSources = {
   '/industries/retail-ecommerce': ['src/app/pages/industry-detail/retail-ecommerce.data.ts'],
   '/industries/real-estate': ['src/app/pages/industry-detail/real-estate.data.ts'],
   '/industries/saas': ['src/app/pages/industry-detail/saas.data.ts'],
-  '/industries/logistics-supply-chain': ['src/app/pages/industry-detail/logistics-supply-chain.data.ts'],
+  '/industries/logistics-supply-chain': [
+    'src/app/pages/industry-detail/logistics-supply-chain.data.ts',
+  ],
   '/case-studies': ['src/app/pages/case-studies-overview/'],
   '/case-studies/digital-assessment-platform': ['src/app/core/case-studies.data.ts'],
   '/case-studies/business-solution-finder': ['src/app/core/case-studies.data.ts'],
@@ -125,9 +134,8 @@ const routeSources = {
   '/insights/digital-transformation/modernize-integrate-or-replace-a-guide-to-legacy-systems': [
     'src/app/core/insights-articles/digital-transformation.data.ts',
   ],
-  '/insights/digital-transformation/how-to-connect-project-delivery-invoicing-and-payment-tracking': [
-    'src/app/core/insights-articles/digital-transformation.data.ts',
-  ],
+  '/insights/digital-transformation/how-to-connect-project-delivery-invoicing-and-payment-tracking':
+    ['src/app/core/insights-articles/digital-transformation.data.ts'],
   '/insights/software-engineering/how-to-scope-a-custom-software-project-before-development': [
     'src/app/core/insights-articles/software-engineering.data.ts',
   ],
@@ -149,34 +157,35 @@ const routeSources = {
   '/insights/digital-experience/how-to-audit-a-website-journey-before-redesigning-it': [
     'src/app/core/insights-articles/digital-experience.data.ts',
   ],
-  '/insights/digital-experience/website-performance-vs-visual-complexity-finding-the-right-balance': [
-    'src/app/core/insights-articles/digital-experience.data.ts',
-  ],
+  '/insights/digital-experience/website-performance-vs-visual-complexity-finding-the-right-balance':
+    ['src/app/core/insights-articles/digital-experience.data.ts'],
   '/insights/digital-experience/how-to-design-b2b-enquiry-forms-that-reduce-friction': [
     'src/app/core/insights-articles/digital-experience.data.ts',
   ],
   '/insights/industries/how-schools-can-structure-a-reusable-digital-question-bank': [
     'src/app/core/insights-articles/industries.data.ts',
   ],
-  '/insights/industries/how-healthcare-organizations-can-identify-administrative-automation-opportunities': [
-    'src/app/core/insights-articles/industries.data.ts',
-  ],
-  '/insights/industries/how-professional-services-firms-can-connect-project-costs-invoices-and-collections': [
-    'src/app/core/insights-articles/industries.data.ts',
-  ],
+  '/insights/industries/how-healthcare-organizations-can-identify-administrative-automation-opportunities':
+    ['src/app/core/insights-articles/industries.data.ts'],
+  '/insights/industries/how-professional-services-firms-can-connect-project-costs-invoices-and-collections':
+    ['src/app/core/insights-articles/industries.data.ts'],
 };
 
 function getRouteLastmod(route) {
   const sources = routeSources[route] || [];
-  for (const src of sources) {
-    try {
-      const date = execSync(`git log -1 --format="%cs" -- "${src}"`, { cwd: root, encoding: 'utf8' }).trim();
-      if (/^\d{4}-\d{2}-\d{2}$/.test(date)) return date;
-    } catch {
-      // Git command error or outside git repo
-    }
+  try {
+    // Query all dependencies together so the latest change wins, regardless of array order.
+    const date = sources.length
+      ? execFileSync('git', ['log', '-1', '--format=%cs', '--', ...sources], {
+          cwd: root,
+          encoding: 'utf8',
+        }).trim()
+      : '';
+    return /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : undefined;
+  } catch {
+    // Omit unknown dates rather than claiming an arbitrary freshness date.
+    return undefined;
   }
-  return '2026-09-29';
 }
 
 // Exclude empty insights categories from sitemap until they contain published content
@@ -193,7 +202,7 @@ const emptyCategorySlugs = new Set(
   knownCategorySlugs.filter((slug) => !routes.some((r) => r.startsWith(`/insights/${slug}/`))),
 );
 
-const filteredRoutes = routes.filter((route) => {
+const filteredRoutes = [...new Set(routes)].filter((route) => {
   const match = route.match(/^\/insights\/([a-z0-9-]+)$/);
   if (match && match[1] !== 'all' && emptyCategorySlugs.has(match[1])) {
     return false;
@@ -203,15 +212,11 @@ const filteredRoutes = routes.filter((route) => {
 
 const xmlEntries = filteredRoutes.map((route) => {
   const loc =
-    route === '/'
-      ? `${canonicalOrigin}/`
-      : route.startsWith('/insights')
-      ? `${canonicalOrigin}${route}/`
-      : `${canonicalOrigin}${route}`;
+    route === '/' ? `${canonicalOrigin}/` : `${canonicalOrigin}${route.replace(/\/+$/, '')}/`;
   const priority = getPriority(route);
   const changefreq = getChangeFreq(route);
   const lastmod = getRouteLastmod(route);
-  return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+  return `  <url>\n    <loc>${loc}</loc>\n    ${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
 });
 
 const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${xmlEntries.join('\n')}\n</urlset>\n`;
