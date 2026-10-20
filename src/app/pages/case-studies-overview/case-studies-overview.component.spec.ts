@@ -93,7 +93,7 @@ describe('Case Studies Overview', () => {
       'Explore selected SunSolv case studies across education technology, business solution discovery and custom operational software.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/case-studies',
+      'https://www.sunsolv.in/case-studies/',
     );
     expect(document.querySelectorAll('#structured-data')).toHaveLength(1);
     const graph = JSON.parse(document.querySelector('#structured-data')!.textContent!)['@graph'];
