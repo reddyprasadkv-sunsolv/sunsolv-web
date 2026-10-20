@@ -129,9 +129,9 @@ describe('IndustriesOverviewComponent', () => {
     const { fixture, compiled } = await renderPage();
 
     expect(compiled.querySelectorAll('main a[href="/contact-us?enquiry=project"]')).toHaveLength(2);
-    expect(compiled.querySelector('a[href="#industries-we-serve"]')?.textContent).toContain(
-      'Explore Industries',
-    );
+    expect(
+      compiled.querySelector('a[href="/industries/#industries-we-serve"]')?.textContent,
+    ).toContain('Explore Industries');
     expect(compiled.querySelector('a[href="/services"]')?.textContent).toContain(
       'Explore Our Services',
     );
