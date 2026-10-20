@@ -11,7 +11,8 @@
     "typecheck": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.server-app.json",
     "format": "prettier --write src angular.json package.json tsconfig*.json",
     "format:check": "prettier --check src angular.json package.json tsconfig*.json",
-    "serve:ssr:sunsolv-redesign": "RUN_SUNSOLV_SERVER=true node dist/sunsolv-redesign/server-app/main.js"
+    "serve:ssr:sunsolv-redesign": "RUN_SUNSOLV_SERVER=true node dist/sunsolv-redesign/server-app/main.js",
+    "check:seo": "node scripts/check-seo.mjs"
   },
   "private": true,
   "packageManager": "npm@11.16.0",
