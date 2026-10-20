@@ -48,8 +48,9 @@ describe('Case Study Detail Component', () => {
       expect(tocLinks.length).toBe(study.toc.length);
       for (const link of Array.from(tocLinks)) {
         const href = link.getAttribute('href');
-        expect(href?.startsWith('#')).toBe(true);
-        const targetId = href?.slice(1);
+        const target = new URL(href!, 'https://www.sunsolv.in/');
+        expect(target.pathname).toBe(`/case-studies/${study.slug}/`);
+        const targetId = target.hash.slice(1);
         expect(page.querySelector(`#${targetId}`)).toBeTruthy();
       }
 

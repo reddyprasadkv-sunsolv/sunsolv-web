@@ -4,6 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { canonicalInternalUrl } from './canonical-url';
 import { canonicalOrigin, PageData, SeoData } from './site-data';
 
 @Injectable({ providedIn: 'root' })
@@ -39,14 +40,12 @@ export class SeoService {
 
   private formatCanonical(path?: string): string {
     if (!path) return `${canonicalOrigin}/`;
-    const clean = path.startsWith('/') ? path.slice(1) : path;
-    return `${canonicalOrigin}/${clean}`;
+    const clean = path.split(/[?#]/)[0].replace(/^\/+|\/+$/g, '');
+    return clean ? `${canonicalOrigin}/${clean}/` : `${canonicalOrigin}/`;
   }
 
   private formatBreadcrumbItem(path?: string): string {
-    if (!path) return `${canonicalOrigin}/`;
-    const clean = path.startsWith('/') ? path.slice(1) : path;
-    return `${canonicalOrigin}/${clean}`;
+    return this.formatCanonical(path);
   }
 
   private apply(data: PageData): void {
@@ -61,7 +60,22 @@ export class SeoService {
     this.meta.updateTag({ property: 'og:title', content: seo.title });
     this.meta.updateTag({ property: 'og:description', content: seo.description });
     this.meta.updateTag({ property: 'og:type', content: seo.type ?? 'website' });
-    this.meta.updateTag({ property: 'og:url', content: canonical });
+    if (seo.noIndex) this.meta.removeTag('property="og:url"');
+    else this.meta.updateTag({ property: 'og:url', content: canonical });
+    this.meta.updateTag({ property: 'og:site_name', content: 'SunSolv Technologies' });
+    this.meta.updateTag({ property: 'og:locale', content: 'en_IN' });
+    // Clear article-only tags when navigating to another page in the SPA.
+    for (const [property, value] of [
+      ['article:published_time', data.structuredArticlePublished],
+      ['article:modified_time', data.structuredArticleModified ?? data.structuredArticlePublished],
+      [
+        'article:author',
+        data.schemaType === 'Article' ? `${canonicalOrigin}/about-us/#founder` : undefined,
+      ],
+    ] as const) {
+      if (value) this.meta.updateTag({ property, content: value });
+      else this.meta.removeTag(`property="${property}"`);
+    }
     this.meta.updateTag({
       property: 'og:image',
       content: socialImage,
@@ -75,8 +89,16 @@ export class SeoService {
     });
     this.meta.updateTag({
       name: 'robots',
-      content: seo.robots ?? (seo.noIndex ? 'noindex, nofollow' : 'index, follow'),
+      content:
+        seo.robots ??
+        (seo.noIndex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'),
     });
+
+    if (seo.noIndex) {
+      this.document.head.querySelector('link[rel="canonical"]')?.remove();
+      this.document.head.querySelector('#structured-data')?.remove();
+      return;
+    }
 
     let link = this.document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (!link) {
@@ -112,7 +134,7 @@ export class SeoService {
             name: data.structuredServiceName,
             serviceType: data.structuredServiceType,
             description: data.structuredServiceDescription ?? data.seo.description,
-            provider: { '@id': `${canonicalOrigin}/#organization` },
+            provider: this.organizationSchema(),
           },
           ...(data.structuredBreadcrumbs?.length
             ? [
@@ -147,7 +169,7 @@ export class SeoService {
         ...base,
         name: data.structuredServiceName ?? data.title,
         description: data.structuredServiceDescription ?? data.seo.description,
-        provider: { '@type': 'Organization', name: 'SunSolv Technologies', url: canonicalOrigin },
+        provider: this.organizationSchema(),
       };
       if (!data.structuredBreadcrumbs?.length && !data.structuredFaqs?.length) return service;
 
@@ -185,7 +207,7 @@ export class SeoService {
     }
     if (data.schemaType === 'Article') {
       const organizationId = `${canonicalOrigin}/#organization`;
-      const authorId = `${canonicalOrigin}/about-us#founder`;
+      const authorId = `${canonicalOrigin}/about-us/#founder`;
       const articleId = `${canonical}#article`;
       return {
         '@context': 'https://schema.org',
@@ -210,7 +232,7 @@ export class SeoService {
               '@id': authorId,
               name: data.structuredArticleAuthor ?? 'Reddy Prasad K V',
               jobTitle: 'Founder & CEO',
-              url: `${canonicalOrigin}/about-us#founder`,
+              url: `${canonicalOrigin}/about-us/#founder`,
             },
             publisher: {
               '@type': 'Organization',
@@ -259,7 +281,8 @@ export class SeoService {
                   name: data.structuredItemListName ?? 'Industries served by SunSolv Technologies',
                   numberOfItems: data.structuredItems.length,
                   itemListElement: data.structuredItems.map((item, index) => {
-                    const itemUrl = item.url ?? item.item;
+                    const rawUrl = item.url ?? item.item;
+                    const itemUrl = rawUrl ? canonicalInternalUrl(rawUrl) : undefined;
                     return {
                       '@type': 'ListItem',
                       position: index + 1,
@@ -356,6 +379,8 @@ export class SeoService {
           },
           {
             '@type': 'Person',
+            '@id': `${canonicalOrigin}/about-us/#founder`,
+            url: `${canonicalOrigin}/about-us/#founder`,
             name: 'Reddy Prasad K V',
             jobTitle: 'Founder & CEO',
             affiliation: { '@id': organizationId },
@@ -369,7 +394,14 @@ export class SeoService {
         '@context': 'https://schema.org',
         '@graph': [
           this.organizationSchema(),
-          { '@type': 'WebSite', name: 'SunSolv Technologies', url: canonicalOrigin },
+          {
+            '@type': 'WebSite',
+            '@id': `${canonicalOrigin}/#website`,
+            name: 'SunSolv Technologies',
+            url: `${canonicalOrigin}/`,
+            publisher: { '@id': `${canonicalOrigin}/#organization` },
+            inLanguage: 'en',
+          },
           base,
         ],
       };
@@ -377,12 +409,11 @@ export class SeoService {
     return base;
   }
 
-  private organizationSchema(id?: string): object {
+  private organizationSchema(id = `${canonicalOrigin}/#organization`): object {
     return {
       '@type': 'Organization',
       ...(id ? { '@id': id } : {}),
       name: 'SunSolv Technologies',
-      legalName: 'SunSolv Technologies',
       url: canonicalOrigin,
       logo: `${canonicalOrigin}/images/sunsolv-logo.webp`,
       email: 'info@sunsolv.in',
@@ -397,13 +428,11 @@ export class SeoService {
         'https://www.instagram.com/sunsolvtechnologies',
         'https://www.facebook.com/sunsolv',
         'https://x.com/sunsolv',
-        'https://github.com/reddyprasadkv-sunsolv',
       ],
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'customer support',
         email: 'info@sunsolv.in',
-        availableLanguage: ['English', 'Hindi'],
       },
     };
   }

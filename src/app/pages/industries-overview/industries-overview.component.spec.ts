@@ -129,9 +129,9 @@ describe('IndustriesOverviewComponent', () => {
     const { fixture, compiled } = await renderPage();
 
     expect(compiled.querySelectorAll('main a[href="/contact-us?enquiry=project"]')).toHaveLength(2);
-    expect(compiled.querySelector('a[href="#industries-we-serve"]')?.textContent).toContain(
-      'Explore Industries',
-    );
+    expect(
+      compiled.querySelector('a[href="/industries/#industries-we-serve"]')?.textContent,
+    ).toContain('Explore Industries');
     expect(compiled.querySelector('a[href="/services"]')?.textContent).toContain(
       'Explore Our Services',
     );
@@ -175,7 +175,7 @@ describe('IndustriesOverviewComponent', () => {
       'Explore SunSolv technology solutions for healthcare, education, retail and e-commerce, real estate, SaaS, and logistics and supply chain.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/industries',
+      'https://www.sunsolv.in/industries/',
     );
     expect(document.querySelector('meta[property="og:image"]')?.getAttribute('content')).toBe(
       'https://www.sunsolv.in/images/industries/sunsolv-industries-connected-economy.webp',
@@ -187,7 +187,7 @@ describe('IndustriesOverviewComponent', () => {
       'FAQPage',
     ]);
     expect(collection?.name).toBe('Technology shaped around how your industry works.');
-    expect(collection?.url).toBe('https://www.sunsolv.in/industries');
+    expect(collection?.url).toBe('https://www.sunsolv.in/industries/');
     expect(itemList?.itemListElement?.map((item) => item.name)).toEqual(industryNames);
     expect(breadcrumbs?.itemListElement?.map((item) => item.name)).toEqual(['Home', 'Industries']);
     expect(faqPage?.mainEntity?.map((item) => item.name)).toEqual(

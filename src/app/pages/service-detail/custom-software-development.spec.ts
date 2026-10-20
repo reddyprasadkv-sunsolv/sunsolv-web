@@ -153,7 +153,7 @@ describe('Custom Software Development service page', () => {
       'Build secure, scalable custom software with SunSolv, from enterprise applications and workflow automation to integrations and legacy modernization.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/services/custom-software-development',
+      'https://www.sunsolv.in/services/custom-software-development/',
     );
     expect(document.querySelector('meta[property="og:title"]')?.getAttribute('content')).toBe(
       document.title,
@@ -162,7 +162,7 @@ describe('Custom Software Development service page', () => {
       'sunsolv-custom-software-development.webp',
     );
     expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
-      'index, follow',
+      'index, follow, max-image-preview:large',
     );
     expect(graph.map((item) => item['@type'])).toEqual(['Service', 'BreadcrumbList', 'FAQPage']);
     expect(service?.name).toBe('Custom Software Development');

@@ -164,7 +164,7 @@ describe('AI & Machine Learning service page', () => {
       'Apply AI and machine learning to practical business opportunities with SunSolv, including predictive analytics, automation, knowledge solutions and integration.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/services/ai-machine-learning',
+      'https://www.sunsolv.in/services/ai-machine-learning/',
     );
     expect(document.querySelector('meta[property="og:title"]')?.getAttribute('content')).toBe(
       document.title,
@@ -173,11 +173,11 @@ describe('AI & Machine Learning service page', () => {
       'sunsolv-ai-machine-learning-patterns.webp',
     );
     expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
-      'index, follow',
+      'index, follow, max-image-preview:large',
     );
     expect(graph.map((item) => item['@type'])).toEqual(['Service', 'BreadcrumbList', 'FAQPage']);
     expect(service?.name).toBe('AI & Machine Learning');
-    expect(service?.url).toBe('https://www.sunsolv.in/services/ai-machine-learning');
+    expect(service?.url).toBe('https://www.sunsolv.in/services/ai-machine-learning/');
     expect(service?.description).toBe(aiMachineLearningPageData.positioning);
     expect(service?.provider?.name).toBe('SunSolv Technologies');
     expect(breadcrumbs?.itemListElement?.map((item) => item.name)).toEqual([

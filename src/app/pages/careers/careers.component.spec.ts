@@ -94,7 +94,7 @@ describe('CareersComponent', () => {
       'Explore careers at SunSolv Technologies. Build your future across software engineering, cloud, AI, automation, digital transformation and more.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/careers',
+      'https://www.sunsolv.in/careers/',
     );
     expect(document.querySelector('meta[property="og:image"]')?.getAttribute('content')).toBe(
       'https://www.sunsolv.in/images/careers/sunsolv-careers-build-whats-next.webp',
@@ -122,7 +122,12 @@ describe('CareersComponent', () => {
     const breadcrumbs = graph.find((item) => item['@type'] === 'BreadcrumbList');
     expect(breadcrumbs?.itemListElement).toEqual([
       { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.sunsolv.in/' },
-      { '@type': 'ListItem', position: 2, name: 'Careers', item: 'https://www.sunsolv.in/careers' },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Careers',
+        item: 'https://www.sunsolv.in/careers/',
+      },
     ]);
   });
 });

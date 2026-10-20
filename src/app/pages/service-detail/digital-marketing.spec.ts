@@ -163,17 +163,17 @@ describe('Digital Marketing service page', () => {
       'Grow visibility and conversion with SunSolv digital marketing services spanning SEO, content, paid media, social campaigns and performance analytics.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/services/digital-marketing',
+      'https://www.sunsolv.in/services/digital-marketing/',
     );
     expect(document.querySelector('meta[property="og:image"]')?.getAttribute('content')).toContain(
       'sunsolv-digital-marketing-customer-journey.webp',
     );
     expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
-      'index, follow',
+      'index, follow, max-image-preview:large',
     );
     expect(graph.map((item) => item['@type'])).toEqual(['Service', 'BreadcrumbList', 'FAQPage']);
     expect(service?.name).toBe('Digital Marketing Services');
-    expect(service?.url).toBe('https://www.sunsolv.in/services/digital-marketing');
+    expect(service?.url).toBe('https://www.sunsolv.in/services/digital-marketing/');
     expect(service?.description).toBe(digitalMarketingPageData.positioning);
     expect(service?.provider?.name).toBe('SunSolv Technologies');
     expect(breadcrumbs?.itemListElement?.map((item) => item.name)).toEqual([

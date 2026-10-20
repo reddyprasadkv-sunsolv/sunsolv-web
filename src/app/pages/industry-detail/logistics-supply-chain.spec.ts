@@ -200,7 +200,7 @@ describe('Logistics & Supply Chain industry page', () => {
       'Connect logistics and supply chain operations with SunSolv solutions for platforms, integrations, cloud, automation, data and operational visibility.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/industries/logistics-supply-chain',
+      'https://www.sunsolv.in/industries/logistics-supply-chain/',
     );
     expect(scripts).toHaveLength(1);
     expect(graph.map((item) => item['@type'])).toEqual([
@@ -210,7 +210,7 @@ describe('Logistics & Supply Chain industry page', () => {
       'FAQPage',
     ]);
     expect(page?.name).toBe('Logistics & Supply Chain Technology Solutions');
-    expect(page?.url).toBe('https://www.sunsolv.in/industries/logistics-supply-chain');
+    expect(page?.url).toBe('https://www.sunsolv.in/industries/logistics-supply-chain/');
     expect(service?.name).toBe('Logistics & Supply Chain Technology Solutions');
     expect(service?.serviceType).toBe(
       'Logistics and supply chain technology consulting and digital solutions',

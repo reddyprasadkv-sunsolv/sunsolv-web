@@ -65,7 +65,11 @@
         <ul class="toc-list">
           @for (item of study.toc; track item.id) {
             <li>
-              <a class="toc-link" [href]="'#' + item.id" (click)="scrollToSection($event, item.id)">
+              <a
+                class="toc-link"
+                [href]="'/case-studies/' + study.slug + '/#' + item.id"
+                (click)="scrollToSection($event, item.id)"
+              >
                 {{ item.label }}
               </a>
             </li>

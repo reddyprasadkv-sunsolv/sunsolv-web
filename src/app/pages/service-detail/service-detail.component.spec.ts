@@ -152,7 +152,7 @@ describe('ServiceDetailComponent', () => {
       'Make confident technology decisions with SunSolv IT consulting services covering strategy, architecture, modernization and delivery guidance.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/services/it-consulting',
+      'https://www.sunsolv.in/services/it-consulting/',
     );
     expect(graph.map((item) => item['@type'])).toEqual(['Service', 'BreadcrumbList', 'FAQPage']);
     expect(graph.find((item) => item['@type'] === 'BreadcrumbList')?.itemListElement).toHaveLength(
@@ -287,7 +287,7 @@ describe('ServiceDetailComponent', () => {
       'Modernize processes, connect systems and introduce practical automation with SunSolv’s digital transformation services.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/services/digital-transformation',
+      'https://www.sunsolv.in/services/digital-transformation/',
     );
     expect(graph.map((item) => item['@type'])).toEqual(['Service', 'BreadcrumbList', 'FAQPage']);
     expect(graph.find((item) => item['@type'] === 'BreadcrumbList')?.itemListElement).toHaveLength(
@@ -410,7 +410,7 @@ describe('ServiceDetailComponent', () => {
       'Plan, migrate and optimize secure, scalable cloud environments with SunSolv’s cloud architecture, migration and operations services.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/services/cloud-solutions',
+      'https://www.sunsolv.in/services/cloud-solutions/',
     );
     expect(graph.map((item) => item['@type'])).toEqual(['Service', 'BreadcrumbList', 'FAQPage']);
     expect(graph.find((item) => item['@type'] === 'BreadcrumbList')?.itemListElement).toHaveLength(
@@ -535,7 +535,7 @@ describe('ServiceDetailComponent', () => {
       'Build fast, accessible websites, web applications and mobile experiences with SunSolv’s product design and development services.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/services/web-mobile-development',
+      'https://www.sunsolv.in/services/web-mobile-development/',
     );
     expect(graph.map((item) => item['@type'])).toEqual(['Service', 'BreadcrumbList', 'FAQPage']);
     expect(graph.find((item) => item['@type'] === 'BreadcrumbList')?.itemListElement).toHaveLength(

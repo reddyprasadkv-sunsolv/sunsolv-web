@@ -163,7 +163,7 @@ describe('IndustryDetailComponent', () => {
       'Modernize healthcare experiences and operations with SunSolv solutions for digital platforms, connected workflows, cloud, integration, automation and analytics.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/industries/healthcare',
+      'https://www.sunsolv.in/industries/healthcare/',
     );
     expect(scripts).toHaveLength(1);
     expect(graph.map((item) => item['@type'])).toEqual([

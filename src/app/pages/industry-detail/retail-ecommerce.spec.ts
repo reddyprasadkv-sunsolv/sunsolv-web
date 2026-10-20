@@ -191,7 +191,7 @@ describe('Retail & E-Commerce industry page', () => {
       'Connect customer experiences and operations with SunSolv retail and e-commerce solutions for digital storefronts, integrations, cloud, data and automation.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/industries/retail-ecommerce',
+      'https://www.sunsolv.in/industries/retail-ecommerce/',
     );
     expect(scripts).toHaveLength(1);
     expect(graph.map((item) => item['@type'])).toEqual([
@@ -201,7 +201,7 @@ describe('Retail & E-Commerce industry page', () => {
       'FAQPage',
     ]);
     expect(page?.name).toBe('Retail & E-Commerce Technology Solutions');
-    expect(page?.url).toBe('https://www.sunsolv.in/industries/retail-ecommerce');
+    expect(page?.url).toBe('https://www.sunsolv.in/industries/retail-ecommerce/');
     expect(service?.name).toBe('Retail & E-Commerce Technology Solutions');
     expect(service?.serviceType).toBe(
       'Retail and e-commerce technology consulting and digital solutions',

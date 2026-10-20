@@ -193,7 +193,7 @@ describe('SaaS industry page', () => {
       'Build and modernize SaaS products with SunSolv solutions for product engineering, cloud architecture, integrations, automation and analytics.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/industries/saas',
+      'https://www.sunsolv.in/industries/saas/',
     );
     expect(scripts).toHaveLength(1);
     expect(graph.map((item) => item['@type'])).toEqual([
@@ -203,7 +203,7 @@ describe('SaaS industry page', () => {
       'FAQPage',
     ]);
     expect(page?.name).toBe('SaaS Technology Solutions');
-    expect(page?.url).toBe('https://www.sunsolv.in/industries/saas');
+    expect(page?.url).toBe('https://www.sunsolv.in/industries/saas/');
     expect(service?.name).toBe('SaaS Technology Solutions');
     expect(service?.serviceType).toBe('SaaS product engineering and digital solutions');
     expect(service?.provider?.['@id']).toBe('https://www.sunsolv.in/#organization');
