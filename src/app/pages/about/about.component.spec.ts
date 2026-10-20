@@ -74,7 +74,7 @@ describe('AboutComponent', () => {
       'Learn how SunSolv combines strategic thinking, engineering expertise and practical delivery to build technology around meaningful business outcomes.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://www.sunsolv.in/about-us',
+      'https://www.sunsolv.in/about-us/',
     );
     expect(document.querySelector('meta[property="og:image"]')?.getAttribute('content')).toBe(
       'https://www.sunsolv.in/images/about/sunsolv-about-purpose-driven-technology.webp',
