@@ -1,4 +1,4 @@
-import { readdir, readFile, writeFile } from 'node:fs/promises';
+import { readdir, readFile, writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 
 // Adapt the prerendered build for GitHub's project-site subdirectory when needed.
@@ -28,6 +28,11 @@ async function prepare(directory) {
     if (!/\.(html|js|css)$/.test(entry.name)) continue;
     let content = await readFile(path, 'utf8');
     if (entry.name.endsWith('.html')) {
+      // Repeated packaging must not retain an earlier enquiry endpoint ahead of the current one.
+      content = content.replace(
+        /<meta\b[^>]*name="enquiry-(?:api-origin|apps-script-url)"[^>]*>/g,
+        '',
+      );
       let metas = '';
       if (apiOrigin) metas += `<meta name="enquiry-api-origin" content="${apiOrigin}">`;
       if (appsScriptUrl)
@@ -61,6 +66,26 @@ await writeFile(
 <p><a href="${base}">Visit the homepage</a> · <a href="${base}services/">Explore services</a> · <a href="${base}contact-us/">Contact us</a></p>
 </main></body></html>`,
 );
+// Keep legacy Angular redirects reachable when the error document no longer boots the SPA.
+for (const [legacy, target] of [
+  ['partnership', 'partnerships/'],
+  ['terms-and-condition', 'terms-and-conditions/'],
+]) {
+  const destination = `${base}${target}`;
+  const directory = join(output, legacy);
+  await mkdir(directory, { recursive: true });
+  await writeFile(
+    join(directory, 'index.html'),
+    `<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page moved | SunSolv Technologies</title>
+<link rel="canonical" href="https://www.sunsolv.in/${target}">
+<script>location.replace(${JSON.stringify(destination)} + location.search + location.hash);</script>
+<noscript><meta http-equiv="refresh" content="0;url=${destination}"></noscript>
+</head><body><p>This page has moved. <a href="${destination}">Continue to SunSolv Technologies</a>.</p></body></html>`,
+  );
+}
 await writeFile(join(output, '.nojekyll'), '');
 await writeFile(join(output, 'CNAME'), 'www.sunsolv.in\n');
 console.log(`Prepared GitHub Pages build at ${base}`);
