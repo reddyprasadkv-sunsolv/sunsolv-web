@@ -77,3 +77,11 @@ page offers its email fallback.
 See [AWS preparation](deployment/aws/README.md) for the production Dockerfile,
 App Runner example configuration, secret mapping, health checks and release checks.
 These files do not create or deploy AWS resources.
+
+## Search visibility
+
+See [the 2026 SEO, AEO and GEO implementation notes](docs/search-visibility-2026.md) for the
+verified findings, implemented changes, release checks and content/measurement roadmap.
+After building, run `node scripts/prepare-pages.mjs` followed by `npm run check:seo`
+to validate canonical URLs, sitemap coverage, structured identity and the static 404 document.
+The GitHub Pages workflow runs this check before uploading the deployment artifact.
