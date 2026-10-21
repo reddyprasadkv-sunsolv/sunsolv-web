@@ -31,6 +31,7 @@ import {
 } from '@ng-icons/heroicons/outline';
 import { firstValueFrom, timeout } from 'rxjs';
 import { TurnstileComponent } from './turnstile.component';
+import { MeasurementService } from '../../core/measurement.service';
 import { services } from '../../core/site-data';
 import {
   getAllCountries,
@@ -53,6 +54,7 @@ type SubmitState = 'idle' | 'submitting' | 'success' | 'error';
   styleUrl: './contact.component.scss',
 })
 export class ContactComponent {
+  private readonly measurement = inject(MeasurementService);
   private readonly fb = inject(FormBuilder);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
@@ -524,6 +526,8 @@ export class ContactComponent {
           throw new Error(result?.code || 'Delivery failed');
         }
         this.reference.set(result.reference || ref);
+        if (response.ok && typeof result.reference === 'string' && result.reference.trim())
+          this.measurement.lead(result.reference, raw.enquiryType);
         this.state.set('success');
         this.statusMessage.set('Thank you. Your enquiry has been received.');
         setTimeout(() => this.document.getElementById('enquiry-success')?.focus(), 0);
@@ -536,6 +540,7 @@ export class ContactComponent {
       if (!result || typeof result.reference !== 'string' || !result.reference.trim())
         throw new Error('Missing acknowledgement');
       this.reference.set(result.reference);
+      if (!raw.website) this.measurement.lead(result.reference, raw.enquiryType);
       this.state.set('success');
       this.statusMessage.set('Thank you. Your enquiry has been received.');
       setTimeout(() => this.document.getElementById('enquiry-success')?.focus(), 0);

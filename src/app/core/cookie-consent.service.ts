@@ -16,6 +16,9 @@ export class CookieConsentService {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly openSettingsSubject = new Subject<void>();
 
+  private readonly analyticsConsentSubject = new Subject<boolean>();
+  readonly analyticsConsent$ = this.analyticsConsentSubject.asObservable();
+
   readonly openSettings$ = this.openSettingsSubject.asObservable();
 
   openSettings(): void {
@@ -79,5 +82,6 @@ export class CookieConsentService {
       ad_user_data: preferences.marketing ? 'granted' : 'denied',
       ad_personalization: preferences.marketing ? 'granted' : 'denied',
     });
+    this.analyticsConsentSubject.next(preferences.analytics === true);
   }
 }
