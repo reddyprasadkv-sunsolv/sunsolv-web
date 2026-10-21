@@ -3,6 +3,7 @@ import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map } from 'rxjs';
+import { MeasurementService } from './core/measurement.service';
 import { AnalyticsService } from './core/analytics.service';
 import { SeoService } from './core/seo.service';
 import { CookieConsentComponent } from './shared/cookie-consent/cookie-consent.component';
@@ -34,6 +35,7 @@ export class App {
 
   constructor() {
     this.analytics.init();
+    inject(MeasurementService).init();
   }
 
   readonly mainContentHref = toSignal(

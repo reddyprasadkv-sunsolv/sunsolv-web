@@ -3,19 +3,24 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { MeasurementService } from '../../core/measurement.service';
+import { vi } from 'vitest';
 import { ContactComponent } from './contact.component';
 
 describe('Contact enquiry form', () => {
   let fixture: ComponentFixture<ContactComponent>;
   let component: ContactComponent;
   let http: HttpTestingController;
+  const lead = vi.fn();
   const query = new BehaviorSubject(convertToParamMap({}));
 
   beforeEach(async () => {
+    lead.mockClear();
     query.next(convertToParamMap({}));
     await TestBed.configureTestingModule({
       imports: [ContactComponent],
       providers: [
+        { provide: MeasurementService, useValue: { lead } },
         provideHttpClient(),
         provideHttpClientTesting(),
         provideRouter([]),
@@ -85,6 +90,7 @@ describe('Contact enquiry form', () => {
     await pending;
     expect(component.state()).toBe('success');
     expect(component.reference()).toBe('SS-20260919-1234ABCD');
+    expect(lead).toHaveBeenCalledExactlyOnceWith('SS-20260919-1234ABCD', 'project');
     await component.submit();
     http.expectNone('/api/enquiries');
   });
@@ -94,6 +100,7 @@ describe('Contact enquiry form', () => {
     http.expectOne('/api/enquiries').flush({}, { status: 503, statusText: 'Unavailable' });
     await pending;
     expect(component.state()).toBe('error');
+    expect(lead).not.toHaveBeenCalled();
     expect(component.form.controls.message.value).toContain('local automated test');
     expect(component.form.controls.antiBotToken.value).toBe('');
     expect(component.statusMessage()).toContain('email info@sunsolv.in');
@@ -104,6 +111,7 @@ describe('Contact enquiry form', () => {
     http.expectOne('/api/enquiries').flush({});
     await pending;
     expect(component.state()).toBe('error');
+    expect(lead).not.toHaveBeenCalled();
     expect(component.reference()).toBe('');
   });
 
@@ -159,11 +167,53 @@ describe('Contact enquiry form', () => {
       expect(postedBody.dialCode).toBe('+91');
       expect(direct.state()).toBe('success');
       expect(direct.reference()).toBe('SS-20260922-APPSCRPT');
+      expect(lead).toHaveBeenCalledExactlyOnceWith('SS-20260922-APPSCRPT', 'project');
     } finally {
       globalThis.fetch = originalFetch;
       meta.remove();
     }
   });
+
+  it('does not measure a honeypot acknowledgement', async () => {
+    component.form.controls.website.setValue('bot.example');
+    const pending = component.submit();
+    http.expectOne('/api/enquiries').flush({ reference: 'SS-RECEIVED' });
+    await pending;
+    expect(component.state()).toBe('success');
+    expect(lead).not.toHaveBeenCalled();
+  });
+
+  it.each(['honeypot', 'failure', 'missing-reference', 'http-failure'])(
+    'does not measure Apps Script %s as a lead',
+    async (scenario) => {
+      const meta = document.createElement('meta');
+      meta.name = 'enquiry-apps-script-url';
+      meta.content = 'https://script.google.com/macros/s/test/exec';
+      document.head.appendChild(meta);
+      const fetchMock = vi.spyOn(globalThis, 'fetch').mockResolvedValue({
+        ok: scenario !== 'http-failure',
+        json: async () =>
+          scenario === 'failure'
+            ? { ok: false }
+            : scenario === 'http-failure'
+              ? { ok: true, reference: 'SS-HTTP-FAILURE' }
+              : { ok: true },
+      } as Response);
+      try {
+        const direct = TestBed.createComponent(ContactComponent).componentInstance;
+        direct.deliveryReady.set(true);
+        direct.form.patchValue(component.form.getRawValue());
+        if (scenario === 'honeypot') direct.form.controls.website.setValue('bot.example');
+        await direct.submit();
+        expect(lead).not.toHaveBeenCalled();
+        if (scenario === 'honeypot') expect(fetchMock).not.toHaveBeenCalled();
+        if (scenario === 'failure') expect(direct.state()).toBe('error');
+      } finally {
+        fetchMock.mockRestore();
+        meta.remove();
+      }
+    },
+  );
 
   it('starts a fresh enquiry without retaining personal information', () => {
     component.form.controls.enquiryType.setValue('career');
