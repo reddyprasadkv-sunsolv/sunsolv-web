@@ -264,7 +264,7 @@ export const digitalTransformationArticles: readonly InsightArticle[] = [
       },
       {
         id: 'hypothetical-example-distribution-erp',
-        title: 'Hypothetical Example: 15-Year-Old Billing & Inventory Core',
+        title: 'Hypothetical Example: Legacy Billing & Inventory Core',
       },
       {
         id: 'the-perils-of-the-big-bang-rewrite',
@@ -284,9 +284,9 @@ export const digitalTransformationArticles: readonly InsightArticle[] = [
         directAnswer:
           "Legacy systems are often both a company's greatest operational asset and its biggest innovation bottleneck.",
         paragraphs: [
-          'A system is termed "legacy" not merely because it is old, but because it is critical to the daily operation of the enterprise yet resistant to change. Many mid-market businesses rely on proprietary accounting, inventory, or ERP systems built ten to twenty years ago on Visual Basic, Delphi, on-premises SQL Server, or monolithic PHP.',
-          'These systems encapsulate decades of nuanced, specialized business rules that off-the-shelf software cannot replicate. However, they lack mobile interfaces, cannot easily interface with modern cloud APIs, rely on aging servers, and depend on developers nearing retirement.',
-          'Faced with these challenges, executives often lurch between two extremes: doing nothing until a catastrophic outage occurs, or commissioning a high-risk multi-million-dollar "big-bang" replacement that collapses under its own complexity. An objective architectural evaluation provides a safer, disciplined path forward.',
+          'A system is termed "legacy" not merely because it is old, but because it is critical to the daily operation of the enterprise yet resistant to change. Some businesses rely on long-established proprietary accounting, inventory, or ERP systems built on Visual Basic, Delphi, on-premises SQL Server, or monolithic PHP.',
+          'These systems encapsulate accumulated, specialized business rules that off-the-shelf software cannot replicate. However, they lack mobile interfaces, cannot easily interface with modern cloud APIs, rely on aging servers, and depend on developers nearing retirement.',
+          'Faced with these challenges, executives often lurch between two extremes: doing nothing until a catastrophic outage occurs, or commissioning a high-risk, costly "big-bang" replacement that collapses under its own complexity. An objective architectural evaluation provides a safer, disciplined path forward.',
           'Deciding whether to update or replace core systems forms a critical milestone within any practical [digital transformation roadmap](/insights/digital-transformation/what-should-a-digital-transformation-roadmap-include/).',
         ],
       },
@@ -306,22 +306,22 @@ export const digitalTransformationArticles: readonly InsightArticle[] = [
         id: 'the-api-wrapper-strategy',
         heading: 'The API Wrapper Strategy: Extending Life Without Rewrites',
         directAnswer:
-          'Building modern REST APIs on top of legacy databases delivers modern digital capability at a fraction of rewrite costs.',
+          'Building REST APIs around a legacy system can add digital capabilities without replacing the entire application. Costs depend on integration scope and constraints.',
         paragraphs: [
           'For many organizations, the underlying database schema of their legacy system is sound, but the desktop user interface is clunky and inaccessible outside the office VPN.',
           'By deploying a modern, secure middleware layer that interfaces directly with the legacy database (or taps into existing stored procedures), engineering teams can create a standardized API gateway. Frontline technicians and sales teams gain fast, responsive web portals and mobile access on iPads or phones, while the back-office accounting team continues using their familiar desktop application without disruption.',
-          'This API wrapping strategy provides immediate digital experience improvements and buys the organization years of breathing room to plan a measured, phased migration.',
+          'This API wrapping strategy can support incremental digital experience improvements while the organization plans a measured, phased migration.',
         ],
       },
       {
         id: 'hypothetical-example-distribution-erp',
-        heading: 'Hypothetical Example: 15-Year-Old Billing & Inventory Core',
+        heading: 'Hypothetical Example: Legacy Billing & Inventory Core',
         directAnswer:
-          'How a regional distribution firm used API integration and web portals to avoid a $500,000 system replacement.',
+          'An illustrative scenario showing how a distributor could assess API integration and web portals before replacing a legacy system.',
         paragraphs: [
-          'Consider a hypothetical distributor with $60M in annual revenue operating on a legacy 2011 on-premises ERP. The software managed 40,000 SKUs, custom customer pricing tiers, and warehouse bin locations flawlessly, but customers could not view their invoices or place orders online without emailing customer support.',
-          'Enterprise software vendors quoted $500,000 to replace the ERP with a major cloud suite, with an estimated 18-month migration timeline. Recognizing the immense risk of disrupting daily warehouse dispatches, leadership chose an **Integrate & Modernize** approach instead.',
-          'The engineering team built a secure Node.js/PostgreSQL micro-service that mirrored customer order and invoice data in real time via read-only replication, exposing clean REST APIs to a responsive Angular customer portal. Customers gained self-service ordering, invoice downloads, and shipment tracking in four months for $85,000, while the core warehouse continued operating on the proven legacy ERP with zero downtime.',
+          'Consider a hypothetical distributor operating an established on-premises ERP. The software supports its product catalogue, custom customer pricing tiers, and warehouse bin locations, but customers cannot view invoices or place orders online without emailing customer support.',
+          'Rather than assume a replacement budget or migration timeline, leadership could compare a cloud-suite replacement with an **Integrate & Modernize** approach, assessing delivery scope and the risk of disrupting warehouse dispatches.',
+          'A possible design could use a Node.js/PostgreSQL service to synchronize order and invoice data through read-only replication and expose REST APIs to an Angular customer portal. Self-service ordering, invoice downloads, and shipment tracking would require suitable integration and validation. Delivery cost, timing, and continuity arrangements would need project-specific assessment; these are not verified project outcomes.',
         ],
       },
       {
@@ -330,7 +330,7 @@ export const digitalTransformationArticles: readonly InsightArticle[] = [
         directAnswer:
           'Complete system rewrites fail when they attempt to replicate decades of undocumented edge-case business rules at once.',
         paragraphs: [
-          'Software architect [Martin Fowler describes the big-bang rewrite as a high-risk anti-pattern](https://martinfowler.com/bliki/StranglerFigApplication.html) that almost always encounters severe budget overruns and schedule delays. In any system that has run for ten years, thousands of bug fixes, tax rule edge cases, and client-specific pricing overrides have been encoded into the software—often without documentation. Longitudinal enterprise modernization research, including data from [The Standish Group](https://www.standishgroup.com/), similarly demonstrates that full-replacement initiatives face high failure rates compared to incremental modernisation.',
+          'Software architect [Martin Fowler describes gradual legacy modernization using the Strangler Fig approach](https://martinfowler.com/bliki/StranglerFigApplication.html). His discussion highlights the difficulty of understanding existing behavior and the value of replacing smaller components incrementally. Legacy systems can contain undocumented bug fixes, tax-rule edge cases, and client-specific pricing overrides that need to be understood before replacement.',
           'When an engineering team attempts to rebuild everything from scratch in a new platform, these hidden business rules are discovered only when production launches and critical transactions fail. If replacement is unavoidable, employ the "Strangler Fig Pattern": migrate small functional modules one by one until the legacy system can be safely decommissioned.',
         ],
       },
@@ -366,9 +366,9 @@ export const digitalTransformationArticles: readonly InsightArticle[] = [
         {
           factor: 'Implementation Cost',
           values: [
-            'Moderate (30%–50% of full rewrite cost)',
-            'Low to Moderate (15%–30% of full rewrite cost)',
-            'High (100% of capital expenditure)',
+            'Depends on retained components and refactoring scope',
+            'Depends on interfaces, data synchronization, and integration constraints',
+            'Depends on replacement scope, data migration, and operational transition',
           ],
         },
         {
@@ -381,7 +381,11 @@ export const digitalTransformationArticles: readonly InsightArticle[] = [
         },
         {
           factor: 'Time to First Value',
-          values: ['3 to 6 months', '6 to 12 weeks', '12 to 24 months'],
+          values: [
+            'Depends on the first independently releasable improvement',
+            'Depends on interface readiness and integration validation',
+            'Depends on migration scope, testing, and cutover readiness',
+          ],
         },
         {
           factor: 'Long-Term Extensibility',
