@@ -251,6 +251,22 @@ assert.match(
   await readFile(join(root, 'robots.txt'), 'utf8'),
   /Sitemap: https:\/\/www\.sunsolv\.in\/sitemap\.xml/,
 );
+const llms = await readFile(join(root, 'llms.txt'), 'utf8');
+const llmsLinks = [...llms.matchAll(/\]\((https:\/\/www\.sunsolv\.in[^)]*)\)/g)].map(
+  (match) => new URL(match[1]).href,
+);
+assert.ok(llmsLinks.length > 0, 'llms.txt contains official site references');
+for (const url of llmsLinks)
+  assert.ok(locations.includes(url), `llms.txt must use a current canonical sitemap URL: ${url}`);
+await assert.rejects(
+  stat(join(root, '.analytics-reports')),
+  { code: 'ENOENT' },
+  'Private analytics output must not be in Pages artifact',
+);
+assert.ok(
+  !siteText.includes('SunSolv private performance report'),
+  'Private dashboard must not be prerendered into public pages',
+);
 for (const [legacy, target] of [
   ['partnership', 'partnerships'],
   ['terms-and-condition', 'terms-and-conditions'],
@@ -289,6 +305,8 @@ console.log(
       reachable: visited.size,
       schemaTypes: types,
       static404: 'PASS',
+      llmsCanonicalLinks: llmsLinks.length,
+      privateAnalyticsExcluded: 'PASS',
     },
     null,
     2,

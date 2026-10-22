@@ -49,6 +49,22 @@ test('container health, CORS configuration and graceful shutdown', async () => {
       headers: { Origin: 'https://untrusted.example' },
     });
     assert.equal(denied.status, 403);
+    const packaged = new JSDOM(await readFile('dist/sunsolv-redesign/browser/index.html', 'utf8'));
+    const shell = new JSDOM(await readFile('dist/sunsolv-redesign/server/index.ssr.html', 'utf8'));
+    assert.equal(
+      shell.window.document.querySelector('#ng-state'),
+      null,
+      'Express template has no stale hydration state',
+    );
+    for (const name of ['enquiry-api-origin', 'enquiry-apps-script-url']) {
+      assert.equal(
+        shell.window.document.querySelector(`meta[name="${name}"]`)?.content,
+        packaged.window.document.querySelector(`meta[name="${name}"]`)?.content,
+        'Enquiry transport preserved',
+      );
+    }
+    packaged.window.close();
+    shell.window.close();
     const routes = (await readFile('routes.txt', 'utf8')).trim().split(/\r?\n/).filter(Boolean);
     for (const route of routes) {
       const path = route === '/' ? '/' : `${route}/`;

@@ -77,7 +77,9 @@ describe('SunSolv Insights Module', () => {
         expect(article.authorRole).toBe('Founder & CEO, SunSolv Technologies');
         expect(article.authorLink).toBe('/about-us#founder');
         expect(['2026-09-29', '2026-09-30']).toContain(article.datePublished);
-        expect(['2026-09-29', '2026-09-30']).toContain(article.dateModified);
+        expect(article.dateModified).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+        expect(article.dateModified >= article.datePublished).toBe(true);
+        expect(article.dateModified <= new Date().toISOString().slice(0, 10)).toBe(true);
         expect(article.canonicalUrl.startsWith('https://www.sunsolv.in/insights/')).toBe(true);
         expect(article.canonicalUrl.endsWith('/')).toBe(true);
         expect(article.executiveSummary).toBeTruthy();

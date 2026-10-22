@@ -11,6 +11,8 @@ const routes = (await readFile(join(root, 'routes.txt'), 'utf8'))
   .map((route) => route.trim())
   .filter(Boolean);
 const template = await readFile(join(browserDir, 'index.html'), 'utf8');
+// Express must render from the clean shell, never a homepage carrying hydration state.
+await writeFile(join(root, 'dist/sunsolv-redesign/server/index.ssr.html'), template);
 const { default: bootstrap, renderApplication } = createRequire(import.meta.url)(serverBundle);
 
 if (typeof globalThis.URL.canParse !== 'function') {

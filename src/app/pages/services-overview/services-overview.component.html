@@ -70,6 +70,37 @@
   </div>
 </section>
 
+<section class="section" aria-labelledby="project-services-title">
+  <div class="shell">
+    <header class="section-heading">
+      <p class="eyebrow">Global IT project enquiries</p>
+      <h2 id="project-services-title">Software engineering across industries.</h2>
+      <p>
+        Work with an India-based technology team. Begin with your business requirements; we confirm
+        scope, technical fit, delivery capacity, communication and support arrangements before
+        committing to an engagement.
+      </p>
+    </header>
+    <div class="services-grid">
+      @for (service of approvedServices; track service.slug) {
+        <article class="service-card" [id]="service.slug">
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.description }}</p>
+          <a class="inline-link" [routerLink]="['/services', service.routeSlug]"
+            >Explore related capabilities</a
+          >
+          <a
+            class="inline-link"
+            routerLink="/contact-us"
+            [queryParams]="{ enquiry: 'project', service: service.title }"
+            >Discuss this requirement</a
+          >
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
 <section class="section services-intro" aria-labelledby="services-intro-title">
   <div class="shell editorial-grid">
     <header>

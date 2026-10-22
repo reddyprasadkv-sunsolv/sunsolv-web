@@ -152,7 +152,7 @@ app.use((req, res, next) => {
   commonEngine
     .render({
       bootstrap,
-      documentFilePath: join(browserDistFolder, 'index.html'),
+      documentFilePath: join(__dirname, '../server/index.ssr.html'),
       publicPath: browserDistFolder,
       url: `${req.protocol}://${req.get('host')}${req.originalUrl}`,
     })

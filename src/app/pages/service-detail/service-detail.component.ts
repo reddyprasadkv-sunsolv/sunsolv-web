@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroArrowRight, heroChevronDown } from '@ng-icons/heroicons/outline';
+import { approvedServices } from '../../core/approved-services';
 import { ServiceDetailPageData } from './service-detail-data';
 
 @Component({
@@ -15,6 +16,9 @@ import { ServiceDetailPageData } from './service-detail-data';
 })
 export class ServiceDetailComponent {
   readonly data = inject(ActivatedRoute).snapshot.data['serviceData'] as ServiceDetailPageData;
+  readonly projectServices = approvedServices.filter(
+    (item) => this.data.seo.path === `services/${item.routeSlug}`,
+  );
   readonly openFaqIndex = signal<number | null>(null);
 
   toggleFaq(index: number): void {

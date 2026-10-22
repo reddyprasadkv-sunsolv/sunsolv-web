@@ -829,9 +829,9 @@ export const dedicatedCaseStudies: readonly DedicatedCaseStudy[] = [
     supportingHeadline:
       'Connecting project delivery, invoicing, payments and operational reporting in one structured system.',
     category: 'Business Operations Software',
-    seoTitle: 'Invoice & Project Management System Case Study | SunSolv',
+    seoTitle: 'Invoice Software & Project Management Case Study | SunSolv',
     metaDescription:
-      'See how SunSolv designed an integrated system for managing projects, invoices, payments, vendor assignments and business reporting.',
+      'Invoice software case study: how SunSolv connects project milestones, resource costs, invoices, receipts and outstanding balances in one operational system.',
     canonicalPath: 'case-studies/invoice-project-management-system',
     badges: [
       { label: 'Domain', value: 'Operations & Billing' },

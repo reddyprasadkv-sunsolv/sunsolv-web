@@ -32,6 +32,7 @@ import {
 import { firstValueFrom, timeout } from 'rxjs';
 import { TurnstileComponent } from './turnstile.component';
 import { MeasurementService } from '../../core/measurement.service';
+import { approvedServices } from '../../core/approved-services';
 import { services } from '../../core/site-data';
 import {
   getAllCountries,
@@ -66,7 +67,10 @@ export class ContactComponent {
   private readonly appsScriptUrl =
     this.document.querySelector<HTMLMetaElement>('meta[name="enquiry-apps-script-url"]')?.content ??
     '';
-  readonly services = services;
+  readonly services = [
+    ...approvedServices,
+    ...services.filter((legacy) => !approvedServices.some((item) => item.title === legacy.title)),
+  ];
   readonly state = signal<SubmitState>('idle');
   readonly reference = signal('');
   readonly deliveryReady = signal<boolean | null>(null);
@@ -228,7 +232,7 @@ export class ContactComponent {
           : 'project',
       );
       const service = query.get('service');
-      if (service && (service === 'Other' || services.some((item) => item.title === service)))
+      if (service && (service === 'Other' || this.services.some((item) => item.title === service)))
         this.form.controls.service.setValue(service);
       const caseStudy = query.get('caseStudy');
       if (caseStudy) {
@@ -262,7 +266,7 @@ export class ContactComponent {
       case 'general':
         return 'Tell us what you would like to know and how we can help.';
       default:
-        return 'Share your goals, current challenges and any timeline you have in mind.';
+        return 'Share your goals, current systems and project requirements. You may include an estimated budget, currency and preferred timeline; these are optional.';
     }
   }
 

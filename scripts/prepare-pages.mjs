@@ -52,6 +52,19 @@ async function prepare(directory) {
   }
 }
 await prepare(output);
+// Keep the clean Express shell on the same enquiry transport as packaged pages.
+// Copy configuration only; never copy prerendered content or hydration state.
+const ssrTemplatePath = join(output, '../server/index.ssr.html');
+let ssrTemplate = await readFile(ssrTemplatePath, 'utf8');
+const packagedIndex = await readFile(join(output, 'index.html'), 'utf8');
+const enquiryMetas =
+  packagedIndex.match(/<meta\b[^>]*name="enquiry-(?:api-origin|apps-script-url)"[^>]*>/g) || [];
+ssrTemplate = ssrTemplate.replace(
+  /<meta\b[^>]*name="enquiry-(?:api-origin|apps-script-url)"[^>]*>/g,
+  '',
+);
+ssrTemplate = ssrTemplate.replace('</head>', `${enquiryMetas.join('')}</head>`);
+await writeFile(ssrTemplatePath, ssrTemplate);
 // A real missing-page document prevents unknown URLs from rendering an indexable homepage.
 await writeFile(
   join(output, '404.html'),

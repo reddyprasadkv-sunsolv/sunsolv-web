@@ -24,7 +24,7 @@ describe('ServicesOverviewComponent', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain(
       'Technology services built around business outcomes.',
     );
-    expect(compiled.querySelectorAll('.services-grid article')).toHaveLength(7);
+    expect(compiled.querySelectorAll('.services-grid article')).toHaveLength(16);
     expect(
       [...compiled.querySelectorAll('.industry-list h3')].map((heading) =>
         heading.textContent?.trim(),
@@ -100,7 +100,7 @@ describe('ServicesOverviewComponent', () => {
 
     expect(document.title).toBe('IT Services & Digital Solutions | SunSolv Technologies');
     expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toBe(
-      'Explore SunSolv’s IT consulting, cloud, custom software, web and mobile, AI, digital transformation and marketing services.',
+      'Explore software engineering, IT outsourcing enquiries, maintenance, cloud and DevOps, AI automation, custom ERP/CRM, testing and IT consulting from India.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
       'https://www.sunsolv.in/services/',
