@@ -172,7 +172,7 @@ describe('IndustriesOverviewComponent', () => {
 
     expect(document.title).toBe('Industry Technology Solutions | SunSolv Technologies');
     expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toBe(
-      'Explore SunSolv technology solutions for healthcare, education, retail and e-commerce, real estate, SaaS, and logistics and supply chain.',
+      'Explore industry-agnostic IT services and selected industry solutions. Discuss software requirements across sectors with SunSolv Technologies in India.',
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
       'https://www.sunsolv.in/industries/',

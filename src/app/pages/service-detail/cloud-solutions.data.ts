@@ -278,13 +278,12 @@ export const cloudSolutionsPageData: ServiceDetailPageData = {
       'Practical guidance on executing cloud migrations, controlling runaway infrastructure spend, and designing business continuity safeguards.',
     items: [
       {
-        title: 'How to Plan a Cloud Migration Without Disrupting Operations',
-        route:
-          '/insights/cloud-infrastructure/how-to-plan-a-cloud-migration-without-disrupting-operations/',
+        title: 'Cloud Readiness Assessment: A Practical Framework for Businesses',
+        route: '/insights/cloud-infrastructure/cloud-readiness-assessment-a-practical-framework/',
         categoryTitle: 'Cloud Infrastructure',
-        readingTime: '9 min read',
+        readingTime: '11 min read',
         summary:
-          'A phase-by-phase framework for workload assessment, dependency mapping, data cutover, and post-migration validation.',
+          'Assess workload dependencies, security, costs and team readiness before choosing a migration approach.',
       },
       {
         title: 'How to Control Cloud Costs Before They Grow',

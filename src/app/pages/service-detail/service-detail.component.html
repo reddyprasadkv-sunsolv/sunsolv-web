@@ -61,6 +61,32 @@
   </div>
 </section>
 
+@if (projectServices.length) {
+  <section class="section capabilities" aria-labelledby="project-scope-title">
+    <div class="shell">
+      <h2 class="detail-section-title" id="project-scope-title">Plan your project with SunSolv.</h2>
+      <p>
+        Share your users, current systems, integration needs and business priorities. We assess
+        technical fit, agree acceptance criteria and define delivery milestones, communication and
+        support responsibilities before work begins.
+      </p>
+      @for (service of projectServices; track service.slug) {
+        <article>
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.description }}</p>
+          <a
+            class="inline-link"
+            routerLink="/contact-us"
+            [queryParams]="{ enquiry: 'project', service: service.title }"
+            >Discuss this requirement</a
+          >
+        </article>
+      }
+      <a class="inline-link" routerLink="/services">Explore related IT services</a>
+    </div>
+  </section>
+}
+
 <section class="section introduction" aria-labelledby="introduction-title">
   <div class="shell editorial-grid two-column-layout">
     <header>

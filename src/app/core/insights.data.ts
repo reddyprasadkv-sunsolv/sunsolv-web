@@ -1284,9 +1284,9 @@ export const insightArticles: readonly InsightArticle[] = [
     categorySlug: 'cloud-infrastructure',
     categoryTitle: 'Cloud & Infrastructure',
     title: 'Cloud Readiness Assessment: A Practical Framework for Businesses',
-    seoTitle: 'Cloud Readiness Assessment: A Practical Framework | SunSolv',
+    seoTitle: 'Cloud Readiness Assessment Checklist & Framework | SunSolv',
     metaDescription:
-      'Learn what organizations should evaluate before migrating applications, infrastructure and workloads to the cloud.',
+      'Use a cloud readiness assessment checklist to review workload dependencies, security, costs and team readiness before planning a phased migration.',
     excerpt:
       'A practical framework for evaluating application dependencies, data requirements, security boundaries, team skills, and cost models before migrating workloads to the cloud.',
     author: 'Reddy Prasad K V',
@@ -1294,7 +1294,7 @@ export const insightArticles: readonly InsightArticle[] = [
     authorLink: '/about-us#founder',
     authorImage: '/images/about/prasad-founder.webp',
     datePublished: '2026-09-29',
-    dateModified: '2026-09-29',
+    dateModified: '2026-10-22',
     formattedDate: 'September 29, 2026',
     readingTime: '11 min read',
     featuredImage: '/images/insights/sunsolv-cloud-readiness-assessment.webp',
@@ -1440,6 +1440,7 @@ export const insightArticles: readonly InsightArticle[] = [
           'Moving workloads to the cloud is rarely a straightforward matter of copying virtual machines from a local server room to a cloud provider. Organizations that attempt migration without an assessment frequently encounter unexpected obstacles:',
           'Applications experience sudden latency regressions because legacy services were accustomed to sub-millisecond local network connections. Cloud bills escalate dramatically because servers were provisioned based on un-optimized peak hardware rather than rightsized cloud instances. Security gaps emerge because perimeter firewall assumptions do not translate directly to cloud identity-based access models.',
           'A cloud readiness assessment acts as a structural audit. It uncovers hidden dependencies, validates technical architecture, establishes financial projections, and ensures internal teams are prepared to operate effectively on day two.',
+          'The assessment should produce a workload inventory, a dependency map, a risk register with named owners, cost assumptions, a migration option for each workload, and acceptance criteria for a pilot. These outputs turn the checklist into a decision about what to move, retain or retire and what must be resolved before a migration wave starts.',
         ],
       },
       {

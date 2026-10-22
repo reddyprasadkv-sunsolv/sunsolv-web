@@ -26,6 +26,7 @@ import {
   heroUsers,
   heroWrenchScrewdriver,
 } from '@ng-icons/heroicons/outline';
+import { approvedServices } from '../../core/approved-services';
 import { industries, services } from '../../core/site-data';
 
 const serviceDescriptions: Record<string, string> = {
@@ -80,6 +81,7 @@ const serviceDescriptions: Record<string, string> = {
   styleUrl: './services-overview.component.scss',
 })
 export class ServicesOverviewComponent {
+  readonly approvedServices = approvedServices;
   readonly coreServices = services.map((service) => ({
     ...service,
     description: serviceDescriptions[service.slug],

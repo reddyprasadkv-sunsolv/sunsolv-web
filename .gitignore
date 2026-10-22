@@ -50,6 +50,13 @@ pnpm-debug.log*
 credentials*.json
 service-account*.json
 secrets.*
+/.analytics-reports/
+# Private Phase 8 audit deliverables include actual business metrics.
+/docs/analytics-phase8-audit.md
+/docs/ga4-search-console-integration.md
+/docs/monthly-analytics-reporting.md
+/docs/seo-geo-aeo-performance-baseline.md
+/docs/analytics-phase8-completion.md
 
 # Local caches and miscellaneous output
 /.angular
@@ -69,3 +76,11 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Private Phase 9 account evidence and plans
+/docs/analytics-phase9-audit.md
+/docs/analytics-automation-setup.md
+/docs/lead-conversion-reconciliation.md
+/docs/search-console-growth-opportunities.md
+/docs/seo-geo-aeo-phase9-plan.md
+/docs/analytics-phase9-completion.md

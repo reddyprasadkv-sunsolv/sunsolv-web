@@ -406,7 +406,7 @@ export const technologyStrategyArticles: readonly InsightArticle[] = [
     title: 'How to Evaluate a Software Development Partner',
     seoTitle: 'How to Evaluate a Software Development Partner | SunSolv',
     metaDescription:
-      'Learn how to look beyond sales pitches to evaluate software development agencies on architectural discipline, code quality, IP ownership, and communication rhythm.',
+      'Evaluate a software development partner with evidence: QA test reports, acceptance criteria, code ownership, architecture reviews and delivery visibility.',
     excerpt:
       'Choosing a software development vendor is one of the highest-stakes decisions a business leader will make. Here is how to evaluate technical competence, engineering rigor, and long-term partnership fit.',
     author: 'Reddy Prasad K V',
@@ -414,9 +414,9 @@ export const technologyStrategyArticles: readonly InsightArticle[] = [
     authorLink: '/about-us#founder',
     authorImage: '/images/about/prasad-founder.webp',
     datePublished: '2026-09-30',
-    dateModified: '2026-09-30',
+    dateModified: '2026-10-22',
     formattedDate: 'September 30, 2026',
-    readingTime: '7 min read',
+    readingTime: '8 min read',
     featuredImage: '/images/insights/sunsolv-custom-software-vs-saas.webp',
     featuredImageAlt:
       'Technical leadership team reviewing software vendor evaluation rubric, architecture standards, and code ownership agreements',
@@ -497,13 +497,15 @@ export const technologyStrategyArticles: readonly InsightArticle[] = [
         id: 'technical-and-architectural-vetting',
         heading: 'Vetting Technical Rigor and Architecture Standards',
         directAnswer:
-          'Request an architectural walkthrough and ask specific technical questions about testing, error handling, and security.',
+          'Evaluate a vendor’s QA process by reviewing acceptance criteria, representative test cases, recent automated test reports, defect handling and the checks required before a release.',
         paragraphs: [
           'During technical interviews with prospective agencies, move beyond portfolio case studies. Ask to see how their engineering teams write code. Legitimate engineering partners are proud to demonstrate their development standards:',
           '• **Automated Testing:** What is their policy on unit, integration, and end-to-end testing? If an agency claims "we test everything manually with our QA team," you are dealing with an outdated shop.',
           '• **Continuous Integration:** Does every commit trigger automated linting, security vulnerability scanning, and automated test suites before being merged?',
           '• **Security Best Practices:** How do they manage secrets, environment variables, and authentication tokens? (If secrets are committed to Git or stored in plaintext, disqualify immediately).',
           '• **Documentation:** Do they generate automated OpenAPI contracts, database migration scripts, and architecture decision records (ADRs)?',
+          'Ask the team to walk through one completed feature from its acceptance criteria to unit, integration and end-to-end test results. Include a failed dependency or invalid-input scenario, then ask how a defect is reproduced, fixed and covered by a regression test. A coverage percentage alone does not show whether important user journeys and failure paths are tested.',
+          'For security-related delivery questions, use [NIST’s Secure Software Development Framework](https://csrc.nist.gov/Projects/ssdf) as a shared reference when discussing practices and evidence. Assess the actual project artifacts and agreed scope; mentioning a framework is not evidence that a vendor follows it.',
         ],
       },
       {
