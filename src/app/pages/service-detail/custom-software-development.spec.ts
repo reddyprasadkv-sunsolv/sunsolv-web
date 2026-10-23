@@ -109,6 +109,31 @@ describe('Custom Software Development service page', () => {
     );
   });
 
+  it('connects outsourcing due diligence with a service-specific project enquiry', async () => {
+    const { fixture, compiled } = await renderPage();
+    expect(compiled.querySelector('.introduction')?.textContent).toContain(
+      'preferred working-hour overlap',
+    );
+    expect(
+      compiled.querySelector(
+        'a[href^="/insights/technology-strategy/how-to-evaluate-a-software-development-partner"]',
+      ),
+    ).toBeTruthy();
+    const outsourcingLink = [...compiled.querySelectorAll<HTMLAnchorElement>('a[href]')].find(
+      (link) =>
+        new URL(link.href, 'https://www.sunsolv.in').searchParams.get('service') ===
+        'IT Outsourcing',
+    );
+    expect(outsourcingLink).toBeTruthy();
+    await TestBed.inject(Router).navigateByUrl(outsourcingLink!.getAttribute('href')!);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+    expect((compiled.querySelector('#service') as HTMLSelectElement | null)?.value).toBe(
+      'IT Outsourcing',
+    );
+  });
+
   it('uses the centralized six-industry list and links every item safely', async () => {
     const { compiled } = await renderPage();
     const links = [...compiled.querySelectorAll<HTMLAnchorElement>('.industry-list a')];

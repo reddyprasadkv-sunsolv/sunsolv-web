@@ -87,6 +87,7 @@ export const customSoftwareDevelopmentPageData: ServiceDetailPageData = {
     paragraphs: [
       'Businesses often rely on a combination of spreadsheets, disconnected platforms, manual approvals and legacy applications to keep essential work moving. Over time, these workarounds create delays, duplicate information and make change increasingly difficult.',
       'SunSolv develops custom software around the workflows, users and objectives that matter to your organization. We combine business discovery, experience design, engineering and integration to create practical applications that fit the current environment and can evolve with future requirements.',
+      'For businesses considering outsourcing software development to India, discuss a scoped project, phased development or engineering support for your existing team. Share your requirements, current systems and preferred working-hour overlap through the IT Outsourcing enquiry. Before commitment, confirm delivery capacity, responsibilities, review cadence, acceptance criteria and handover. Agree maintenance scope and support arrangements separately; dedicated resources and availability require confirmation.',
     ],
   },
   challenges: {
@@ -308,6 +309,14 @@ export const customSoftwareDevelopmentPageData: ServiceDetailPageData = {
         readingTime: '8 min read',
         summary:
           'Design fault-tolerant data pipelines with idempotency, automated retry mechanisms, and robust error observability.',
+      },
+      {
+        title: 'How to Evaluate a Software Development Partner',
+        route: '/insights/technology-strategy/how-to-evaluate-a-software-development-partner/',
+        categoryTitle: 'Technology Strategy',
+        readingTime: '8 min read',
+        summary:
+          'Review delivery visibility, QA evidence, code ownership and communication before choosing an outsourcing partner.',
       },
     ],
   },
